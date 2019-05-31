@@ -38,6 +38,24 @@ public class Wallet implements Serializable {
     private int canWithdraw;
     private double minRechargeAmount;
     private double totalLegalAssetBalance;
+    private String name;
+    private int isDefault;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getIsDefault() {
+        return isDefault;
+    }
+
+    public void setIsDefault(int isDefault) {
+        this.isDefault = isDefault;
+    }
 
     public double getTotalLegalAssetBalance() {
         return totalLegalAssetBalance;

@@ -44,6 +44,7 @@
                     android:layout_width="48dp"
                     android:layout_height="45dp"
                     android:layout_alignParentEnd="true"
+                    android:visibility="gone"
                     android:layout_marginTop="25dp">
 
                     <ImageButton

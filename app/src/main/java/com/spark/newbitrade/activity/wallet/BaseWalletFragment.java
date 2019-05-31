@@ -26,8 +26,6 @@ import butterknife.BindView;
 import butterknife.OnClick;
 
 import static android.app.Activity.RESULT_OK;
-import static com.spark.newbitrade.utils.GlobalConstant.COMMON;
-import static com.spark.newbitrade.utils.GlobalConstant.OTC;
 
 /**
  * 默认账户
@@ -111,7 +109,7 @@ public class BaseWalletFragment extends BaseTransFragment implements BaseWalletC
     }
 
     private void getWalletList() {
-        presenter.getWallet(OTC);
+        presenter.findSupportAssetUsingGET();
     }
 
     @Override
@@ -190,6 +188,17 @@ public class BaseWalletFragment extends BaseTransFragment implements BaseWalletC
                     showActivity(CoinListActivity.class, bundle);
                 }
                 break;
+        }
+    }
+
+    @Override
+    public void findSupportAssetUsingGETSuccess(List<Wallet> list) {
+        if (list != null) {
+            for (Wallet wallet : list) {
+                if (wallet.getIsDefault() == 1) {
+                    presenter.getWallet(wallet.getName());
+                }
+            }
         }
     }
 }

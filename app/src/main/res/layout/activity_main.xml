@@ -31,7 +31,7 @@
             <LinearLayout
                 android:id="@+id/llHome"
                 style="@style/layout_tab_bottom_main"
-                android:visibility="gone">
+                android:visibility="visible">
 
                 <ImageView
                     android:layout_width="wrap_content"

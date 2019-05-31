@@ -14,7 +14,7 @@
             android:layout_height="wrap_content"
             android:background="#3167AF"
             android:orientation="vertical"
-            android:paddingTop="@dimen/dp_20">
+            android:paddingTop="30dp">
 
             <LinearLayout
                 android:id="@+id/llMessage"
@@ -144,7 +144,7 @@
             <LinearLayout
                 android:id="@+id/llPromotion"
                 style="@style/layout_my_item_transparent"
-                android:visibility="gone">
+                android:visibility="visible">
 
                 <ImageView
                     android:layout_width="25dp"
@@ -160,7 +160,7 @@
 
             <View
                 style="@style/line_bg_grey"
-                android:visibility="gone" />
+                android:visibility="visible" />
 
             <!--安全中心-->
             <LinearLayout
@@ -224,7 +224,7 @@
             <LinearLayout
                 android:id="@+id/llHelp"
                 style="@style/layout_my_item_transparent"
-                android:visibility="gone">
+                android:visibility="visible">
 
                 <ImageView
                     android:layout_width="25dp"
@@ -240,7 +240,7 @@
 
             <View
                 style="@style/line_bg_grey"
-                android:visibility="gone" />
+                android:visibility="visible" />
 
         </LinearLayout>
 

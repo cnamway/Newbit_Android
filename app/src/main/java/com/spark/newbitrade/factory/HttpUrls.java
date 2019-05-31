@@ -6,13 +6,12 @@ public class HttpUrls {
     /**
      * 主网络请求地址和cas登录地址
      */
-    //public static final String HOST = "http://cas.www.allbtrade.com";
 
-    public static final String HOST_LOGIN = "http://cas.www.allbtrade.com";
-    public static final String UC_HOST = "http://api.allbtrade.com/uc";
-    public static final String AC_HOST = "http://api.allbtrade.com/ac";
-    public static final String OTC_HOST = "http://api.allbtrade.com/otc";
-    public static final String CMS_HOST = "";
+    public static final String HOST_LOGIN = "http://cas.www.newbtc.online";
+    public static final String UC_HOST = "http://api.newbtc.online/uc";
+    public static final String AC_HOST = "http://api.newbtc.online/ac";
+    public static final String OTC_HOST = "http://api.newbtc.online/otc";
+    public static final String CMS_HOST = "http://api.newbtc.online/cms-api";
 
     /**
      * AC,UC,OTC模块地址后缀

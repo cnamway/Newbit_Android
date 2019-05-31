@@ -11,12 +11,14 @@ import android.widget.TextView;
 
 import com.android.volley.VolleyError;
 import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.spark.library.ac.model.MessageResult;
 import com.spark.newbitrade.MyApplication;
 import com.spark.newbitrade.R;
 import com.spark.newbitrade.adapter.WalletAdapter;
 import com.spark.newbitrade.base.BaseTransFragment;
 import com.spark.newbitrade.entity.HttpErrorEntity;
 import com.spark.newbitrade.entity.Wallet;
+import com.spark.newbitrade.utils.LogUtils;
 import com.spark.newbitrade.utils.MathUtils;
 
 import java.util.ArrayList;
@@ -184,4 +186,9 @@ public class TradeWalletFragment extends BaseTransFragment implements BaseWallet
         tvCnyAmount.setText("≈" + MathUtils.subZeroAndDot(MathUtils.getRundNumber(sumTrade, 2, null)) + " CNY");
     }
 
+    @Override
+    public void findSupportAssetUsingGETSuccess(List<Wallet> response) {
+        LogUtils.e("response===" + response);
+//        presenter.getWallet(OTC);
+    }
 }

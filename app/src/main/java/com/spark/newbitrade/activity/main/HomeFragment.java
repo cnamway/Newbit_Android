@@ -520,7 +520,7 @@ public class HomeFragment extends BaseTransFragment implements MainContract.Home
     }
 
     public void setChatTip(boolean hasNew) {
-        if (hasNew) ivchatTip.setVisibility(View.VISIBLE);
+        if (hasNew) ivchatTip.setVisibility(View.INVISIBLE);
         else ivchatTip.setVisibility(View.INVISIBLE);
     }
 

@@ -517,4 +517,38 @@ public class AssetControllerModel {
 
     }
 
+    /**
+     * 查询平台支持的业务钱包信息
+     */
+    public void findSupportAssetUsingGET(final ResponseCallBack.SuccessListener<List<Wallet>> successListener, final ResponseCallBack.ErrorListener errorListener) {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                assetControllerApi.findSupportAssetUsingGET(new Response.Listener<MessageResult>() {
+                    @Override
+                    public void onResponse(MessageResult response) {
+                        LogUtils.i("response==" + response.toString());
+                        int code = response.getCode();
+                        if (code == SUCCESS_CODE) {
+                            Gson gson = new Gson();
+                            List<Wallet> list = gson.fromJson(gson.toJson(response.getData()), new TypeToken<List<Wallet>>() {
+                            }.getType());
+                            if (successListener != null)
+                                successListener.onResponse(list);
+                        } else {
+                            if (errorListener != null)
+                                errorListener.onErrorResponse(new HttpErrorEntity(response.getCode(), response.getMessage(), response.getUrl(), response.getCid()));
+                        }
+                    }
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        if (errorListener != null)
+                            errorListener.onErrorResponse(error);
+                    }
+                });
+            }
+        }).start();
+    }
+
 }

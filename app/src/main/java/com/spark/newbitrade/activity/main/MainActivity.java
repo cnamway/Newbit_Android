@@ -117,8 +117,7 @@ public class MainActivity extends BaseTransFragmentActivity implements MainContr
     private HashMap<String, List<Currency>> marketMap = new HashMap<>();
     private List<BaseFragment> menusFragments = new ArrayList<>();
 
-
-    //    private HomeFragment homeFragment;
+    private HomeFragment homeFragment;
     private BaseWalletFragment walletFragment;
     private C2CFragment c2cFragment;
     private StoreFragment storeFragment;
@@ -249,7 +248,6 @@ public class MainActivity extends BaseTransFragmentActivity implements MainContr
     @Override
     protected void initData() {
         super.initData();
-
     }
 
     /**
@@ -278,9 +276,9 @@ public class MainActivity extends BaseTransFragmentActivity implements MainContr
         }
         if (savedInstanceState == null) {
 //            hideFragment(homeFragment);
-            selecte(llOrder, 2);
-//            selecte(llHome, 0);
-            selecte(llWallet, 0);
+//            selecte(llOrder, 2);
+            selecte(llHome, 0);
+//            selecte(llWallet, 0);
         }
 
     }
@@ -321,23 +319,23 @@ public class MainActivity extends BaseTransFragmentActivity implements MainContr
                 break;
             case R.id.llWallet://钱包
                 if (MyApplication.getApp().isLogin()) {
-                    selecte(v, 0);
+                    selecte(v, 1);
                 } else {
                     showActivity(LoginActivity.class, null);
                 }
                 break;
             case R.id.llC2C://OTC
-                selecte(v, 1);
+                selecte(v, 2);
                 break;
             case R.id.llOrder://商家
                 if (MyApplication.getApp().isLogin()) {
-                    selecte(v, 2);
+                    selecte(v, 3);
                 } else {
                     showActivity(LoginActivity.class, null);
                 }
                 break;
             case R.id.llMy://我的
-                selecte(v, 3);
+                selecte(v, 4);
                 break;
             case R.id.ivClose:
                 dlRoot.closeDrawers();
@@ -568,7 +566,6 @@ public class MainActivity extends BaseTransFragmentActivity implements MainContr
 
     @Override
     public void getNewVersionSuccess(Vision obj) {
-
     }
 
     @Override
@@ -701,7 +698,7 @@ public class MainActivity extends BaseTransFragmentActivity implements MainContr
 
     @Override
     protected void initFragments() {
-//        if (homeFragment == null) fragments.add(homeFragment = new HomeFragment());
+        if (homeFragment == null) fragments.add(homeFragment = new HomeFragment());
         if (walletFragment == null) fragments.add(walletFragment = new BaseWalletFragment());
         if (c2cFragment == null) fragments.add(c2cFragment = new C2CFragment());
         if (storeFragment == null) fragments.add(storeFragment = new StoreFragment());
@@ -710,13 +707,13 @@ public class MainActivity extends BaseTransFragmentActivity implements MainContr
 
     @Override
     protected void recoverFragment() {
-//        homeFragment = (HomeFragment) getSupportFragmentManager().findFragmentByTag(HomeFragment.TAG);
+        homeFragment = (HomeFragment) getSupportFragmentManager().findFragmentByTag(HomeFragment.TAG);
         walletFragment = (BaseWalletFragment) getSupportFragmentManager().findFragmentByTag(WalletFragment.TAG);
         c2cFragment = (C2CFragment) getSupportFragmentManager().findFragmentByTag(C2CFragment.TAG);
         storeFragment = (StoreFragment) getSupportFragmentManager().findFragmentByTag(StoreFragment.TAG);
         myFragment = (MyFragment) getSupportFragmentManager().findFragmentByTag(MyFragment.TAG);
-//        if (homeFragment == null) fragments.add(homeFragment = new HomeFragment());
-//        else fragments.add(homeFragment);
+        if (homeFragment == null) fragments.add(homeFragment = new HomeFragment());
+        else fragments.add(homeFragment);
         if (walletFragment == null) fragments.add(walletFragment = new BaseWalletFragment());
         else fragments.add(walletFragment);
         if (c2cFragment == null) fragments.add(c2cFragment = new C2CFragment());
