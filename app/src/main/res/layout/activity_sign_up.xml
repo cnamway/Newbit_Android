@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_head_bg"
+    android:orientation="vertical">
+
+    <!--标题-->
+    <include layout="@layout/view_head" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:focusableInTouchMode="true"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dp_20"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/icon_login_icon" />
+
+            </LinearLayout>
+
+
+            <TextView
+                android:id="@+id/tvCountry"
+                style="@style/edittext_normal"
+                android:layout_marginBottom="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/shape_eidt_bg_chat"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:text="中国"
+                android:visibility="gone" />
+
+            <!--手机号码-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/shape_eidt_bg_chat"
+                android:orientation="horizontal"
+                android:paddingLeft="20dp">
+
+                <TextView
+                    android:id="@+id/tvArea"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="5dp"
+                    android:text="+86"
+                    android:textColor="@color/main_font_content"
+                    android:textSize="@dimen/font_small" />
+
+                <!--<TextView-->
+                <!--android:id="@+id/tvCountry"-->
+                <!--style="@style/textview_tag"-->
+                <!--android:drawablePadding="5dp"-->
+                <!--android:drawableRight="@mipmap/icon_drop"-->
+                <!--android:text="@string/china"-->
+                <!--android:textColor="@color/main_font_content" />-->
+
+                <EditText
+                    android:id="@+id/etPhone"
+                    style="@style/edittext_normal"
+                    android:layout_marginLeft="10dp"
+                    android:background="@color/transparent"
+                    android:hint="@string/phone_number"
+                    android:inputType="phone"
+                    android:paddingRight="20dp"
+                    android:visibility="visible" />
+
+                <EditText
+                    android:id="@+id/etEmail"
+                    style="@style/edittext_normal"
+                    android:layout_marginLeft="10dp"
+                    android:background="@color/transparent"
+                    android:hint="@string/email"
+                    android:paddingRight="20dp"
+                    android:visibility="gone" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llGetCode"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/shape_eidt_bg_chat"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingRight="20dp">
+
+                <EditText
+                    android:id="@+id/etCode"
+                    style="@style/edittext_normal"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
+                    android:background="@color/transparent"
+                    android:hint="@string/phone_code"
+                    android:inputType="number"
+                    android:paddingLeft="20dp" />
+
+                <TextView
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="20dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@color/btn_normal" />
+
+                <TextView
+                    android:id="@+id/tvGetCode"
+                    style="@style/textveiw_msg_code" />
+
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/etPassword"
+                style="@style/edittext_normal"
+                android:layout_marginBottom="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/shape_eidt_bg_chat"
+                android:hint="@string/passwordTip"
+                android:inputType="textPassword"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp" />
+
+            <EditText
+                android:id="@+id/etComfirmPassword"
+                style="@style/edittext_normal"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/shape_eidt_bg_chat"
+                android:hint="@string/comfirmPassword"
+                android:inputType="textPassword"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp" />
+
+
+            <!--推广码-->
+
+            <EditText
+                android:id="@+id/etPromoCode"
+                style="@style/edittext_normal"
+                android:layout_marginBottom="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/shape_eidt_bg_chat"
+                android:hint="@string/promotion_code"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/tvSignUp"
+                style="@style/btn_option_normal"
+                android:layout_margin="20dp"
+                android:text="@string/regist" />
+
+            <LinearLayout
+                android:id="@+id/llGoSign"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tvLoginTag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/users_if_go_login"
+                    android:textColor="@color/btn_normal"
+                    android:textSize="@dimen/font_small" />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+</LinearLayout>

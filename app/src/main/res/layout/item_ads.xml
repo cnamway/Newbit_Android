@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/main_head_bg"
+    android:orientation="vertical">
+
+    <LinearLayout style="@style/layout_my_info">
+
+        <TextView
+            android:id="@+id/tvType"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="出售"
+            android:textColor="@color/main_font_content"
+            android:textSize="@dimen/font_normal" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/ivUnionPay"
+                style="@style/icon_pay"
+                android:layout_marginRight="5dp"
+                android:src="@mipmap/icon_unionpay"
+                android:visibility="gone" />
+
+            <ImageView
+                android:id="@+id/ivPay"
+                style="@style/icon_pay"
+                android:layout_marginRight="5dp"
+                android:src="@mipmap/icon_pay"
+                android:visibility="gone" />
+
+            <ImageView
+                android:id="@+id/ivWeChat"
+                style="@style/icon_pay"
+                android:layout_marginRight="5dp"
+                android:src="@mipmap/icon_wechat"
+                android:visibility="gone" />
+
+            <ImageView
+                android:id="@+id/ivPalpay"
+                style="@style/icon_pay"
+                android:layout_marginRight="5dp"
+                android:src="@mipmap/icon_paypal"
+                android:visibility="gone" />
+
+            <ImageView
+                android:id="@+id/ivOther"
+                style="@style/icon_pay"
+                android:layout_marginRight="5dp"
+                android:src="@mipmap/other"
+                android:visibility="gone" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <View style="@style/line_bg_grey" />
+
+    <LinearLayout
+        style="@style/layout_my_info"
+        android:layout_height="30dp">
+
+        <TextView
+            android:id="@+id/tvCoinName"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="出售"
+            android:textColor="@color/main_font_content"
+            android:textSize="@dimen/font_normal" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
+        <TextView
+            android:id="@+id/tvStatus"
+            style="@style/textview_tag"
+            android:layout_gravity="center"
+            android:layout_marginTop="2dp"
+            android:text="已上架"
+            android:textColor="@color/main_font_content"
+            android:textSize="@dimen/font_small" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/layout_my_info"
+        android:layout_height="30dp">
+
+        <TextView
+            android:id="@+id/tvLimit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="限额20000 ~ 900000CNY"
+            android:textColor="@color/main_font_content"
+            android:textSize="@dimen/font_mini" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
+        <TextView
+            android:id="@+id/tvPrice"
+            style="@style/textview_tag"
+            android:gravity="center"
+            android:text="75000.0CNY" />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="8dp"
+        android:background="@color/main_bg" />
+
+</LinearLayout>

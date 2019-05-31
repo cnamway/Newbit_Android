@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_bg"
+    android:orientation="vertical">
+
+    <!--标题-->
+    <include layout="@layout/view_head" />
+
+    <LinearLayout
+        style="@style/layout_my_info"
+        android:layout_marginTop="10dp">
+
+        <TextView
+            style="@style/textview_tag"
+            android:minWidth="90dp"
+            android:text="@string/name" />
+
+        <EditText
+            android:id="@+id/etName"
+            style="@style/edittext_normal"
+            android:enabled="false" />
+
+    </LinearLayout>
+
+    <View style="@style/line_bg_grey" />
+
+    <LinearLayout
+        android:id="@+id/llBank"
+        style="@style/layout_my_info">
+
+        <TextView
+            style="@style/textview_tag"
+            android:minWidth="90dp"
+            android:text="@string/bank" />
+
+        <TextView
+            android:id="@+id/tvBank"
+            style="@style/edittext_normal"
+            android:layout_weight="1"
+            android:enabled="false" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:padding="10dp"
+            android:src="@mipmap/icon_more" />
+    </LinearLayout>
+
+    <View style="@style/line_bg_grey" />
+
+    <LinearLayout
+        android:id="@+id/llBranch"
+        style="@style/layout_my_info">
+
+        <TextView
+            style="@style/textview_tag"
+            android:minWidth="90dp"
+            android:text="@string/account_opening_branch" />
+
+        <EditText
+            android:id="@+id/etBranch"
+            style="@style/edittext_normal"
+            android:hint="@string/account_opening_branchTip" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        style="@style/layout_my_info"
+        android:layout_marginTop="@dimen/dp_10">
+
+        <TextView
+            android:id="@+id/tvAccount"
+            style="@style/textview_tag"
+            android:minWidth="90dp"
+            android:text="@string/unionpay_account" />
+
+        <EditText
+            android:id="@+id/etAccount"
+            style="@style/edittext_normal"
+            android:hint="@string/unionpay_accountTip"
+            android:inputType="number" />
+
+    </LinearLayout>
+
+    <View style="@style/line_bg_grey" />
+
+    <LinearLayout
+        android:id="@+id/llConfirmAccount"
+        style="@style/layout_my_info">
+
+        <TextView
+            style="@style/textview_tag"
+            android:minWidth="90dp"
+            android:text="@string/confirm_cardnumber" />
+
+        <EditText
+            android:id="@+id/etConfirmAccount"
+            style="@style/edittext_normal"
+            android:hint="@string/unionpay_accountTip2"
+            android:inputType="number" />
+
+    </LinearLayout>
+
+    <View style="@style/line_bg_grey" />
+
+    <LinearLayout style="@style/layout_my_info">
+
+        <TextView
+            style="@style/textview_tag"
+            android:minWidth="90dp"
+            android:text="@string/text_money_pwd" />
+
+        <EditText
+            android:id="@+id/etNewPwd"
+            style="@style/edittext_normal"
+            android:hint="@string/text_enter_money_pwd"
+            android:inputType="numberPassword"
+            android:maxLength="6" />
+
+    </LinearLayout>
+
+    <View style="@style/line_bg_grey" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1" />
+
+    <TextView
+        android:id="@+id/tvConfirm"
+        style="@style/btn_option_normal"
+        android:layout_margin="20dp"
+        android:text="@string/save" />
+
+</LinearLayout>

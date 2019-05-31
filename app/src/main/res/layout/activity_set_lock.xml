@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_head_bg"
+    android:orientation="vertical"
+    tools:context="com.spark.newbitrade.activity.safe.SetLockActivity">
+
+    <LinearLayout
+        android:id="@+id/llTitle"
+        android:layout_width="match_parent"
+        android:layout_height="40dp">
+
+        <TextView
+            android:id="@+id/tvCancle"
+            style="@style/textview_tag"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:text="@string/cancle"
+            android:textColor="@color/main_font_content" />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+
+    <com.spark.newbitrade.ui.lock.LockPatternIndicator
+        android:id="@+id/indicator"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_gravity="center_horizontal"
+        android:visibility="visible" />
+
+    <TextView
+        android:id="@+id/tvMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="16dp"
+        android:text="@string/gestures_pwd"
+        android:textColor="@color/main_font_content" />
+
+    <com.spark.newbitrade.ui.lock.LockPatternView
+        android:id="@+id/lockView"
+        android:layout_width="270dp"
+        android:layout_height="270dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="24dp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2" />
+
+</LinearLayout>

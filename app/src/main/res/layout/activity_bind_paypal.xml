@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_bg"
+    android:orientation="vertical">
+
+    <!--标题-->
+    <include layout="@layout/view_head" />
+
+    <LinearLayout
+        style="@style/layout_my_info"
+        android:layout_marginTop="10dp">
+
+        <TextView
+            style="@style/textview_tag"
+            android:minWidth="100dp"
+            android:text="@string/name" />
+
+        <EditText
+            android:id="@+id/etName"
+            style="@style/edittext_normal"
+            android:enabled="false" />
+    </LinearLayout>
+
+    <View style="@style/line_bg_grey" />
+
+    <LinearLayout
+        android:id="@+id/llAccount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout style="@style/layout_my_info">
+
+            <TextView
+                android:id="@+id/tvAccount"
+                style="@style/textview_tag"
+                android:minWidth="100dp"
+                android:text="@string/str_account" />
+
+            <EditText
+                android:id="@+id/etAccount"
+                style="@style/edittext_normal"
+                android:hint="@string/str_account" />
+
+        </LinearLayout>
+
+        <View style="@style/line_bg_grey" />
+    </LinearLayout>
+
+    <LinearLayout style="@style/layout_my_info">
+
+        <TextView
+            style="@style/textview_tag"
+            android:minWidth="100dp"
+            android:text="@string/text_money_pwd" />
+
+        <EditText
+            android:id="@+id/etNewPwd"
+            style="@style/edittext_normal"
+            android:hint="@string/text_money_pwd"
+            android:inputType="numberPassword"
+            android:maxLength="6" />
+
+    </LinearLayout>
+
+    <View style="@style/line_bg_grey" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1" />
+
+    <TextView
+        android:id="@+id/tvConfirm"
+        style="@style/btn_option_normal"
+        android:layout_margin="20dp"
+        android:text="@string/save" />
+
+</LinearLayout>

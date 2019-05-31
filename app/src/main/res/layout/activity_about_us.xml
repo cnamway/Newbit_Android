@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_bg"
+    android:orientation="vertical">
+
+    <!--标题-->
+    <include layout="@layout/view_head" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/main_head_bg"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingBottom="16dp"
+        android:paddingTop="32dp">
+
+        <com.spark.newbitrade.ui.CircleImageView
+            android:id="@+id/ivLogo"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@mipmap/ic_launcher" />
+
+        <TextView
+            android:id="@+id/tvName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/app_name"
+            android:textColor="@color/main_font_content"
+            android:textSize="@dimen/font_lager" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvDesc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:lineSpacingExtra="3dp"
+        android:minHeight="50dp"
+        android:paddingBottom="16dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:text="关于我们的一些描述。关于我们的一些描述关于我们的一些描述关于我们的一些描述关于我们的一些描述关于我们的一些描述关于我们的一些描述"
+        android:textColor="@color/colorPrimary"
+        android:visibility="gone" />
+
+    <LinearLayout
+        style="@style/layout_my_info"
+        android:layout_marginTop="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/service_tel"
+            android:textColor="@color/main_font_content" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <TextView
+            android:id="@+id/tvPhone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textColor="@color/main_font_content" />
+
+    </LinearLayout>
+
+    <View style="@style/line_bg_grey" />
+
+    <LinearLayout style="@style/layout_my_info">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/webSite"
+            android:textColor="@color/main_font_content" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <TextView
+            android:id="@+id/tvWeb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textColor="@color/main_font_content" />
+
+    </LinearLayout>
+
+    <View style="@style/line_bg_grey" />
+
+    <LinearLayout
+        android:id="@+id/llVersion"
+        style="@style/layout_my_info">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/my_version"
+            android:textColor="@color/main_font_content" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <TextView
+            android:id="@+id/tvVersionNum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="5dp"
+            android:text=""
+            android:textColor="@color/main_font_content" />
+
+        <ImageView style="@style/icon_more" />
+
+    </LinearLayout>
+
+    <View style="@style/line_bg_grey" />
+
+    <LinearLayout
+        android:id="@+id/llFeed"
+        style="@style/layout_my_info"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/feed_back"
+            android:textColor="@color/main_font_content" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <ImageView style="@style/icon_more" />
+
+    </LinearLayout>
+
+</LinearLayout>

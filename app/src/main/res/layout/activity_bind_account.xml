@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_bg"
+    android:orientation="vertical"
+    tools:context="com.spark.newbitrade.activity.setting.SettingActivity">
+
+    <!--标题-->
+    <include layout="@layout/view_head" />
+
+    <LinearLayout
+        android:id="@+id/llUnionPayAccount"
+        style="@style/layout_my_info"
+        android:background="@drawable/ripple_global_item">
+
+        <TextView
+            style="@style/textview_tag_my_info"
+            android:text="@string/unionpay_account" />
+
+        <TextView
+            android:id="@+id/tvUnionPay"
+            style="@style/textview_state_my_info"
+            android:enabled="false" />
+
+        <ImageView style="@style/icon_more" />
+
+    </LinearLayout>
+
+    <View style="@style/line_bg_grey" />
+
+    <LinearLayout
+        android:id="@+id/llAliAccount"
+        style="@style/layout_my_info"
+        android:background="@drawable/ripple_global_item">
+
+        <TextView
+            style="@style/textview_tag_my_info"
+            android:text="@string/ali_account" />
+
+
+        <TextView
+            android:id="@+id/tvAli"
+            style="@style/textview_state_my_info"
+            android:enabled="false" />
+
+        <ImageView style="@style/icon_more" />
+
+    </LinearLayout>
+
+    <View style="@style/line_bg_grey" />
+
+    <LinearLayout
+        android:id="@+id/llWeiChatAccount"
+        style="@style/layout_my_info"
+        android:background="@drawable/ripple_global_item">
+
+        <TextView
+            style="@style/textview_tag_my_info"
+            android:text="@string/weichat_account" />
+
+        <TextView
+            android:id="@+id/tvWeiChat"
+            style="@style/textview_state_my_info"
+            android:enabled="false" />
+
+        <ImageView style="@style/icon_more" />
+
+    </LinearLayout>
+
+    <View style="@style/line_bg_grey" />
+
+    <LinearLayout
+        android:id="@+id/llPayPal"
+        style="@style/layout_my_info"
+        android:background="@drawable/ripple_global_item">
+
+        <TextView
+            style="@style/textview_tag_my_info"
+            android:text="PayPal" />
+
+        <TextView
+            android:id="@+id/tvPayPal"
+            style="@style/textview_state_my_info"
+            android:enabled="false" />
+
+        <ImageView style="@style/icon_more" />
+
+    </LinearLayout>
+
+    <View style="@style/line_bg_grey" />
+
+    <LinearLayout
+        android:id="@+id/llOther"
+        style="@style/layout_my_info"
+        android:background="@drawable/ripple_global_item">
+
+        <TextView
+            style="@style/textview_tag_my_info"
+            android:text="@string/str_other" />
+
+        <TextView
+            style="@style/textview_state_my_info"
+            android:enabled="false" />
+
+        <ImageView style="@style/icon_more" />
+
+    </LinearLayout>
+
+    <View style="@style/line_bg_grey" />
+
+</LinearLayout>

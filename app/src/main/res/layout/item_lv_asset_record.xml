@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="@dimen/dp_10">
+
+        <TextView
+            android:id="@+id/tvFrozon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="left"
+            android:text="sss"
+            android:textColor="@color/font_hint"
+            android:textSize="@dimen/font_small" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/dp_20"
+            android:gravity="left"
+            android:text="已完成"
+            android:textColor="@color/font_hint"
+            android:textSize="@dimen/font_small" />
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/dp_10"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="@dimen/dp_10">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="类型"
+                android:textColor="@color/font_hint"
+                android:textSize="@dimen/font_mini" />
+
+            <TextView
+                android:id="@+id/tvType"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_10"
+                android:gravity="center_vertical"
+                android:text="充值"
+                android:textColor="@color/font_main_title"
+                android:textSize="@dimen/font_small" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:orientation="vertical"
+            android:paddingLeft="@dimen/dp_4">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/str_extract_count"
+                android:textColor="@color/font_hint"
+                android:textSize="@dimen/font_mini" />
+
+            <TextView
+                android:id="@+id/tvBuyCanUse"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_10"
+                android:gravity="left"
+                android:text="0.0000"
+                android:textColor="@color/font_main_title"
+                android:textSize="@dimen/font_small" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:gravity="center_vertical|right"
+            android:orientation="vertical"
+            android:paddingLeft="@dimen/dp_4">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="手续费"
+                android:textColor="@color/font_hint"
+                android:textSize="@dimen/font_mini" />
+
+            <TextView
+                android:id="@+id/tvFee"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_10"
+                android:gravity="center_vertical"
+                android:text="0.0000"
+                android:textColor="@color/font_main_title"
+                android:textSize="@dimen/font_small" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <View style="@style/style_horizon_line" />
+
+</LinearLayout>

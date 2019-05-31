@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_bg"
+    android:orientation="vertical"
+    tools:context="com.spark.newbitrade.activity.bind_email.BindEmailActivity">
+
+    <!--标题-->
+    <include layout="@layout/view_head" />
+
+    <LinearLayout style="@style/layout_my_info">
+
+        <TextView
+            style="@style/textview_tag"
+            android:minWidth="90dp"
+            android:text="@string/email" />
+
+        <EditText
+            android:id="@+id/etEmail"
+            style="@style/edittext_normal"
+            android:hint="@string/email"
+            android:inputType="textEmailAddress" />
+
+    </LinearLayout>
+
+    <View style="@style/line_bg_grey" />
+
+    <LinearLayout style="@style/layout_my_info">
+
+        <TextView
+            style="@style/textview_tag"
+            android:minWidth="90dp"
+            android:text="@string/email_code" />
+
+        <EditText
+            android:id="@+id/etCode"
+            style="@style/edittext_normal"
+            android:layout_weight="1"
+            android:hint="@string/code"
+            android:inputType="number" />
+
+        <TextView
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="15dp"
+            android:layout_marginTop="15dp"
+            android:background="@color/btn_normal" />
+
+        <TextView
+            android:id="@+id/tvGetCode"
+            style="@style/textveiw_msg_code"
+            android:background="@color/main_head_bg" />
+
+    </LinearLayout>
+
+    <View style="@style/line_bg_grey" />
+
+    <LinearLayout style="@style/layout_my_info">
+
+        <TextView
+            style="@style/textview_tag"
+            android:minWidth="90dp"
+            android:text="@string/login_password" />
+
+        <EditText
+            android:id="@+id/etPwd"
+            style="@style/edittext_normal"
+            android:hint="@string/login_password"
+            android:inputType="textPassword" />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <TextView
+        android:id="@+id/tvBind"
+        style="@style/btn_option_normal"
+        android:layout_margin="20dp"
+        android:text="@string/binding_email" />
+
+
+</LinearLayout>

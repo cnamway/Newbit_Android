@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/main_head_bg"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/llContent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            style="@style/textview_tag"
+            android:layout_gravity="center"
+            android:padding="10dp"
+            android:text="@string/dialog_three_title"
+            android:textSize="@dimen/font_lager" />
+
+        <View style="@style/line_bg_grey" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            android:padding="15dp">
+
+            <TextView
+                android:id="@+id/tvPriceText"
+                style="@style/textview_tag"
+                android:text="@string/dialog_three_one"
+                android:textColor="@color/main_font_content" />
+
+            <TextView
+                android:id="@+id/tvPrice"
+                style="@style/edittext_normal"
+                android:gravity="right"
+                android:text="0.00CNY"
+                android:textColor="@color/main_font_content"
+                android:textSize="@dimen/font_small" />
+
+        </LinearLayout>
+
+        <View style="@style/line_bg_grey" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            android:padding="15dp">
+
+            <TextView
+                android:id="@+id/tvCountText"
+                style="@style/textview_tag"
+                android:text="@string/dialog_three_two"
+                android:textColor="@color/main_font_content" />
+
+            <TextView
+                android:id="@+id/tvCount"
+                style="@style/edittext_normal"
+                android:gravity="right"
+                android:text="0.00BTC"
+                android:textColor="@color/main_font_content"
+                android:textSize="@dimen/font_small" />
+        </LinearLayout>
+
+        <View style="@style/line_bg_grey" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            android:padding="15dp">
+
+            <TextView
+                android:id="@+id/tvTotalText"
+                style="@style/textview_tag"
+                android:text="@string/dialog_three_three"
+                android:textColor="@color/main_font_content" />
+
+            <TextView
+                android:id="@+id/tvTotal"
+                style="@style/edittext_normal"
+                android:gravity="right"
+                android:text="0.00CNY"
+                android:textColor="@color/main_font_content"
+                android:textSize="@dimen/font_small" />
+
+        </LinearLayout>
+
+        <View style="@style/line_bg_grey" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            android:padding="15dp">
+
+            <TextView
+                style="@style/textview_tag"
+                android:text="@string/text_money_pwd"
+                android:textColor="@color/main_font_content" />
+
+            <EditText
+                android:id="@+id/etPassword"
+                style="@style/edittext_normal"
+                android:gravity="right"
+                android:hint="@string/text_enter_money_pwd"
+                android:inputType="numberPassword"
+                android:maxLength="6"
+                android:textColor="@color/main_font_content"
+                android:textColorHint="@color/third_font_content"
+                android:textSize="@dimen/font_small" />
+
+        </LinearLayout>
+
+        <View style="@style/line_bg_grey" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:paddingBottom="12dp"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:text="@string/dialog_three_msg"
+            android:textColor="@color/main_font_content"
+            android:textSize="@dimen/font_small" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvConfirm"
+        style="@style/btn_option_normal"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="0dp"
+        android:background="@drawable/ripple_btn_global_option_selector"
+        android:text="@string/dialog_sure" />
+
+    <TextView
+        android:id="@+id/tvCancle"
+        style="@style/btn_option_normal"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/ripple_global_item_corner"
+        android:text="@string/cancle"
+        android:textColor="@color/black" />
+
+</LinearLayout>

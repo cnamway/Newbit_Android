@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="80dp"
+    android:background="#21203B"
+    android:layout_height="120dp">
+
+    <TextView
+        android:id="@+id/tvAllType"
+        android:gravity="center"
+        android:text="@string/all"
+        android:textColor="@color/font_index_pop_selector"
+        android:layout_width="match_parent"
+        android:layout_height="40dp" />
+
+    <TextView
+        android:id="@+id/tvBuyType"
+        android:gravity="center"
+        android:text="@string/text_buy_in"
+        android:textColor="@color/font_index_pop_selector"
+        android:layout_width="match_parent"
+        android:layout_height="40dp" />
+
+    <TextView
+        android:id="@+id/tvSellType"
+        android:gravity="center"
+        android:text="@string/text_sale_out"
+        android:textColor="@color/font_index_pop_selector"
+        android:layout_width="match_parent"
+        android:layout_height="40dp" />
+
+</LinearLayout>

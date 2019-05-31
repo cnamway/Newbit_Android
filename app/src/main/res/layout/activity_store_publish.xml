@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_bg"
+    android:orientation="vertical">
+
+    <!--标题-->
+    <include layout="@layout/view_head" />
+
+    <LinearLayout
+        style="@style/layout_my_info"
+        android:layout_marginTop="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="选择币种"
+            android:textColor="@color/black"
+            android:textSize="14sp" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <TextView
+            android:id="@+id/tvCoinName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="BTC"
+            android:textColor="@color/black"
+            android:textSize="14sp" />
+
+    </LinearLayout>
+
+    <View style="@style/line_bg_grey" />
+
+    <LinearLayout style="@style/layout_my_info">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="价格"
+            android:textColor="@color/black"
+            android:textSize="14sp" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <TextView
+            android:id="@+id/tvPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1000"
+            android:textColor="@color/black"
+            android:textSize="14sp" />
+
+    </LinearLayout>
+
+    <View style="@style/line_bg_grey" />
+
+    <LinearLayout style="@style/layout_my_info">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="卖出数量"
+            android:textColor="@color/black"
+            android:textSize="14sp" />
+
+
+        <EditText
+            android:id="@+id/etPrice"
+            style="@style/edittext_normal"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="right|center"
+            android:hint="@string/text_price_fixed_input"
+            android:inputType="numberDecimal"
+            android:minWidth="100dp"
+            android:paddingLeft="16dp"
+            android:paddingRight="1dp"
+            android:textSize="14sp" />
+
+    </LinearLayout>
+
+    <View style="@style/line_bg_grey" />
+
+    <!--收款方式-->
+    <LinearLayout style="@style/layout_my_info">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/text_receive_methods"
+            android:textColor="@color/black"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tvPayWay"
+            style="@style/layout_my_info"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="right|center"
+            android:hint="@string/text_select"
+            android:textColorHint="@color/third_font_content" />
+
+        <ImageView style="@style/icon_more" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvRelease"
+        style="@style/btn_option_normal"
+        android:layout_margin="20dp"
+        android:text="@string/text_pub" />
+
+</LinearLayout>

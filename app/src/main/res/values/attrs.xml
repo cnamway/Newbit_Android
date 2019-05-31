@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--深度图DepthMapView-->
+    <declare-styleable name="DepthMapView">
+        <!--买入颜色-->
+        <attr name="buy_line_color" format="color|reference" />
+        <!--买入区域内部颜色-->
+        <attr name="buy_path_color" format="color|reference" />
+        <!--卖出颜色-->
+        <attr name="sell_line_color" format="color|reference" />
+        <!--卖出区域内部颜色-->
+        <attr name="sell_path_color" format="color|reference" />
+        <!--线条宽度-->
+        <attr name="line_width" format="dimension" />
+        <!--文字颜色-->
+        <attr name="text_color" format="color|reference" />
+        <!--背景颜色-->
+        <attr name="background_color" format="color|reference" />
+        <!--选中后文字背景颜色-->
+        <attr name="selector_background_color" format="color|reference" />
+        <!--右侧价格行数-->
+        <attr name="line_count" format="integer" />
+        <!--文字大小-->
+        <attr name="text_size" format="dimension" />
+        <!--圆圈半径-->
+        <attr name="circle_radius" format="dimension" />
+        <!--点的半径-->
+        <attr name="dot_radius" format="dimension" />
+    </declare-styleable>
+
+    <!--时间线TimeLineMarkerView-->
+    <declare-styleable name="TimeLineMarker">
+        <!--圆点大小-->
+        <attr name="markerSize" format="dimension" />
+        <!--圆点颜色或者图片-->
+        <attr name="marker" format="color|reference" />
+        <!--上面线段颜色或者图片-->
+        <attr name="upLine" format="color|reference" />
+        <!--下面线段颜色或者图片-->
+        <attr name="downLine" format="color|reference" />
+        <!--线段粗细-->
+        <attr name="lineSize" format="dimension" />
+        <!--横向还是竖向-->
+        <attr name="orientation" format="boolean" />
+    </declare-styleable>
+
+    <!--跑马灯-->
+    <declare-styleable name="MarqueeView">
+        <attr name="marqueeview_repeat_type" format="enum">
+            <enum name="repeat_onetime" value="0" /><!-- 播放一次 -->
+            <enum name="repeat_interval" value="1" />  <!--连续播放 循环结束再继续下次循环-->
+            <enum name="repeat_continue" value="2" />  <!--连续播放 到末尾直接继续下次循环-->
+        </attr><!--循环模式-->
+        <attr name="marqueeview_text_distance" format="integer" /><!--每个item之间的距离-->
+        <attr name="marqueeview_text_startlocationdistance" format="float" /><!--开始的起始位置 按距离控件左边的百分比 0~1之间 -->
+        <attr name="marqueeview_text_speed" format="float" /><!--播放速度 也就是文字滚动速度-->
+        <attr name="marqueeview_text_color" format="color|reference" /><!-- 文字颜色 -->
+        <attr name="marqueeview_text_size" format="float" /><!-- 文字大小 -->
+        <attr name="marqueeview_isclickalbe_stop" format="boolean" /><!--是否点击暂停-->
+        <attr name="marqueeview_is_resetLocation" format="boolean" /><!--重新改变内容的时候 ， 是否初始化 位置，默认为true，改变-->
+
+    </declare-styleable>
+
+    <declare-styleable name="SlantedTextView">
+        <attr name="slantedTextSize" format="dimension" />
+        <attr name="slantedBackgroundColor" format="color" />
+        <attr name="slantedText" format="string" />
+        <attr name="slantedTextColor" format="color" />
+        <attr name="slantedLength" format="dimension" />
+        <attr name="slantedMode" format="enum">
+            <enum name="left" value="0" />
+            <enum name="right" value="1" />
+            <enum name="left_bottom" value="2" />
+            <enum name="right_bottom" value="3" />
+            <enum name="left_triangle" value="4" />
+            <enum name="right_triangle" value="5" />
+            <enum name="left_bottom_triangle" value="6" />
+            <enum name="right_bottom_triangle" value="7" />
+        </attr>
+    </declare-styleable>
+
+    <!--密码输入框PasswordView-->
+    <declare-styleable name="PasswordView">
+        <!--密码长度-->
+        <attr name="passwordLength" format="integer" />
+        <!--内边距-->
+        <attr name="passwordPadding" format="dimension" />
+        <!--边框颜色-->
+        <attr name="borderColor" format="color" />
+        <!--边框宽度-->
+        <attr name="borderWidth" format="dimension" />
+        <!--光标闪烁间隔时间-->
+        <attr name="cursorFlashTime" format="integer" />
+        <!--是否启用光标-->
+        <attr name="isCursorEnable" format="boolean" />
+        <!--‘*’号大小-->
+        <attr name="cipherEnable" format="boolean" />
+        <!--光标颜色-->
+        <attr name="cursorColor" format="color" />
+        <!--是否启用‘*’显示-->
+        <attr name="mode" format="enum">
+            <enum name="underline" value="0" />
+            <enum name="rect" value="1" />
+        </attr>
+    </declare-styleable>
+
+    <!--验证码输入框PasswordView-->
+    <declare-styleable name="VerifyCodeView">
+        <!--输入框个数-->
+        <attr name="verifyCodeCount" format="integer" />
+        <!--输入框间距-->
+        <attr name="verifyCodeMargin" format="dimension" />
+        <!--边框颜色-->
+        <attr name="verifyCodeBackground" format="reference" />
+        <!--文字颜色-->
+        <attr name="verifyCodeTextColor" format="color|reference" />
+        <!--文字大小-->
+        <attr name="verifyCodeTextSize" format="dimension" />
+    </declare-styleable>
+
+
+    <declare-styleable name="FoldTextView">
+        <!--展示最大行数-->
+        <attr name="showMaxLine" format="integer" />
+        <!--提示文字位置 0-最后一行末尾，1-另起一行-->
+        <attr name="tipGravity" format="enum">
+            <enum name="last" value="0" />
+            <enum name="first" value="1" />
+        </attr>
+        <!--提示文字颜色-->
+        <attr name="tipColor" format="reference|color" />
+        <!--提示是否可以点击-->
+        <attr name="tipClickable" format="boolean" />
+        <!--折叠时的提示文字-->
+        <attr name="foldText" format="string" />
+        <!--展开时的提示文字-->
+        <attr name="expandText" format="string" />
+        <!--点击展开后是否显示收起全文提示-->
+        <attr name="showTipAfterExpand" format="boolean" />
+        <attr name="isSetParentClick" format="boolean" />
+    </declare-styleable>
+
+    <!--加强版折叠TextView-->
+    <declare-styleable name="ExpandableTextView">
+        <!--保留的行数-->
+        <attr name="ep_max_line" format="integer" />
+        <!--是否需要展开-->
+        <attr name="ep_need_expand" format="boolean" />
+        <!--是否需要收起 这个是建立在开启展开的基础上的-->
+        <attr name="ep_need_contract" format="boolean" />
+        <!--是否需要@用户 -->
+        <attr name="ep_need_mention" format="boolean" />
+        <!--是否需要对链接进行处理 -->
+        <attr name="ep_need_link" format="boolean" />
+        <!--是否需要动画-->
+        <attr name="ep_need_animation" format="boolean" />
+        <!--是否需要永远将展开或者收回放置在最后边-->
+        <attr name="ep_need_always_showright" format="boolean" />
+        <!--是否需要自定义规则-->
+        <attr name="ep_need_self" format="boolean" />
+        <!--收起的文案-->
+        <attr name="ep_contract_text" format="string" />
+        <!--展开的文案-->
+        <attr name="ep_expand_text" format="string" />
+        <!--展开的文字的颜色-->
+        <attr name="ep_expand_color" format="color" />
+        <!--收起的文字的颜色-->
+        <attr name="ep_contract_color" format="color" />
+        <!--在收回和展开前面添加的内容的字体颜色-->
+        <attr name="ep_end_color" format="color" />
+        <!--链接的文字的颜色-->
+        <attr name="ep_link_color" format="color" />
+        <!--@用户的文字的颜色-->
+        <attr name="ep_mention_color" format="color" />
+        <!--自定义规则的文字的颜色-->
+        <attr name="ep_self_color" format="color" />
+        <!--链接的图标-->
+        <attr name="ep_link_res" format="reference" />
+    </declare-styleable>
+
+
+    <!--圆角imageview-->
+    <declare-styleable name="RoundImageView">
+        <attr name="riv_borderRadius" format="dimension" />
+        <attr name="riv_type">
+            <enum name="normal" value="-1" />
+            <enum name="circle" value="0" />
+            <enum name="round" value="1" />
+        </attr>
+        <attr name="riv_borderWidth" format="dimension" />
+        <attr name="riv_borderColor" format="integer" />
+    </declare-styleable>
+
+    <declare-styleable name="ShapeImageView">
+        <attr name="siv_shape" format="enum">
+            <enum name="rect" value="1"/>
+            <enum name="circle" value="2"/>
+            <enum name="oval" value="3"/>
+        </attr>
+        <attr name="siv_round_radius" format="dimension"/>
+        <attr name="siv_round_radius_leftTop" format="dimension"/>
+        <attr name="siv_round_radius_leftBottom" format="dimension"/>
+        <attr name="siv_round_radius_rightTop" format="dimension"/>
+        <attr name="siv_round_radius_rightBottom" format="dimension"/>
+        <attr name="siv_border_size" format="dimension"/>
+        <attr name="siv_border_color" format="color"/>
+    </declare-styleable>
+
+    <!-- 设置view相关selector熟悉-->
+    <declare-styleable name="View">
+
+        <attr name="injectListener" format="boolean"/>
+
+        <!--该属性已过时，被废弃-->
+        <attr name="sel_background" format="color"/>
+
+        <!-- 背景状态 -->
+        <attr name="sel_background_pressed" format="reference|color"/>
+        <attr name="sel_background_selected" format="reference|color"/>
+
+        <!-- 背景形状 -->
+        <attr name="sel_background_shape" format="enum">
+            <enum name="rect" value="0"/>
+            <enum name="oval" value="1"/>
+            <enum name="line" value="2"/>
+            <enum name="ring" value="3"/>
+        </attr>
+        <!-- 背景圆角 -->
+        <attr name="sel_background_corners" format="dimension"/>
+        <attr name="sel_background_corner_topLeft" format="dimension"/>
+        <attr name="sel_background_corner_topRight" format="dimension"/>
+        <attr name="sel_background_corner_bottomLeft" format="dimension"/>
+        <attr name="sel_background_corner_bottomRight" format="dimension"/>
+
+        <!-- 背景边框默认状态 -->
+        <attr name="sel_background_border_color" format="color"/>
+        <attr name="sel_background_border_width" format="dimension"/>
+        <!-- 背景边框状态 -->
+        <attr name="sel_background_border_pressed" format="color"/>
+        <attr name="sel_background_border_selected" format="color"/>
+
+        <!-- ripple水波纹效果-->
+        <attr name="sel_background_ripple" format="reference|color"/>
+        <attr name="sel_background_ripple_mask" format="reference|color"/>
+        <!-- ripple mask形状(仅在sel_background_ripple_mask为color时生效)-->
+        <attr name="sel_background_ripple_mask_shape" format="enum">
+            <enum name="rect" value="0"/>
+            <enum name="oval" value="1"/>
+            <enum name="line" value="2"/>
+            <enum name="ring" value="3"/>
+        </attr>
+        <!-- ripple mask圆角 -->
+        <attr name="sel_background_ripple_mask_corners" format="dimension"/>
+        <attr name="sel_background_ripple_mask_corner_topLeft" format="dimension"/>
+        <attr name="sel_background_ripple_mask_corner_topRight" format="dimension"/>
+        <attr name="sel_background_ripple_mask_corner_bottomLeft" format="dimension"/>
+        <attr name="sel_background_ripple_mask_corner_bottomRight" format="dimension"/>
+    </declare-styleable>
+
+
+</resources>

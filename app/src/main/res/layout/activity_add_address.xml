@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_bg"
+    android:orientation="vertical">
+
+    <include layout="@layout/view_head" />
+
+    <LinearLayout style="@style/layout_my_info">
+
+        <TextView
+            style="@style/textview_tag"
+            android:layout_width="70dp"
+            android:text="@string/currency" />
+
+        <TextView
+            android:id="@+id/tvCoinName"
+            style="@style/textview_tag"
+            android:layout_marginLeft="15dp" />
+
+    </LinearLayout>
+
+    <LinearLayout style="@style/layout_my_info">
+
+        <TextView
+            style="@style/textview_tag"
+            android:layout_width="70dp"
+            android:text="@string/mention_money_address" />
+
+        <EditText
+            android:id="@+id/etAddress"
+            style="@style/edittext_normal"
+            android:layout_marginLeft="15dp"
+            android:hint="@string/enter_address_tag2" />
+
+    </LinearLayout>
+
+    <LinearLayout style="@style/layout_my_info">
+
+        <TextView
+            style="@style/textview_tag"
+            android:layout_width="70dp"
+            android:text="@string/remarks" />
+
+        <EditText
+            android:id="@+id/etRemark"
+            style="@style/edittext_normal"
+            android:layout_marginLeft="15dp"
+            android:hint="@string/enter_remark" />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <TextView
+        android:id="@+id/tvSubmit"
+        style="@style/btn_option_normal"
+        android:layout_margin="20dp"
+        android:text="@string/str_add" />
+
+</LinearLayout>

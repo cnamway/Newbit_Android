@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/main_head_bg"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvTagFir"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="12dp"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:paddingTop="14dp"
+                android:text="@string/area_tag"
+                android:textColor="@color/sec_font_content"
+                android:textSize="@dimen/font_small" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rvFir"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/tvSymbol"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:background="@drawable/shape_eidt_bg_chat"
+                android:drawablePadding="5dp"
+                android:drawableRight="@mipmap/icon_drop"
+                android:padding="10dp"
+                android:textColor="@color/main_font_content"
+                android:textSize="@dimen/font_small"
+                android:visibility="gone" />
+
+            <LinearLayout
+                android:id="@+id/llEntrust"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:visibility="gone">
+
+                <EditText
+                    android:id="@+id/etCoin"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_trade_tab_title_left_corner_selector"
+                    android:enabled="false"
+                    android:padding="8dp"
+                    android:textColor="@color/main_font_content"
+                    android:textColorHint="@color/third_font_content"
+                    android:textSize="@dimen/font_small" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="6dp"
+                    android:layout_marginRight="6dp"
+                    android:text="/"
+                    android:textColor="@color/sec_font_content"
+                    android:textSize="@dimen/font_normal" />
+
+                <EditText
+                    android:id="@+id/etBaseCoin"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_trade_tab_title_left_corner_selector"
+                    android:enabled="false"
+                    android:padding="8dp"
+                    android:textColor="@color/main_font_content"
+                    android:textColorHint="@color/third_font_content"
+                    android:textSize="@dimen/font_small" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tvTagSec"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="12dp"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:paddingTop="4dp"
+                android:text="@string/payway_tag"
+                android:textColor="@color/sec_font_content"
+                android:textSize="@dimen/font_small" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rvSec"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="16dp"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/tvTagThird"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:paddingBottom="12dp"
+                android:paddingTop="4dp"
+                android:text="@string/limit_tag"
+                android:textColor="@color/sec_font_content"
+                android:textSize="@dimen/font_small" />
+
+            <EditText
+                android:id="@+id/etReferenceNumber"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginBottom="20dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:background="@drawable/bg_trade_tab_title_left_corner_selector"
+                android:hint="@string/please_enter_the"
+                android:inputType="number"
+                android:padding="8dp"
+                android:textColor="@color/main_font_content"
+                android:textColorHint="@color/third_font_content"
+                android:textSize="@dimen/font_small"
+                android:visibility="gone" />
+
+            <LinearLayout
+                android:id="@+id/llC2c"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:orientation="horizontal"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:visibility="gone">
+
+                <EditText
+                    android:id="@+id/etLimitMin"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_trade_tab_title_left_corner_selector"
+                    android:hint="@string/please_enter_the"
+                    android:inputType="number"
+                    android:padding="8dp"
+                    android:textColor="@color/main_font_content"
+                    android:textColorHint="@color/third_font_content"
+                    android:textSize="@dimen/font_small" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="6dp"
+                    android:layout_marginRight="6dp"
+                    android:text="——"
+                    android:textColor="@color/sec_font_content"
+                    android:textSize="@dimen/font_normal" />
+
+                <EditText
+                    android:id="@+id/etLimitMax"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_trade_tab_title_left_corner_selector"
+                    android:hint="@string/please_enter_the"
+                    android:inputType="number"
+                    android:padding="8dp"
+                    android:textColor="@color/main_font_content"
+                    android:textColorHint="@color/third_font_content"
+                    android:textSize="@dimen/font_small" />
+
+            </LinearLayout>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rvTri"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:paddingLeft="16dp"
+                android:visibility="gone" />
+
+            <View style="@style/line_bg_grey" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_gravity="bottom"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tvReset"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/ripple_grey_no_corner"
+                    android:gravity="center"
+                    android:text="@string/reset"
+                    android:textColor="@color/main_font_content"
+                    android:textSize="@dimen/font_normal" />
+
+                <TextView
+                    android:id="@+id/tvFinish"
+                    style="@style/btn_option_normal"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="0dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/ripple_btn_global_option_no_corner_selector"
+                    android:text="@string/confirm"
+                    android:textSize="@dimen/font_normal" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

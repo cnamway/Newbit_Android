@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shape_bg_white"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@mipmap/icon_version_bg" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/dp_20"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvVersionNo"
+                style="@style/style_font_normal_weight"
+                android:gravity="center_vertical"
+                android:padding="@dimen/dp_10"
+                android:text="升级到新版本： V0.2.2" />
+
+            <TextView
+                android:id="@+id/tvVersionInfo"
+                style="@style/style_font_normal_grey"
+                android:lineSpacingExtra="@dimen/dp_2"
+                android:padding="@dimen/dp_10"
+                android:text="1.优化已知问题\n2.测试部分"
+                android:textColor="@color/font_sec_title"
+                android:textSize="@dimen/font_small" />
+
+            <TextView
+                android:id="@+id/tvRight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/dp_10"
+                android:background="@mipmap/icon_version_update" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvLeft"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="@dimen/dp_20"
+        android:background="@mipmap/icon_version_close" />
+</LinearLayout>

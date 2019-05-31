@@ -1,0 +1,174 @@
+apply plugin: 'com.android.application'
+
+//获取打包时间
+def getDate() {
+    def date = new Date()
+    def formattedDate = date.format('yyyy_MM_dd')
+    return formattedDate
+}
+
+def verName = "1.0.1"
+def versioncode = 1
+
+android {
+    compileSdkVersion 27
+    buildToolsVersion "27.0.3"
+    defaultConfig {
+        applicationId 'com.spark.newbitrade'
+        minSdkVersion 17
+        targetSdkVersion 27
+        versionCode versioncode
+        versionName verName
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
+        /*jackOptions{
+            enabled true   //启用jack编译器
+        }*/
+    }
+    signingConfigs {
+        debug {
+            storeFile file("..\\spark.jks")
+            storePassword "spark123"
+            keyAlias "spark"
+            keyPassword "spark123"
+        }
+        release {
+            storeFile file("..\\spark.jks")
+            storePassword "spark123"
+            keyAlias "spark"
+            keyPassword "spark123"
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            // 开启ZipAlign优化
+            zipAlignEnabled true
+            // 移除无用的resource文件
+            shrinkResources false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+            applicationVariants.all { variant ->
+                variant.outputs.all { output ->
+                    def outputFile = output.outputFile
+                    if (outputFile != null && outputFile.name.endsWith('.apk')) {
+                        def fileName = "新比特${getDate()}.apk"
+                        //output.outputFile = new File(outputFile.parent, fileName)
+                        outputFileName = fileName
+                    }
+                }
+            }
+        }
+        debug {
+            buildConfigField "boolean", "LOG_DEBUG", "true"
+            versionNameSuffix ""
+            minifyEnabled false
+            zipAlignEnabled false
+            shrinkResources false
+            // 混淆文件位置
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.debug
+        }
+    }
+
+//    tasks.withType(JavaCompile) {
+//        options.encoding = "UTF-8"
+//    }
+//    productFlavors {
+//    }
+
+//    compileOptions {
+//        sourceCompatibility JavaVersion.VERSION_1_8
+//        targetCompatibility JavaVersion.VERSION_1_8
+//    }
+
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/ASL2.0'
+        exclude 'META-INF/notice.txt'
+    }
+
+    dexOptions {
+        preDexLibraries = false
+        additionalParameters = ['--core-library']
+    }
+    lintOptions {
+        checkReleaseBuilds false
+        // Or, if you prefer, you can continue to check for errors in release builds,
+        // but continue the build even when errors are found:
+        abortOnError false
+    }
+    configurations.all {
+        // check for updates every build
+        resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
+    }
+}
+
+repositories {
+    flatDir {
+        dirs 'libs'
+    }
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+
+    implementation project(':lib-zxing')
+    implementation project(':KLineChartLib')
+
+    implementation 'com.android.support:appcompat-v7:27.+'
+    implementation 'com.android.support:recyclerview-v7:27.+'
+    implementation 'com.android.support:cardview-v7:27.+'
+    implementation 'com.android.support:design:27.+'
+    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+    implementation 'com.jakewharton:butterknife:8.8.1'
+    compile 'org.litepal.android:core:1.6.1'
+//    compile 'com.yanzhenjie:permission:1.1.0'
+    compile 'com.yanzhenjie:permission:2.0.0-rc12'
+    implementation 'com.google.code.gson:gson:2.8.2'
+    compile 'com.squareup.okhttp3:okhttp:3.9.0'
+    compile 'com.github.bumptech.glide:glide:3.7.0'
+    compile 'com.youth.banner:banner:1.4.10'
+    compile 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.34'
+    compile 'com.gyf.barlibrary:barlibrary:2.3.0'
+    compile 'com.lcodecorex:tkrefreshlayout:1.0.7'
+    compile 'com.github.arcadefire:nice-spinner:1.3.1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+    compile 'com.kyleduo.switchbutton:library:2.0.0'
+    compile files('libs/geetest_testbutton_android_v3.5.3.aar')
+    compile 'org.xutils:xutils:3.5.0'
+    compile 'org.greenrobot:eventbus:3.1.1'
+    compile 'com.yanzhenjie:recyclerview-swipe:1.1.4'
+    compile 'com.sunfusheng:marqueeview:1.3.3'
+    compile 'com.xw.repo:bubbleseekbar:3.16'
+    compile 'com.flyco.dialog:FlycoDialog_Lib:1.2.6@aar'
+    compile 'com.nineoldandroids:library:2.4.0'
+    compile 'com.justkiddingbaby:vercodeedittext:1.0.5'
+    compile 'com.github.warkiz.widget:indicatorseekbar:1.1.2'
+    compile 'com.kyleduo.switchbutton:library:2.0.0'
+    compile 'com.squareup.okhttp3:okhttp-urlconnection:3.5.0'
+    compile 'com.android.support:multidex:1.0.1'
+
+    api('com.spark.bitrade:uc-client:1.0.0-SNAPSHOT') {
+        exclude(group: 'org.apache.httpcomponents', module: 'httpclient-android')
+    }
+    api('com.spark.bitrade:ac-client:1.0.0-SNAPSHOT') {
+        exclude(group: 'org.apache.httpcomponents', module: 'httpclient-android')
+    }
+    api('com.spark.bitrade:otc-client:1.0.0-SNAPSHOT') {
+        exclude(group: 'org.apache.httpcomponents', module: 'httpclient-android')
+    }
+    api('com.spark.bitrade:cms-client:1.0.0-SNAPSHOT') {
+        exclude(group: 'org.apache.httpcomponents', module: 'httpclient-android')
+    }
+
+
+}

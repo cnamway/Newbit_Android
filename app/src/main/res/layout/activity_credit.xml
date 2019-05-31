@@ -1,0 +1,370 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_bg">
+
+    <!--标题-->
+    <include layout="@layout/view_head"></include>
+
+    <ScrollView
+        android:id="@+id/svContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/llHead"
+        android:visibility="visible">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/llNotice"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@color/main_bg"
+                android:visibility="visible">
+
+                <ImageView
+                    android:id="@+id/ivNoticeIcon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:scaleType="center"
+                    android:src="@mipmap/icon_identify_ing" />
+
+                <TextView
+                    android:id="@+id/tvNotice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="15dp"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:text="@string/unverified_notice"
+                    android:textColor="@color/main_font_content"
+                    android:textSize="@dimen/font_small" />
+            </LinearLayout>
+
+            <View style="@style/line_bg_grey" />
+
+            <LinearLayout
+                style="@style/layout_my_info"
+                android:layout_height="40dp">
+
+                <TextView
+                    style="@style/textview_tag"
+                    android:minWidth="120dp"
+                    android:text="@string/name" />
+
+                <EditText
+                    android:id="@+id/etName"
+                    style="@style/edittext_normal"
+                    android:hint="@string/name"
+                    android:textColor="@color/main_font_content" />
+
+            </LinearLayout>
+
+            <View style="@style/line_bg_grey" />
+
+            <LinearLayout
+                android:id="@+id/llIdCard"
+                style="@style/layout_my_info"
+                android:layout_height="40dp">
+
+                <TextView
+                    style="@style/textview_tag"
+                    android:minWidth="120dp"
+                    android:text="@string/id_card_num" />
+
+                <EditText
+                    android:id="@+id/etIdNumber"
+                    style="@style/edittext_normal"
+                    android:hint="@string/id_card_num"
+                    android:inputType="number"
+                    android:textColor="@color/main_font_content" />
+
+            </LinearLayout>
+
+            <!--护照号-->
+            <LinearLayout
+                android:id="@+id/llPassPortNum"
+                style="@style/layout_my_info"
+                android:layout_height="40dp"
+                android:visibility="gone">
+
+                <TextView
+                    style="@style/textview_tag"
+                    android:minWidth="120dp"
+                    android:text="@string/passportNum" />
+
+                <EditText
+                    android:id="@+id/etPassPortNumber"
+                    style="@style/edittext_normal"
+                    android:hint="@string/passportNum"
+                    android:inputType="number" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:background="@color/main_bg" />
+
+            <LinearLayout
+                android:id="@+id/llFace"
+                android:layout_width="match_parent"
+                android:layout_height="160dp"
+                android:background="@color/main_head_bg"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="16dp">
+
+                    <TextView
+                        style="@style/textview_tag"
+                        android:minWidth="120dp"
+                        android:text="@string/str_image_face_id_card" />
+
+                    <RelativeLayout
+                        android:id="@+id/rvFace"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="15dp"
+                        android:paddingRight="15dp">
+
+                        <ImageView
+                            android:id="@+id/ivIdFace"
+                            android:layout_width="match_parent"
+                            android:layout_height="140dp"
+                            android:scaleType="fitXY"
+                            android:src="@mipmap/icon_id_face" />
+
+                        <ImageView
+                            android:id="@+id/ivIconFace"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:src="@mipmap/icon_camera" />
+                    </RelativeLayout>
+                </LinearLayout>
+
+                <View style="@style/line_bg_grey" />
+            </LinearLayout>
+
+            <View style="@style/line_bg_grey" />
+
+            <!--护照照片-->
+            <LinearLayout
+                android:id="@+id/llPassPortImg"
+                android:layout_width="match_parent"
+                android:layout_height="160dp"
+                android:background="@color/main_head_bg"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="16dp">
+
+                    <TextView
+                        style="@style/textview_tag"
+                        android:minWidth="120dp"
+                        android:text="@string/passportImage" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="15dp"
+                        android:paddingRight="15dp">
+
+                        <ImageView
+                            android:id="@+id/ivPassportFace"
+                            android:layout_width="match_parent"
+                            android:layout_height="140dp"
+                            android:scaleType="fitXY"
+                            android:src="@mipmap/icon_passpost_face" />
+
+                        <ImageView
+                            android:id="@+id/ivIconPort"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:src="@mipmap/icon_camera" />
+                    </RelativeLayout>
+                </LinearLayout>
+
+                <View style="@style/line_bg_grey" />
+            </LinearLayout>
+
+            <View style="@style/line_bg_grey" />
+
+            <LinearLayout
+                android:id="@+id/llBack"
+                android:layout_width="match_parent"
+                android:layout_height="160dp"
+                android:background="@color/main_head_bg"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="16dp">
+
+                    <TextView
+                        style="@style/textview_tag"
+                        android:minWidth="120dp"
+                        android:text="@string/str_image_back_id_card" />
+
+                    <RelativeLayout
+                        android:id="@+id/rvBack"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="15dp"
+                        android:paddingRight="15dp">
+
+                        <ImageView
+                            android:id="@+id/ivIdBack"
+                            android:layout_width="match_parent"
+                            android:layout_height="140dp"
+                            android:scaleType="fitXY"
+                            android:src="@mipmap/icon_id_back" />
+
+                        <ImageView
+                            android:id="@+id/ivIconBack"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:src="@mipmap/icon_camera" />
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+                <View style="@style/line_bg_grey" />
+            </LinearLayout>
+
+            <View
+                android:id="@+id/ivBackLine"
+                style="@style/line_bg_grey" />
+
+            <LinearLayout
+                android:id="@+id/llHold"
+                android:layout_width="match_parent"
+                android:layout_height="160dp"
+                android:background="@color/main_head_bg"
+                android:orientation="horizontal"
+                android:padding="16dp">
+
+                <TextView
+                    style="@style/textview_tag"
+                    android:minWidth="120dp"
+                    android:text="@string/str_image_hold_id_card" />
+
+                <RelativeLayout
+                    android:id="@+id/rvHold"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="15dp"
+                    android:paddingRight="15dp">
+
+                    <ImageView
+                        android:id="@+id/ivHold"
+                        android:layout_width="match_parent"
+                        android:layout_height="140dp"
+                        android:scaleType="fitXY"
+                        android:src="@mipmap/icon_id_hold" />
+
+                    <ImageView
+                        android:id="@+id/ivIconHold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:src="@mipmap/icon_camera" />
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <View style="@style/line_bg_grey" />
+            <!--手持护照-->
+            <LinearLayout
+                android:id="@+id/llPassPortHand"
+                android:layout_width="match_parent"
+                android:layout_height="160dp"
+                android:background="@color/main_head_bg"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="16dp">
+
+                    <TextView
+                        style="@style/textview_tag"
+                        android:minWidth="120dp"
+                        android:text="@string/takePassportImage" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="15dp"
+                        android:paddingRight="15dp">
+
+                        <ImageView
+                            android:id="@+id/ivPassportHand"
+                            android:layout_width="match_parent"
+                            android:layout_height="140dp"
+                            android:scaleType="fitXY"
+                            android:src="@mipmap/icon_passpost_hold" />
+
+                        <ImageView
+                            android:id="@+id/ivIconPortHold"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:src="@mipmap/icon_camera" />
+                    </RelativeLayout>
+                </LinearLayout>
+
+                <View style="@style/line_bg_grey" />
+            </LinearLayout>
+
+            <View style="@style/line_bg_grey" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <TextView
+                android:id="@+id/tvCredit"
+                style="@style/btn_option_normal"
+                android:layout_margin="20dp"
+                android:text="@string/id_credit_tag" />
+        </LinearLayout>
+
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/llContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/llTitle"
+        android:background="@color/white"
+        android:clickable="true"
+        android:focusable="true"
+        android:orientation="vertical"
+        android:visibility="gone" />
+
+</RelativeLayout>

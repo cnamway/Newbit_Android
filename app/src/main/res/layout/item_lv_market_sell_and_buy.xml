@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="22.4dp"
+    android:gravity="center_vertical"
+    android:background="@color/main_head_bg">
+
+    <TextView
+        android:id="@+id/tvTag"
+        android:layout_width="28dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="0"
+        android:textColor="@color/third_font_content"
+        android:textSize="@dimen/sp_10" />
+
+    <TextView
+        android:id="@+id/tvPrice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.4"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:maxLines="1"
+        android:textColor="@color/main_font_red"
+        android:textSize="@dimen/sp_10" />
+
+    <TextView
+        android:id="@+id/tvCount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.6"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:maxLines="1"
+        android:textColor="@color/third_font_content"
+        android:textSize="@dimen/sp_10" />
+</LinearLayout>

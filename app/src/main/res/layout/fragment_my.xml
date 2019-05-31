@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_bg">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#3167AF"
+            android:orientation="vertical"
+            android:paddingTop="@dimen/dp_20">
+
+            <LinearLayout
+                android:id="@+id/llMessage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginRight="@dimen/dp_20"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:id="@+id/tvMessage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="消息"
+                    android:textColor="@color/bg_line"
+                    android:textSize="@dimen/font_small" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp_10"
+                    android:src="@mipmap/icon_my_message" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llMyinfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:paddingBottom="20dp"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp">
+
+                <com.spark.newbitrade.ui.CircleImageView
+                    android:id="@+id/ivHeader"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_gravity="center_vertical"
+                    android:src="@mipmap/icon_avatar" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="16dp"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tvNickName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/not_login"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/font_normal" />
+
+                    <TextView
+                        android:id="@+id/etAccount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="@string/welcome_to"
+                        android:textColor="@color/bg_line"
+                        android:textSize="@dimen/font_small" />
+
+                </LinearLayout>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/icon_more_white" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="vertical">
+
+            <View style="@style/line_bg_grey" />
+
+            <!--我的订单-->
+            <LinearLayout
+                android:id="@+id/llOrder"
+                style="@style/layout_my_item_transparent"
+                android:visibility="visible">
+
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:src="@mipmap/icon_my_order" />
+
+                <TextView
+                    style="@style/textview_my_item"
+                    android:text="@string/my_order" />
+
+                <ImageView style="@style/icon_more" />
+            </LinearLayout>
+
+            <View style="@style/line_bg_grey" />
+
+            <!--我的广告-->
+            <LinearLayout
+                android:id="@+id/llAds"
+                style="@style/layout_my_item_transparent">
+
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:src="@mipmap/icon_my_ads" />
+
+                <TextView
+                    style="@style/textview_my_item"
+                    android:text="@string/my_ads" />
+
+
+                <ImageView style="@style/icon_more" />
+            </LinearLayout>
+
+            <View style="@style/line_bg_grey" />
+
+            <!--我的推广-->
+            <LinearLayout
+                android:id="@+id/llPromotion"
+                style="@style/layout_my_item_transparent"
+                android:visibility="gone">
+
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:src="@mipmap/icon_promotion" />
+
+                <TextView
+                    style="@style/textview_my_item"
+                    android:text="@string/my_promotion" />
+
+                <ImageView style="@style/icon_more" />
+            </LinearLayout>
+
+            <View
+                style="@style/line_bg_grey"
+                android:visibility="gone" />
+
+            <!--安全中心-->
+            <LinearLayout
+                android:id="@+id/llSafe"
+                style="@style/layout_my_item_transparent">
+
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:src="@mipmap/icon_my_safe" />
+
+                <TextView
+                    style="@style/textview_my_item"
+                    android:text="@string/my_safe" />
+
+                <ImageView style="@style/icon_more" />
+            </LinearLayout>
+
+            <View style="@style/line_bg_grey" />
+
+            <!--设置中心-->
+            <LinearLayout
+                android:id="@+id/llSettings"
+                style="@style/layout_my_item_transparent">
+
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:src="@mipmap/icon_my_settings" />
+
+                <TextView
+                    style="@style/textview_my_item"
+                    android:text="@string/my_setting" />
+
+                <ImageView style="@style/icon_more" />
+            </LinearLayout>
+
+            <View style="@style/line_bg_grey" />
+
+            <!--关于我们-->
+            <LinearLayout
+                android:id="@+id/llAboutUs"
+                style="@style/layout_my_item_transparent"
+                android:visibility="visible">
+
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:src="@mipmap/icon_my_about" />
+
+                <TextView
+                    style="@style/textview_my_item"
+                    android:text="@string/about_us" />
+
+                <ImageView style="@style/icon_more" />
+            </LinearLayout>
+
+            <View style="@style/line_bg_grey" />
+
+            <!--帮助中心-->
+            <LinearLayout
+                android:id="@+id/llHelp"
+                style="@style/layout_my_item_transparent"
+                android:visibility="gone">
+
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:src="@mipmap/icon_help_my" />
+
+                <TextView
+                    style="@style/textview_my_item"
+                    android:text="@string/str_help" />
+
+                <ImageView style="@style/icon_more" />
+            </LinearLayout>
+
+            <View
+                style="@style/line_bg_grey"
+                android:visibility="gone" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>

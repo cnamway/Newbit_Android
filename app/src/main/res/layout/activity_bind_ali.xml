@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_bg"
+    android:orientation="vertical">
+
+    <!--标题-->
+    <include layout="@layout/view_head" />
+
+    <LinearLayout
+        style="@style/layout_my_info"
+        android:layout_marginTop="10dp">
+
+        <TextView
+            style="@style/textview_tag"
+            android:minWidth="100dp"
+            android:text="@string/name" />
+
+        <EditText
+            android:id="@+id/etName"
+            style="@style/edittext_normal"
+            android:enabled="false" />
+    </LinearLayout>
+
+    <View style="@style/line_bg_grey" />
+
+    <LinearLayout
+        android:id="@+id/llAli"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout style="@style/layout_my_info">
+
+            <TextView
+                android:id="@+id/tvAccount"
+                style="@style/textview_tag"
+                android:minWidth="100dp"
+                android:text="@string/ali_account" />
+
+            <EditText
+                android:id="@+id/etAccount"
+                style="@style/edittext_normal"
+                android:hint="@string/ali_account" />
+
+        </LinearLayout>
+
+        <View style="@style/line_bg_grey" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llWeChat"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <LinearLayout style="@style/layout_my_info">
+
+            <TextView
+                android:id="@+id/tvWechatAccount"
+                style="@style/textview_tag"
+                android:minWidth="100dp"
+                android:text="@string/str_payway_wechat" />
+
+            <EditText
+                android:id="@+id/etWechatAccount"
+                style="@style/edittext_normal"
+                android:hint="@string/str_payway_wechat" />
+
+        </LinearLayout>
+
+        <View style="@style/line_bg_grey" />
+    </LinearLayout>
+
+    <LinearLayout style="@style/layout_my_info">
+
+        <TextView
+            style="@style/textview_tag"
+            android:minWidth="100dp"
+            android:text="@string/text_money_pwd" />
+
+        <EditText
+            android:id="@+id/etNewPwd"
+            style="@style/edittext_normal"
+            android:hint="@string/text_money_pwd"
+            android:inputType="numberPassword"
+            android:maxLength="6" />
+
+    </LinearLayout>
+
+    <View style="@style/line_bg_grey" />
+
+    <LinearLayout
+        android:id="@+id/llQRCode"
+        android:layout_width="match_parent"
+        android:layout_height="140dp"
+        android:background="@color/main_head_bg"
+        android:gravity="center_vertical"
+        android:paddingLeft="16dp">
+
+        <TextView
+            style="@style/textview_tag"
+            android:minWidth="100dp"
+            android:text="@string/qr_code_for_receivables" />
+
+        <ImageView
+            android:id="@+id/ivIdFace"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            android:layout_marginRight="16dp"
+            android:scaleType="fitXY"
+            android:src="@mipmap/icon_add_qrcode" />
+    </LinearLayout>
+
+    <View style="@style/line_bg_grey" />
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1" />
+
+    <TextView
+        android:id="@+id/tvConfirm"
+        style="@style/btn_option_normal"
+        android:layout_margin="20dp"
+        android:text="@string/save" />
+
+</LinearLayout>

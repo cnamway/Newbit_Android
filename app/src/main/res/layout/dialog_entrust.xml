@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/llContent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/main_head_bg"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="@string/text_dialog_entrust_cancel_confirm"
+            android:textColor="@color/main_font_content"
+            android:textSize="@dimen/font_lager" />
+
+        <View style="@style/line_bg_grey" />
+
+        <LinearLayout
+            android:id="@+id/llCategory"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:padding="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/dialog_entrust_category"
+                android:textColor="@color/main_font_content"
+                android:textSize="@dimen/font_small" />
+
+            <TextView
+                android:id="@+id/tvType"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="right"
+                android:text="买入"
+                android:textColor="@drawable/font_red_and_green_selector"
+                android:textSize="@dimen/font_small" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llPrice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/dialog_entrust_price"
+                android:textColor="@color/main_font_content"
+                android:textSize="@dimen/font_small" />
+
+            <TextView
+                android:id="@+id/tvPrice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="right"
+                android:text="123USDT"
+                android:textColor="@color/main_font_content"
+                android:textSize="@dimen/font_small" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llCount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/dialog_entrust_count"
+                android:textColor="@color/main_font_content"
+                android:textSize="@dimen/font_small" />
+
+            <TextView
+                android:id="@+id/tvAmount"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:text="123BTC"
+                android:textColor="@color/main_font_content"
+                android:textSize="@dimen/font_small" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/llAllPrice"
+            android:padding="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/dialog_entrust_all_price"
+                android:textColor="@color/main_font_content"
+                android:textSize="@dimen/font_small" />
+
+            <TextView
+                android:id="@+id/tvTotal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="right"
+                android:text="13USDT"
+                android:textColor="@color/main_font_content"
+                android:textSize="@dimen/font_small" />
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/tvTag"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:paddingBottom="8dp"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:text="@string/dialog_entrust_confirm"
+            android:textColor="@color/main_font_content" />
+
+        <TextView
+            android:id="@+id/tvOption"
+            style="@style/btn_option_normal"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/ripple_btn_global_option_selector"
+            android:text="@string/dialog_entrust_cancel_order"
+            android:textSize="@dimen/font_normal" />
+
+        <TextView
+            android:id="@+id/tvSecOption"
+            style="@style/btn_option_normal"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="0dp"
+            android:background="@drawable/ripple_btn_global_option_selector"
+            android:text="@string/dialog_entrust_buy_after_withdrawal"
+            android:textSize="@dimen/font_normal"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/tvCancle"
+            style="@style/btn_option_normal"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="0dp"
+            android:background="@drawable/ripple_global_item_corner"
+            android:text="@string/dialog_one_cancel"
+            android:textColor="@color/main_font_content"
+            android:textSize="@dimen/font_normal" />
+
+    </LinearLayout>
+
+
+</LinearLayout>

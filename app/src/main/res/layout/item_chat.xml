@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+
+    android:background="@color/transparent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="4dp"
+        android:paddingTop="4dp">
+
+        <RelativeLayout
+            android:id="@+id/llLeft"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="15dp">
+
+            <com.spark.newbitrade.ui.CircleImageView
+                android:id="@+id/ivHeaderLeft"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@mipmap/icon_avatar" />
+
+            <TextView
+                android:id="@+id/tvMessageLeft"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:paddingBottom="20dp"
+                android:layout_toRightOf="@id/ivHeaderLeft"
+                android:background="@drawable/icon_chat_bg_left"
+                android:gravity="left|center"
+                android:minHeight="48dp"
+                android:text="123"
+                android:textColor="@color/main_font_content"
+                android:textSize="@dimen/font_normal" />
+
+            <TextView
+                android:id="@+id/tvTimeLeft"
+                android:textColor="@color/main_font_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@id/tvMessageLeft"
+                android:layout_below="@id/tvMessageLeft"
+                />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/llRight"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingRight="15dp">
+
+            <com.spark.newbitrade.ui.CircleImageView
+                android:id="@+id/ivHeaderRight"
+                android:layout_alignParentEnd="true"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@mipmap/icon_avatar" />
+
+            <TextView
+                android:id="@+id/tvMessageRight"
+                android:layout_marginRight="15dp"
+                android:paddingBottom="20dp"
+                android:gravity="center_vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toLeftOf="@id/ivHeaderRight"
+                android:background="@drawable/icon_chat_bg_right"
+                android:minHeight="48dp"
+                android:text="123"
+                android:textColor="@color/main_font_content"
+                android:textSize="@dimen/font_normal" />
+
+            <TextView
+                android:id="@+id/tvTimeRight"
+                android:textColor="@color/main_font_content"
+                android:layout_alignEnd="@id/tvMessageRight"
+                android:layout_below="@id/tvMessageRight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+
+        </RelativeLayout>
+
+    </LinearLayout>
+</LinearLayout>

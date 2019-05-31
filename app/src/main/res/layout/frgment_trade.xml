@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/llRoot"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_head_bg"
+    android:orientation="vertical">
+
+    <include layout="@layout/view_head" />
+
+    <com.spark.newbitrade.ui.intercept.MyScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:overScrollMode="never">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingBottom="10dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="5dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/tvTabBuy"
+                            android:gravity="center"
+                            android:textColor="@color/bg_trade_tab_title_left_corner_selector"
+                            android:background="@drawable/bg_trade_tab_title_left_corner_selector"
+                            android:text="@string/text_buy_in"
+                            android:layout_weight="1"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent" />
+
+                        <View
+                            android:layout_width="8dp"
+                            android:layout_height="match_parent"/>
+
+                        <TextView
+                            android:id="@+id/tvTabSell"
+                            android:gravity="center"
+                            android:textColor="@color/bg_trade_tab_title_selector"
+                            android:background="@drawable/bg_trade_tab_title_selector"
+                            android:text="@string/text_sale_out"
+                            android:layout_weight="1"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent" />
+
+                        <!--<RadioGroup
+                            android:id="@+id/mRadioGroup"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+
+                            <RadioButton
+                                android:id="@+id/rbBuy"
+                                android:layout_width="30dp"
+                                android:layout_height="wrap_content"
+                                android:button="@null"
+                                android:checked="true"
+                                android:drawableBottom="@drawable/martket_tab_green_selector"
+                                android:drawablePadding="5dp"
+                                android:text="@string/text_buy_in"
+                                android:textColor="@color/main_font_green"
+                                android:textSize="@dimen/font_small" />
+
+                            <RadioButton
+                                android:id="@+id/rbSell"
+                                android:layout_width="30dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="18dp"
+                                android:button="@null"
+                                android:drawableBottom="@drawable/tab_market_red"
+                                android:drawablePadding="5dp"
+                                android:text="@string/text_sale_out"
+                                android:textColor="@color/main_font_red"
+                                android:textSize="@dimen/font_small" />
+                        </RadioGroup>-->
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/tvLimit"
+                        android:text="@string/limit_price"
+                        android:drawablePadding="10dp"
+                        android:textSize="14sp"
+                        android:gravity="center_vertical"
+                        android:drawableRight="@mipmap/icon_drop"
+                        android:textColor="@color/main_font_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp" />
+
+                    <!--<org.angmarch.views.NiceSpinner
+                        android:id="@+id/limitSpinner"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:textColor="@color/sec_font_grey"
+                        android:textSize="@dimen/font_small"
+                        app:textTint="@color/sec_font_grey" />-->
+
+                    <FrameLayout
+                        android:layout_marginTop="5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <include layout="@layout/view_market_buy" />
+
+                        <include layout="@layout/view_market_sell" />
+
+                    </FrameLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:gravity="center_vertical">
+
+                        <TextView
+                            android:layout_width="28dp"
+                            android:layout_height="wrap_content"
+                            android:text="@string/text_dish"
+                            android:textColor="@color/main_font_content"
+                            android:textSize="@dimen/font_mini" />
+
+                        <TextView
+                            android:id="@+id/tvPriceTag"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.4"
+                            android:ellipsize="end"
+                            android:gravity="center"
+                            android:lines="1"
+                            android:text="@string/text_price"
+                            android:textColor="@color/main_font_content"
+                            android:textSize="@dimen/font_mini" />
+
+                        <TextView
+                            android:id="@+id/tvCountTag"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.5"
+                            android:ellipsize="end"
+                            android:gravity="center"
+                            android:lines="1"
+                            android:text="@string/text_number"
+                            android:textColor="@color/main_font_content"
+                            android:textSize="@dimen/font_mini" />
+                    </LinearLayout>
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/recyclerSell"
+                        android:layout_width="match_parent"
+                        android:layout_height="112dp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:visibility="gone"
+                                android:id="@+id/tvLatest"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/latest_price"
+                                android:textColor="@color/main_font_green"
+                                android:textSize="@dimen/font_small" />
+
+                            <TextView
+                                android:id="@+id/tvPrice"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="--"
+                                android:textColor="@color/main_font_green"
+                                android:textSize="@dimen/font_normal"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <TextView
+                            android:id="@+id/tvMoney"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:ellipsize="end"
+                            android:maxLines="1"
+                            android:text="--"
+                            android:textColor="@color/main_font_content"
+                            android:textSize="@dimen/font_mini" />
+                    </LinearLayout>
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/recyclerBuy"
+                        android:layout_width="match_parent"
+                        android:layout_height="112dp" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btnBuyOrSell"
+                android:layout_gravity="center"
+                android:layout_width="200dp"
+                android:layout_height="40dp"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/ripple_green"
+                android:text="@string/text_buy_in"
+                android:textColor="@color/white"
+                android:textSize="@dimen/font_normal" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="8dp"
+                android:background="@color/main_bg" />
+
+            <LinearLayout
+                android:id="@+id/llAll"
+                android:layout_width="match_parent"
+                android:layout_height="42dp"
+                android:paddingLeft="10dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:text="@string/current_trust"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/font_xlager"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvAll"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:drawableLeft="@mipmap/icon_all"
+                    android:drawablePadding="5dp"
+                    android:gravity="center_vertical"
+                    android:padding="10dp"
+                    android:textColor="@color/btn_normal"
+                    android:text="@string/all"
+                    android:textSize="@dimen/font_small" />
+            </LinearLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/recyclerCurrentEntrust"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:visibility="visible" />
+
+                <TextView
+                    android:id="@+id/tvLogin"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="30dp"
+                    android:text="@string/text_click_login"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/font_normal"
+                    android:visibility="invisible" />
+
+                <TextView
+                    android:id="@+id/tvEmpty"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="30dp"
+                    android:text="@string/text_entity"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/font_normal"
+                    android:visibility="invisible" />
+            </FrameLayout>
+        </LinearLayout>
+    </com.spark.newbitrade.ui.intercept.MyScrollView>
+
+</LinearLayout>

@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_bg">
+
+    <!--标题-->
+    <include
+        layout="@layout/view_head"
+        android:visibility="gone" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#315BAF"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp_20"
+                android:layout_marginTop="30dp"
+                android:text="钱包"
+                android:textColor="@color/white"
+                android:textSize="@dimen/font_normal" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="20dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/str_base_account_all"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/font_small" />
+
+                <TextView
+                    android:id="@+id/tvCnyAmount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_10"
+                    android:text="≈0.00 CNY"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/font_lager" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="#214694"
+                android:gravity="center">
+
+                <LinearLayout
+                    android:id="@+id/llAccept"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@mipmap/icon_ranchge" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dp_10"
+                        android:text="接收"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/font_small" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="1px"
+                    android:layout_height="30dp"
+                    android:background="@color/bg_line" />
+
+                <LinearLayout
+                    android:id="@+id/llExtract"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@mipmap/icon_extrand" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dp_10"
+                        android:text="发送"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/font_small" />
+
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/refreshLayout"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rvWallet"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:overScrollMode="never" />
+
+        </android.support.v4.widget.SwipeRefreshLayout>
+    </LinearLayout>
+
+
+</RelativeLayout>

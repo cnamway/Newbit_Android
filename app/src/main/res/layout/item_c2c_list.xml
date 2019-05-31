@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/ripple_global_item"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="10dp">
+
+        <com.spark.newbitrade.ui.CircleImageView
+            android:id="@+id/ivHeader"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="10dp"
+            android:src="@mipmap/icon_avatar" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="1"
+                android:gravity="center|left"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:id="@+id/tvName"
+                        android:layout_width="1dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ellipsize="end"
+                        android:maxLines="1"
+                        android:text="Sukey"
+                        android:textColor="@color/main_font_content"
+                        android:textSize="@dimen/font_normal" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="8dp"
+                        android:src="@mipmap/icon_vip"
+                        android:visibility="gone" />
+
+                    <TextView
+                        android:id="@+id/tvPrice"
+                        android:layout_width="1dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:ellipsize="end"
+                        android:gravity="center_vertical"
+                        android:maxLines="1"
+                        android:text="75000.00CNY"
+                        android:textColor="@color/main_font_content"
+                        android:textSize="@dimen/font_normal" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_4"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:id="@+id/tvTradeAmount"
+                        android:layout_width="1dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ellipsize="end"
+                        android:gravity="center_vertical"
+                        android:maxLines="1"
+                        android:paddingBottom="2dp"
+                        android:paddingTop="2dp"
+                        android:singleLine="true"
+                        android:text="0 | 0%"
+                        android:textColor="@color/main_font_content"
+                        android:textSize="@dimen/font_mini" />
+
+                    <TextView
+                        android:id="@+id/tvLimit"
+                        android:layout_width="1dp"
+                        android:layout_height="wrap_content"
+                        android:layout_alignLeft="@+id/tvPrice"
+                        android:layout_weight="2"
+                        android:ellipsize="end"
+                        android:gravity="center_vertical"
+                        android:maxLines="1"
+                        android:paddingBottom="2dp"
+                        android:paddingTop="2dp"
+                        android:text="限额2k~90k CNY"
+                        android:textColor="@color/main_font_content"
+                        android:textSize="@dimen/sp_10" />
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_4"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:id="@+id/tvCount"
+                        android:layout_width="1dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ellipsize="end"
+                        android:gravity="center_vertical"
+                        android:maxLines="1"
+                        android:paddingBottom="4dp"
+                        android:paddingTop="4dp"
+                        android:text="数量20"
+                        android:textColor="@color/main_font_content"
+                        android:textSize="@dimen/sp_10" />
+
+                    <LinearLayout
+                        android:layout_width="1dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2">
+
+                        <ImageView
+                            android:id="@+id/ivUnionPay"
+                            style="@style/icon_pay"
+                            android:layout_marginRight="5dp"
+                            android:src="@mipmap/icon_unionpay"
+                            android:visibility="visible" />
+
+                        <ImageView
+                            android:id="@+id/ivPay"
+                            style="@style/icon_pay"
+                            android:layout_marginRight="5dp"
+                            android:src="@mipmap/icon_pay"
+                            android:visibility="visible" />
+
+                        <ImageView
+                            android:id="@+id/ivWeChat"
+                            style="@style/icon_pay"
+                            android:layout_marginRight="5dp"
+                            android:src="@mipmap/icon_wechat"
+                            android:visibility="visible" />
+
+                        <ImageView
+                            android:id="@+id/ivPalpay"
+                            style="@style/icon_pay"
+                            android:layout_marginRight="5dp"
+                            android:src="@mipmap/icon_paypal"
+                            android:visibility="visible" />
+
+                        <ImageView
+                            android:id="@+id/ivOther"
+                            style="@style/icon_pay"
+                            android:layout_marginRight="5dp"
+                            android:src="@mipmap/other"
+                            android:visibility="visible" />
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp"
+                    android:layout_marginTop="4dp"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:id="@+id/tvExchangeCount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/shape_c2c_ev"
+                        android:gravity="center"
+                        android:minWidth="70dp"
+                        android:paddingBottom="1dp"
+                        android:paddingTop="1dp"
+                        android:text="交易 578"
+                        android:textColor="#666"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/tvGoodEvaluate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="16dp"
+                        android:background="@drawable/shape_c2c_ev"
+                        android:gravity="center"
+                        android:minWidth="70dp"
+                        android:paddingBottom="1dp"
+                        android:paddingTop="1dp"
+                        android:text="好评 578"
+                        android:textColor="#666"
+                        android:textSize="12sp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="5dp"
+            android:src="@mipmap/icon_more" />
+    </LinearLayout>
+
+    <View style="@style/line_bg_grey" />
+
+</LinearLayout>

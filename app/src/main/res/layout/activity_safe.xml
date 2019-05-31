@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_bg"
+    android:orientation="vertical"
+    tools:context="com.spark.newbitrade.activity.safe.SafeActivity">
+
+    <!--标题-->
+    <include layout="@layout/view_head" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="10dp" />
+
+    <LinearLayout
+        android:id="@+id/llGoogleView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:id="@+id/llGoogle"
+            style="@style/layout_my_info"
+            android:background="@drawable/ripple_global_item"
+            android:visibility="visible">
+
+            <TextView
+                style="@style/textview_tag"
+                android:text="谷歌身份验证器" />
+
+
+            <TextView
+                android:id="@+id/tvGoogle"
+                style="@style/textview_state_my_info"
+                android:layout_marginRight="8dp"
+                android:layout_weight="1"
+                android:enabled="false"
+                android:gravity="right"
+                android:text="@string/unbound" />
+
+            <ImageView style="@style/icon_more" />
+        </LinearLayout>
+
+        <View style="@style/line_bg_grey" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llLockSet"
+        style="@style/layout_my_info">
+
+        <TextView
+            android:textSize="@dimen/font_normal"
+            style="@style/textview_tag"
+            android:text="@string/gestures_pwd" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <com.kyleduo.switchbutton.SwitchButton
+            android:id="@+id/switchButton"
+            android:layout_width="55dp"
+            android:layout_height="30dp"
+            android:gravity="right"
+            android:textColor="#CFCCCB"
+            android:textSize="@dimen/font_mini"
+            app:kswTextAdjust="-2dp"
+            app:kswTextExtra="8dp"
+            app:kswTextOff="Off"
+            app:kswTextOn="On"
+            app:kswThumbMarginBottom="-5dp"
+            app:kswThumbMarginLeft="-5dp"
+            app:kswThumbMarginRight="-5dp"
+            app:kswThumbMarginTop="-2.5dp"
+            app:kswThumbRangeRatio="1.4"
+            app:kswBackDrawable="@drawable/ios_back_drawable"
+            app:kswThumbDrawable="@drawable/ios_thumb_selector" />
+
+    </LinearLayout>
+
+    <View
+        style="@style/line_bg_grey"
+        android:visibility="gone" />
+
+    <LinearLayout
+        style="@style/layout_my_info"
+        android:background="@drawable/ripple_global_item"
+        android:visibility="gone">
+
+        <TextView
+            style="@style/textview_tag"
+            android:text="人脸识别" />
+
+
+        <TextView
+            android:gravity="right|center_vertical"
+            style="@style/edittext_normal"
+            android:layout_marginRight="8dp"
+            android:layout_weight="1"
+            android:text="@string/not_set" />
+
+        <ImageView style="@style/icon_more" />
+
+    </LinearLayout>
+
+    <View style="@style/line_bg_grey" />
+
+</LinearLayout>

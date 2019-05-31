@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/main_head_bg"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/llContent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="48dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+                android:gravity="center"
+                android:text="@string/my_ads"
+                android:textColor="@color/main_font_content"
+                android:textSize="@dimen/font_lager" />
+
+            <ImageButton
+                android:id="@+id/ivClose"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="8dp"
+                android:background="@color/transparent"
+                android:src="@mipmap/icon_close"
+                android:visibility="gone" />
+        </RelativeLayout>
+
+        <View style="@style/line_bg_grey" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/textview_tag"
+                    android:textSize="@dimen/font_small"
+                    android:text="@string/str_ads_type"
+                    android:textColor="@color/main_font_content" />
+
+                <TextView
+                    android:id="@+id/tvType"
+                    android:textSize="@dimen/font_small"
+                    style="@style/edittext_normal"
+                    android:gravity="right|center_vertical"
+                    android:text="20000~900000CNY"
+                    android:textColor="@color/main_font_content" />
+
+            </LinearLayout>
+
+            <View
+                style="@style/line_bg_grey" />
+
+            <LinearLayout
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/textview_tag"
+                    android:textSize="@dimen/font_small"
+                    android:text="@string/limit"
+                    android:textColor="@color/main_font_content" />
+
+                <TextView
+                    android:id="@+id/tvLimit"
+                    android:textSize="@dimen/font_small"
+                    style="@style/edittext_normal"
+                    android:gravity="right|center_vertical"
+                    android:text="20000~900000CNY"
+                    android:textColor="@color/main_font_content" />
+
+            </LinearLayout>
+
+            <View
+                style="@style/line_bg_grey" />
+
+            <LinearLayout
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/textview_tag"
+                    android:textSize="@dimen/font_small"
+                    android:text="@string/text_surplus_num"
+                    android:textColor="@color/main_font_content" />
+
+                <TextView
+                    android:id="@+id/tvRemainAmount"
+                    android:textSize="@dimen/font_small"
+                    style="@style/edittext_normal"
+                    android:gravity="right|center_vertical"
+                    android:text="75000.0CNY"
+                    android:textColor="@color/main_font_content" />
+
+            </LinearLayout>
+
+            <View
+                style="@style/line_bg_grey" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvEdit"
+            style="@style/btn_option_normal"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/ripple_btn_global_option_selector"
+            android:text="@string/text_change"
+            android:visibility="visible" />
+
+        <TextView
+            android:id="@+id/tvReleaseAgain"
+            style="@style/btn_option_normal"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="0dp"
+            android:background="@drawable/ripple_sec_grey"
+            android:text="@string/up_shelves" />
+
+        <TextView
+            android:id="@+id/tvShelOff"
+            style="@style/btn_option_normal"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="0dp"
+            android:background="@drawable/ripple_btn_global_option_selector"
+            android:text="@string/shelves"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/tvDelete"
+            style="@style/btn_option_normal"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="0dp"
+            android:background="@drawable/ripple_global_item_corner"
+            android:text="@string/delete"
+            android:textColor="@color/sec_font_content"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/tvCancel"
+            style="@style/btn_option_normal"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="0dp"
+            android:background="@drawable/ripple_global_item_corner"
+            android:text="@string/cancle"
+            android:textColor="@color/sec_font_content"
+            android:visibility="gone" />
+
+    </LinearLayout>
+
+</LinearLayout>

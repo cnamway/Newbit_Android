@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_bg"
+    android:orientation="vertical">
+
+    <include layout="@layout/view_head" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:paddingBottom="10dp"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:paddingTop="20dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/shape_bg_global_item_corner_normal"
+            android:orientation="horizontal"
+            android:paddingBottom="20dp"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:paddingTop="20dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/str_from"
+                        android:textColor="@color/main_font_content"
+                        android:textSize="@dimen/font_small" />
+
+                    <TextView
+                        android:id="@+id/tvFromAccount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center_horizontal"
+                        android:text="@string/str_base_account"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/font_small" />
+                </LinearLayout>
+
+                <View
+                    style="@style/line_bg_grey"
+                    android:layout_marginBottom="15dp"
+                    android:layout_marginTop="15dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/str_to"
+                        android:textColor="@color/main_font_content"
+                        android:textSize="@dimen/font_small" />
+
+                    <TextView
+                        android:id="@+id/tvToAccount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center_horizontal"
+                        android:text="@string/str_trade_account"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/font_small" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/ivSwitchAccount"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="10dp"
+                android:scaleType="center"
+                android:src="@mipmap/asset_08" />
+        </LinearLayout>
+
+        <LinearLayout style="@style/layout_my_info">
+
+            <EditText
+                android:id="@+id/edtNumber"
+                style="@style/edittext_normal"
+                android:layout_weight="1"
+                android:hint="@string/str_transfer_number"
+                android:inputType="numberDecimal" />
+
+            <TextView
+                android:id="@+id/tvGetUnit"
+                style="@style/textview_tag"
+                android:text="---"
+                android:textColor="@color/main_font_content" />
+        </LinearLayout>
+
+        <View style="@style/line_bg_grey" />
+
+        <LinearLayout style="@style/layout_my_info">
+
+            <TextView
+                android:id="@+id/tvBalance"
+                style="@style/textview_tag"
+                android:layout_weight="1"
+                android:text="@string/str_transfer_banlance"
+                android:textColor="@color/main_font_content" />
+
+            <TextView
+                android:id="@+id/tvAll"
+                style="@style/textview_tag"
+                android:layout_height="match_parent"
+                android:background="@drawable/ripple_global_item"
+                android:gravity="center_vertical"
+                android:text="@string/all"
+                android:textColor="@color/btn_normal" />
+        </LinearLayout>
+
+        <View style="@style/line_bg_grey" />
+
+        <LinearLayout style="@style/layout_my_info">
+
+            <TextView
+                style="@style/textview_tag"
+                android:minWidth="90dp"
+                android:text="@string/text_money_pwd" />
+
+            <EditText
+                android:id="@+id/etPassword"
+                style="@style/edittext_normal"
+                android:layout_weight="1"
+                android:hint="@string/text_money_pwd"
+                android:inputType="numberPassword"
+                android:maxLength="6"  />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvSure"
+        style="@style/btn_option_normal"
+        android:layout_margin="20dp"
+        android:text="@string/dialog_sure" />
+
+
+</LinearLayout>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@color/main_bg"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:src="@mipmap/bg_my_blue"
+        android:layout_width="match_parent"
+        android:layout_height="150dp" />
+
+    <include layout="@layout/view_head"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rvContent"
+        android:layout_marginTop="120dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </android.support.v7.widget.RecyclerView>
+
+</RelativeLayout>

@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/main_head_bg"
+    android:orientation="horizontal">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <LinearLayout
+                android:id="@+id/llLeft"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tvBuy"
+                    android:layout_width="40dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="@string/bid"
+                    android:textColor="@color/color_font_kline"
+                    android:textSize="@dimen/sp_12" />
+
+                <TextView
+                    android:id="@+id/tvBuyNumber"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="15dp"
+                    android:gravity="center"
+                    android:text="@string/number"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/sp_12" />
+
+                <TextView
+                    android:id="@+id/tvBuyPrice"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="2dp"
+                    android:gravity="right|center_vertical"
+                    android:text="@string/price"
+                    android:textColor="@color/font_kline_depth_buy"
+                    android:textSize="@dimen/sp_12" />
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/buyView"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:background="#601B9C42"
+                android:visibility="visible" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/sellView"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:background="#60E22220" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tvSellPrice"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="left|center_vertical"
+                    android:paddingLeft="2dp"
+                    android:text="@string/price"
+                    android:textColor="@color/font_kline_depth_sell"
+                    android:textSize="@dimen/sp_12" />
+
+                <TextView
+                    android:id="@+id/tvSellNumber"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="15dp"
+                    android:gravity="center"
+                    android:text="@string/number"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/sp_12" />
+
+                <TextView
+                    android:id="@+id/tvSell"
+                    android:layout_width="40dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="@string/selling"
+                    android:textColor="@color/color_font_kline"
+                    android:textSize="@dimen/sp_12" />
+
+            </LinearLayout>
+        </RelativeLayout>
+
+    </LinearLayout>
+
+
+</LinearLayout>

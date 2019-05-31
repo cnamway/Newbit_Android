@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">KLineChartLib</string>
+    <string name="average">The average price</string>
+    <string name="time">Data   </string>
+    <string name="up">Up     </string>
+    <string name="low">Low    </string>
+    <string name="open">Open  </string>
+    <string name="close">Close</string>
+    <string name="change_amount">Change</string>
+    <string name="change_range">Change%</string>
+    <string name="volume">Amount</string>
+</resources>

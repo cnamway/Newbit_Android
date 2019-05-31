@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_bg"
+    android:orientation="vertical">
+
+    <!--标题-->
+    <include layout="@layout/view_head" />
+
+    <LinearLayout style="@style/layout_my_info">
+
+        <TextView
+            style="@style/textview_tag"
+            android:minWidth="90dp"
+            android:text="@string/text_can_used"
+            android:textColor="@color/main_font_content" />
+
+        <TextView
+            android:id="@+id/tvBuyCanUse"
+            style="@style/edittext_normal"
+            android:layout_weight="1"
+            android:textColor="@color/main_font_content" />
+
+        <TextView
+            android:id="@+id/tvCanUseUnit"
+            style="@style/textview_tag"
+            android:text="USDT"
+            android:textColor="@color/main_font_content" />
+
+    </LinearLayout>
+
+    <View style="@style/line_bg_grey" />
+
+    <LinearLayout
+        style="@style/layout_my_info"
+        android:paddingRight="0dp">
+
+        <TextView
+            style="@style/textview_tag"
+            android:minWidth="90dp"
+            android:text="@string/mention_money_address"
+            android:textColor="@color/main_font_content" />
+
+        <EditText
+            android:id="@+id/etAddress"
+            style="@style/edittext_normal"
+            android:layout_weight="1"
+            android:singleLine="true" />
+
+        <TextView
+            android:id="@+id/tvSelectAdress"
+            style="@style/textview_tag"
+            android:layout_height="match_parent"
+            android:background="@drawable/ripple_global_item"
+            android:gravity="center_vertical"
+            android:padding="10dp"
+            android:text="@string/select"
+            android:textColor="@color/btn_normal" />
+    </LinearLayout>
+
+    <View style="@style/line_bg_grey" />
+
+    <LinearLayout
+        style="@style/layout_my_info"
+        android:paddingRight="0dp">
+
+        <TextView
+            style="@style/textview_tag"
+            android:minWidth="90dp"
+            android:text="@string/amount"
+            android:textColor="@color/main_font_content" />
+
+        <EditText
+            android:id="@+id/etCount"
+            style="@style/edittext_normal"
+            android:layout_weight="1"
+            android:inputType="numberDecimal" />
+
+        <TextView
+            android:id="@+id/tvGetUnit"
+            style="@style/textview_tag"
+            android:layout_marginLeft="5dp"
+            android:text="USDT"
+            android:textColor="@color/main_font_content" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="20dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@color/main_font_content" />
+
+        <TextView
+            android:id="@+id/tvAll"
+            style="@style/textview_tag"
+            android:layout_height="match_parent"
+            android:background="@drawable/ripple_global_item"
+            android:gravity="center_vertical"
+            android:padding="10dp"
+            android:text="@string/all"
+            android:textColor="@color/btn_normal" />
+    </LinearLayout>
+
+    <View style="@style/line_bg_grey" />
+
+    <LinearLayout style="@style/layout_my_info">
+
+        <TextView
+            style="@style/textview_tag"
+            android:minWidth="90dp"
+            android:text="网络费"
+            android:textColor="@color/main_font_content" />
+
+        <TextView
+            android:id="@+id/tvServiceFee"
+            style="@style/edittext_normal"
+            android:layout_weight="1"
+            android:enabled="false"
+            android:inputType="numberDecimal"
+            android:textColor="@color/main_font_content" />
+
+    </LinearLayout>
+
+    <View style="@style/line_bg_grey" />
+
+    <LinearLayout style="@style/layout_my_info">
+
+        <TextView
+            style="@style/textview_tag"
+            android:minWidth="90dp"
+            android:text="@string/mention_account"
+            android:textColor="@color/main_font_content" />
+
+        <TextView
+            android:id="@+id/tvFinalCount"
+            style="@style/edittext_normal"
+            android:layout_weight="1"
+            android:textColor="@color/main_font_content" />
+
+        <TextView
+            android:id="@+id/tvCollectUnit"
+            style="@style/textview_tag"
+            android:text="USDT"
+            android:textColor="@color/main_font_content" />
+    </LinearLayout>
+
+    <View style="@style/line_bg_grey" />
+
+    <LinearLayout style="@style/layout_my_info">
+
+        <TextView
+            style="@style/textview_tag"
+            android:minWidth="90dp"
+            android:text="@string/text_money_pwd" />
+
+        <EditText
+            android:id="@+id/etPassword"
+            style="@style/edittext_normal"
+            android:layout_weight="1"
+            android:hint="@string/text_money_pwd"
+            android:inputType="numberPassword"
+            android:maxLength="6" />
+
+    </LinearLayout>
+
+    <View style="@style/line_bg_grey" />
+
+    <LinearLayout style="@style/layout_my_info">
+
+        <TextView
+            style="@style/textview_tag"
+            android:minWidth="100dp"
+            android:text="@string/phone_code" />
+
+        <EditText
+            android:id="@+id/etCode"
+            style="@style/edittext_normal"
+            android:layout_weight="1"
+            android:hint="@string/code"
+            android:inputType="number" />
+
+        <TextView
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="15dp"
+            android:layout_marginTop="15dp"
+            android:background="@color/btn_normal" />
+
+        <TextView
+            android:id="@+id/tvGetCode"
+            style="@style/textveiw_msg_code"
+            android:background="@color/main_head_bg"
+            android:text="@string/send_code" />
+
+    </LinearLayout>
+
+    <View style="@style/line_bg_grey" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1" />
+
+    <TextView
+        android:id="@+id/tvExtract"
+        style="@style/btn_option_normal"
+        android:layout_margin="20dp"
+        android:text="@string/submit" />
+
+</LinearLayout>

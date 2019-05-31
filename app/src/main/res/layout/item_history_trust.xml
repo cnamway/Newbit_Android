@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/ripple_global_item"
+        android:orientation="vertical"
+        android:padding="12dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tvType"
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:text="买入"
+                android:textColor="@color/main_font_green"
+                android:textSize="@dimen/font_normal" />
+
+            <TextView
+                android:id="@+id/tvEntrustTime"
+                android:layout_toRightOf="@id/tvType"
+                android:layout_alignBottom="@id/tvType"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/main_font_content"
+                android:textSize="@dimen/font_mini" />
+
+            <TextView
+                android:id="@+id/tvCancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:text="@string/undone"
+                android:textColor="@color/white"
+                android:textSize="@dimen/font_small" />
+
+            <TextView
+                android:id="@+id/tvSuccess"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:text="@string/deal"
+                android:textColor="@color/main_font_content"
+                android:textSize="@dimen/font_small"
+                android:visibility="invisible" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
+
+            <TextView
+                android:id="@+id/tvTotalTag"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="start"
+                android:text="@string/text_total_deal"
+                android:textColor="@color/main_font_content"
+                android:textSize="@dimen/font_mini" />
+
+            <TextView
+                android:id="@+id/tvAverageTag"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/text_average_price"
+                android:textColor="@color/main_font_content"
+                android:textSize="@dimen/font_mini" />
+
+            <TextView
+                android:id="@+id/tvVolumeTag"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="end"
+                android:text="成交量(BTC)"
+                android:textColor="@color/main_font_content"
+                android:textSize="@dimen/font_mini" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp">
+
+            <TextView
+                android:id="@+id/tvTotal"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="start"
+                android:textColor="@color/white"
+                android:textSize="@dimen/font_small" />
+
+            <TextView
+                android:id="@+id/tvAverage"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:maxLines="1"
+                android:textColor="@color/white"
+                android:textSize="@dimen/font_small" />
+
+            <TextView
+                android:id="@+id/tvVolume"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="end"
+                android:textColor="@color/white"
+                android:textSize="@dimen/font_small" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
+
+            <TextView
+                android:id="@+id/tvEntrustPriceTag"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="left"
+                android:text="@string/text_entrust_price"
+                android:textColor="@color/main_font_content"
+                android:textSize="@dimen/font_mini" />
+
+            <TextView
+                android:id="@+id/tvEntrustCountTag"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="委托量(BTC)"
+                android:textColor="@color/main_font_content"
+                android:textSize="@dimen/font_mini" />
+
+            <TextView
+                android:visibility="invisible"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="start"
+                android:text="@string/item_time"
+                android:textColor="@color/main_font_content"
+                android:textSize="@dimen/font_mini" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp">
+
+            <TextView
+                android:id="@+id/tvEntrustPrice"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="left"
+                android:textColor="@color/white"
+                android:textSize="@dimen/font_small" />
+
+            <TextView
+                android:id="@+id/tvEntrustCount"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:textSize="@dimen/font_small" />
+
+            <TextView
+                android:visibility="invisible"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:textSize="@dimen/font_small" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <View style="@style/line_bg_grey" />
+</LinearLayout>

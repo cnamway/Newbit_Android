@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!--标题-->
+    <include
+        layout="@layout/view_head"
+        android:visibility="gone" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white">
+
+            <LinearLayout
+                android:id="@+id/llAccount"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:background="@mipmap/icon_asset_trade"
+                android:gravity="center_vertical"
+                android:orientation="vertical"
+                android:padding="20dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/str_trade_account"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/font_normal" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dp_10"
+                        android:layout_weight="1"
+                        android:text="@string/str_base_account_all"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/font_mini" />
+
+                    <ImageView
+                        android:id="@+id/ivSee"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@mipmap/icon_eye_open"
+                        android:visibility="gone" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tvAmount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:ellipsize="end"
+                    android:lines="1"
+                    android:text="0.000000"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/sp_30"
+                    android:textStyle="bold"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/tvCnyAmount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_10"
+                    android:text="≈0.00 CNY"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/font_lager" />
+            </LinearLayout>
+        </RelativeLayout>
+
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/refreshLayout"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rvWallet"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:overScrollMode="never" />
+
+        </android.support.v4.widget.SwipeRefreshLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

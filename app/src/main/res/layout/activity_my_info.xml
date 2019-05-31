@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_head_bg"
+    android:orientation="vertical">
+
+    <include layout="@layout/view_head" />
+
+    <LinearLayout
+        style="@style/layout_my_info"
+        android:layout_height="60dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:text="@string/photo"
+            android:textColor="@color/main_font_content"
+            android:textSize="@dimen/font_normal" />
+
+        <com.spark.newbitrade.ui.CircleImageView
+            android:id="@+id/ivHeader"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginRight="16dp"
+            android:src="@mipmap/icon_avatar" />
+
+        <ImageView style="@style/icon_more" />
+
+    </LinearLayout>
+
+    <View style="@style/line_bg_grey" />
+
+    <LinearLayout
+        android:id="@+id/llPhone"
+        style="@style/layout_my_info"
+        android:background="@drawable/ripple_global_item">
+
+        <TextView
+            style="@style/textview_tag_my_info"
+            android:text="@string/binding_phone" />
+
+        <TextView
+            android:id="@+id/tvPhone"
+            style="@style/textview_state_my_info" />
+
+        <ImageView style="@style/icon_more" />
+
+    </LinearLayout>
+
+    <View style="@style/line_bg_grey" />
+
+    <!--<LinearLayout-->
+    <!--android:id="@+id/llEmail"-->
+    <!--style="@style/layout_my_info"-->
+    <!--android:background="@drawable/ripple_global_item">-->
+
+    <!--<TextView-->
+    <!--style="@style/textview_tag_my_info"-->
+    <!--android:text="@string/binding_email" />-->
+
+    <!--<TextView-->
+    <!--android:id="@+id/tvEmail"-->
+    <!--style="@style/textview_state_my_info" />-->
+
+    <!--<ImageView style="@style/icon_more" />-->
+
+    <!--</LinearLayout>-->
+
+    <!--<View style="@style/line_bg_grey" />-->
+
+    <LinearLayout
+        android:id="@+id/llLoginPwd"
+        style="@style/layout_my_info"
+        android:background="@drawable/ripple_global_item">
+
+        <TextView
+            style="@style/textview_tag_my_info"
+            android:text="@string/login_password" />
+
+
+        <TextView
+            android:id="@+id/tvLoginPwd"
+            style="@style/textview_state_my_info" />
+
+        <ImageView style="@style/icon_more" />
+
+    </LinearLayout>
+
+    <View style="@style/line_bg_grey" />
+
+    <LinearLayout
+        android:id="@+id/llAccountPwd"
+        style="@style/layout_my_info"
+        android:background="@drawable/ripple_global_item">
+
+        <TextView
+            style="@style/textview_tag_my_info"
+            android:text="@string/text_money_pwd" />
+
+
+        <TextView
+            android:id="@+id/tvAcountPwd"
+            style="@style/textview_state_my_info" />
+
+        <ImageView style="@style/icon_more" />
+
+    </LinearLayout>
+
+    <View style="@style/line_bg_grey" />
+
+    <LinearLayout
+        android:id="@+id/llIdCard"
+        style="@style/layout_my_info"
+        android:background="@drawable/ripple_global_item">
+
+        <TextView
+            style="@style/textview_tag_my_info"
+            android:text="@string/id_credit" />
+
+
+        <TextView
+            android:id="@+id/tvIdCard"
+            style="@style/textview_state_my_info" />
+
+        <ImageView style="@style/icon_more" />
+
+    </LinearLayout>
+
+    <View style="@style/line_bg_grey" />
+
+    <LinearLayout
+        android:id="@+id/llAccount"
+        style="@style/layout_my_info"
+        android:background="@drawable/ripple_global_item">
+
+        <TextView
+            style="@style/textview_tag_my_info"
+            android:text="@string/binding_account" />
+
+
+        <TextView
+            android:id="@+id/etAccount"
+            style="@style/textview_state_my_info" />
+
+        <ImageView style="@style/icon_more" />
+
+    </LinearLayout>
+
+    <View style="@style/line_bg_grey" />
+
+</LinearLayout>

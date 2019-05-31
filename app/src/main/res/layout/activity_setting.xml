@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_bg"
+    android:orientation="vertical">
+
+    <!--标题-->
+    <include layout="@layout/view_head" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="10dp" />
+
+    <!--<LinearLayout-->
+    <!--android:id="@+id/llSwitchUser"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:background="@drawable/ripple_global_item"-->
+    <!--android:orientation="vertical"-->
+    <!--android:visibility="gone">-->
+
+    <!--<LinearLayout style="@style/layout_my_info">-->
+
+    <!--<TextView-->
+    <!--style="@style/edittext_normal"-->
+    <!--android:layout_weight="1"-->
+    <!--android:text="@string/switch_account" />-->
+
+    <!--<ImageView style="@style/icon_more" />-->
+    <!--</LinearLayout>-->
+
+    <!--<View style="@style/line_bg_grey" />-->
+    <!--</LinearLayout>-->
+
+    <LinearLayout
+        android:id="@+id/llSwitchLanguage"
+        style="@style/layout_my_info"
+        android:background="@drawable/ripple_global_item">
+
+        <TextView
+            style="@style/edittext_normal"
+            android:layout_weight="1"
+            android:text="@string/language" />
+
+        <ImageView style="@style/icon_more" />
+
+    </LinearLayout>
+
+    <View style="@style/line_bg_grey" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1" />
+
+    <TextView
+        android:id="@+id/tvLoginOut"
+        style="@style/btn_option_normal"
+        android:layout_margin="20dp"
+        android:text="@string/logout_current_account" />
+
+</LinearLayout>

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_bg"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="@dimen/dp_20">
+
+    <include
+        layout="@layout/view_head"
+        android:visibility="gone" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp_20"
+        android:layout_marginRight="@dimen/dp_20"
+        android:gravity="center"
+        android:text="为VIP承兑商安全高价群集交易"
+        android:textColor="@color/black"
+        android:textSize="@dimen/font_xlager"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp_20"
+        android:layout_marginRight="@dimen/dp_20"
+        android:layout_marginTop="@dimen/dp_20"
+        android:gravity="center|right"
+        android:text="VIP商家群集回收价"
+        android:textColor="@color/black"
+        android:textSize="@dimen/font_small" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp_20"
+        android:layout_marginRight="@dimen/dp_20"
+        android:layout_marginTop="@dimen/dp_6"
+        android:background="@drawable/shape_bg_blue"
+        android:gravity="center_vertical"
+        android:padding="@dimen/dp_12">
+
+        <TextView
+            android:id="@+id/tvCoin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center|left"
+            android:text=""
+            android:textColor="@color/white"
+            android:textSize="@dimen/font_normal" />
+
+        <TextView
+            android:id="@+id/tvPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_gravity="right"
+            android:text=""
+            android:textColor="@color/white"
+            android:textSize="@dimen/font_normal" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/llBuy"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp_20"
+        android:layout_marginRight="@dimen/dp_20"
+        android:layout_marginTop="@dimen/dp_20"
+        android:background="@drawable/shape_bg_blue_gre"
+        android:gravity="center"
+        android:padding="@dimen/dp_12">
+
+        <TextView
+            android:id="@+id/tvCoinName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center|left"
+            android:text=""
+            android:textColor="@color/color_blue"
+            android:textSize="@dimen/font_normal" />
+
+    </RelativeLayout>
+</LinearLayout>

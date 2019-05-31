@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/ripple_global_item"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="8dp"
+        android:paddingLeft="12dp"
+        android:paddingRight="16dp"
+        android:paddingTop="8dp">
+
+        <com.spark.newbitrade.ui.CircleImageView
+            android:id="@+id/ivHeader"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:layout_marginRight="5dp"
+            android:src="@mipmap/icon_avatar" />
+
+        <ImageView
+            android:id="@+id/ivChatTip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="45dp"
+            android:src="@mipmap/icon_dot"
+            android:visibility="invisible" />
+
+        <TextView
+            android:id="@+id/tvName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_toRightOf="@id/ivHeader"
+            android:text="Sukey"
+            android:textColor="@color/main_font_content"
+            android:textSize="@dimen/font_normal" />
+
+        <TextView
+            android:id="@+id/tvMessage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@id/tvName"
+            android:layout_below="@id/tvName"
+            android:layout_marginTop="5dp"
+            android:text="最近聊天消息"
+            android:textColor="@color/main_font_content"
+            android:textSize="@dimen/font_small" />
+
+        <TextView
+            android:id="@+id/tvTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/tvName"
+            android:layout_alignParentRight="true"
+            android:text="周六"
+            android:textColor="@color/sec_font_content"
+            android:textSize="@dimen/font_small" />
+    </RelativeLayout>
+
+    <View style="@style/line_bg_grey" />
+
+</LinearLayout>

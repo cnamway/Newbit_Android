@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_head_bg"
+    android:orientation="vertical">
+    <!--标题-->
+    <include layout="@layout/view_head" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dp_20"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/icon_login_icon" />
+
+    </LinearLayout>
+
+
+    <!--输入部分-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:visibility="visible">
+
+        <!--手机号-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/shape_eidt_bg_chat"
+            android:orientation="horizontal"
+            android:paddingLeft="15dp">
+
+            <TextView
+                android:id="@+id/tvCountry"
+                style="@style/textview_tag"
+                android:drawablePadding="5dp"
+                android:drawableRight="@mipmap/icon_drop"
+                android:text="@string/china"
+                android:textColor="@color/main_font_content" />
+
+            <EditText
+                android:id="@+id/etPhone"
+                style="@style/edittext_normal"
+                android:layout_marginLeft="10dp"
+                android:background="@color/transparent"
+                android:hint="@string/phone_number"
+                android:inputType="phone"
+                android:visibility="visible" />
+
+            <EditText
+                android:id="@+id/etEmail"
+                style="@style/edittext_normal"
+                android:layout_marginLeft="10dp"
+                android:background="@color/transparent"
+                android:hint="@string/email"
+                android:visibility="gone" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llGetCode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/shape_eidt_bg_chat"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp">
+
+            <EditText
+                android:id="@+id/etCode"
+                style="@style/edittext_normal"
+                android:layout_width="282dp"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:background="@color/transparent"
+                android:hint="@string/phone_code"
+                android:inputType="number" />
+
+            <TextView
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="15dp"
+                android:layout_marginTop="15dp"
+                android:background="@color/btn_normal" />
+
+            <TextView
+                android:id="@+id/tvGetCode"
+                style="@style/textveiw_msg_code" />
+
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/etPassword"
+            style="@style/edittext_normal"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/shape_eidt_bg_chat"
+            android:hint="@string/new_pwd"
+            android:inputType="textPassword"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp" />
+
+        <EditText
+            android:id="@+id/etRenewPassword"
+            style="@style/edittext_normal"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/shape_eidt_bg_chat"
+            android:hint="@string/repeat_password"
+            android:inputType="textPassword"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvConfirm"
+        style="@style/btn_option_normal"
+        android:layout_margin="20dp"
+        android:enabled="false"
+        android:text="@string/confirm" />
+
+    <LinearLayout
+        android:id="@+id/llGoSign"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_10"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/users_if_login"
+            android:textColor="@color/colorTextNormal"
+            android:textSize="@dimen/font_small" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/users_if_go_login"
+            android:textColor="@color/btn_normal"
+            android:textSize="@dimen/font_small" />
+
+    </LinearLayout>
+
+
+</LinearLayout>

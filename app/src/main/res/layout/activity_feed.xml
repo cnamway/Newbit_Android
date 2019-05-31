@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_bg"
+    android:orientation="vertical"
+    tools:context="com.spark.newbitrade.activity.appeal.AppealActivity">
+
+    <!--标题-->
+    <include layout="@layout/view_head" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/llHead"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvTag"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:drawableLeft="@mipmap/icon_notice"
+            android:drawablePadding="4dp"
+            android:gravity="center_vertical"
+            android:padding="15dp"
+            android:text="@string/appeal_tag"
+            android:textColor="@color/main_font_content"
+            android:textSize="@dimen/font_small"
+            android:visibility="visible" />
+
+        <LinearLayout
+            android:id="@+id/llFeed"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:gravity="center_vertical"
+            android:paddingLeft="24dp"
+            android:paddingRight="16dp"
+            android:visibility="gone">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/icon_feed_back" />
+
+            <TextView
+                style="@style/edittext_normal"
+                android:layout_marginLeft="8dp"
+                android:text="@string/feed_message" />
+        </LinearLayout>
+
+
+        <EditText
+            android:id="@+id/etRemark"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:background="@drawable/shape_bg_global_item_corner_normal"
+            android:gravity="left"
+            android:hint="@string/appeal_reason"
+            android:maxLength="300"
+            android:padding="8dp"
+            android:text=""
+            android:textColor="@color/main_font_content"
+            android:textColorHint="@color/third_font_content"
+            android:textSize="@dimen/font_small" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="16dp" />
+
+        <EditText
+            android:id="@+id/etAccount"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:background="@drawable/shape_bg_global_item_corner_normal"
+            android:gravity="center_vertical"
+            android:hint="@string/feed_et_number_email"
+            android:padding="8dp"
+            android:text=""
+            android:textColor="@color/main_font_content"
+            android:textColorHint="@color/third_font_content"
+            android:textSize="@dimen/font_normal"
+            android:visibility="gone" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
+        <TextView
+            android:id="@+id/tvSubmit"
+            style="@style/btn_option_normal"
+            android:layout_margin="20dp"
+            android:text="@string/submit" />
+
+    </LinearLayout>
+
+</RelativeLayout>

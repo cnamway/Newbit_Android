@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/main_head_bg"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="50dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:text="@string/str_security_verification"
+            android:textColor="@color/main_font_content"
+            android:textSize="@dimen/font_normal"
+            android:textStyle="bold"
+            android:visibility="visible" />
+
+        <View
+            style="@style/line_bg_grey"/>
+
+        <LinearLayout
+            android:id="@+id/llBank"
+            style="@style/layout_my_info">
+
+            <TextView
+                android:id="@+id/tvPhone"
+                style="@style/textview_tag"
+                android:drawablePadding="8dp"
+                android:text="@string/unionpay_account" />
+
+        </LinearLayout>
+
+        <View
+            style="@style/line_bg_grey"/>
+
+        <LinearLayout
+            style="@style/layout_my_info">
+
+            <EditText
+                android:id="@+id/etCode"
+                style="@style/edittext_normal"
+                android:layout_marginRight="5dp"
+                android:layout_weight="1"
+                android:background="@color/transparent"
+                android:hint="@string/phone_code"
+                android:inputType="number"
+                />
+
+            <TextView
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="15dp"
+                android:layout_marginTop="15dp"
+                android:background="@color/btn_normal" />
+
+            <TextView
+                android:id="@+id/tvGetCode"
+                style="@style/textveiw_msg_code" />
+
+        </LinearLayout>
+
+        <View
+            style="@style/line_bg_grey"/>
+
+        <TextView
+            style="@style/textview_tag"
+            android:textColor="@color/main_font_content"
+            android:textSize="@dimen/font_small"
+            android:layout_margin="15dp"
+            android:text="@string/str_security_tag" />
+
+        <TextView
+            android:id="@+id/tvOption"
+            style="@style/btn_option_normal"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/ripple_btn_global_option_selector"
+            android:text="@string/confirm"
+            android:textSize="@dimen/font_normal" />
+
+        <TextView
+            android:id="@+id/tvCancle"
+            style="@style/btn_option_normal"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="0dp"
+            android:background="@drawable/ripple_global_item_corner"
+            android:text="@string/dialog_one_cancel"
+            android:textColor="@color/main_font_content"
+            android:textSize="@dimen/font_normal" />
+
+    </LinearLayout>
+
+</LinearLayout>

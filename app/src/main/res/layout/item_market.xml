@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:descendantFocusability="blocksDescendants"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/ripple_global_item"
+        android:orientation="horizontal"
+        android:padding="12dp">
+
+        <LinearLayout
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tvBuySymbol"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="LTC"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/font_normal"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvSecSymbol"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="2dp"
+                    android:text="/USDT"
+                    android:textColor="@color/main_font_content"
+                    android:textSize="@dimen/font_normal" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv24HCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="24h量2234234234.234"
+                android:textColor="@color/main_font_content"
+                android:textSize="@dimen/font_small" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="15dp"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvClose"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="120.48"
+                android:textColor="@color/white"
+                android:textSize="@dimen/font_normal" />
+
+            <TextView
+                android:id="@+id/tvConvert"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="759.1463"
+                android:textColor="@color/main_font_content"
+                android:textSize="@dimen/font_small" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/item_home_chg"
+            android:layout_weight="0.8"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@drawable/bg_item_market_up_down"
+            android:gravity="center"
+            android:paddingBottom="5dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="5dp"
+            android:text="+155.00%"
+            android:textColor="@color/white"
+            android:textSize="@dimen/font_normal" />
+
+    </LinearLayout>
+
+    <View
+        style="@style/line_bg_grey"/>
+</LinearLayout>

@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:background="@drawable/shape_bg_code_popwindow"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tvTitle"
+                style="@style/layout_my_info"
+                android:layout_weight="1"
+                android:background="@color/transparent"
+                android:paddingBottom="5dp"
+                android:paddingTop="10dp"
+                android:text="@string/invite"
+                android:textColor="@color/main_font_content"
+                android:textSize="@dimen/font_normal" />
+
+            <ImageView
+                android:id="@+id/iv_cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="14dp"
+                android:src="@mipmap/icon_close" />
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/rLayoutCode"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_weight="1"
+            android:background="@mipmap/bg_promotion">
+
+            <TextView
+                android:id="@+id/tvWebSide"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="80dp"
+                android:background="@color/depth_text_color"
+                android:ellipsize="middle"
+                android:gravity="center"
+                android:lines="1"
+                android:text=""
+                android:textColor="@color/black"
+                android:textSize="@dimen/font_normal"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/tvPopviewPromotionCode"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:gravity="center"
+                android:text=""
+                android:textColor="@color/black"
+                android:textSize="@dimen/font_normal"
+                android:visibility="invisible" />
+
+            <ImageView
+                android:id="@+id/ivPromotion"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_below="@id/tvPopviewPromotionCode"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="-40dp"
+                android:background="@mipmap/icon_bg_code"
+                android:padding="@dimen/dp_4"
+                android:scaleType="centerInside" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/ivPromotion"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="15dp"
+                android:textColor="@color/font_wallet_str" />
+
+        </RelativeLayout>
+
+        <View style="@style/line_bg_grey" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tvSave"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/save_to_album"
+                android:textColor="@color/main_font_content"
+                android:textSize="@dimen/font_normal" />
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/line_bg_grey" />
+
+            <TextView
+                android:id="@+id/tvCopy"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/copy_address"
+                android:textColor="@color/main_font_content"
+                android:textSize="@dimen/font_normal" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,785 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_head_bg"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:focusableInTouchMode="true"
+            android:orientation="vertical">
+
+            <!--选择币种-->
+            <LinearLayout style="@style/layout_my_info">
+
+                <TextView
+                    style="@style/textview_tag"
+                    android:minWidth="80dp"
+                    android:text="@string/text_coin_type" />
+
+                <TextView
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="15dp"
+                    android:layout_marginTop="15dp"
+                    android:background="@color/grey_a5a5a5" />
+
+                <TextView
+                    android:id="@+id/tvCoin"
+                    style="@style/layout_my_info"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="left|center"
+                    android:hint="@string/text_select"
+                    android:textColorHint="@color/third_font_content" />
+
+                <ImageView
+                    style="@style/icon_more"
+                    android:layout_marginLeft="8dp" />
+
+            </LinearLayout>
+
+            <View style="@style/line_bg_grey" />
+
+            <!--所在地-->
+            <LinearLayout style="@style/layout_my_info">
+
+                <TextView
+                    style="@style/textview_tag"
+                    android:minWidth="80dp"
+                    android:text="@string/text_place" />
+
+                <TextView
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="15dp"
+                    android:layout_marginTop="15dp"
+                    android:background="@color/grey_a5a5a5" />
+
+                <TextView
+                    android:id="@+id/tvSelectCountry"
+                    style="@style/layout_my_info"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="left|center"
+                    android:hint="@string/text_select"
+                    android:textColorHint="@color/third_font_content" />
+
+                <ImageView
+                    style="@style/icon_more"
+                    android:layout_marginLeft="8dp" />
+
+            </LinearLayout>
+
+            <View style="@style/line_bg_grey" />
+
+            <!--货币类型-->
+            <LinearLayout style="@style/layout_my_info">
+
+                <TextView
+                    style="@style/textview_tag"
+                    android:minWidth="80dp"
+                    android:text="@string/text_currency_type" />
+
+                <TextView
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="15dp"
+                    android:layout_marginTop="15dp"
+                    android:background="@color/grey_a5a5a5" />
+
+                <TextView
+                    android:id="@+id/tvCoinKind"
+                    style="@style/layout_my_info"
+                    android:layout_weight="1"
+                    android:gravity="left|center"
+                    android:hint="@string/text_auto_select"
+                    android:textColorHint="@color/third_font_content" />
+
+                <ImageView
+                    style="@style/icon_more"
+                    android:layout_marginLeft="8dp"
+                    android:visibility="gone" />
+
+            </LinearLayout>
+
+            <View style="@style/line_bg_grey" />
+
+            <!--价格-->
+            <!--<LinearLayout style="@style/layout_my_info">
+
+                <TextView
+                    style="@style/textview_tag"
+                    android:minWidth="80dp"
+                    android:text="@string/text_price_market" />
+
+                <TextView
+                    android:id="@+id/tvPrice"
+                    style="@style/layout_my_info"
+                    android:layout_weight="1"
+                    android:gravity="right" />
+
+                <TextView
+                    android:id="@+id/tvLocalCurrency"
+                    style="@style/textview_tag"
+                    android:layout_marginLeft="8dp"
+                    android:gravity="right"
+                    android:text="CNY" />
+
+            </LinearLayout>
+
+            <View style="@style/line_bg_grey" />-->
+            <!--价格类型-->
+            <LinearLayout
+                style="@style/layout_my_info"
+                android:visibility="visible">
+
+                <TextView
+                    style="@style/textview_tag"
+                    android:minWidth="80dp"
+                    android:text="@string/text_price_type" />
+
+                <View
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+                <com.kyleduo.switchbutton.SwitchButton
+                    android:id="@+id/sbPriceType"
+                    android:layout_width="55dp"
+                    android:layout_height="30dp"
+                    android:gravity="right"
+                    android:textColor="#CFCCCB"
+                    android:textSize="@dimen/font_mini"
+                    app:kswBackDrawable="@drawable/ios_back_drawable"
+                    app:kswTextAdjust="-2dp"
+                    app:kswTextExtra="8dp"
+                    app:kswTextOff="Off"
+                    app:kswTextOn="On"
+                    app:kswThumbDrawable="@drawable/ios_thumb_selector"
+                    app:kswThumbMarginBottom="-5dp"
+                    app:kswThumbMarginLeft="-5dp"
+                    app:kswThumbMarginRight="-5dp"
+                    app:kswThumbMarginTop="-2.5dp"
+                    app:kswThumbRangeRatio="1.4" />
+
+                <!--<RadioGroup-->
+                <!--android:id="@+id/rgPriceType"-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:layout_weight="1"-->
+                <!--android:gravity="right"-->
+                <!--android:orientation="horizontal">-->
+
+                <!--<RadioButton-->
+                <!--android:id="@+id/rbFixed"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_gravity="center_vertical"-->
+                <!--android:checked="true"-->
+                <!--android:scaleX="0.8"-->
+                <!--android:scaleY="0.8"-->
+                <!--android:text="@string/text_price_fixed"-->
+                <!--android:textColor="@color/sec_font_black"-->
+                <!--android:textSize="@dimen/font_lager" />-->
+
+                <!--<RadioButton-->
+                <!--android:id="@+id/rbChange"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_gravity="center_vertical"-->
+                <!--android:scaleX="0.8"-->
+                <!--android:scaleY="0.8"-->
+                <!--android:text="@string/text_price_market"-->
+                <!--android:textColor="@color/sec_font_black"-->
+                <!--android:textSize="@dimen/font_lager" />-->
+                <!--</RadioGroup>-->
+
+            </LinearLayout>
+
+            <View style="@style/line_bg_grey" />
+
+            <!--溢价-->
+            <LinearLayout
+                android:id="@+id/llOverflow"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="visible">
+
+                <LinearLayout style="@style/layout_my_info">
+
+                    <TextView
+                        style="@style/textview_tag"
+                        android:minWidth="80dp"
+                        android:text="@string/text_price_overflow" />
+
+                    <TextView
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="15dp"
+                        android:layout_marginTop="15dp"
+                        android:background="@color/grey_a5a5a5" />
+
+                    <EditText
+                        android:id="@+id/etOverflow"
+                        style="@style/edittext_normal"
+                        android:layout_weight="1"
+                        android:gravity="left|center"
+                        android:hint="@string/text_over_price"
+                        android:inputType="numberDecimal"
+                        android:minWidth="100dp"
+                        android:paddingLeft="16dp"
+                        android:paddingRight="1dp"
+                        android:text="" />
+
+                    <TextView
+                        style="@style/textview_tag"
+                        android:layout_marginLeft="8dp"
+                        android:gravity="right"
+                        android:text="%" />
+                </LinearLayout>
+
+                <View style="@style/line_bg_grey" />
+            </LinearLayout>
+
+            <!--实时价格-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="visible">
+
+                <LinearLayout
+                    style="@style/layout_my_info"
+                    android:background="@color/main_bg"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:id="@+id/llPrice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/text_price_market"
+                            android:textColor="@color/main_font_content"
+                            android:textSize="@dimen/font_mini" />
+
+                        <TextView
+                            android:id="@+id/tvPrice"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:textColor="@color/btn_normal"
+                            android:textSize="@dimen/sp_12" />
+
+                        <TextView
+                            android:id="@+id/tvLocalCurrency"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="8dp"
+                            android:gravity="right"
+                            android:text="CNY"
+                            android:textColor="@color/btn_normal"
+                            android:textSize="@dimen/font_mini" />
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/tvText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/close_fixed_price_text"
+                        android:textColor="@color/main_font_content"
+                        android:textSize="@dimen/font_mini" />
+
+
+                </LinearLayout>
+
+                <View style="@style/line_bg_grey" />
+            </LinearLayout>
+
+            <!--固定价格-->
+            <LinearLayout
+                android:id="@+id/llGdPrice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <LinearLayout style="@style/layout_my_info">
+
+                    <TextView
+                        style="@style/textview_tag"
+                        android:minWidth="80dp"
+                        android:text="@string/text_price_fixed" />
+
+                    <TextView
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="15dp"
+                        android:layout_marginTop="15dp"
+                        android:background="@color/grey_a5a5a5" />
+
+                    <EditText
+                        android:id="@+id/etPrice"
+                        style="@style/edittext_normal"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="left|center"
+                        android:hint="@string/text_price_fixed_input"
+                        android:inputType="numberDecimal"
+                        android:minWidth="100dp"
+                        android:paddingLeft="16dp"
+                        android:paddingRight="1dp"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/tvPriceCurrency"
+                        style="@style/textview_tag"
+                        android:layout_marginLeft="8dp"
+                        android:gravity="right"
+                        android:text="CNY" />
+
+                </LinearLayout>
+
+                <View style="@style/line_bg_grey" />
+
+            </LinearLayout>
+
+            <!--交易价格-->
+
+            <LinearLayout
+                android:id="@+id/llJyPrice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout style="@style/layout_my_info">
+
+                    <TextView
+                        android:id="@+id/tvjyPriceTag"
+                        style="@style/textview_tag"
+                        android:minWidth="80dp"
+                        android:text="@string/text_trade_price" />
+
+                    <TextView
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="15dp"
+                        android:layout_marginTop="15dp"
+                        android:background="@color/grey_a5a5a5" />
+
+                    <EditText
+                        android:id="@+id/etjyPrice"
+                        style="@style/edittext_normal"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:enabled="false"
+                        android:gravity="left|center"
+                        android:hint="@string/text_enter_trade_price"
+                        android:inputType="numberDecimal"
+                        android:minWidth="100dp"
+                        android:paddingLeft="16dp"
+                        android:paddingRight="1dp"
+                        android:textSize="@dimen/font_small" />
+
+                    <TextView
+                        android:id="@+id/tvjyPriceCurrency"
+                        style="@style/textview_tag"
+                        android:layout_marginLeft="8dp"
+                        android:gravity="right"
+                        android:text="CNY"
+                        android:visibility="visible" />
+                </LinearLayout>
+
+                <View style="@style/line_bg_grey" />
+            </LinearLayout>
+            <!--买入数量-->
+            <LinearLayout style="@style/layout_my_info">
+
+                <TextView
+                    android:id="@+id/tvCountText"
+                    style="@style/textview_tag"
+                    android:minWidth="80dp"
+                    android:text="@string/text_buy_num" />
+
+                <TextView
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="15dp"
+                    android:layout_marginTop="15dp"
+                    android:background="@color/grey_a5a5a5" />
+
+                <EditText
+                    android:id="@+id/etCount"
+                    style="@style/edittext_normal"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="left|center"
+                    android:hint="@string/text_trade_num"
+                    android:inputType="numberDecimal"
+                    android:minWidth="100dp"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="1dp"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <View style="@style/line_bg_grey" />
+
+            <!--收款方式-->
+            <LinearLayout style="@style/layout_my_info">
+
+                <TextView
+                    android:id="@+id/tvPayWayText"
+                    style="@style/textview_tag"
+                    android:minWidth="80dp"
+                    android:text="@string/text_receive_methods" />
+
+                <TextView
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="15dp"
+                    android:layout_marginTop="15dp"
+                    android:background="@color/grey_a5a5a5" />
+
+                <TextView
+                    android:id="@+id/tvPayWay"
+                    style="@style/layout_my_info"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="left|center"
+                    android:hint="@string/text_select"
+                    android:textColorHint="@color/third_font_content" />
+
+                <ImageView
+                    style="@style/icon_more"
+                    android:layout_marginLeft="8dp" />
+
+            </LinearLayout>
+
+            <View style="@style/line_bg_grey" />
+
+
+            <!--付款期限-->
+            <LinearLayout
+                android:id="@+id/llTime"
+                style="@style/layout_my_info">
+
+                <TextView
+                    style="@style/textview_tag"
+                    android:minWidth="80dp"
+                    android:text="@string/text_pay_time" />
+
+                <TextView
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="15dp"
+                    android:layout_marginTop="15dp"
+                    android:background="@color/grey_a5a5a5" />
+
+                <TextView
+                    android:id="@+id/tvPayTime"
+                    style="@style/layout_my_info"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="left|center"
+                    android:hint="@string/text_select_pay_time"
+                    android:minWidth="100dp"
+                    android:numeric="integer"
+                    android:paddingRight="1dp"
+                    android:visibility="gone" />
+
+                <EditText
+                    android:id="@+id/etPayTime"
+                    style="@style/edittext_normal"
+                    android:layout_weight="1"
+                    android:gravity="left|center"
+                    android:hint="@string/str_prompt_pay_time"
+                    android:minWidth="100dp"
+                    android:numeric="integer"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="1dp"
+                    android:textSize="14sp" />
+
+                <TextView
+                    style="@style/textview_tag"
+                    android:layout_marginLeft="8dp"
+                    android:gravity="left"
+                    android:text="@string/text_minute"
+                    android:visibility="visible" />
+
+                <ImageView
+                    style="@style/icon_more"
+                    android:layout_marginLeft="8dp"
+                    android:visibility="gone" />
+            </LinearLayout>
+
+            <View style="@style/line_bg_grey" />
+
+            <!--最小量-->
+            <LinearLayout style="@style/layout_my_info">
+
+                <TextView
+                    style="@style/textview_tag"
+                    android:minWidth="80dp"
+                    android:text="@string/text_min" />
+
+                <TextView
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="15dp"
+                    android:layout_marginTop="15dp"
+                    android:background="@color/grey_a5a5a5" />
+
+                <EditText
+                    android:id="@+id/etMin"
+                    style="@style/edittext_normal"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="left|center"
+                    android:hint="@string/text_min_msg"
+                    android:inputType="numberDecimal"
+                    android:minWidth="100dp"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="1dp"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/tvMinCurrency"
+                    style="@style/textview_tag"
+                    android:layout_marginLeft="8dp"
+                    android:gravity="right"
+                    android:text="CNY" />
+            </LinearLayout>
+
+            <View style="@style/line_bg_grey" />
+            <!--最大量-->
+            <LinearLayout style="@style/layout_my_info">
+
+                <TextView
+                    style="@style/textview_tag"
+                    android:minWidth="80dp"
+                    android:text="@string/text_max" />
+
+                <TextView
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="15dp"
+                    android:layout_marginTop="15dp"
+                    android:background="@color/grey_a5a5a5" />
+
+                <EditText
+                    android:id="@+id/etMax"
+                    style="@style/edittext_normal"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="left|center"
+                    android:hint="@string/text_max_msg"
+                    android:inputType="numberDecimal"
+                    android:minWidth="100dp"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="1dp"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/tvMaxCurrency"
+                    style="@style/textview_tag"
+                    android:layout_marginLeft="8dp"
+                    android:gravity="right"
+                    android:text="CNY" />
+
+            </LinearLayout>
+
+            <View style="@style/line_bg_grey" />
+
+
+            <!--资金密码-->
+            <LinearLayout
+                style="@style/layout_my_info"
+                android:visibility="gone">
+
+                <TextView
+                    style="@style/textview_tag"
+                    android:minWidth="80dp"
+                    android:text="@string/text_money_pwd" />
+
+                <TextView
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="15dp"
+                    android:layout_marginTop="15dp"
+                    android:background="@color/grey_a5a5a5" />
+
+                <EditText
+                    android:id="@+id/etPassword"
+                    style="@style/edittext_normal"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="left|center"
+                    android:hint="@string/text_enter_money_pwd"
+                    android:inputType="numberPassword"
+                    android:maxLength="6"
+                    android:minWidth="100dp"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="1dp"
+                    android:textSize="14sp" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="8dp"
+                android:background="@color/main_bg" />
+
+
+            <!--广告留言-->
+            <LinearLayout
+                android:id="@+id/llMsg"
+                style="@style/layout_my_info"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical"
+                android:paddingTop="10dp">
+
+                <TextView
+                    style="@style/textview_tag"
+                    android:minWidth="90dp"
+                    android:text="@string/text_ad_message" />
+
+                <EditText
+                    android:id="@+id/etMessage"
+                    style="@style/edittext_normal"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    android:gravity="top"
+                    android:hint="@string/text_enter_ad_message"
+                    android:lines="5"
+                    android:minWidth="100dp"
+                    android:paddingRight="1dp" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="8dp"
+                android:background="@color/main_bg" />
+
+            <!--自动回复-->
+            <LinearLayout style="@style/layout_my_info">
+
+                <TextView
+                    style="@style/textview_tag"
+                    android:minWidth="90dp"
+                    android:text="@string/text_auto_reply" />
+
+                <View
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+                <com.kyleduo.switchbutton.SwitchButton
+                    android:id="@+id/sbReply"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:textColor="#FFFFFF"
+                    android:textSize="16dp"
+                    app:kswTextAdjust="-2dp"
+                    app:kswTextExtra="8dp"
+                    app:kswTextOff="Off"
+                    app:kswTextOn="On"
+                    app:kswTintColor="@color/btn_normal" />
+
+                <!--<RadioGroup
+                    android:id="@+id/rgReply"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="right"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:id="@+id/rbYes"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:checked="true"
+                        android:scaleX="0.8"
+                        android:scaleY="0.8"
+                        android:text="@string/text_yes"
+                        android:textColor="@color/sec_font_black"
+                        android:textSize="@dimen/font_lager" />
+
+                    <RadioButton
+                        android:id="@+id/rbNo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:scaleX="0.8"
+                        android:scaleY="0.8"
+                        android:text="@string/text_no"
+                        android:textColor="@color/sec_font_black"
+                        android:textSize="@dimen/font_lager" />
+
+                </RadioGroup>-->
+
+            </LinearLayout>
+
+            <!--自动回复内容-->
+            <LinearLayout
+                android:id="@+id/llReply"
+                style="@style/layout_my_info"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical"
+                android:paddingTop="10dp"
+                android:visibility="gone">
+
+                <TextView
+                    style="@style/textview_tag"
+                    android:minWidth="90dp"
+                    android:text="@string/text_auto_reply_content" />
+
+                <EditText
+                    android:id="@+id/etReplyContent"
+                    style="@style/edittext_normal"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    android:gravity="top"
+                    android:hint="@string/text_enter_auto_reply_content"
+                    android:lines="5" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="8dp"
+                android:background="@color/main_bg" />
+        </LinearLayout>
+
+    </ScrollView>
+
+    <TextView
+        android:id="@+id/tvRelease"
+        style="@style/btn_option_normal"
+        android:layout_margin="20dp"
+        android:text="@string/text_pub" />
+
+</LinearLayout>

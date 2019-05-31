@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_bg"
+    android:orientation="vertical"
+    tools:context="com.spark.newbitrade.activity.chat.ChatActivity">
+
+    <!--标题-->
+    <include layout="@layout/view_head" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <android.support.v4.widget.SwipeRefreshLayout
+                android:id="@+id/refreshLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rvMessage"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:overScrollMode="never"
+                    android:paddingBottom="8dp"
+                    android:paddingTop="8dp" />
+
+            </android.support.v4.widget.SwipeRefreshLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:background="@color/main_head_bg"
+                android:orientation="horizontal"
+                android:paddingBottom="6dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="15dp"
+                android:paddingTop="6dp">
+
+                <EditText
+                    android:id="@+id/etContent"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/shape_eidt_bg_chat"
+                    android:hint="@string/chat_tag"
+                    android:labelFor="@+id/etContent"
+                    android:padding="6dp"
+                    android:text=""
+                    android:textColor="@color/main_font_content"
+                    android:textColorHint="@color/third_font_content"
+                    android:textSize="@dimen/font_small" />
+
+                <TextView
+                    android:id="@+id/tvSend"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/ripple_btn_global_option_selector"
+                    android:gravity="center"
+                    android:paddingBottom="8dp"
+                    android:paddingLeft="15dp"
+                    android:paddingRight="15dp"
+                    android:paddingTop="8dp"
+                    android:text="@string/send_chat"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/font_small" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+    </ScrollView>
+
+
+</LinearLayout>

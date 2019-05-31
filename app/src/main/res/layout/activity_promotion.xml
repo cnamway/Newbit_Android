@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_bg"
+    android:orientation="vertical">
+
+    <!--标题-->
+    <include layout="@layout/view_head" />
+
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:overScrollMode="never">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/main_head_bg"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tvProNum"
+                            android:text="0"
+                            style="@style/textview_tag" />
+
+                        <TextView
+                            style="@style/textview_tag"
+                            android:text="@string/promote_friends_tag"
+                            android:textColor="@color/main_font_content"
+                            android:textSize="@dimen/font_small" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="30dp"
+                        android:layout_marginTop="30dp"
+                        android:background="@color/line_bg_grey"
+                        android:visibility="gone" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:visibility="gone">
+
+                        <TextView
+                            android:id="@+id/tvProRew"
+                            style="@style/textview_tag"
+                            android:text="--USDT" />
+
+                        <TextView
+                            style="@style/textview_tag"
+                            android:text="@string/commission_tag"
+                            android:textColor="@color/main_font_content"
+                            android:textSize="@dimen/font_small" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:gravity="center"
+                    android:paddingLeft="25dp"
+                    android:paddingRight="25dp">
+
+                    <TextView
+                        android:id="@+id/tvPromotionCode"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/shape_eidt_bg_chat"
+                        android:minWidth="180dp"
+                        android:padding="8dp"
+                        android:textColor="@color/main_font_content" />
+
+                    <TextView
+                        android:id="@+id/tvCopy"
+                        android:layout_width="60dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="16dp"
+                        android:background="@drawable/shape_bg_ripple_btn_global_option_normal"
+                        android:gravity="center"
+                        android:padding="8dp"
+                        android:text="@string/copy"
+                        android:textColor="@color/white" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="12dp"
+                    android:background="@color/main_bg" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:background="@color/main_head_bg"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tvPromoteFriend"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_promotion_tab_selector"
+                        android:gravity="center"
+                        android:text="@string/promote_friends"
+                        android:textColor="@color/fonr_promotion_selector"
+                        android:textSize="@dimen/font_small" />
+
+                    <TextView
+                        android:id="@+id/tvMyCommission"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_promotion_tab_selector"
+                        android:gravity="center"
+                        android:text="@string/my_commission"
+                        android:textColor="@color/fonr_promotion_selector"
+                        android:textSize="@dimen/font_small" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!--<android.support.design.widget.TabLayout-->
+            <!--android:id="@+id/tab"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="48dp"-->
+            <!--android:layout_marginTop="12dp"-->
+            <!--android:background="@color/main_head_bg"-->
+            <!--app:tabIndicatorColor="@color/main_font_color"-->
+            <!--app:tabSelectedTextColor="@color/main_font_color"-->
+            <!--app:tabTextAppearance="@style/MyTabLayoutTextAppearance_promotion"-->
+            <!--app:tabTextColor="@color/sec_font_content" />-->
+
+
+            <FrameLayout
+                android:id="@+id/flContainer"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <com.spark.newbitrade.ui.CustomViewPager
+                android:id="@+id/vpPager"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:overScrollMode="never"
+                android:visibility="gone" />
+        </LinearLayout>
+    </ScrollView>
+
+
+</LinearLayout>

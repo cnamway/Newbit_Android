@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_bg"
+    android:orientation="vertical">
+
+    <include layout="@layout/view_head" />
+
+
+    <LinearLayout
+        style="@style/layout_my_info"
+        android:layout_marginTop="10dp">
+
+        <TextView
+            style="@style/textview_tag"
+            android:minWidth="100dp"
+            android:text="@string/google_code_tag" />
+
+        <EditText
+            android:id="@+id/etGoogleCode"
+            style="@style/edittext_normal"
+            android:hint="@string/google_code_tag"
+            android:inputType="numberDecimal"
+            android:minWidth="100dp"
+            android:textColorHint="@color/third_font_content" />
+    </LinearLayout>
+
+    <View style="@style/line_bg_grey" />
+
+    <LinearLayout style="@style/layout_my_info">
+
+        <TextView
+            style="@style/textview_tag"
+            android:minWidth="100dp"
+            android:text="@string/login_password" />
+
+        <EditText
+            android:id="@+id/etLoginPwd"
+            style="@style/edittext_normal"
+            android:hint="@string/login_password"
+            android:inputType="textPassword"
+            android:textColorHint="@color/third_font_content" />
+    </LinearLayout>
+
+    <View style="@style/line_bg_grey" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1" />
+
+    <TextView
+        android:id="@+id/tvUnbind"
+        style="@style/btn_option_normal"
+        android:layout_margin="20dp"
+        android:text="@string/unbind" />
+</LinearLayout>

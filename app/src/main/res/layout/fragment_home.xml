@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:gyf="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_bg"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical">
+
+    <!--标题-->
+    <include
+        layout="@layout/view_head"
+        android:visibility="gone" />
+
+    <com.spark.newbitrade.ui.intercept.MyScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:overScrollMode="never">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.youth.banner.Banner
+                    android:id="@+id/banner"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:background="@color/main_bg"
+                    app:delay_time="3000"
+                    app:is_auto_play="true"
+                    app:scroll_time="800"
+                    app:title_background="@color/transparent"
+                    app:title_textcolor="@color/main_font_content" />
+
+                <RelativeLayout
+                    android:layout_width="48dp"
+                    android:layout_height="45dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="25dp">
+
+                    <ImageButton
+                        android:id="@+id/ivChat"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_vertical"
+                        android:background="@color/transparent"
+                        android:src="@mipmap/icon_add" />
+
+                    <ImageView
+                        android:id="@+id/ivChatTip"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginTop="8dp"
+                        android:src="@mipmap/icon_dot"
+                        android:visibility="invisible" />
+
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_40">
+
+                <ImageView
+                    android:layout_width="@dimen/dp_40"
+                    android:layout_height="@dimen/dp_40"
+                    android:layout_gravity="center_vertical"
+                    android:scaleType="center"
+                    android:src="@mipmap/icon_notice" />
+
+                <com.sunfusheng.marqueeview.MarqueeView
+                    android:id="@+id/marqueeView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/dp_40"
+                    android:textColor="@color/main_font_content"
+                    android:textSize="@dimen/font_small"
+                    app:mvAnimDuration="1000"
+                    app:mvDirection="bottom_to_top"
+                    app:mvInterval="2000"
+                    app:mvSingleLine="true"
+                    app:mvTextColor="@color/main_font_content"
+                    app:mvTextSize="@dimen/font_small" />
+            </FrameLayout>
+
+            <LinearLayout
+                android:id="@+id/llHomeContent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="104dp"
+                    android:visibility="gone">
+
+                    <android.support.v4.view.ViewPager
+                        android:id="@+id/viewpager"
+                        android:layout_width="match_parent"
+                        android:layout_height="104dp" />
+
+                    <LinearLayout
+                        android:id="@+id/points"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        android:paddingBottom="5dp"
+                        android:paddingTop="15dp" />
+                </RelativeLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="100dp"
+                        android:layout_marginBottom="10dp"
+                        android:scaleType="fitXY"
+                        android:src="@mipmap/bg_home_one" />
+
+                    <ImageView
+                        android:id="@+id/ivMining"
+                        android:layout_width="match_parent"
+                        android:layout_height="100dp"
+                        android:layout_marginBottom="10dp"
+                        android:scaleType="fitXY"
+                        android:src="@mipmap/bg_home_two" />
+
+                    <ImageView
+                        android:id="@+id/ivDownload"
+                        android:layout_width="match_parent"
+                        android:layout_height="100dp"
+                        android:layout_marginBottom="10dp"
+                        android:scaleType="fitXY"
+                        android:src="@mipmap/bg_home_three" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:orientation="horizontal"
+                    android:paddingBottom="8dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:paddingTop="8dp"
+                    android:visibility="gone">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:src="@mipmap/icon_sort" />
+
+                    <TextView
+                        android:id="@+id/text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:text="@string/performer_home"
+                        android:textColor="@color/main_font_content"
+                        android:textSize="@dimen/font_small" />
+
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:descendantFocusability="blocksDescendants"
+                    android:visibility="gone">
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/mSortContent"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:overScrollMode="never" />
+                </RelativeLayout>
+            </LinearLayout>
+
+            <include
+                layout="@layout/empty_no_message"
+                android:visibility="gone" />
+
+        </LinearLayout>
+
+    </com.spark.newbitrade.ui.intercept.MyScrollView>
+
+</LinearLayout>
+
+
+
