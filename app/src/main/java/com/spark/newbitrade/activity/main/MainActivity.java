@@ -254,8 +254,8 @@ public class MainActivity extends BaseTransFragmentActivity implements MainContr
      * 初始化服务
      */
     private void initService() {
-        String json = new Gson().toJson(GlobalConstant.getMAP());
-        EventBus.getDefault().post(new SocketMessage(GlobalConstant.CODE_KLINE, ISocket.CMD.PUSH_REQUEST, json.getBytes()));
+//        String json = new Gson().toJson(GlobalConstant.getMAP());
+//        EventBus.getDefault().post(new SocketMessage(GlobalConstant.CODE_KLINE, ISocket.CMD.PUSH_REQUEST, json.getBytes()));
     }
 
     /**

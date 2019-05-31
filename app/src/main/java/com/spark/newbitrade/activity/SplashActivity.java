@@ -44,7 +44,7 @@ public class SplashActivity extends BaseActivity {
      * 初始化服务
      */
     private void initService() {
-        startService(new Intent(activity, GroupService.class));
+        //startService(new Intent(activity, GroupService.class));
     }
 
     @Override

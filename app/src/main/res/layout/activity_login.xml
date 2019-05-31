@@ -20,10 +20,10 @@
             android:gravity="center"
             android:orientation="vertical">
 
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:src="@mipmap/icon_login_icon" />
+            <com.spark.newbitrade.ui.CircleImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@mipmap/ic_launcher" />
 
         </LinearLayout>
 

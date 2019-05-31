@@ -132,8 +132,8 @@ public class GuideActivity extends BaseActivity {
                     ll.setVisibility(View.GONE);
                     goToMain.setVisibility(View.VISIBLE);
                 } else {
-                    rl.setVisibility(View.VISIBLE);
-                    ll.setVisibility(View.VISIBLE);
+                    rl.setVisibility(View.GONE);
+                    ll.setVisibility(View.GONE);
                     goToMain.setVisibility(View.GONE);
                 }
             }
