@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import com.spark.newbitrade.MyApplication;
 import com.spark.newbitrade.R;
+import com.spark.newbitrade.utils.GlobalConstant;
 
 /**
  * 点击委托列表弹出的dialog
@@ -85,7 +86,7 @@ public class PayWaySelectDialog extends Dialog {
         llAli.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                select = "支付宝";
+                select = GlobalConstant.alipay;
                 ivBank.setImageResource(R.mipmap.icon_uncheck);
                 ivAli.setImageResource(R.mipmap.icon_checked);
                 ivWeChat.setImageResource(R.mipmap.icon_uncheck);
@@ -97,7 +98,7 @@ public class PayWaySelectDialog extends Dialog {
         llBank.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                select = "银行卡";
+                select = GlobalConstant.card;
                 ivBank.setImageResource(R.mipmap.icon_checked);
                 ivAli.setImageResource(R.mipmap.icon_uncheck);
                 ivWeChat.setImageResource(R.mipmap.icon_uncheck);
@@ -109,7 +110,7 @@ public class PayWaySelectDialog extends Dialog {
         llWeChat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                select = "微信";
+                select = GlobalConstant.wechat;
                 ivBank.setImageResource(R.mipmap.icon_uncheck);
                 ivAli.setImageResource(R.mipmap.icon_uncheck);
                 ivWeChat.setImageResource(R.mipmap.icon_checked);
@@ -122,7 +123,7 @@ public class PayWaySelectDialog extends Dialog {
         llPalpay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                select = "Palpay";
+                select = GlobalConstant.PAYPAL;
                 ivBank.setImageResource(R.mipmap.icon_uncheck);
                 ivAli.setImageResource(R.mipmap.icon_uncheck);
                 ivWeChat.setImageResource(R.mipmap.icon_uncheck);
@@ -135,7 +136,7 @@ public class PayWaySelectDialog extends Dialog {
         llOther.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                select = "其他";
+                select = GlobalConstant.other;
                 ivBank.setImageResource(R.mipmap.icon_uncheck);
                 ivAli.setImageResource(R.mipmap.icon_uncheck);
                 ivWeChat.setImageResource(R.mipmap.icon_uncheck);

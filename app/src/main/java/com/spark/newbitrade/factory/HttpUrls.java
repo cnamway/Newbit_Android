@@ -86,7 +86,7 @@ public class HttpUrls {
      * @return
      */
     public static String getAvatarUrl() {
-        return UC_HOST + "/info/update/avatar";
+        return UC_HOST + "/member/update/avatar";
     }
 
     /**

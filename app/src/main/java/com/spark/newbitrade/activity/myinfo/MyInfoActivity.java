@@ -301,6 +301,7 @@ public class MyInfoActivity extends BaseActivity implements MyInfoContract.MyInf
         MyApplication.getApp().saveCurrentUser();
         Glide.with(this).load(url).into(ivHeader);
         setResult(RESULT_OK);
+        finish();
     }
 
     @Override
