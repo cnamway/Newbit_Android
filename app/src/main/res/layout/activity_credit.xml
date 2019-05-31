@@ -84,7 +84,6 @@
                     android:id="@+id/etIdNumber"
                     style="@style/edittext_normal"
                     android:hint="@string/id_card_num"
-                    android:inputType="number"
                     android:textColor="@color/main_font_content" />
 
             </LinearLayout>
@@ -104,8 +103,7 @@
                 <EditText
                     android:id="@+id/etPassPortNumber"
                     style="@style/edittext_normal"
-                    android:hint="@string/passportNum"
-                    android:inputType="number" />
+                    android:hint="@string/passportNum" />
             </LinearLayout>
 
             <View

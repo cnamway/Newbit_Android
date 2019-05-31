@@ -84,7 +84,7 @@ public class AboutUsActivity extends BaseActivity implements com.spark.newbitrad
     @Override
     protected void loadData() {
         super.loadData();
-        //presenter.getWebConfig();
+        presenter.getWebConfig();
     }
 
     @OnClick({R.id.llVersion, R.id.llFeed})

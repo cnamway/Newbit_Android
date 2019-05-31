@@ -52,7 +52,7 @@ android {
                 variant.outputs.all { output ->
                     def outputFile = output.outputFile
                     if (outputFile != null && outputFile.name.endsWith('.apk')) {
-                        def fileName = "新比特${getDate()}.apk"
+                        def fileName = "新比特" + verName + ".apk"
                         //output.outputFile = new File(outputFile.parent, fileName)
                         outputFileName = fileName
                     }
