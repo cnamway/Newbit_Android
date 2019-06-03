@@ -175,9 +175,11 @@ public class LoginPresenterImpl implements LoginContract.LoginPresenter {
 
     @Override
     public void doUcLogin(String gtc, String type) {
+        showLoading();
         casLoginModel.getBussinessTicket(gtc, type, new ResponseCallBack.SuccessListener<String>() {
             @Override
             public void onResponse(String response) {
+                hideLoading();
                 if (loginView != null)
                     loginView.ucLoginSuccess(response);
             }
@@ -200,6 +202,7 @@ public class LoginPresenterImpl implements LoginContract.LoginPresenter {
 
     @Override
     public void getUserInfo() {
+        showLoading();
         memberControllerModel.getUserInfo(new ResponseCallBack.SuccessListener<User>() {
             @Override
             public void onResponse(User response) {
@@ -223,25 +226,6 @@ public class LoginPresenterImpl implements LoginContract.LoginPresenter {
             }
         });
     }
-
-
-    @Override
-    public void showLoading() {
-        if (loginView != null)
-            loginView.showLoading();
-    }
-
-    @Override
-    public void hideLoading() {
-        if (loginView != null)
-            loginView.hideLoading();
-    }
-
-    @Override
-    public void destory() {
-        loginView = null;
-    }
-
 
     @Override
     public void checkCaptcha(String check, String cid) {
@@ -268,5 +252,22 @@ public class LoginPresenterImpl implements LoginContract.LoginPresenter {
                     loginView.dealError(volleyError);
             }
         });
+    }
+
+    @Override
+    public void showLoading() {
+        if (loginView != null)
+            loginView.showLoading();
+    }
+
+    @Override
+    public void hideLoading() {
+        if (loginView != null)
+            loginView.hideLoading();
+    }
+
+    @Override
+    public void destory() {
+        loginView = null;
     }
 }

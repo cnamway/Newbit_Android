@@ -143,7 +143,6 @@ public class PubAdsFragment extends BaseLazyFragment implements ReleaseAdContrac
     private String[] timeArray;
     private String currency;
     private String[] coinNames;
-    //    private AccountSetting accountSetting;
     private String strCountry = "China";
     private String currentPayway;
     private int type;
@@ -154,15 +153,6 @@ public class PubAdsFragment extends BaseLazyFragment implements ReleaseAdContrac
         if (resultCode == RESULT_OK && data != null) {
             Country country = (Country) data.getSerializableExtra("country");
         }
-        /*currency = country.getLocalCurrency();
-        tvSelectCountry.setText(CommonUtils.getNameByCode(country));
-        strCountry = country.getEnName();
-        tvCoinKind.setText(country.getLocalCurrency());
-        tvLocalCurrency.setText(currency);
-        tvjyPriceCurrency.setText(currency);
-        tvMinCurrency.setText(currency);
-        tvMaxCurrency.setText(currency);
-        getPrice(tvCoin.getText().toString(), tvLocalCurrency.getText().toString());*/
     }
 
     @Override
@@ -440,7 +430,7 @@ public class PubAdsFragment extends BaseLazyFragment implements ReleaseAdContrac
     private void doClickCoinClick(int position) {
         coinInfo = coinInfos.get(position);
         if (coinInfo != null) {
-            etCount.setHint(">=" + MathUtils.subZeroAndDot(coinInfo.getAdvMinLimit().toString()) + " 且 " + "<=" + MathUtils.subZeroAndDot(coinInfo.getAdvMaxLimit().toString()));
+            etCount.setHint("大于等于" + MathUtils.subZeroAndDot(coinInfo.getAdvMinLimit().toString()) + " 且 " + "小于等于" + MathUtils.subZeroAndDot(coinInfo.getAdvMaxLimit().toString()));
         }
         tvCoin.setText(coinInfo.getCoinName());
         presenter.priceFind(coinInfo.getCoinName(), "CNY");
@@ -574,7 +564,11 @@ public class PubAdsFragment extends BaseLazyFragment implements ReleaseAdContrac
 
         if (!StringUtils.isEmpty(count, max, min) && Double.valueOf(max) != 0 && Double.valueOf(min) != 0) {
             if (Double.valueOf(count) > Double.valueOf(max) || Double.valueOf(count) < Double.valueOf(min)) {
-                ToastUtils.showToast("数量必须" + ">=" + MathUtils.subZeroAndDot(coinInfo.getAdvMinLimit().toString()) + " 且 " + "<=" + MathUtils.subZeroAndDot(coinInfo.getAdvMaxLimit().toString()));
+                if (advertiseType == 0) {
+                    ToastUtils.showToast(getString(R.string.text_buy_num) + "必须" + "大于等于" + MathUtils.subZeroAndDot(coinInfo.getAdvMinLimit().toString()) + " 且 " + "小于等于" + MathUtils.subZeroAndDot(coinInfo.getAdvMaxLimit().toString()));
+                } else if (advertiseType == 1) {
+                    ToastUtils.showToast(getString(R.string.text_sell_num) + "必须" + "大于等于" + MathUtils.subZeroAndDot(coinInfo.getAdvMinLimit().toString()) + " 且 " + "小于等于" + MathUtils.subZeroAndDot(coinInfo.getAdvMaxLimit().toString()));
+                }
                 if (Double.valueOf(count) > Double.valueOf(max)) {
                     etCount.setText(max);
                 }
@@ -608,6 +602,7 @@ public class PubAdsFragment extends BaseLazyFragment implements ReleaseAdContrac
 //        String jyPassword = etPassword.getText().toString().trim();
         String auto = sbReply.isChecked() ? "1" : "0";
         String autoword = etReplyContent.getText().toString();
+        String min = MathUtils.subZeroAndDot(coinInfo.getAdvMinLimit().toString());
         if (StringUtils.isEmpty(coinName)) {
             ToastUtils.showToast(getString(R.string.str_prompt_coin_kind));
         } else if (StringUtils.isEmpty(strCountry)) {
@@ -627,6 +622,12 @@ public class PubAdsFragment extends BaseLazyFragment implements ReleaseAdContrac
         } else if (Double.valueOf(number) == 0) {
             ToastUtils.showToast(getString(R.string.text_trade_amount_not_zero));
             etCount.requestFocus();
+        } else if (Double.valueOf(number) < Double.valueOf(min)) {
+            if (advertiseType == 0) {
+                ToastUtils.showToast(getString(R.string.text_buy_num) + "必须" + "大于等于" + MathUtils.subZeroAndDot(coinInfo.getAdvMinLimit().toString()) + " 且 " + "小于等于" + MathUtils.subZeroAndDot(coinInfo.getAdvMaxLimit().toString()));
+            } else if (advertiseType == 1) {
+                ToastUtils.showToast(getString(R.string.text_sell_num) + "必须" + "大于等于" + MathUtils.subZeroAndDot(coinInfo.getAdvMinLimit().toString()) + " 且 " + "小于等于" + MathUtils.subZeroAndDot(coinInfo.getAdvMaxLimit().toString()));
+            }
         }
 //        else if (Double.valueOf(number) > MathUtils.getDoudleByBigDecimal(coinInfo.getAdvMaxLimit())) {
 //            etCount.requestFocus();
