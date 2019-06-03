@@ -393,7 +393,7 @@ public class OrderDetailActivity extends BaseActivity implements OrderDetailCont
 //    }
 
     private void setViews() {
-        tvOtherSide.setText(orderDetailVo.getTradeToUsername());
+        tvOtherSide.setText(orderDetailVo.getTrateToRealname());
         tvOrderSn.setText(orderDetailVo.getOrderSn());
         tvOrderId.setText(orderDetailVo.getPayRefer() + "");
         tvPrice.setText(MathUtils.subZeroAndDot(orderDetailVo.getPrice() + "") + " CNY");

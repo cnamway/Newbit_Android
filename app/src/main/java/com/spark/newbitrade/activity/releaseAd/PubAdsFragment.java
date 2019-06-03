@@ -332,6 +332,7 @@ public class PubAdsFragment extends BaseLazyFragment implements ReleaseAdContrac
             @Override
             public void afterTextChanged(Editable editable) {
                 super.afterTextChanged(editable);
+                countChange();
                 setEditText(etCount, 6);
             }
         });
@@ -562,6 +563,25 @@ public class PubAdsFragment extends BaseLazyFragment implements ReleaseAdContrac
         }
 
     }
+
+    /**
+     * 买入数量或卖出数量
+     */
+    private void countChange() {
+        String count = etCount.getText().toString();
+        String max = MathUtils.subZeroAndDot(coinInfo.getAdvMaxLimit().toString());
+        String min = MathUtils.subZeroAndDot(coinInfo.getAdvMinLimit().toString());
+
+        if (!StringUtils.isEmpty(count, max, min) && Double.valueOf(max) != 0 && Double.valueOf(min) != 0) {
+            if (Double.valueOf(count) > Double.valueOf(max) || Double.valueOf(count) < Double.valueOf(min)) {
+                ToastUtils.showToast("数量必须" + ">=" + MathUtils.subZeroAndDot(coinInfo.getAdvMinLimit().toString()) + " 且 " + "<=" + MathUtils.subZeroAndDot(coinInfo.getAdvMaxLimit().toString()));
+                if (Double.valueOf(count) > Double.valueOf(max)) {
+                    etCount.setText(max);
+                }
+            }
+        }
+    }
+
 
     /**
      * 发布或修改广告
@@ -968,20 +988,22 @@ public class PubAdsFragment extends BaseLazyFragment implements ReleaseAdContrac
             Set<String> payWaySet = new HashSet<>();
 
             for (PayWaySetting payWaySetting : obj) {
-                if (payWaySetting.getPayType().contains(GlobalConstant.alipay)) {
-                    payWaySet.add(getString(R.string.str_payway_ali));
-                }
-                if (payWaySetting.getPayType().contains(GlobalConstant.wechat)) {
-                    payWaySet.add(getString(R.string.str_payway_wechat));
-                }
-                if (payWaySetting.getPayType().contains(GlobalConstant.card)) {
-                    payWaySet.add(getString(R.string.str_payway_union));
-                }
-                if (payWaySetting.getPayType().contains(GlobalConstant.PAYPAL)) {
-                    payWaySet.add(getString(R.string.str_paypal));
-                }
-                if (payWaySetting.getPayType().contains(GlobalConstant.other)) {
-                    payWaySet.add(getString(R.string.str_other));
+                if (payWaySetting.getStatus() == 1) {
+                    if (payWaySetting.getPayType().contains(GlobalConstant.alipay)) {
+                        payWaySet.add(getString(R.string.str_payway_ali));
+                    }
+                    if (payWaySetting.getPayType().contains(GlobalConstant.wechat)) {
+                        payWaySet.add(getString(R.string.str_payway_wechat));
+                    }
+                    if (payWaySetting.getPayType().contains(GlobalConstant.card)) {
+                        payWaySet.add(getString(R.string.str_payway_union));
+                    }
+                    if (payWaySetting.getPayType().contains(GlobalConstant.PAYPAL)) {
+                        payWaySet.add(getString(R.string.str_paypal));
+                    }
+                    if (payWaySetting.getPayType().contains(GlobalConstant.other)) {
+                        payWaySet.add(getString(R.string.str_other));
+                    }
                 }
             }
 

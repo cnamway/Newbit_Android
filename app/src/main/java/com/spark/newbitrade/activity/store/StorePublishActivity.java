@@ -301,20 +301,22 @@ public class StorePublishActivity extends BaseActivity implements StorePublishCo
             Set<String> payWaySet = new HashSet<>();
 
             for (PayWaySetting payWaySetting : obj) {
-                if (payWaySetting.getPayType().contains(GlobalConstant.alipay)) {
-                    payWaySet.add(getString(R.string.str_payway_ali));
-                }
-                if (payWaySetting.getPayType().contains(GlobalConstant.wechat)) {
-                    payWaySet.add(getString(R.string.str_payway_wechat));
-                }
-                if (payWaySetting.getPayType().contains(GlobalConstant.card)) {
-                    payWaySet.add(getString(R.string.str_payway_union));
-                }
-                if (payWaySetting.getPayType().contains(GlobalConstant.PAYPAL)) {
-                    payWaySet.add(getString(R.string.str_paypal));
-                }
-                if (payWaySetting.getPayType().contains(GlobalConstant.other)) {
-                    payWaySet.add(getString(R.string.str_other));
+                if (payWaySetting.getStatus() == 1) {
+                    if (payWaySetting.getPayType().contains(GlobalConstant.alipay)) {
+                        payWaySet.add(getString(R.string.str_payway_ali));
+                    }
+                    if (payWaySetting.getPayType().contains(GlobalConstant.wechat)) {
+                        payWaySet.add(getString(R.string.str_payway_wechat));
+                    }
+                    if (payWaySetting.getPayType().contains(GlobalConstant.card)) {
+                        payWaySet.add(getString(R.string.str_payway_union));
+                    }
+                    if (payWaySetting.getPayType().contains(GlobalConstant.PAYPAL)) {
+                        payWaySet.add(getString(R.string.str_paypal));
+                    }
+                    if (payWaySetting.getPayType().contains(GlobalConstant.other)) {
+                        payWaySet.add(getString(R.string.str_other));
+                    }
                 }
             }
 
