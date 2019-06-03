@@ -53,9 +53,10 @@ public class AssetControllerModel {
     /**
      * 增加用户某个币种的提币地址信息
      */
-    public void addWalletWithdrawAddressUsingPOST(String address, String coinId, String remark,
+    public void addWalletWithdrawAddressUsingPOST(String address, String coinId, String remark, String code, String phone,
                                                   final ResponseCallBack.SuccessListener<String> successListener,
                                                   final ResponseCallBack.ErrorListener errorListener) {
+        assetControllerApi.addHeader("check", "phone:" + phone + ":" + code);
         final MemberWithdrawAddressDto memberWithdrawAddressDto = new MemberWithdrawAddressDto();
         memberWithdrawAddressDto.setAddress(address);
         memberWithdrawAddressDto.setCoinId(coinId);

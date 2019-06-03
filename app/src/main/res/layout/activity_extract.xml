@@ -170,7 +170,7 @@
 
         <TextView
             style="@style/textview_tag"
-            android:minWidth="100dp"
+            android:minWidth="90dp"
             android:text="@string/phone_code" />
 
         <EditText

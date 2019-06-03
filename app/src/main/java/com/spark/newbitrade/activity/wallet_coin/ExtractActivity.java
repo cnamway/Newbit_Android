@@ -175,7 +175,7 @@ public class ExtractActivity extends BaseActivity implements ExtractContract.Ext
         if (StringUtils.isEmpty(phone)) {
             ToastUtils.showToast(R.string.phone_not_correct);
         } else {
-            presnet.captch();
+            presnet.getPhoneCode(phone);
         }
     }
 

@@ -40,6 +40,35 @@
 
         <TextView
             style="@style/textview_tag"
+            android:minWidth="90dp"
+            android:text="@string/phone_code" />
+
+        <EditText
+            android:id="@+id/etCode"
+            style="@style/edittext_normal"
+            android:layout_weight="1"
+            android:hint="@string/code"
+            android:inputType="number" />
+
+        <TextView
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="15dp"
+            android:layout_marginTop="15dp"
+            android:background="@color/btn_normal" />
+
+        <TextView
+            android:id="@+id/tvGetCode"
+            style="@style/textveiw_msg_code"
+            android:background="@color/main_head_bg"
+            android:text="@string/send_code" />
+
+    </LinearLayout>
+
+    <LinearLayout style="@style/layout_my_info">
+
+        <TextView
+            style="@style/textview_tag"
             android:layout_width="70dp"
             android:text="@string/remarks" />
 
