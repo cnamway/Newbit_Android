@@ -107,7 +107,7 @@ public class C2CBuyOrSellActivity extends BaseActivity implements C2CBuyOrSellCo
         baseWhater = new MyTextWathcer(0, etLocalCoin);
         recWhater = new MyTextWathcer(1, etOtherCoin);
         presenter = new C2CBuyOrSellPresenterImpl(this);
-        tvGoto.setVisibility(View.GONE);
+        tvGoto.setVisibility(View.INVISIBLE);
         tvGoto.setText(R.string.my_order);
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
@@ -158,8 +158,21 @@ public class C2CBuyOrSellActivity extends BaseActivity implements C2CBuyOrSellCo
                 if (MyApplication.getApp().isLogin()) {
                     String countStr = etOtherCoin.getText().toString();
                     String totalStr = etLocalCoin.getText().toString();
+
+                    String max = MathUtils.subZeroAndDot(myAdvertiseShowVo.getMaxLimit().toString());
+                    String min = MathUtils.subZeroAndDot(myAdvertiseShowVo.getMinLimit().toString());
+
                     if (StringUtils.isEmpty(countStr, totalStr)) {
                         ToastUtils.showToast(getString(R.string.incomplete_information));
+                    } else if (Double.valueOf(totalStr) == 0) {
+                        ToastUtils.showToast(getString(R.string.text_trade_amount_not_zero));
+                        etLocalCoin.requestFocus();
+                    } else if (Double.valueOf(totalStr) > Double.valueOf(max) || Double.valueOf(totalStr) < Double.valueOf(min)) {
+                        if (myAdvertiseShowVo.getAdvertiseType() == 0) {
+                            ToastUtils.showToast(getString(R.string.text_sell) + "必须" + "大于等于" + min + " 且 " + "小于等于" + max);
+                        } else if (myAdvertiseShowVo.getAdvertiseType() == 1) {
+                            ToastUtils.showToast(getString(R.string.text_buy) + "必须" + "大于等于" + min + " 且 " + "小于等于" + max);
+                        }
                     } else {
                         showConfirmDialog();
                     }
@@ -380,13 +393,6 @@ public class C2CBuyOrSellActivity extends BaseActivity implements C2CBuyOrSellCo
         if (obj != null && obj.getAvgReleaseTime() != null) {
             tvTime.setText(obj.getAvgReleaseTime() + "");
         }
-    }
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
-        ButterKnife.bind(this);
     }
 
     private class MyTextWathcer implements TextWatcher {
