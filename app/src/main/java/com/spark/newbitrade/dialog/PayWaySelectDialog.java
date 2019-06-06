@@ -36,12 +36,13 @@ public class PayWaySelectDialog extends Dialog {
     private LinearLayout llOther;
     private TextView tvOption;
     private TextView tvCancle;
+
     private Context context;
     private PayWaySelectListener selectListener;
     private String select = "";
 
 
-    public PayWaySelectDialog(Context context,PayWaySelectListener selectListener) {
+    public PayWaySelectDialog(Context context, PayWaySelectListener selectListener) {
         super(context, R.style.myDialog);
         this.context = context;
         this.selectListener = selectListener;
@@ -69,8 +70,8 @@ public class PayWaySelectDialog extends Dialog {
         llOther = view.findViewById(R.id.llOther);
         ivAli = view.findViewById(R.id.ivAli);
         ivBank = view.findViewById(R.id.ivBank);
-        ivWeChat = view.findViewById(R.id.ivWeChat);
-        ivPalpay= view.findViewById(R.id.ivPalpay);
+//        ivWeChat = view.findViewById(R.id.ivWeChat);
+        ivPalpay = view.findViewById(R.id.ivPalpay);
         ivOther = view.findViewById(R.id.ivOther);
         tvOption = view.findViewById(R.id.tvOption);
         tvCancle = view.findViewById(R.id.tvCancle);
@@ -119,7 +120,6 @@ public class PayWaySelectDialog extends Dialog {
                 selectListener.getSelectPayWay(select);
             }
         });
-
         llPalpay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -132,7 +132,6 @@ public class PayWaySelectDialog extends Dialog {
                 selectListener.getSelectPayWay(select);
             }
         });
-
         llOther.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -151,7 +150,7 @@ public class PayWaySelectDialog extends Dialog {
         return tvOption;
     }
 
-    public void setView(boolean isAli,boolean isWechat,boolean isBank) {
+    public void setView(boolean isAli, boolean isWechat, boolean isBank, boolean isPaypal, boolean isOther) {
         if (isAli) {
             llAli.setVisibility(View.VISIBLE);
         }
@@ -161,9 +160,15 @@ public class PayWaySelectDialog extends Dialog {
         if (isWechat) {
             llWeChat.setVisibility(View.VISIBLE);
         }
+        if (isPaypal) {
+            llPalpay.setVisibility(View.VISIBLE);
+        }
+        if (isOther) {
+            llOther.setVisibility(View.VISIBLE);
+        }
     }
 
-    public interface PayWaySelectListener{
-            void getSelectPayWay(String payWay);
+    public interface PayWaySelectListener {
+        void getSelectPayWay(String payWay);
     }
 }

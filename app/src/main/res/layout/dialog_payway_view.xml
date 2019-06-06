@@ -32,6 +32,7 @@
                 style="@style/textview_tag"
                 android:drawableLeft="@mipmap/icon_unionpay"
                 android:drawablePadding="8dp"
+                android:gravity="center_vertical"
                 android:text="@string/unionpay_account" />
 
             <View
@@ -58,6 +59,7 @@
                 style="@style/textview_tag"
                 android:drawableLeft="@mipmap/icon_pay"
                 android:drawablePadding="8dp"
+                android:gravity="center_vertical"
                 android:text="@string/ali_account" />
 
             <View
@@ -84,6 +86,7 @@
                 style="@style/textview_tag"
                 android:drawableLeft="@mipmap/icon_wechat"
                 android:drawablePadding="8dp"
+                android:gravity="center_vertical"
                 android:text="@string/weichat_account" />
 
             <View
@@ -110,6 +113,7 @@
                 style="@style/textview_tag"
                 android:drawableLeft="@mipmap/icon_paypal"
                 android:drawablePadding="8dp"
+                android:gravity="center_vertical"
                 android:text="@string/str_paypal" />
 
             <View
@@ -136,6 +140,7 @@
                 style="@style/textview_tag"
                 android:drawableLeft="@mipmap/other"
                 android:drawablePadding="8dp"
+                android:gravity="center_vertical"
                 android:text="@string/str_other" />
 
             <View

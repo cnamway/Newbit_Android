@@ -22,6 +22,7 @@ import com.spark.newbitrade.callback.ResponseCallBack;
 import com.spark.newbitrade.entity.ChatEntity;
 import com.spark.newbitrade.entity.HttpErrorEntity;
 import com.spark.newbitrade.factory.HttpUrls;
+import com.spark.newbitrade.utils.LogUtils;
 import com.spark.newbitrade.utils.StringUtils;
 
 import java.util.ArrayList;
@@ -52,6 +53,7 @@ public class TradeControllerModel {
                 tradeControllerApi.createOrderUsingPOST(orderInTransitDto, new Response.Listener<MessageResult>() {
                     @Override
                     public void onResponse(MessageResult response) {
+                        LogUtils.i("response==" + response.toString());
                         int code = response.getCode();
                         if (code == SUCCESS_CODE) {
                             if (successListener != null)
@@ -82,6 +84,7 @@ public class TradeControllerModel {
                 tradeControllerApi.cancelOrderUsingGET(orderId, new Response.Listener<MessageResult>() {
                     @Override
                     public void onResponse(MessageResult response) {
+                        LogUtils.i("response==" + response.toString());
                         int code = response.getCode();
                         if (code == SUCCESS_CODE) {
                             if (successListener != null)
@@ -112,6 +115,7 @@ public class TradeControllerModel {
                 tradeControllerApi.findMyOrderAchiveUsingPOST(queryParam, new Response.Listener<MessageResultPageOrderVo>() {
                     @Override
                     public void onResponse(MessageResultPageOrderVo response) {
+                        LogUtils.i("response==" + response.toString());
                         int code = response.getCode();
                         if (code == SUCCESS_CODE) {
                             if (successListener != null)
@@ -142,6 +146,7 @@ public class TradeControllerModel {
                 tradeControllerApi.findMyOrderAllUsingPOST(queryParam, new Response.Listener<MessageResultPageOrderVo>() {
                     @Override
                     public void onResponse(MessageResultPageOrderVo response) {
+                        LogUtils.i("response==" + response.toString());
                         int code = response.getCode();
                         if (code == SUCCESS_CODE) {
                             if (successListener != null)
@@ -172,6 +177,7 @@ public class TradeControllerModel {
                 tradeControllerApi.findMyOrderInTransitUsingPOST(queryParam, new Response.Listener<MessageResultPageOrderVo>() {
                     @Override
                     public void onResponse(MessageResultPageOrderVo response) {
+                        LogUtils.i("response==" + response.toString());
                         int code = response.getCode();
                         if (code == SUCCESS_CODE) {
                             if (successListener != null)
@@ -202,6 +208,7 @@ public class TradeControllerModel {
                 tradeControllerApi.findOrderAchiveDetailUsingGET(orderId, new Response.Listener<MessageResultOrderDetailVo>() {
                     @Override
                     public void onResponse(MessageResultOrderDetailVo response) {
+                        LogUtils.i("response==" + response.toString());
                         int code = response.getCode();
                         if (code == SUCCESS_CODE) {
                             if (successListener != null)
@@ -232,6 +239,7 @@ public class TradeControllerModel {
                 tradeControllerApi.findOrderInTransitDetailUsingGET(orderId, new Response.Listener<MessageResultOrderDetailVo>() {
                     @Override
                     public void onResponse(MessageResultOrderDetailVo response) {
+                        LogUtils.i("response==" + response.toString());
                         int code = response.getCode();
                         if (code == SUCCESS_CODE) {
                             if (successListener != null)
@@ -262,6 +270,7 @@ public class TradeControllerModel {
                 tradeControllerApi.paymentOrderUsingPOST(orderPaymentDto, new Response.Listener<MessageResult>() {
                     @Override
                     public void onResponse(MessageResult response) {
+                        LogUtils.i("response==" + response.toString());
                         int code = response.getCode();
                         if (code == SUCCESS_CODE) {
                             if (successListener != null)
@@ -299,6 +308,7 @@ public class TradeControllerModel {
                 tradeControllerApi.queryOrderChatDataUsingPOST(orderId, queryParam, new Response.Listener<MessageResultPageChatMessageRecord>() {
                     @Override
                     public void onResponse(MessageResultPageChatMessageRecord response) {
+                        LogUtils.i("response==" + response.toString());
                         int code = response.getCode();
                         if (code == SUCCESS_CODE) {
                             if (successListener != null) {
@@ -333,6 +343,7 @@ public class TradeControllerModel {
                 tradeControllerApi.queryOrderPayTypeUsingGET(orderId, new Response.Listener<MessageResultListMemberPayType>() {
                     @Override
                     public void onResponse(MessageResultListMemberPayType response) {
+                        LogUtils.i("response==" + response.toString());
                         int code = response.getCode();
                         if (code == SUCCESS_CODE) {
                             if (successListener != null)
@@ -363,6 +374,7 @@ public class TradeControllerModel {
                 tradeControllerApi.releaseOrderUsingGET(orderId, tradePwd, new Response.Listener<MessageResult>() {
                     @Override
                     public void onResponse(MessageResult response) {
+                        LogUtils.i("response==" + response.toString());
                         int code = response.getCode();
                         if (code == SUCCESS_CODE) {
                             if (successListener != null)

@@ -149,5 +149,38 @@ public class BitmapUtils {
         return file;
     }
 
+    /**
+     * 将指定bitmap对象存到文件中
+     *
+     * @param quality 质量压缩比率 取值 0--100 有些无损格式如png将忽略此设置不被压缩
+     */
+    public static void saveBitmapToFile2(Bitmap bitmap, File file, int quality) throws IOException {
+        if (bitmap == null) {
+            return;
+        }
+        if (!file.getParentFile().exists()) {
+            file.getParentFile().mkdirs();
+        }
+        if (file.exists()) {
+            file.delete();
+            file.createNewFile();
+        }
+        //创建文件输出流对象用来向文件中写入数据
+        FileOutputStream out = null;
+        try {
+            out = new FileOutputStream(file);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        //将bitmap存储为jpg格式的图片
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, out);
+        //刷新文件流
+        try {
+            out.flush();
+            out.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
 }

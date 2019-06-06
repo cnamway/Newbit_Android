@@ -25,17 +25,20 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.flyco.dialog.listener.OnBtnClickL;
 import com.flyco.dialog.widget.NormalDialog;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.spark.library.otc.model.MemberPayType;
 import com.spark.library.otc.model.OrderDetailVo;
 import com.spark.library.otc.model.OrderPaymentDto;
 import com.spark.newbitrade.MyApplication;
 import com.spark.newbitrade.R;
 import com.spark.newbitrade.activity.appeal.AppealActivity;
-import com.spark.newbitrade.activity.chat.ChatActivity;
 import com.spark.newbitrade.base.BaseActivity;
 import com.spark.newbitrade.dialog.PayWaySelectDialog;
 import com.spark.newbitrade.entity.OrderDetial;
+import com.spark.newbitrade.entity.PayWaySetting;
 import com.spark.newbitrade.factory.socket.ISocket;
+import com.spark.newbitrade.ui.PayCodeDialog;
 import com.spark.newbitrade.utils.CommonUtils;
 import com.spark.newbitrade.utils.DateUtils;
 import com.spark.newbitrade.utils.GlobalConstant;
@@ -48,6 +51,7 @@ import java.util.List;
 import java.util.TimeZone;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class OrderDetailActivity extends BaseActivity implements OrderDetailContract.View, ISocket.TCPCallback {
@@ -59,12 +63,6 @@ public class OrderDetailActivity extends BaseActivity implements OrderDetailCont
     TextView tvCount;
     @BindView(R.id.tvTotal)
     TextView tvTotal;
-    //    @BindView(R.id.tvZhifubao)
-//    TextView tvZhifubao;
-//    @BindView(R.id.tvWeChat)
-//    TextView tvWeChat;
-//    @BindView(R.id.tvBankNo)
-//    TextView tvBankNo;
     @BindView(R.id.tvStatus)
     TextView tvStatus;
     @BindView(R.id.tvPayDone)
@@ -73,32 +71,16 @@ public class OrderDetailActivity extends BaseActivity implements OrderDetailCont
     TextView tvCancle;
     @BindView(R.id.tvAppeal)
     TextView tvAppeal;
-    //    @BindView(R.id.llPayInfo)
-//    LinearLayout llPayInfo;
     @BindView(R.id.tvRelease)
     TextView tvRelease;
     @BindView(R.id.llOperate)
     LinearLayout llOperate;
-    //    @BindView(R.id.ivZhifubaoQR)
-//    ImageView ivZhifubaoQR;
-//    @BindView(R.id.ivWeChatQR)
-//    ImageView ivWeChatQR;
     @BindView(R.id.tvOtherSide)
     TextView tvOtherSide;
     @BindView(R.id.tvTime)
     TextView tvTime;
     @BindView(R.id.tvLastTime)
     TextView tvLastTime;
-    //    @BindView(R.id.tvBranch)
-//    TextView tvBranch;
-//    @BindView(R.id.tvName)
-//    TextView tvName;
-//    @BindView(R.id.llAli)
-//    LinearLayout llAli;
-//    @BindView(R.id.llWeChat)
-//    LinearLayout llWeChat;
-//    @BindView(R.id.rlBank)
-//    RelativeLayout rlBank;
     @BindView(R.id.ivHeader)
     ImageView ivHeader;
     @BindView(R.id.tvPayTime)
@@ -111,8 +93,35 @@ public class OrderDetailActivity extends BaseActivity implements OrderDetailCont
     LinearLayout llReleseTime;
     @BindView(R.id.tvOrderId)
     TextView tvOrderId;
+    @BindView(R.id.tvBank)
+    TextView tvBank;
+    @BindView(R.id.llBank)
+    LinearLayout llBank;
+    @BindView(R.id.tvAli)
+    TextView tvAli;
+    @BindView(R.id.ivAliCode)
+    ImageView ivAliCode;
+    @BindView(R.id.llAli)
+    LinearLayout llAli;
+    @BindView(R.id.tvWechat)
+    TextView tvWechat;
+    @BindView(R.id.ivWeChatCode)
+    ImageView ivWeChatCode;
+    @BindView(R.id.llWeChat)
+    LinearLayout llWeChat;
+    @BindView(R.id.tvPaypal)
+    TextView tvPaypal;
+    @BindView(R.id.llPalpay)
+    LinearLayout llPalpay;
+    @BindView(R.id.tvOther)
+    TextView tvOther;
+    @BindView(R.id.llOther)
+    LinearLayout llOther;
+    @BindView(R.id.llPayLayout)
+    LinearLayout llPayLayout;
+
     private String orderSn;
-    private OrderFragment.Status status;
+    private OrderFragment.Status status;//订单状态 0-已取消 1-未付款 2-已付款 3-已完成 4-申诉中
     private OrderDetailPresenterImpl presenter;
     private OrderDetailVo orderDetailVo;
     private String downloadUrl;
@@ -120,7 +129,15 @@ public class OrderDetailActivity extends BaseActivity implements OrderDetailCont
     private boolean isAli = false;
     private boolean isWechat = false;
     private boolean isBank = false;
+    private boolean isPaypal = false;
+    private boolean isOther = false;
     private SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    private String qrCodeUrlAli;
+    private String qrCodeUrlWechat;
+    private PopupWindow popWnd;
+    private String select;
+    private PayWaySelectDialog selectDialog;
+    private PayCodeDialog payCodeDialog;
 
     private String dir = Environment.getExternalStorageDirectory().getAbsolutePath() + "/digiccy/";//图片/
     private Handler handler = new Handler(new Handler.Callback() {
@@ -138,9 +155,6 @@ public class OrderDetailActivity extends BaseActivity implements OrderDetailCont
             return true;
         }
     });
-    private PopupWindow popWnd;
-    private String select;
-    private PayWaySelectDialog selectDialog;
 
 
     @Override
@@ -184,6 +198,11 @@ public class OrderDetailActivity extends BaseActivity implements OrderDetailCont
                 select = payWay;
             }
         });
+        if (status == OrderFragment.Status.UNPAID) {
+            llPayLayout.setVisibility(View.VISIBLE);
+        } else {
+            llPayLayout.setVisibility(View.GONE);
+        }
     }
 
     @Override
@@ -215,7 +234,7 @@ public class OrderDetailActivity extends BaseActivity implements OrderDetailCont
         });
     }
 
-    @OnClick({R.id.tvPayDone, R.id.tvCancle, R.id.tvRelease, R.id.tvAppeal, R.id.ivGoChat, R.id.tvOrderSn, R.id.tvOrderId})
+    @OnClick({R.id.tvPayDone, R.id.tvCancle, R.id.tvRelease, R.id.tvAppeal, R.id.ivGoChat, R.id.tvOrderSn, R.id.tvOrderId, R.id.ivAliCode, R.id.ivWeChatCode})
     @Override
     protected void setOnClickListener(View v) {
         super.setOnClickListener(v);
@@ -261,7 +280,27 @@ public class OrderDetailActivity extends BaseActivity implements OrderDetailCont
             case R.id.tvOrderId:
                 CommonUtils.copyText(OrderDetailActivity.this, tvOrderId.getText().toString());
                 break;
+            case R.id.ivAliCode:
+                if (StringUtils.isNotEmpty(qrCodeUrlAli)) {
+                    showPayCodeDialog(1);
+                }
+                break;
+            case R.id.ivWeChatCode:
+                if (StringUtils.isNotEmpty(qrCodeUrlWechat)) {
+                    showPayCodeDialog(2);
+                }
+                break;
         }
+    }
+
+    /**
+     * 提示框
+     */
+    private void showPayCodeDialog(int type) {
+        payCodeDialog = new PayCodeDialog(activity);
+        if (type == 1) payCodeDialog.setImg(qrCodeUrlAli, 1);
+        if (type == 2) payCodeDialog.setImg(qrCodeUrlWechat, 1);
+        payCodeDialog.show();
     }
 
     private boolean checkTime() {
@@ -508,18 +547,58 @@ public class OrderDetailActivity extends BaseActivity implements OrderDetailCont
         }
 
         showWhichViews(type, status);
+        List<PayWaySetting> payDatas = new Gson().fromJson(orderDetailVo.getPayData(), new TypeToken<List<PayWaySetting>>() {
+        }.getType());
 
         String payMode = orderDetailVo.getPayMode();
         if (payMode.contains(GlobalConstant.alipay)) {
             isAli = true;
+            llAli.setVisibility(View.VISIBLE);
+            for (PayWaySetting payData : payDatas) {
+                if (GlobalConstant.alipay.equals(payData.getPayType())) {
+                    tvAli.setText(payData.getPayAddress());
+                    qrCodeUrlAli = payData.getQrCodeUrl();
+                }
+            }
         }
         if (payMode.contains(GlobalConstant.wechat)) {
             isWechat = true;
+            llWeChat.setVisibility(View.VISIBLE);
+            for (PayWaySetting payData : payDatas) {
+                if (GlobalConstant.wechat.equals(payData.getPayType())) {
+                    tvWechat.setText(payData.getPayAddress());
+                    qrCodeUrlWechat = payData.getQrCodeUrl();
+                }
+            }
         }
         if (payMode.contains(GlobalConstant.card)) {
             isBank = true;
+            llBank.setVisibility(View.VISIBLE);
+            for (PayWaySetting payData : payDatas) {
+                if (GlobalConstant.card.equals(payData.getPayType())) {
+                    tvBank.setText(payData.getPayAddress());
+                }
+            }
         }
-        selectDialog.setView(isAli, isWechat, isBank);
+        if (payMode.contains(GlobalConstant.PAYPAL)) {
+            isPaypal = true;
+            llPalpay.setVisibility(View.VISIBLE);
+            for (PayWaySetting payData : payDatas) {
+                if (GlobalConstant.PAYPAL.equals(payData.getPayType())) {
+                    tvPaypal.setText(payData.getPayAddress());
+                }
+            }
+        }
+        if (payMode.contains(GlobalConstant.other)) {
+            isOther = true;
+            llOther.setVisibility(View.VISIBLE);
+            for (PayWaySetting payData : payDatas) {
+                if (GlobalConstant.other.equals(payData.getPayType())) {
+                    tvOther.setText(payData.getPayAddress());
+                }
+            }
+        }
+        selectDialog.setView(isAli, isWechat, isBank, isPaypal, isOther);
     }
 
     public void showPopWindow(String url) {
@@ -814,6 +893,5 @@ public class OrderDetailActivity extends BaseActivity implements OrderDetailCont
     public void queryOrderPayTypeUsingGETSuccess(List<MemberPayType> obj) {
 
     }
-
 
 }

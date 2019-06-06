@@ -72,7 +72,6 @@ public class LoginActivity extends BaseActivity implements LoginContract.LoginVi
     private GT3GeetestUtilsBind gt3GeetestUtils;
     private String cid;
     private String strAreaCode = "86";
-//    private LoginStatus loginStatus;
 
 
     @Override
@@ -113,7 +112,6 @@ public class LoginActivity extends BaseActivity implements LoginContract.LoginVi
     @Override
     protected void initData() {
         super.initData();
-//        loginStatus = new LoginStatus();
         loginPresenter = new LoginPresenterImpl(this);
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
@@ -247,17 +245,15 @@ public class LoginActivity extends BaseActivity implements LoginContract.LoginVi
     @Override
     public void ucLoginSuccess(String response) {
         if (HttpUrls.TYPE_UC.equals(response)) {
-//            loginStatus.setUcLogin(true);
             loginPresenter.doUcLogin(gtc, HttpUrls.TYPE_AC);
         } else if (HttpUrls.TYPE_AC.equals(response)) {
-//            loginStatus.setAcLogin(true);
             loginPresenter.doUcLogin(gtc, HttpUrls.TYPE_OTC);
         } else if (HttpUrls.TYPE_OTC.equals(response)) {
+            loginPresenter.doUcLogin(gtc, HttpUrls.TYPE_OTC_SYSTEM);
+        } else if (HttpUrls.TYPE_OTC_SYSTEM.equals(response)) {
             saveOtcSid();
             isCasLogin = false;
-//            loginStatus.setOtcLogin(true);
             loginPresenter.getUserInfo();
-//            MyApplication.getApp().setLoginStatus(loginStatus);
         }
     }
 
@@ -336,7 +332,7 @@ public class LoginActivity extends BaseActivity implements LoginContract.LoginVi
                 if (StringUtils.isNotEmpty(message)) {
                     ToastUtils.showToast(message);
                 } else {
-                    ToastUtils.showToast(R.string.socket_time);
+                    ToastUtils.showToast(code + "");
                 }
             }
         }

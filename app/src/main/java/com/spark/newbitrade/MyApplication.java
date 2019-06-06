@@ -1,7 +1,9 @@
 package com.spark.newbitrade;
 
 import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
+import android.support.multidex.MultiDex;
 import android.support.multidex.MultiDexApplication;
 import android.support.v4.app.Fragment;
 import android.view.View;
@@ -15,7 +17,6 @@ import com.spark.newbitrade.utils.FileUtils;
 import com.spark.newbitrade.utils.GlobalConstant;
 import com.spark.newbitrade.utils.StringUtils;
 import com.spark.newbitrade.utils.okhttp.store.PersistentCookieStore;
-import com.uuzuche.lib_zxing.activity.ZXingLibrary;
 
 import org.litepal.LitePal;
 import org.xutils.x;
@@ -62,7 +63,6 @@ public class MyApplication extends MultiDexApplication {
                 getDisplayMetric();
                 getCurrentUserFromFile();
                 LitePal.initialize(MyApplication.getApp());
-                ZXingLibrary.initDisplayOpinion(MyApplication.getApp());
                 x.Ext.init(MyApplication.getApp());
             }
         }).start();
@@ -264,5 +264,11 @@ public class MyApplication extends MultiDexApplication {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(base);
+        MultiDex.install(this);
     }
 }

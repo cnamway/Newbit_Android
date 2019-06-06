@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:gravity="center"
-        android:text="是否同意提币到新比特钱包？"
+        android:text="是否同意提币到钱包？"
         android:textColor="@color/black"
         android:textSize="@dimen/font_normal" />
 

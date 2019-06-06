@@ -11,6 +11,7 @@ public class HttpUrls {
     public static final String UC_HOST = "http://api.newbtc.online/uc";
     public static final String AC_HOST = "http://api.newbtc.online/ac";
     public static final String OTC_HOST = "http://api.newbtc.online/otc";
+    public static final String OTC_SYSTEM_HOST = "http://api.newbtc.online/otc-system";
     public static final String CMS_HOST = "http://api.newbtc.online/cms-api";
 
     /**
@@ -19,6 +20,7 @@ public class HttpUrls {
     public static final String TYPE_AC = "ac";
     public static final String TYPE_UC = "uc";
     public static final String TYPE_OTC = "otc";
+    public static final String TYPE_OTC_SYSTEM = "otc-system";
 
     /**
      * 登录cas
@@ -61,6 +63,9 @@ public class HttpUrls {
                 break;
             case TYPE_OTC:
                 url = OTC_HOST;
+                break;
+            case TYPE_OTC_SYSTEM:
+                url = OTC_SYSTEM_HOST;
                 break;
         }
         return url;

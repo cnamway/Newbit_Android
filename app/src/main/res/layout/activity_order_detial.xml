@@ -56,7 +56,8 @@
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="15dp"
                 android:background="@mipmap/bg_orderdetail_lin"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:visibility="visible">
 
                 <LinearLayout
                     style="@style/layout_my_info"
@@ -251,8 +252,8 @@
             <LinearLayout
                 style="@style/layout_my_info"
                 android:layout_height="45dp"
-                android:layout_marginRight="15dp"
-                android:layout_marginLeft="15dp">
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp">
 
                 <TextView
                     style="@style/textview_tag"
@@ -274,6 +275,158 @@
                 android:layout_width="match_parent"
                 android:layout_height="8dp"
                 android:background="@color/main_bg" />
+
+            <LinearLayout
+                android:id="@+id/llPayLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:orientation="vertical"
+                android:visibility="visible">
+
+                <LinearLayout
+                    android:id="@+id/llBank"
+                    style="@style/layout_my_info"
+                    android:visibility="gone">
+
+                    <TextView
+                        style="@style/textview_tag"
+                        android:drawableLeft="@mipmap/icon_unionpay"
+                        android:drawablePadding="8dp"
+                        android:gravity="center_vertical"
+                        android:text="@string/unionpay_account" />
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" />
+
+                    <TextView
+                        android:id="@+id/tvBank"
+                        style="@style/textview_tag"
+                        android:gravity="center_vertical"
+                        android:text="---" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/llAli"
+                    style="@style/layout_my_info"
+                    android:visibility="gone">
+
+                    <TextView
+                        style="@style/textview_tag"
+                        android:drawableLeft="@mipmap/icon_pay"
+                        android:drawablePadding="8dp"
+                        android:gravity="center_vertical"
+                        android:text="@string/ali_account" />
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" />
+
+                    <TextView
+                        android:id="@+id/tvAli"
+                        style="@style/textview_tag"
+                        android:gravity="center_vertical"
+                        android:text="---" />
+
+                    <ImageView
+                        android:id="@+id/ivAliCode"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_marginLeft="@dimen/dp_10"
+                        android:src="@mipmap/icon_qr_code"
+                        android:textSize="@dimen/font_small" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/llWeChat"
+                    style="@style/layout_my_info"
+                    android:visibility="gone">
+
+                    <TextView
+                        style="@style/textview_tag"
+                        android:drawableLeft="@mipmap/icon_wechat"
+                        android:drawablePadding="8dp"
+                        android:gravity="center_vertical"
+                        android:text="@string/weichat_account" />
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" />
+
+                    <TextView
+                        android:id="@+id/tvWechat"
+                        style="@style/textview_tag"
+                        android:gravity="center_vertical"
+                        android:text="---" />
+
+                    <ImageView
+                        android:id="@+id/ivWeChatCode"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_marginLeft="@dimen/dp_10"
+                        android:src="@mipmap/icon_qr_code"
+                        android:textSize="@dimen/font_small" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/llPalpay"
+                    style="@style/layout_my_info"
+                    android:visibility="gone">
+
+                    <TextView
+                        style="@style/textview_tag"
+                        android:drawableLeft="@mipmap/icon_paypal"
+                        android:drawablePadding="8dp"
+                        android:gravity="center_vertical"
+                        android:text="@string/str_paypal" />
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" />
+
+                    <TextView
+                        android:id="@+id/tvPaypal"
+                        style="@style/textview_tag"
+                        android:gravity="center_vertical"
+                        android:text="---" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/llOther"
+                    style="@style/layout_my_info"
+                    android:visibility="gone">
+
+                    <TextView
+                        style="@style/textview_tag"
+                        android:drawableLeft="@mipmap/other"
+                        android:drawablePadding="8dp"
+                        android:gravity="center_vertical"
+                        android:text="@string/str_other" />
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" />
+
+                    <TextView
+                        android:id="@+id/tvOther"
+                        style="@style/textview_tag"
+                        android:gravity="center_vertical"
+                        android:text="---" />
+
+                </LinearLayout>
+
+            </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/llOperate"

@@ -21,7 +21,6 @@ import com.spark.newbitrade.MyApplication;
 import com.spark.newbitrade.R;
 import com.spark.newbitrade.activity.aboutus.VersionContract;
 import com.spark.newbitrade.activity.aboutus.VersionPresenter;
-import com.spark.newbitrade.activity.kline.KlineActivity;
 import com.spark.newbitrade.activity.login.LoginActivity;
 import com.spark.newbitrade.activity.main.presenter.MainPresenter;
 import com.spark.newbitrade.activity.setting.SettingContact;
@@ -81,6 +80,7 @@ import okhttp3.Request;
 
 import static com.spark.newbitrade.factory.HttpUrls.TYPE_AC;
 import static com.spark.newbitrade.factory.HttpUrls.TYPE_OTC;
+import static com.spark.newbitrade.factory.HttpUrls.TYPE_OTC_SYSTEM;
 import static com.spark.newbitrade.factory.HttpUrls.TYPE_UC;
 import static com.spark.newbitrade.utils.GlobalConstant.JSON_ERROR;
 
@@ -769,7 +769,6 @@ public class MainActivity extends BaseTransFragmentActivity implements MainContr
             bundle.putString("symbol", currency.getSymbol());
             bundle.putInt("baseCoinScale", currency.getBaseCoinScale());
             bundle.putInt("coinScale", currency.getCoinScale());
-            showActivity(KlineActivity.class, bundle, 0);
         }
     }
 
@@ -911,7 +910,9 @@ public class MainActivity extends BaseTransFragmentActivity implements MainContr
      */
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onCheckLoginEvent(CheckLoginEvent event) {
-        if (event.type.contains(TYPE_OTC)) {
+        if (event.type.contains(TYPE_OTC_SYSTEM)) {
+            presenter.checkBusinessLogin(TYPE_OTC_SYSTEM);
+        } else if (event.type.contains(TYPE_OTC)) {
             presenter.checkBusinessLogin(TYPE_OTC);
         } else if (event.type.contains(TYPE_UC)) {
             presenter.checkBusinessLogin(TYPE_UC);

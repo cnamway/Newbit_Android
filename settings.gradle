@@ -1,1 +1,1 @@
-include ':app', ':lib-zxing',':KLineChartLib'
+include ':app'

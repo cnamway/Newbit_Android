@@ -18,6 +18,7 @@ import org.greenrobot.eventbus.EventBus;
 
 import static com.spark.newbitrade.factory.HttpUrls.TYPE_AC;
 import static com.spark.newbitrade.factory.HttpUrls.TYPE_OTC;
+import static com.spark.newbitrade.factory.HttpUrls.TYPE_OTC_SYSTEM;
 import static com.spark.newbitrade.factory.HttpUrls.TYPE_UC;
 
 
@@ -53,7 +54,9 @@ public class CheckVolleyErrorUtil {
                 return;
             }
             if (StringUtils.isNotEmpty(error.getMessage()) && error.getMessage().contains("BEGIN_")) {
-                if (error.getMessage().contains(TYPE_OTC)) {
+                if (error.getMessage().contains(TYPE_OTC_SYSTEM)) {
+                    EventBus.getDefault().post(new CheckLoginEvent(TYPE_OTC_SYSTEM));
+                } else if (error.getMessage().contains(TYPE_OTC)) {
                     EventBus.getDefault().post(new CheckLoginEvent(TYPE_OTC));
                 } else if (error.getMessage().contains(TYPE_UC)) {
                     EventBus.getDefault().post(new CheckLoginEvent(TYPE_UC));

@@ -14,6 +14,7 @@ import java.util.regex.Pattern;
 
 import static com.spark.newbitrade.utils.GlobalConstant.TYPE_AC;
 import static com.spark.newbitrade.utils.GlobalConstant.TYPE_OTC;
+import static com.spark.newbitrade.utils.GlobalConstant.TYPE_OTC_SYSTEM;
 import static com.spark.newbitrade.utils.GlobalConstant.TYPE_SPOT;
 import static com.spark.newbitrade.utils.GlobalConstant.TYPE_UC;
 
@@ -651,6 +652,8 @@ public class StringUtils {
                 return TYPE_SPOT;
             } else if (type.equals("otc")) {
                 return TYPE_OTC;
+            } else if (type.equals("otc-system")) {
+                return TYPE_OTC_SYSTEM;
             }
         }
         return 0;

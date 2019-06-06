@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     tools:context="com.spark.newbitrade.activity.kline.KLineFragment">
 
-    <com.github.fujianlian.klinechart.KLineChartView
+    <!--<com.github.fujianlian.klinechart.KLineChartView
         android:id="@+id/kChartView"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
@@ -42,6 +42,6 @@
         app:kc_tab_text_color="@color/tab_light_text_color_selector"
         app:kc_text_color="#787878"
         app:kc_text_size="@dimen/chart_text_size"
-        app:kc_up_color="@color/chart_ma5"/>
+        app:kc_up_color="@color/chart_ma5"/>-->
 
 </FrameLayout>

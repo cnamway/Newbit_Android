@@ -99,6 +99,7 @@ public class GlobalConstant {
     public static final int TYPE_AC = 3;
     public static final int TYPE_SPOT_TCP = 4;
     public static final int TYPE_OTC = 5;
+    public static final int TYPE_OTC_SYSTEM = 6;
 
     public static final String COMMON = "COMMON";
     //public static final String ACP = "ACP";

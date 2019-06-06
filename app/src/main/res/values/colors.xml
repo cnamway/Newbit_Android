@@ -66,4 +66,5 @@
     <color name="base_bg_loading">#99000000</color>
     <color name="color_blue">#2A6AD4</color>
     <color name="bg_btn_hover">#6a99e4</color>
+    <color name="color_half">#99999999</color>
 </resources>

@@ -23,8 +23,6 @@ import com.google.gson.Gson;
 import com.spark.newbitrade.MyApplication;
 import com.spark.newbitrade.R;
 import com.spark.newbitrade.activity.chat.ChatListActivity;
-import com.spark.newbitrade.activity.kline.KlineActivity;
-import com.spark.newbitrade.activity.main.presenter.CollectView;
 import com.spark.newbitrade.activity.main.presenter.CommonPresenter;
 import com.spark.newbitrade.activity.main.presenter.HomePresenterImpl;
 import com.spark.newbitrade.activity.message.WebViewActivity;
@@ -420,7 +418,6 @@ public class HomeFragment extends BaseTransFragment implements MainContract.Home
             bundle.putString("symbol", currency.getSymbol());
             bundle.putInt("baseCoinScale", currency.getBaseCoinScale());
             bundle.putInt("coinScale", currency.getCoinScale());
-            showActivity(KlineActivity.class, bundle, 0);
         }
     }
 

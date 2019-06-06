@@ -7,9 +7,16 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.android.volley.VolleyError;
 import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.google.gson.Gson;
+import com.spark.library.otcSys.model.MessageResult;
+import com.spark.library.otcSys.model.TradeDto;
 import com.spark.newbitrade.activity.login.LoginActivity;
 import com.spark.library.otc.model.AdvertiseShowVo;
 import com.spark.library.otc.model.PageAdvertiseShowVo;
@@ -19,14 +26,20 @@ import com.spark.newbitrade.MyApplication;
 import com.spark.newbitrade.R;
 import com.spark.newbitrade.activity.buy_or_sell.C2CBuyOrSellActivity;
 import com.spark.newbitrade.activity.main.presenter.C2CListPresenterImpl;
+import com.spark.newbitrade.activity.order.OrderDetailActivity;
+import com.spark.newbitrade.activity.order.OrderFragment;
 import com.spark.newbitrade.adapter.C2CListAdapter;
 import com.spark.newbitrade.base.BaseLazyFragment;
 import com.spark.newbitrade.entity.HttpErrorEntity;
 import com.spark.newbitrade.entity.MyAdvertiseShowVo;
 import com.spark.newbitrade.utils.GlobalConstant;
+import com.spark.newbitrade.utils.NetCodeUtils;
 import com.spark.newbitrade.utils.StringUtils;
 import com.spark.newbitrade.utils.ToastUtils;
 
+import org.json.JSONObject;
+
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -55,6 +68,12 @@ public class C2CListFragment extends BaseLazyFragment implements C2CListContract
     private String payMode = "";
     private String lowQuota = "";
     private String highQuota = "";
+
+    private TextView tvBuyType;
+    private EditText etCount;
+    private TextView tvCoinName;
+    private TextView tvBuy;
+    private int buyType = 1;//1按数量购买  2按金额购买
 
     public static C2CListFragment getInstance(String coinName, int coinScale) {
         C2CListFragment c2CFragment = new C2CListFragment();
@@ -180,6 +199,7 @@ public class C2CListFragment extends BaseLazyFragment implements C2CListContract
         adapter.bindToRecyclerView(rvContent);
         adapter.isFirstOnly(true);
         adapter.setEnableLoadMore(false);
+        addHeadView(1);
     }
 
     /**
@@ -265,6 +285,7 @@ public class C2CListFragment extends BaseLazyFragment implements C2CListContract
             List<AdvertiseShowVo> list = obj.getRecords();
             if (list != null && list.size() > 0) {
                 if (pageNo == 1) {
+                    //addHeadView(1);
                     this.advertiseShowVoList.clear();
                 } else {
                     adapter.loadMoreEnd();
@@ -274,7 +295,7 @@ public class C2CListFragment extends BaseLazyFragment implements C2CListContract
             } else {
                 if (pageNo == 1) {
                     this.advertiseShowVoList.clear();
-                    adapter.setEmptyView(R.layout.empty_no_message);
+                    addHeadView(0);
                     adapter.notifyDataSetChanged();
                 }
             }
@@ -344,6 +365,92 @@ public class C2CListFragment extends BaseLazyFragment implements C2CListContract
 //        refreshLayout.setRefreshing(false);
 //        NetCodeUtils.checkedErrorCode(getmActivity(), code, toastMessage);
 //    }
+
+    //type 0 空列表 1非空
+    private void addHeadView(int type) {
+        View headerView = getLayoutInflater().inflate(R.layout.view_buy, null);
+        headerView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+
+        LinearLayout emptyLayout = headerView.findViewById(R.id.emptyLayout);
+        if (type == 0) {
+            emptyLayout.setVisibility(View.VISIBLE);
+            adapter.setEmptyView(headerView);
+        } else {
+            emptyLayout.setVisibility(View.GONE);
+            adapter.addHeaderView(headerView);
+        }
+
+        tvBuyType = headerView.findViewById(R.id.tvBuyType);
+        etCount = headerView.findViewById(R.id.etCount);
+        tvCoinName = headerView.findViewById(R.id.tvCoinName);
+        tvBuy = headerView.findViewById(R.id.tvBuy);
+
+        tvBuyType.setText("按金额购买");
+        tvCoinName.setText(coinName);
+        etCount.setHint("请输入购买数量");
+        buyType = 1;
+        tvBuyType.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (tvBuyType.getText().toString().equals("按金额购买")) {
+                    tvBuyType.setText("按数量购买");
+                    tvCoinName.setText("CNY");
+                    etCount.setHint("请输入购买金额");
+                    buyType = 2;
+                } else {
+                    tvBuyType.setText("按金额购买");
+                    tvCoinName.setText(coinName);
+                    etCount.setHint("请输入购买数量");
+                    buyType = 1;
+                }
+            }
+        });
+
+        tvBuy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String count = StringUtils.getText(etCount);
+                if (StringUtils.isEmpty(count)) {
+                    ToastUtils.showToast("请输入购买数量或金额");
+                } else {
+                    TradeDto tradeDto = new TradeDto();
+                    if (buyType == 1) {//1按数量购买  2按金额购买
+                        tradeDto.setTradeType(0);
+                        tradeDto.setAmount(new BigDecimal(count));
+                        tradeDto.setCoinName(coinName);
+                        tradeDto.setCurrency(GlobalConstant.CNY);
+                        tradeDto.setMoney(null);
+                    } else {
+                        tradeDto.setTradeType(1);
+                        tradeDto.setAmount(null);
+                        tradeDto.setCoinName(coinName);
+                        tradeDto.setCurrency(GlobalConstant.CNY);
+                        tradeDto.setMoney(new BigDecimal(count));
+                    }
+                    presenter.createOrder(tradeDto);
+                }
+            }
+        });
+    }
+
+    @Override
+    public void createOrderSuccess(MessageResult response) {
+        if (response != null && response.getData() != null) {
+            try {
+                String gson = new Gson().toJson(response.getData());
+                JSONObject jsonObject = new JSONObject(gson);
+                String orderSn = jsonObject.getString("orderSn").toString();
+                Bundle bundle = new Bundle();
+                bundle.putString("orderSn", orderSn);
+                bundle.putSerializable("status", OrderFragment.Status.UNPAID);
+                showActivity(OrderDetailActivity.class, bundle, 1);
+            } catch (Exception e) {
+                ToastUtils.showToast("订单解析错误");
+            }
+        } else {
+            ToastUtils.showToast("创建订单失败，请重试");
+        }
+    }
 
 
 }

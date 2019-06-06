@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_bg">
+
+    <include layout="@layout/empty_layout" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <LinearLayout style="@style/layout_my_info">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="一键购买"
+                android:textColor="@color/black"
+                android:textSize="@dimen/font_normal" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+            <TextView
+                android:id="@+id/tvBuyType"
+                style="@style/textview_tag"
+                android:drawableLeft="@mipmap/icon_buy_change"
+                android:drawablePadding="@dimen/dp_6"
+                android:gravity="center"
+                android:text="按数量购买"
+                android:textColor="@color/btn_normal"
+                android:textSize="@dimen/font_small" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/layout_my_info"
+            android:focusable="true"
+            android:focusableInTouchMode="true">
+
+            <EditText
+                android:id="@+id/etCount"
+                style="@style/edittext_normal"
+                android:layout_height="@dimen/dp_40"
+                android:layout_weight="1"
+                android:background="@drawable/shape_grey_sk"
+                android:gravity="center"
+                android:hint=""
+                android:inputType="numberDecimal"
+                android:minWidth="100dp"
+                android:paddingLeft="16dp"
+                android:paddingRight="1dp"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tvCoinName"
+                style="@style/textview_tag"
+                android:layout_marginLeft="@dimen/dp_6"
+                android:layout_marginRight="@dimen/dp_6"
+                android:gravity="center"
+                android:minWidth="50dp"
+                android:text="CNY"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/tvBuy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ripple_btn_global_option_no_corner_selector"
+                android:gravity="center"
+                android:minWidth="50dp"
+                android:paddingBottom="@dimen/dp_6"
+                android:paddingLeft="@dimen/dp_10"
+                android:paddingRight="@dimen/dp_10"
+                android:paddingTop="@dimen/dp_6"
+                android:text="购买"
+                android:textColor="@color/white"
+                android:textSize="@dimen/font_small" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+</RelativeLayout>

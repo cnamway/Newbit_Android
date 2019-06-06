@@ -12,6 +12,9 @@ import java.util.Locale;
  */
 
 public class DateUtils {
+
+    public static final String DATE_FORMAT_1 = "yyyy-MM-dd HH:mm:ss";
+
     /**
      * 将时间戳转化成固定格式（默认 yyyy-MM-dd HH:mm:ss 当前时间 ）
      */

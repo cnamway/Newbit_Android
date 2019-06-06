@@ -2,7 +2,7 @@ package com.spark.newbitrade.activity.mychart;
 
 import android.text.TextUtils;
 
-import com.github.fujianlian.klinechart.KLineEntity;
+//import com.github.fujianlian.klinechart.KLineEntity;
 
 import org.json.JSONArray;
 
@@ -41,7 +41,7 @@ public class DataParse  {
         }
         return beans;
     }
-    public static ArrayList<com.github.fujianlian.klinechart.KLineEntity> getAll(JSONArray obj,int currentSymType) {
+    /*public static ArrayList<com.github.fujianlian.klinechart.KLineEntity> getAll(JSONArray obj,int currentSymType) {
         ArrayList<KLineBean> kLineBeans = DataParse.parseKLine(obj, currentSymType);
         if (kLineBeans != null && kLineBeans.size() > 0) {
             ArrayList<com.github.fujianlian.klinechart.KLineEntity> datas = new ArrayList<>();
@@ -69,7 +69,7 @@ public class DataParse  {
         lineEntity.Low = kBean.getLowestPrice();
         lineEntity.Volume = kBean.getVolume();
         return lineEntity;
-    }
+    }*/
     /**
      * 将时间戳转化成固定格式（默认 yyyy-MM-dd HH:mm:ss 当前时间 ）
      */

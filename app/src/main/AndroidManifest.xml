@@ -44,10 +44,6 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.spark.newbitrade.activity.kline.KlineActivity"
-            android:configChanges="orientation|screenSize"
-            android:screenOrientation="portrait" />
-        <activity
             android:name="com.spark.newbitrade.activity.main.MainActivity"
             android:configChanges="orientation|screenSize"
             android:screenOrientation="portrait" />

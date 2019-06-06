@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.github.tifezh.kchartlib.chart.KChartView
+    <!--<com.github.tifezh.kchartlib.chart.KChartView
         android:id="@+id/kchart_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -49,6 +49,6 @@
         android:id="@+id/minuteChartView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="gone" />
+        android:visibility="gone" />-->
 
 </RelativeLayout>

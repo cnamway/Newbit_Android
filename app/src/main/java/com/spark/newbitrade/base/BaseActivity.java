@@ -54,6 +54,7 @@ import butterknife.Unbinder;
 
 import static com.spark.newbitrade.factory.HttpUrls.TYPE_AC;
 import static com.spark.newbitrade.factory.HttpUrls.TYPE_OTC;
+import static com.spark.newbitrade.factory.HttpUrls.TYPE_OTC_SYSTEM;
 import static com.spark.newbitrade.factory.HttpUrls.TYPE_UC;
 
 public abstract class BaseActivity extends AppCompatActivity implements BaseContract.BaseView {
@@ -415,7 +416,9 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseCont
             if (httpErrorEntity.getCode() == GlobalConstant.LOGIN_ERROR) {
                 if (StringUtils.isNotEmpty(httpErrorEntity.getUrl())) {
                     LogUtils.e("HttpErrorEntity===" + httpErrorEntity.getCode() + ",httpErrorEntity.getUrl()==" + httpErrorEntity.getUrl());
-                    if (httpErrorEntity.getUrl().contains(TYPE_OTC)) {
+                    if (httpErrorEntity.getUrl().contains(TYPE_OTC_SYSTEM)) {
+                        EventBus.getDefault().post(new CheckLoginEvent(TYPE_OTC_SYSTEM));
+                    } else if (httpErrorEntity.getUrl().contains(TYPE_OTC)) {
                         EventBus.getDefault().post(new CheckLoginEvent(TYPE_OTC));
                     } else if (httpErrorEntity.getUrl().contains(TYPE_UC)) {
                         EventBus.getDefault().post(new CheckLoginEvent(TYPE_UC));
