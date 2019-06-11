@@ -1,6 +1,7 @@
 package com.spark.newbitrade.activity.forgot_pwd;
 
 
+import com.spark.newbitrade.base.BaseContract;
 import com.spark.newbitrade.base.Contract;
 
 import org.json.JSONObject;
@@ -12,29 +13,29 @@ import java.util.HashMap;
  */
 
 public interface ForgotPwdContract {
-    interface View extends Contract.BaseView<Presenter> {
-        void forgotCodeSuccess(String obj);
-
-        void forgotCodeFail(Integer code, String toastMessage);
+    interface View extends BaseContract.BaseView {
+        void getPhoneCodeSuccess(String obj);
 
         void captchSuccess(JSONObject obj);
 
-        void captchFail(Integer code, String toastMessage);
+        void updateForgetSuccess(String obj);
 
-        void doForgetSuccess(String obj);
+        void codeSuccess(String obj);
 
-        void doForgetFail(Integer code, String toastMessage);
-
-
+        void checkPhoneCodeSuccess(String response);
     }
 
-    interface Presenter extends Contract.BasePresenter {
+    interface Presenter extends BaseContract.BasePresenter {
 
-        void forgotCode(String url, HashMap<String, String> params);
+        void getPhoneCode(String phone);
 
         void captch();
 
-        void doForget(HashMap<String, String> params);
+        void getPhoneCode(String phone, String check, String cid);
+
+        void checkPhoneCode(String code);
+
+        void updateForget(String mobilePhone, String newPassword);
 
     }
 

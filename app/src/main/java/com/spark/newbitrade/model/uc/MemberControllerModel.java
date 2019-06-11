@@ -6,6 +6,7 @@ import com.google.gson.Gson;
 import com.spark.library.uc.api.MemberControllerApi;
 import com.spark.library.uc.model.MessageResult;
 import com.spark.library.uc.model.MessageResultMemberVo;
+import com.spark.library.uc.model.ResetLoginPasswordDto;
 import com.spark.library.uc.model.TradePasswordSetDto;
 import com.spark.library.uc.model.UpdateTradePasswordDto;
 import com.spark.newbitrade.callback.ResponseCallBack;
@@ -106,6 +107,40 @@ public class MemberControllerModel {
             @Override
             public void run() {
                 memberControllerApi.setTradePasswordUsingPOST(tradePasswordSetDto, new Response.Listener<MessageResult>() {
+                    @Override
+                    public void onResponse(MessageResult response) {
+                        LogUtils.i("response==" + response.toString());
+                        int code = response.getCode();
+                        if (code == SUCCESS_CODE) {
+                            if (successListener != null)
+                                successListener.onResponse(response.getMessage());
+                        } else {
+                            if (errorListener != null)
+                                errorListener.onErrorResponse(new HttpErrorEntity(response.getCode(), response.getMessage(), response.getUrl(), response.getCid()));
+                        }
+                    }
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        if (errorListener != null)
+                            errorListener.onErrorResponse(error);
+                    }
+                });
+            }
+        }).start();
+    }
+
+    /**
+     * 忘记密码
+     */
+    public void doForget(String phone, String password, final ResponseCallBack.SuccessListener<String> successListener, final ResponseCallBack.ErrorListener errorListener) {
+        final ResetLoginPasswordDto resetLoginPasswordDto = new ResetLoginPasswordDto();
+        resetLoginPasswordDto.setMobilePhone(phone);
+        resetLoginPasswordDto.setNewPassword(password);
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                memberControllerApi.resetLoginPasswordUsingPOST(resetLoginPasswordDto, new Response.Listener<MessageResult>() {
                     @Override
                     public void onResponse(MessageResult response) {
                         LogUtils.i("response==" + response.toString());

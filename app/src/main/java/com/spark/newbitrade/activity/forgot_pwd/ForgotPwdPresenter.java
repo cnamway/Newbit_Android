@@ -1,8 +1,14 @@
 package com.spark.newbitrade.activity.forgot_pwd;
 
 
+import com.android.volley.VolleyError;
+import com.spark.newbitrade.callback.ResponseCallBack;
 import com.spark.newbitrade.data.DataSource;
+import com.spark.newbitrade.entity.HttpErrorEntity;
 import com.spark.newbitrade.factory.UrlFactory;
+import com.spark.newbitrade.model.login.CasLoginModel;
+import com.spark.newbitrade.model.uc.CaptchaGetControllerModel;
+import com.spark.newbitrade.model.uc.MemberControllerModel;
 import com.spark.newbitrade.utils.GlobalConstant;
 
 import org.json.JSONException;
@@ -17,88 +23,166 @@ import static com.spark.newbitrade.utils.GlobalConstant.JSON_ERROR;
  */
 
 public class ForgotPwdPresenter implements ForgotPwdContract.Presenter {
-    private final DataSource dataRepository;
-    private final ForgotPwdContract.View view;
+    private ForgotPwdContract.View view;
+    private CaptchaGetControllerModel captchaGetControllerModel;
+    private MemberControllerModel memberControllerModel;
+    private CasLoginModel casLoginModel;
 
-    public ForgotPwdPresenter(DataSource dataRepository, ForgotPwdContract.View view) {
-        this.dataRepository = dataRepository;
+    public ForgotPwdPresenter(ForgotPwdContract.View view) {
         this.view = view;
-        view.setPresenter(this);
+        captchaGetControllerModel = new CaptchaGetControllerModel();
+        memberControllerModel = new MemberControllerModel();
+        casLoginModel = new CasLoginModel();
     }
 
     @Override
-    public void forgotCode(String url, HashMap<String, String> params) {
-        dataRepository.doStringPost(url, params, new DataSource.DataCallback() {
+    public void updateForget(String phone, String password) {
+        showLoading();
+        memberControllerModel.doForget(phone, password, new ResponseCallBack.SuccessListener<String>() {
             @Override
-            public void onDataLoaded(Object obj) {
-                String response = (String) obj;
-                try {
-                    JSONObject object = new JSONObject(response);
-                    if (object.optInt("code") == GlobalConstant.SUCCESS_CODE) {
-                        view.forgotCodeSuccess(object.optString("message"));
-                    } else {
-                        view.forgotCodeFail(object.getInt("code"), object.optString("message"));
-                    }
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                    view.forgotCodeFail(JSON_ERROR, null);
-                }
+            public void onResponse(String response) {
+                hideLoading();
+                if (view != null)
+                    view.updateForgetSuccess(response);
+            }
+        }, new ResponseCallBack.ErrorListener() {
+            @Override
+            public void onErrorResponse(HttpErrorEntity httpErrorEntity) {
+                hideLoading();
+                if (view != null)
+                    view.dealError(httpErrorEntity);
             }
 
             @Override
-            public void onDataNotAvailable(Integer code, String toastMessage) {
-                view.forgotCodeFail(code, toastMessage);
+            public void onErrorResponse(VolleyError volleyError) {
+                hideLoading();
+                if (view != null)
+                    view.dealError(volleyError);
             }
         });
     }
 
     @Override
     public void captch() {
-        view.displayLoadingPopup();
-        dataRepository.doStringPost(UrlFactory.getCaptchaUrl(), new DataSource.DataCallback() {
+        showLoading();
+        captchaGetControllerModel.doCaptch(new ResponseCallBack.SuccessListener<JSONObject>() {
             @Override
-            public void onDataLoaded(Object obj) {
-                view.hideLoadingPopup();
-                String response = (String) obj;
-                try {
-                    JSONObject object = new JSONObject(response);
-                    view.captchSuccess((JSONObject) object);
-                } catch (Exception e) {
-                    view.captchFail(JSON_ERROR, null);
-                }
+            public void onResponse(JSONObject response) {
+                hideLoading();
+                if (view != null)
+                    view.captchSuccess(response);
+            }
+        }, new ResponseCallBack.ErrorListener() {
+            @Override
+            public void onErrorResponse(HttpErrorEntity httpErrorEntity) {
+                hideLoading();
+                if (view != null)
+                    view.dealError(httpErrorEntity);
             }
 
             @Override
-            public void onDataNotAvailable(Integer code, String toastMessage) {
-                view.hideLoadingPopup();
-                view.captchFail(code, toastMessage);
+            public void onErrorResponse(VolleyError volleyError) {
+                hideLoading();
+                if (view != null)
+                    view.dealError(volleyError);
             }
         });
     }
 
     @Override
-    public void doForget(HashMap<String, String> params) {
-        dataRepository.doStringPost(UrlFactory.getForgotPwdUrl(), params, new DataSource.DataCallback() {
+    public void getPhoneCode(String phone) {
+        captchaGetControllerModel.getCodeByPhone(phone, new ResponseCallBack.SuccessListener<String>() {
             @Override
-            public void onDataLoaded(Object obj) {
-                String response = (String) obj;
-                try {
-                    JSONObject object = new JSONObject(response);
-                    if (object.optInt("code") == GlobalConstant.SUCCESS_CODE) {
-                        view.doForgetSuccess(object.optString("message"));
-                    } else {
-                        view.doForgetFail(object.getInt("code"), object.optString("message"));
-                    }
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                    view.doForgetFail(JSON_ERROR, null);
-                }
+            public void onResponse(String response) {
+                hideLoading();
+                if (view != null)
+                    view.getPhoneCodeSuccess(response);
+            }
+        }, new ResponseCallBack.ErrorListener() {
+            @Override
+            public void onErrorResponse(HttpErrorEntity httpErrorEntity) {
+                hideLoading();
+                if (view != null)
+                    view.dealError(httpErrorEntity);
             }
 
             @Override
-            public void onDataNotAvailable(Integer code, String toastMessage) {
-                view.doForgetFail(code, toastMessage);
+            public void onErrorResponse(VolleyError volleyError) {
+                hideLoading();
+                if (view != null)
+                    view.dealError(volleyError);
             }
         });
+    }
+
+    @Override
+    public void getPhoneCode(String phone, String check, String cid) {
+        showLoading();
+        captchaGetControllerModel.getCodeByPhone(phone, check, cid, new ResponseCallBack.SuccessListener<String>() {
+            @Override
+            public void onResponse(String response) {
+                hideLoading();
+                if (view != null)
+                    view.codeSuccess(response);
+            }
+        }, new ResponseCallBack.ErrorListener() {
+            @Override
+            public void onErrorResponse(HttpErrorEntity httpErrorEntity) {
+                hideLoading();
+                if (view != null)
+                    view.dealError(httpErrorEntity);
+            }
+
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+                hideLoading();
+                if (view != null)
+                    view.dealError(volleyError);
+            }
+        });
+    }
+
+    @Override
+    public void checkPhoneCode(String code) {
+        showLoading();
+        casLoginModel.phoneCodeCheck(code, new ResponseCallBack.SuccessListener<String>() {
+            @Override
+            public void onResponse(String response) {
+                hideLoading();
+                if (view != null)
+                    view.checkPhoneCodeSuccess(response.toString());
+            }
+        }, new ResponseCallBack.ErrorListener() {
+            @Override
+            public void onErrorResponse(HttpErrorEntity httpErrorEntity) {
+                hideLoading();
+                if (view != null)
+                    view.dealError(httpErrorEntity);
+            }
+
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+                hideLoading();
+                if (view != null)
+                    view.dealError(volleyError);
+            }
+        });
+    }
+
+    @Override
+    public void showLoading() {
+        if (view != null)
+            view.showLoading();
+    }
+
+    @Override
+    public void hideLoading() {
+        if (view != null)
+            view.hideLoading();
+    }
+
+    @Override
+    public void destory() {
+        view = null;
     }
 }

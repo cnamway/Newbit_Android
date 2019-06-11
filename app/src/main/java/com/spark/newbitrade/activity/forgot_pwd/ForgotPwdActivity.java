@@ -19,6 +19,8 @@ import com.spark.newbitrade.activity.login.LoginActivity;
 import com.spark.newbitrade.base.BaseActivity;
 import com.spark.newbitrade.entity.Captcha;
 import com.spark.newbitrade.entity.Country;
+import com.spark.newbitrade.entity.HttpErrorEntity;
+import com.spark.newbitrade.factory.HttpUrls;
 import com.spark.newbitrade.factory.UrlFactory;
 import com.spark.newbitrade.utils.CommonUtils;
 import com.spark.newbitrade.utils.NetCodeUtils;
@@ -34,6 +36,9 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import config.Injection;
+
+import static com.spark.newbitrade.utils.GlobalConstant.CAPTCH;
+import static com.spark.newbitrade.utils.GlobalConstant.CAPTCH2;
 
 /**
  * 忘记密码
@@ -63,16 +68,11 @@ public class ForgotPwdActivity extends BaseActivity implements ForgotPwdContract
     LinearLayout llGoSign;
 
     private TimeCount timeCount;
-    private ForgotPwdContract.Presenter presenter;
+    private ForgotPwdPresenter presenter;
     private GT3GeetestUtilsBind gt3GeetestUtils;
     boolean isEmail = false;
     private String strAreaCode = "86";
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        gt3GeetestUtils.cancelUtils();
-    }
+    private String cid;
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -88,6 +88,16 @@ public class ForgotPwdActivity extends BaseActivity implements ForgotPwdContract
     }
 
     @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (gt3GeetestUtils != null) {
+            gt3GeetestUtils.cancelUtils();
+            gt3GeetestUtils = null;
+        }
+        presenter.destory();
+    }
+
+    @Override
     protected int getActivityLayoutId() {
         return R.layout.activity_forgot_pwd;
     }
@@ -100,14 +110,10 @@ public class ForgotPwdActivity extends BaseActivity implements ForgotPwdContract
     @Override
     protected void initData() {
         super.initData();
+        presenter = new ForgotPwdPresenter(this);
         timeCount = new TimeCount(60000, 1000, tvGetCode);
         gt3GeetestUtils = new GT3GeetestUtilsBind(activity);
-        new ForgotPwdPresenter(Injection.provideTasksRepository(activity), this);
         tvTitle.setVisibility(View.INVISIBLE);
-        //setTitle(getString(R.string.phone_retrieve));
-//        tvGoto.setVisibility(View.VISIBLE);
-//        tvGoto.setText(getString(R.string.email_retrieve));
-
     }
 
     @Override
@@ -167,17 +173,8 @@ public class ForgotPwdActivity extends BaseActivity implements ForgotPwdContract
         } else if (!password.equals(passwordRe)) {
             ToastUtils.showToast(R.string.pwd_diff);
         } else {
-            HashMap<String, String> map = new HashMap<>();
-            map.put("password", password);
-            map.put("code", code);
-            if (isEmail) {
-                map.put("account", email);
-                map.put("mode", "1");
-            } else {
-                map.put("account", phone);
-                map.put("mode", "0");
-            }
-            presenter.doForget(map);
+            //第一步 校验短信验证码
+            presenter.checkPhoneCode(code);
         }
     }
 
@@ -185,20 +182,11 @@ public class ForgotPwdActivity extends BaseActivity implements ForgotPwdContract
      * 获取验证码
      */
     private void getCode() {
-        if (isEmail) {
-            String email = etEmail.getText().toString().trim();
-            if (StringUtils.isEmpty(email) || !StringUtils.isEmail(email)) {
-                ToastUtils.showToast(R.string.email_diff);
-            } else {
-                presenter.captch();
-            }
+        String phone = etPhone.getText().toString().trim();
+        if (StringUtils.isEmpty(phone)) {
+            ToastUtils.showToast(R.string.phone_not_correct);
         } else {
-            String phone = etPhone.getText().toString().trim();
-            if (StringUtils.isEmpty(phone) || phone.length() < 11) {
-                ToastUtils.showToast(R.string.phone_not_correct);
-            } else {
-                presenter.captch();
-            }
+            presenter.getPhoneCode(strAreaCode + phone);
         }
     }
 
@@ -211,90 +199,6 @@ public class ForgotPwdActivity extends BaseActivity implements ForgotPwdContract
         etPassword.addTextChangedListener(new MyTextWatcher());
         etRenewPassword.addTextChangedListener(new MyTextWatcher());
     }
-
-    @Override
-    public void setPresenter(ForgotPwdContract.Presenter presenter) {
-        this.presenter = presenter;
-    }
-
-    @Override
-    public void forgotCodeSuccess(String obj) {
-        try {
-            gt3GeetestUtils.gt3TestFinish();
-            timeCount.start();
-            tvGetCode.setEnabled(false);
-            ToastUtils.showToast(obj);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    @Override
-    public void forgotCodeFail(Integer code, String toastMessage) {
-        NetCodeUtils.checkedErrorCode((BaseActivity) activity, code, toastMessage);
-    }
-
-    @Override
-    public void captchSuccess(JSONObject obj) {
-        gt3GeetestUtils.gtSetApi1Json(obj);
-        gt3GeetestUtils.getGeetest(activity, null, null, null, new GT3GeetestBindListener() {
-            @Override
-            public boolean gt3SetIsCustom() {
-                return true;
-            }
-
-            @Override
-            public void gt3GetDialogResult(boolean status, String result) {
-                if (status) {
-                    Captcha captcha = new Gson().fromJson(result, Captcha.class);
-                    if (captcha == null) return;
-                    String geetest_challenge = captcha.getGeetest_challenge();
-                    String geetest_validate = captcha.getGeetest_validate();
-                    String geetest_seccode = captcha.getGeetest_seccode();
-                    HashMap<String, String> map = new HashMap<>();
-                    map.put("geetest_challenge", geetest_challenge);
-                    map.put("geetest_validate", geetest_validate);
-                    map.put("geetest_seccode", geetest_seccode);
-                    if (isEmail) {
-                        String email = etEmail.getText().toString().trim();
-                        map.put("email", email);
-                        presenter.forgotCode(UrlFactory.getEmailForgotPwdCodeUrl(), map);
-                    } else {
-                        String phone = etPhone.getText().toString().trim();
-                        map.put("type", "2");
-                        map.put("code", strAreaCode);
-                        map.put("phone", phone);
-                        presenter.forgotCode(UrlFactory.getCodeUrl(), map);
-                    }
-                }
-            }
-        });
-        gt3GeetestUtils.setDialogTouch(true);
-    }
-
-    @Override
-    public void captchFail(Integer code, String toastMessage) {
-
-    }
-
-    @Override
-    public void doForgetSuccess(String obj) {
-        ToastUtils.showToast(obj);
-        finish();
-    }
-
-    @Override
-    public void doForgetFail(Integer code, String toastMessage) {
-        NetCodeUtils.checkedErrorCode((BaseActivity) activity, code, toastMessage);
-    }
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
-        ButterKnife.bind(this);
-    }
-
 
     private class MyTextWatcher implements TextWatcher {
 
@@ -322,6 +226,95 @@ public class ForgotPwdActivity extends BaseActivity implements ForgotPwdContract
                 tvConfirm.setBackgroundResource(R.drawable.ripple_btn_global_option_selector);
                 tvConfirm.setEnabled(true);
             }
+        }
+    }
+
+    @Override
+    public void checkPhoneCodeSuccess(String response) {
+        //第二步 修改登录密码
+        String phone = StringUtils.getText(etPhone);
+        String password = StringUtils.getText(etPassword);
+        presenter.updateForget(strAreaCode + phone, password);
+    }
+
+    @Override
+    public void getPhoneCodeSuccess(String obj) {
+        if (gt3GeetestUtils != null) {
+            gt3GeetestUtils.gt3TestFinish();
+            gt3GeetestUtils = null;
+        }
+        ToastUtils.showToast(activity, obj);
+        if (!isEmail) {
+            timeCount.start();
+            tvGetCode.setEnabled(false);
+        }
+    }
+
+    @Override
+    public void captchSuccess(JSONObject obj) {
+        gt3GeetestUtils.gtSetApi1Json(obj);
+        gt3GeetestUtils.getGeetest(activity, HttpUrls.UC_HOST + "/captcha/mm/gee", null, null, new GT3GeetestBindListener() {
+            @Override
+            public boolean gt3SetIsCustom() {
+                return true;
+            }
+
+            @Override
+            public void gt3GetDialogResult(boolean status, String result) {
+                if (status) {
+                    Captcha captcha = new Gson().fromJson(result, Captcha.class);
+                    String checkData = "gee::" + captcha.getGeetest_challenge() + "$" + captcha.getGeetest_validate() + "$" + captcha.getGeetest_seccode();
+                    presenter.getPhoneCode(strAreaCode + StringUtils.getText(etPhone), checkData, cid);
+                }
+            }
+        });
+        gt3GeetestUtils.setDialogTouch(true);
+    }
+
+    @Override
+    public void updateForgetSuccess(String obj) {
+        ToastUtils.showToast(activity, obj);
+        Intent intent = new Intent();
+        Bundle bundle = new Bundle();
+        if (isEmail) {
+            bundle.putString("account", StringUtils.getText(etEmail));
+        } else {
+            bundle.putString("account", StringUtils.getText(etPhone));
+        }
+        intent.putExtras(bundle);
+        setResult(RESULT_OK, intent);
+        finish();
+    }
+
+    @Override
+    public void dealError(HttpErrorEntity httpErrorEntity) {
+        if (gt3GeetestUtils != null) {
+            gt3GeetestUtils.gt3TestClose();
+            gt3GeetestUtils = null;
+        }
+        int code = httpErrorEntity.getCode();
+        String msg = httpErrorEntity.getMessage();
+        if (code == CAPTCH && StringUtils.isNotEmpty(msg) && msg.contains("captcha")) {
+            cid = httpErrorEntity.getCid();
+            gt3GeetestUtils = new GT3GeetestUtilsBind(activity);
+            presenter.captch();
+        } else if (code == CAPTCH2 && StringUtils.isNotEmpty(msg) && msg.contains("Captcha")) {//解决验证码失效问题
+            ToastUtils.showToast(getResources().getString(R.string.str_code_error));
+        } else {
+            ToastUtils.showToast(activity, httpErrorEntity.getMessage());
+        }
+    }
+
+    @Override
+    public void codeSuccess(String obj) {
+        if (gt3GeetestUtils != null) {
+            gt3GeetestUtils.gt3TestFinish();
+            gt3GeetestUtils = null;
+        }
+        ToastUtils.showToast(activity, obj);
+        if (!isEmail) {
+            timeCount.start();
+            tvGetCode.setEnabled(false);
         }
     }
 }
