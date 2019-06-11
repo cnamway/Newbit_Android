@@ -66,7 +66,7 @@ public class MyFragment extends BaseTransFragment {
     protected void initImmersionBar() {
         super.initImmersionBar();
         if (!isSetTitle) {
-            immersionBar.setTitleBar(getActivity(), llMyinfo);
+            immersionBar.setTitleBar(getActivity(), llTitle);
             isSetTitle = true;
         }
     }

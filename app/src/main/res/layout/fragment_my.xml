@@ -5,6 +5,7 @@
     android:background="@color/main_bg">
 
     <LinearLayout
+        android:id="@+id/llTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
@@ -14,14 +15,13 @@
             android:layout_height="wrap_content"
             android:background="#3167AF"
             android:orientation="vertical"
-            android:paddingTop="30dp">
+            android:padding="20dp">
 
             <LinearLayout
                 android:id="@+id/llMessage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="right"
-                android:layout_marginRight="@dimen/dp_20"
                 android:gravity="center_vertical">
 
                 <TextView
@@ -44,10 +44,7 @@
                 android:id="@+id/llMyinfo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:paddingBottom="20dp"
-                android:paddingLeft="20dp"
-                android:paddingRight="20dp">
+                android:gravity="center_vertical">
 
                 <com.spark.newbitrade.ui.CircleImageView
                     android:id="@+id/ivHeader"

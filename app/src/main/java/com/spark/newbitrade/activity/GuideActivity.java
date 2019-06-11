@@ -171,12 +171,12 @@ public class GuideActivity extends BaseActivity {
      */
     private void goToMain() {
         SharedPreferenceInstance.getInstance().setParam(activity, SP_KEY_ISFIRSTUSE, false);
-        User user = MyApplication.getApp().getCurrentUser();
-        if (user.isLogin()) {
+//        User user = MyApplication.getApp().getCurrentUser();
+//        if (user.isLogin()) {
             showActivity(MainActivity.class, null);
-        } else {
-            showActivity(LoginActivity.class, null);
-        }
+//        } else {
+//            showActivity(LoginActivity.class, null);
+//        }
         finish();
     }
 

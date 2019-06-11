@@ -170,17 +170,17 @@ public class MainActivity extends BaseTransFragmentActivity implements MainContr
             find();
         }
         if (MyApplication.app.isLogin()) {
+            if (!isCheckVersion) {
+                allowUnKnowSrc(activity);
+                isCheckVersion = true;
+                checkPermission();
+            }
             EventBus.getDefault().post(new SocketMessage(GlobalConstant.CODE_CHAT, ISocket.CMD.SUBSCRIBE_GROUP_CHAT, buildGetBodyJson().toString().getBytes()));
         }
         hasNew = SharedPreferenceInstance.getInstance().getHasNew();
         SharedPreferenceInstance.getInstance().saveHasNew(false);
         if (!MyApplication.getApp().isLogin() && currencyListAll != null && currencyListAll.size() != 0) { // 退出登录后 刷新展示未登录状态的数据
             notLoginCurrencies();
-        }
-        if (!isCheckVersion) {
-            allowUnKnowSrc(activity);
-            isCheckVersion = true;
-            checkPermission();
         }
 
     }

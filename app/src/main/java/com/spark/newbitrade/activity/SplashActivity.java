@@ -83,12 +83,12 @@ public class SplashActivity extends BaseActivity {
                     if (isFirst) {
                         showActivity(GuideActivity.class, null);
                     } else {
-                        boolean isLogin = MyApplication.getApp().isLogin();
-                        if (isLogin) {
+//                        boolean isLogin = MyApplication.getApp().isLogin();
+//                        if (isLogin) {
                             showActivity(MainActivity.class, null);
-                        } else {
-                            showActivity(LoginActivity.class, null);
-                        }
+//                        } else {
+//                            showActivity(LoginActivity.class, null);
+//                        }
                     }
                     finish();
                 }

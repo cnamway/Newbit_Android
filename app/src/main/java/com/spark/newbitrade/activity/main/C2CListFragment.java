@@ -416,21 +416,26 @@ public class C2CListFragment extends BaseLazyFragment implements C2CListContract
                 if (StringUtils.isEmpty(count)) {
                     ToastUtils.showToast("请输入购买数量或金额");
                 } else {
-                    TradeDto tradeDto = new TradeDto();
-                    if (buyType == 1) {//1按数量购买  2按金额购买
-                        tradeDto.setTradeType(0);
-                        tradeDto.setAmount(new BigDecimal(count));
-                        tradeDto.setCoinName(coinName);
-                        tradeDto.setCurrency(GlobalConstant.CNY);
-                        tradeDto.setMoney(null);
+                    if (MyApplication.app.isLogin()) {
+                        TradeDto tradeDto = new TradeDto();
+                        if (buyType == 1) {//1按数量购买  2按金额购买
+                            tradeDto.setTradeType(0);
+                            tradeDto.setAmount(new BigDecimal(count));
+                            tradeDto.setCoinName(coinName);
+                            tradeDto.setCurrency(GlobalConstant.CNY);
+                            tradeDto.setMoney(null);
+                        } else {
+                            tradeDto.setTradeType(1);
+                            tradeDto.setAmount(null);
+                            tradeDto.setCoinName(coinName);
+                            tradeDto.setCurrency(GlobalConstant.CNY);
+                            tradeDto.setMoney(new BigDecimal(count));
+                        }
+                        presenter.createOrder(tradeDto);
                     } else {
-                        tradeDto.setTradeType(1);
-                        tradeDto.setAmount(null);
-                        tradeDto.setCoinName(coinName);
-                        tradeDto.setCurrency(GlobalConstant.CNY);
-                        tradeDto.setMoney(new BigDecimal(count));
+                        ToastUtils.showToast(getString(R.string.text_login_first));
+                        showActivity(LoginActivity.class, null);
                     }
-                    presenter.createOrder(tradeDto);
                 }
             }
         });
