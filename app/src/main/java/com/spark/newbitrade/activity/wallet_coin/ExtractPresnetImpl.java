@@ -1,14 +1,12 @@
 package com.spark.newbitrade.activity.wallet_coin;
 
-
 import com.android.volley.VolleyError;
 import com.spark.newbitrade.callback.ResponseCallBack;
 import com.spark.newbitrade.entity.ExtractInfo;
 import com.spark.newbitrade.entity.HttpErrorEntity;
 import com.spark.newbitrade.model.ac.AssetControllerModel;
+import com.spark.newbitrade.model.ac.CaptchaGetControllerModel;
 import com.spark.newbitrade.model.login.CasLoginModel;
-import com.spark.newbitrade.model.uc.CaptchaGetControllerModel;
-import com.spark.newbitrade.model.uc.MemberControllerModel;
 
 import org.json.JSONObject;
 
@@ -23,14 +21,12 @@ public class ExtractPresnetImpl implements ExtractContract.ExtractPresenter {
     private ExtractContract.ExtractView extractView;
     private AssetControllerModel assetControllerModel;
     private CaptchaGetControllerModel captchaGetControllerModel;
-    private MemberControllerModel memberControllerModel;
     private CasLoginModel casLoginModel;
 
     public ExtractPresnetImpl(ExtractContract.ExtractView extractView) {
         this.extractView = extractView;
         assetControllerModel = new AssetControllerModel();
         captchaGetControllerModel = new CaptchaGetControllerModel();
-        memberControllerModel = new MemberControllerModel();
         casLoginModel = new CasLoginModel();
     }
 

@@ -1,9 +1,9 @@
-package com.spark.newbitrade.model.uc;
+package com.spark.newbitrade.model.ac;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.spark.library.uc.api.CaptchaGetControllerApi;
-import com.spark.library.uc.model.MessageResult;
+import com.spark.library.ac.api.CaptchaGetControllerApi;
+import com.spark.library.ac.model.MessageResult;
 import com.spark.newbitrade.callback.ResponseCallBack;
 import com.spark.newbitrade.entity.HttpErrorEntity;
 import com.spark.newbitrade.factory.HttpUrls;
@@ -16,7 +16,7 @@ import static com.spark.newbitrade.utils.GlobalConstant.SUCCESS_CODE;
 
 
 /**
- * 校验-uc
+ * 校验-ac
  */
 
 public class CaptchaGetControllerModel {
@@ -24,7 +24,7 @@ public class CaptchaGetControllerModel {
 
     public CaptchaGetControllerModel() {
         captchaGetControllerApi = new CaptchaGetControllerApi();
-        captchaGetControllerApi.setBasePath(HttpUrls.UC_HOST);
+        captchaGetControllerApi.setBasePath(HttpUrls.AC_HOST);
     }
 
     /**
