@@ -112,8 +112,8 @@ public class BaseWalletDetailActivity extends BaseActivity implements BaseWallet
 
             if (wallet != null) {
                 tvCoinName.setText(wallet.getCoinId());
-                tvUse.setText("可用：" + MathUtils.subZeroAndDot(MathUtils.getRundNumber(Double.valueOf(new BigDecimal(wallet.getBalance()).toString()), 8, null)));
-                tvFrozon.setText("冻结：" + MathUtils.subZeroAndDot(MathUtils.getRundNumber(Double.valueOf(new BigDecimal(wallet.getFrozenBalance()).toString()), 8, null)));
+                tvUse.setText("可用\n" + MathUtils.subZeroAndDot(MathUtils.getRundNumber(Double.valueOf(new BigDecimal(wallet.getBalance()).toString()), 8, null)));
+                tvFrozon.setText("冻结\n" + MathUtils.subZeroAndDot(MathUtils.getRundNumber(Double.valueOf(new BigDecimal(wallet.getFrozenBalance()).toString()), 8, null)));
                 tvToalAmount.setText(MathUtils.subZeroAndDot(MathUtils.getRundNumber(Double.valueOf(new BigDecimal(wallet.getBalance() + wallet.getFrozenBalance()).toString()), 8, null)));
                 tvCNY.setText("≈" + MathUtils.subZeroAndDot(MathUtils.getRundNumber(Double.valueOf(new BigDecimal(wallet.getTotalLegalAssetBalance()).toString()), 2, null)) + " CNY");
             }

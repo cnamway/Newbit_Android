@@ -14,8 +14,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#315BAF"
-        android:paddingTop="@dimen/dp_20"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:paddingTop="@dimen/dp_20">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -46,10 +46,10 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:orientation="vertical"
-            android:paddingTop="10dp"
-            android:paddingRight="20dp"
+            android:paddingBottom="20dp"
             android:paddingLeft="20dp"
-            android:paddingBottom="20dp">
+            android:paddingRight="20dp"
+            android:paddingTop="10dp">
 
             <TextView
                 android:id="@+id/tvToalAmount"
@@ -79,7 +79,8 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="0"
+                    android:gravity="center"
+                    android:text=""
                     android:textColor="@color/font_wallet_str"
                     android:textSize="@dimen/font_small" />
 
@@ -88,8 +89,8 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:gravity="right"
-                    android:text="0"
+                    android:gravity="center"
+                    android:text=""
                     android:textColor="@color/font_wallet_str"
                     android:textSize="@dimen/font_small" />
 

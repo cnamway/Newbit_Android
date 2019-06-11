@@ -23,6 +23,7 @@ public interface StorePublishContract {
 
         void queryPayWayListSuccess(List<PayWaySetting> obj);
 
+        void updateAdvertiseSuccess(String obj);
     }
 
     interface Presenter extends BaseContract.BasePresenter {
@@ -32,7 +33,7 @@ public interface StorePublishContract {
 
         void queryPayWayList();
 
-
+        void updateAdvertise(AdvertiseDto advertiseDto, Long advertiseId);
     }
 
 

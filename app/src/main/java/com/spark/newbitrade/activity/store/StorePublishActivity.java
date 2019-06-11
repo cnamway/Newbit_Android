@@ -18,6 +18,7 @@ import com.spark.newbitrade.activity.aboutus.AboutUsPresenter;
 import com.spark.newbitrade.activity.feed.FeedbackActivity;
 import com.spark.newbitrade.adapter.SelectPayWayAdapter;
 import com.spark.newbitrade.base.BaseActivity;
+import com.spark.newbitrade.entity.Ads;
 import com.spark.newbitrade.entity.HttpErrorEntity;
 import com.spark.newbitrade.entity.PayWay;
 import com.spark.newbitrade.entity.PayWaySetting;
@@ -85,6 +86,7 @@ public class StorePublishActivity extends BaseActivity implements StorePublishCo
     private RecyclerView rvpayWay;
     private SelectPayWayAdapter payWayAdapter;
     private AlertDialog payWayDialog;
+    private Ads ads;
 
     @Override
     protected int getActivityLayoutId() {
@@ -95,7 +97,7 @@ public class StorePublishActivity extends BaseActivity implements StorePublishCo
     protected void initView() {
         super.initView();
         setSetTitleAndBack(false, true);
-        setTitle("发布OTC广告");
+
     }
 
     @Override
@@ -104,11 +106,26 @@ public class StorePublishActivity extends BaseActivity implements StorePublishCo
         presenter = new StorePublishPresenterImpl(this);
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
-            coinName = bundle.getString("coinName");
-            priceStr = bundle.getString("priceStr");
+            ads = (Ads) bundle.getSerializable("ads");
+            if (ads != null) {
+                setTitle("修改OTC广告");
 
-            tvCoinName.setText(coinName);
-            tvPrice.setText(priceStr);
+                coinName = ads.getCoinName();
+                priceStr = ads.getPrice() + "";
+
+                tvCoinName.setText(coinName);
+                tvPrice.setText(priceStr);
+                etPrice.setText(ads.getNumber() + "");
+                String payType = getSetPayByCode(ads.getPayMode());
+                tvPayWay.setText(payType);
+            } else {
+                setTitle("发布OTC广告");
+                coinName = bundle.getString("coinName");
+                priceStr = bundle.getString("priceStr");
+
+                tvCoinName.setText(coinName);
+                tvPrice.setText(priceStr);
+            }
         }
     }
 
@@ -213,6 +230,15 @@ public class StorePublishActivity extends BaseActivity implements StorePublishCo
     private void releaseOrEditAd() {
         String number = etPrice.getText().toString().trim();
         String pay = getPayByCode(tvPayWay.getText().toString());
+        if (coinInfo != null) {
+            if (Double.valueOf(number) > MathUtils.getDoudleByBigDecimal(coinInfo.getAdvMaxLimit())) {
+                etPrice.requestFocus();
+                return;
+            } else if (Double.valueOf(number) < MathUtils.getDoudleByBigDecimal(coinInfo.getAdvMinLimit())) {
+                etPrice.requestFocus();
+                return;
+            }
+        }
         if (StringUtils.isEmpty(coinName)) {
             ToastUtils.showToast(getString(R.string.str_prompt_coin_kind));
         } else if (StringUtils.isEmpty(priceStr)) {
@@ -224,10 +250,6 @@ public class StorePublishActivity extends BaseActivity implements StorePublishCo
             etPrice.requestFocus();
         } else if (Double.valueOf(number) == 0) {
             ToastUtils.showToast(getString(R.string.text_trade_amount_not_zero));
-            etPrice.requestFocus();
-        } else if (Double.valueOf(number) > MathUtils.getDoudleByBigDecimal(coinInfo.getAdvMaxLimit())) {
-            etPrice.requestFocus();
-        } else if (Double.valueOf(number) < MathUtils.getDoudleByBigDecimal(coinInfo.getAdvMinLimit())) {
             etPrice.requestFocus();
         } else if (StringUtils.isEmpty(pay)) {
             ToastUtils.showToast(getString(R.string.str_prompt_recieve_kind));
@@ -257,7 +279,12 @@ public class StorePublishActivity extends BaseActivity implements StorePublishCo
             /* 广告商家类型 0 普通 1 商家 */
             advertiseDto.setTradeType(1);
 
-            presenter.createAdvertise(advertiseDto);
+            if (ads == null) {
+                presenter.createAdvertise(advertiseDto);
+            } else {
+                presenter.updateAdvertise(advertiseDto, ads.getId());
+            }
+
         }
     }
 
@@ -283,6 +310,35 @@ public class StorePublishActivity extends BaseActivity implements StorePublishCo
                 stringBuffer = stringBuffer.append(getString(R.string.str_paypal)).append(",");
             }
             if (payway.contains(getString(R.string.str_other))) {
+                stringBuffer = stringBuffer.append(getString(R.string.str_other)).append(",");
+            }
+            return StringUtils.getRealString(stringBuffer.toString());
+        }
+        return payway;
+    }
+
+    /**
+     * 将返回的中文根据系统语言
+     *
+     * @param payway
+     * @return
+     */
+    private String getSetPayByCode(String payway) {
+        if (StringUtils.isNotEmpty(payway)) {
+            StringBuffer stringBuffer = new StringBuffer();
+            if (payway.contains(GlobalConstant.alipay)) {
+                stringBuffer = stringBuffer.append(getString(R.string.str_payway_ali)).append(",");
+            }
+            if (payway.contains(GlobalConstant.wechat)) {
+                stringBuffer = stringBuffer.append(getString(R.string.str_payway_wechat)).append(",");
+            }
+            if (payway.contains(GlobalConstant.card)) {
+                stringBuffer = stringBuffer.append(getString(R.string.str_payway_union)).append(",");
+            }
+            if (payway.contains(GlobalConstant.PAYPAL)) {
+                stringBuffer = stringBuffer.append(getString(R.string.str_paypal)).append(",");
+            }
+            if (payway.contains(GlobalConstant.other)) {
                 stringBuffer = stringBuffer.append(getString(R.string.str_other)).append(",");
             }
             return StringUtils.getRealString(stringBuffer.toString());
@@ -346,5 +402,14 @@ public class StorePublishActivity extends BaseActivity implements StorePublishCo
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onCheckLoginSuccessEvent(CheckLoginSuccessEvent response) {
         presenter.listMerchantAdvertiseCoin();
+    }
+
+    @Override
+    public void updateAdvertiseSuccess(String obj) {
+        if (StringUtils.isNotEmpty(obj)) {
+            ToastUtils.showToast(obj);
+        }
+        setResult(RESULT_OK);
+        finish();
     }
 }

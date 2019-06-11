@@ -73,6 +73,33 @@ public class StorePublishPresenterImpl implements StorePublishContract.Presenter
     }
 
     @Override
+    public void updateAdvertise(AdvertiseDto advertiseDto, Long advertiseId) {
+        advertiseSelfControllerModel.updateAdvertise(advertiseDto, advertiseId,
+                new ResponseCallBack.SuccessListener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        hideLoading();
+                        if (view != null)
+                            view.updateAdvertiseSuccess(response);
+                    }
+                }, new ResponseCallBack.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(HttpErrorEntity httpErrorEntity) {
+                        hideLoading();
+                        if (view != null)
+                            view.dealError(httpErrorEntity);
+                    }
+
+                    @Override
+                    public void onErrorResponse(VolleyError volleyError) {
+                        hideLoading();
+                        if (view != null)
+                            view.dealError(volleyError);
+                    }
+                });
+    }
+
+    @Override
     public void listMerchantAdvertiseCoin() {
         showLoading();
         advertiseSelfControllerModel.listMerchantAdvertiseCoin(new ResponseCallBack.SuccessListener<List<AuthMerchantApplyMarginType>>() {

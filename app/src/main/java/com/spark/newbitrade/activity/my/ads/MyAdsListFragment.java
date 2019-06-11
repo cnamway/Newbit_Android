@@ -16,6 +16,7 @@ import com.spark.newbitrade.activity.ads.AdsContract;
 import com.spark.newbitrade.activity.ads.AdsDialog;
 import com.spark.newbitrade.activity.ads.AdsPresenterImpl;
 import com.spark.newbitrade.activity.releaseAd.PubAdsActivity;
+import com.spark.newbitrade.activity.store.StorePublishActivity;
 import com.spark.newbitrade.adapter.AdsAdapter;
 import com.spark.newbitrade.base.BaseLazyFragment;
 import com.spark.newbitrade.dialog.PasswordDialog;
@@ -131,9 +132,15 @@ public class MyAdsListFragment extends BaseLazyFragment implements AdsContract.V
         adsDialog.getTvEdit().setOnClickListener(new View.OnClickListener() { // 修改
             @Override
             public void onClick(View view) {
-                Bundle bundle = new Bundle();
-                bundle.putSerializable("ads", ads);
-                showActivity(PubAdsActivity.class, bundle, RETURN_ADS);
+                if (tradeType == 0) {/* 广告商家类型 0 普通 1 商家 */
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("ads", ads);
+                    showActivity(PubAdsActivity.class, bundle, RETURN_ADS);
+                } else {
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("ads", ads);
+                    showActivity(StorePublishActivity.class, bundle, RETURN_ADS);
+                }
                 adsDialog.dismiss();
             }
         });
