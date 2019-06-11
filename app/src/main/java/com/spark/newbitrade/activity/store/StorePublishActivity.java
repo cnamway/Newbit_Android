@@ -22,6 +22,7 @@ import com.spark.newbitrade.entity.HttpErrorEntity;
 import com.spark.newbitrade.entity.PayWay;
 import com.spark.newbitrade.entity.PayWaySetting;
 import com.spark.newbitrade.entity.VisionEntity;
+import com.spark.newbitrade.event.CheckLoginSuccessEvent;
 import com.spark.newbitrade.ui.AppVersionDialog;
 import com.spark.newbitrade.utils.CommonUtils;
 import com.spark.newbitrade.utils.FileUtils;
@@ -40,6 +41,9 @@ import com.spark.library.otc.model.AuthMerchantApplyMarginType;
 import com.yanzhenjie.permission.Action;
 import com.yanzhenjie.permission.AndPermission;
 import com.yanzhenjie.permission.Permission;
+
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.io.File;
 import java.math.BigDecimal;
@@ -334,5 +338,13 @@ public class StorePublishActivity extends BaseActivity implements StorePublishCo
         } else {
             ToastUtils.showToast(getString(R.string.bind_account));
         }
+    }
+
+    /**
+     * check uc、ac、acp成功后，通知刷新界面
+     */
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onCheckLoginSuccessEvent(CheckLoginSuccessEvent response) {
+        presenter.listMerchantAdvertiseCoin();
     }
 }

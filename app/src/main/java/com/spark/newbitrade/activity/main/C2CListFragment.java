@@ -32,11 +32,14 @@ import com.spark.newbitrade.adapter.C2CListAdapter;
 import com.spark.newbitrade.base.BaseLazyFragment;
 import com.spark.newbitrade.entity.HttpErrorEntity;
 import com.spark.newbitrade.entity.MyAdvertiseShowVo;
+import com.spark.newbitrade.event.CheckLoginSuccessEvent;
 import com.spark.newbitrade.utils.GlobalConstant;
 import com.spark.newbitrade.utils.NetCodeUtils;
 import com.spark.newbitrade.utils.StringUtils;
 import com.spark.newbitrade.utils.ToastUtils;
 
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 import org.json.JSONObject;
 
 import java.math.BigDecimal;
@@ -452,5 +455,13 @@ public class C2CListFragment extends BaseLazyFragment implements C2CListContract
         }
     }
 
-
+    /**
+     * check uc、ac、acp成功后，通知刷新界面
+     */
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onCheckLoginSuccessEvent(CheckLoginSuccessEvent response) {
+        adapter.setEnableLoadMore(false);
+        pageNo = 1;
+        getC2cList(false);
+    }
 }

@@ -5,5 +5,5 @@ package com.spark.newbitrade.base;
  */
 
 public class BaseConstant {
-    public static final int MONEY_FORMAT = 4; // app金额格式化位数
+    public static final int MONEY_FORMAT = 8; // app金额格式化位数
 }

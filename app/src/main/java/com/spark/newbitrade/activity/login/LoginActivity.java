@@ -377,7 +377,7 @@ public class LoginActivity extends BaseActivity implements LoginContract.LoginVi
         final String username = StringUtils.getText(etUsername);
         if (mPhoneVertifyDialog == null) {
             mPhoneVertifyDialog = new PhoneVertifyDialog(this);
-            mPhoneVertifyDialog.withWidthScale(0.9f).withHeightScale(0.4f);
+            mPhoneVertifyDialog.withWidthScale(0.8f);
             mPhoneVertifyDialog.setClickListener(new PhoneVertifyDialog.ClickLister() {
                 @Override
                 public void onCancel() {

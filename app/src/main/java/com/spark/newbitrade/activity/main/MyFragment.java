@@ -20,8 +20,12 @@ import com.spark.newbitrade.activity.safe.SafeActivity;
 import com.spark.newbitrade.activity.setting.SettingActivity;
 import com.spark.newbitrade.base.BaseTransFragment;
 import com.spark.newbitrade.entity.User;
+import com.spark.newbitrade.event.CheckLoginSuccessEvent;
 import com.spark.newbitrade.ui.CircleImageView;
 import com.spark.newbitrade.utils.StringUtils;
+
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -180,5 +184,18 @@ public class MyFragment extends BaseTransFragment {
     @Override
     protected String getmTag() {
         return TAG;
+    }
+
+    /**
+     * check uc、ac、acp成功后，通知刷新界面
+     */
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onCheckLoginSuccessEvent(CheckLoginSuccessEvent response) {
+        if (MyApplication.getApp().isLogin()) {
+            user = MyApplication.getApp().getCurrentUser();
+            loginingViewText();
+        } else {
+            notLoginViewText();
+        }
     }
 }

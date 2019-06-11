@@ -10,8 +10,12 @@ import android.widget.TextView;
 import com.spark.newbitrade.R;
 import com.spark.newbitrade.activity.store.StorePublishActivity;
 import com.spark.newbitrade.base.BaseLazyFragment;
+import com.spark.newbitrade.event.CheckLoginSuccessEvent;
 import com.spark.newbitrade.utils.StringUtils;
 import com.spark.library.otc.model.MessageResult;
+
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -103,5 +107,13 @@ public class StoreListFragment extends BaseLazyFragment implements StoreListCont
         }
     }
 
-
+    /**
+     * check uc、ac、acp成功后，通知刷新界面
+     */
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onCheckLoginSuccessEvent(CheckLoginSuccessEvent response) {
+        if (StringUtils.isNotEmpty(coinName)) {
+            presenter.priceFind(coinName, "CNY");
+        }
+    }
 }

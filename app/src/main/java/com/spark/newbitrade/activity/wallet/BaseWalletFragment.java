@@ -16,7 +16,11 @@ import com.spark.newbitrade.adapter.WalletAdapter;
 import com.spark.newbitrade.base.BaseTransFragment;
 import com.spark.newbitrade.entity.HttpErrorEntity;
 import com.spark.newbitrade.entity.Wallet;
+import com.spark.newbitrade.event.CheckLoginSuccessEvent;
 import com.spark.newbitrade.utils.MathUtils;
+
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -201,4 +205,13 @@ public class BaseWalletFragment extends BaseTransFragment implements BaseWalletC
             }
         }
     }
+
+    /**
+     * check uc、ac、acp成功后，通知刷新界面
+     */
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onCheckLoginSuccessEvent(CheckLoginSuccessEvent response) {
+        getWalletList();
+    }
+
 }

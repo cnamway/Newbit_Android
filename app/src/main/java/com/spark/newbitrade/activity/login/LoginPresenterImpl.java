@@ -175,7 +175,6 @@ public class LoginPresenterImpl implements LoginContract.LoginPresenter {
 
     @Override
     public void doUcLogin(String gtc, String type) {
-        showLoading();
         casLoginModel.getBussinessTicket(gtc, type, new ResponseCallBack.SuccessListener<String>() {
             @Override
             public void onResponse(String response) {
@@ -202,7 +201,6 @@ public class LoginPresenterImpl implements LoginContract.LoginPresenter {
 
     @Override
     public void getUserInfo() {
-        showLoading();
         memberControllerModel.getUserInfo(new ResponseCallBack.SuccessListener<User>() {
             @Override
             public void onResponse(User response) {

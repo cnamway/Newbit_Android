@@ -10,7 +10,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -38,6 +37,7 @@ import com.spark.newbitrade.entity.Currency;
 import com.spark.newbitrade.entity.HomeNewTenBean;
 import com.spark.newbitrade.entity.Message;
 import com.spark.newbitrade.entity.Notice;
+import com.spark.newbitrade.event.CheckLoginSuccessEvent;
 import com.spark.newbitrade.factory.UrlFactory;
 import com.spark.newbitrade.factory.socket.ISocket;
 import com.spark.newbitrade.serivce.SocketMessage;
@@ -63,7 +63,6 @@ import java.util.HashMap;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 import config.Injection;
 
@@ -639,5 +638,13 @@ public class HomeFragment extends BaseTransFragment implements MainContract.Home
         }
     }
 
+    /**
+     * check uc、ac、acp成功后，通知刷新界面
+     */
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onCheckLoginSuccessEvent(CheckLoginSuccessEvent response) {
+        getImage();
+        getMarqueeText();
+    }
 
 }

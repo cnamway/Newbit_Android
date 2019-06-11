@@ -43,6 +43,7 @@ import com.spark.newbitrade.entity.User;
 import com.spark.newbitrade.entity.Vision;
 import com.spark.newbitrade.entity.VisionEntity;
 import com.spark.newbitrade.event.CheckLoginEvent;
+import com.spark.newbitrade.event.CheckLoginSuccessEvent;
 import com.spark.newbitrade.event.LoginoutWithoutApiEvent;
 import com.spark.newbitrade.factory.socket.ISocket;
 import com.spark.newbitrade.serivce.SocketMessage;
@@ -994,6 +995,8 @@ public class MainActivity extends BaseTransFragmentActivity implements MainContr
 
     @Override
     public void doLoginBusinessSuccess(String type) {
+        versionPresenter.checkVersion();
+        EventBus.getDefault().post(new CheckLoginSuccessEvent());
     }
 
 }

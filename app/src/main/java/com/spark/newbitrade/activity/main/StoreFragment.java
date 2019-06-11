@@ -2,33 +2,25 @@ package com.spark.newbitrade.activity.main;
 
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
-import android.view.View;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.spark.newbitrade.MyApplication;
 import com.spark.newbitrade.R;
-import com.spark.newbitrade.activity.login.LoginActivity;
 import com.spark.newbitrade.activity.main.presenter.C2CPresenterImpl;
-import com.spark.newbitrade.activity.releaseAd.PubAdsActivity;
 import com.spark.newbitrade.adapter.PagerAdapter;
-import com.spark.newbitrade.base.BaseFragment;
 import com.spark.newbitrade.base.BaseNestingTransFragment;
 import com.spark.newbitrade.entity.Country;
-import com.spark.newbitrade.entity.FilterBean;
-import com.spark.newbitrade.ui.FilterPopView;
-import com.spark.newbitrade.utils.GlobalConstant;
-import com.spark.newbitrade.utils.ToastUtils;
+import com.spark.newbitrade.event.CheckLoginSuccessEvent;
 import com.spark.library.otc.model.Coin;
 
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.OnClick;
 
 /**
  * 商家
@@ -130,5 +122,15 @@ public class StoreFragment extends BaseNestingTransFragment implements C2CContra
 
     @Override
     public void countrySuccess(List<Country> obj) {
+    }
+
+    /**
+     * check uc、ac、acp成功后，通知刷新界面
+     */
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onCheckLoginSuccessEvent(CheckLoginSuccessEvent response) {
+        if (coinInfos.size() <= 0) {
+            presenter.listOtcTradeCoin();
+        }
     }
 }
