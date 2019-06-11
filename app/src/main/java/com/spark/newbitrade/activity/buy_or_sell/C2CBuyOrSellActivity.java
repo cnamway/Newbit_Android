@@ -15,6 +15,8 @@ import com.spark.library.otc.model.AuthMerchantFrontVo;
 import com.spark.library.otc.model.OrderInTransitDto;
 import com.spark.newbitrade.MyApplication;
 import com.spark.newbitrade.R;
+import com.spark.newbitrade.activity.order.OrderDetailActivity;
+import com.spark.newbitrade.activity.order.OrderFragment;
 import com.spark.newbitrade.base.BaseActivity;
 import com.spark.newbitrade.entity.MyAdvertiseShowVo;
 import com.spark.newbitrade.utils.GlobalConstant;
@@ -385,10 +387,12 @@ public class C2CBuyOrSellActivity extends BaseActivity implements C2CBuyOrSellCo
 
     @Override
     public void createOrderSuccess(String obj) {
-        if (StringUtils.isNotEmpty(obj))
-            ToastUtils.showToast(obj);
-
-        finish();
+        if (StringUtils.isNotEmpty(obj)){
+            Bundle bundle = new Bundle();
+            bundle.putString("orderSn", obj);
+            bundle.putSerializable("status", OrderFragment.Status.UNPAID);
+            showActivity(OrderDetailActivity.class, bundle, 1);
+        }
     }
 
     @Override

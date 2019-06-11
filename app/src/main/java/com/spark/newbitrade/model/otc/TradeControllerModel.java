@@ -57,7 +57,7 @@ public class TradeControllerModel {
                         int code = response.getCode();
                         if (code == SUCCESS_CODE) {
                             if (successListener != null)
-                                successListener.onResponse(response.getMessage());
+                                successListener.onResponse(response.getData() == null ? "" : response.getData().toString());
                         } else {
                             if (errorListener != null)
                                 errorListener.onErrorResponse(new HttpErrorEntity(response.getCode(), response.getMessage(), response.getUrl(), response.getCid()));

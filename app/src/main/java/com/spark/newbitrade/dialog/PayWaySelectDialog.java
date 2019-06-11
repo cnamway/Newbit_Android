@@ -70,7 +70,7 @@ public class PayWaySelectDialog extends Dialog {
         llOther = view.findViewById(R.id.llOther);
         ivAli = view.findViewById(R.id.ivAli);
         ivBank = view.findViewById(R.id.ivBank);
-//        ivWeChat = view.findViewById(R.id.ivWeChat);
+        ivWeChat = view.findViewById(R.id.ivWeChat);
         ivPalpay = view.findViewById(R.id.ivPalpay);
         ivOther = view.findViewById(R.id.ivOther);
         tvOption = view.findViewById(R.id.tvOption);
