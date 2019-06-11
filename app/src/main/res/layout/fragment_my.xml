@@ -5,12 +5,12 @@
     android:background="@color/main_bg">
 
     <LinearLayout
-        android:id="@+id/llTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <LinearLayout
+            android:id="@+id/llTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#3167AF"
