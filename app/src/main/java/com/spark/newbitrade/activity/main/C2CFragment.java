@@ -105,7 +105,7 @@ public class C2CFragment extends BaseNestingTransFragment implements C2CContract
     }
 
 
-    @OnClick({R.id.tvBuy, R.id.tvSell,  R.id.ivReleseAd, R.id.ivFilter})
+    @OnClick({R.id.tvBuy, R.id.tvSell, R.id.ivReleseAd, R.id.ivFilter})
     @Override
     protected void setOnClickListener(View v) {
         super.setOnClickListener(v);

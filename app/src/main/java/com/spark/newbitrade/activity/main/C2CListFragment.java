@@ -66,7 +66,7 @@ public class C2CListFragment extends BaseLazyFragment implements C2CListContract
     private int coinScale = 8;
     private C2CListPresenterImpl presenter;
     private int pageNo = 1;
-    private int advertiseType = 1; // 卖
+    private int advertiseType = 1; // 1卖 0买
     private String country = "";
     private String payMode = "";
     private String lowQuota = "";

@@ -15,6 +15,7 @@
         <LinearLayout style="@style/layout_my_info">
 
             <TextView
+                android:id="@+id/tvBuyTag"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
