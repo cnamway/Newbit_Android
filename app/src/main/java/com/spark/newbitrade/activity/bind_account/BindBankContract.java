@@ -18,9 +18,9 @@ public interface BindBankContract {
 
     interface Presenter extends BaseContract.BasePresenter {
 
-        void doBindBank(String payType, String account, String bank, String branch, String tradePassword);
+        void doBindBank(String payType, String account, String bank, String branch, String tradePassword, String name);
 
-        void doUpdateBank(Long id, String payType, String accout, String bank, String branch, String tradePassword);
+        void doUpdateBank(Long id, String payType, String accout, String bank, String branch, String tradePassword, String name);
 
     }
 

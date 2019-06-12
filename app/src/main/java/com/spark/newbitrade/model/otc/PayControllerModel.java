@@ -32,7 +32,7 @@ public class PayControllerModel {
     /**
      * 添加
      */
-    public void doBindBank(String payType, String payAddress, String bank, String branch, String tradePassword, String qrCodeUrl, final ResponseCallBack.SuccessListener<MessageResult> listener, final ResponseCallBack.ErrorListener errorListener) {
+    public void doBindBank(String payType, String payAddress, String bank, String branch, String tradePassword, String qrCodeUrl, String name, final ResponseCallBack.SuccessListener<MessageResult> listener, final ResponseCallBack.ErrorListener errorListener) {
         final MemberPayTypeDto memberPayTypeDto = new MemberPayTypeDto();
         memberPayTypeDto.setPayType(payType);
         memberPayTypeDto.setPayAddress(payAddress);
@@ -40,6 +40,7 @@ public class PayControllerModel {
         memberPayTypeDto.setBranch(branch);
         memberPayTypeDto.setTradePwd(tradePassword);
         memberPayTypeDto.setQrCodeUrl(qrCodeUrl);
+        memberPayTypeDto.setRealName(name);
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -106,7 +107,7 @@ public class PayControllerModel {
     /**
      * 修改
      */
-    public void doUpdateBank(final Long id, String payType, String payAddress, String bank, String branch, String tradePassword, String qrCodeUrl, final ResponseCallBack.SuccessListener<MessageResult> listener, final ResponseCallBack.ErrorListener errorListener) {
+    public void doUpdateBank(final Long id, String payType, String payAddress, String bank, String branch, String tradePassword, String qrCodeUrl, String name, final ResponseCallBack.SuccessListener<MessageResult> listener, final ResponseCallBack.ErrorListener errorListener) {
         final MemberPayTypeDto memberPayTypeDto = new MemberPayTypeDto();
         memberPayTypeDto.setPayType(payType);
         memberPayTypeDto.setPayAddress(payAddress);
@@ -114,6 +115,7 @@ public class PayControllerModel {
         memberPayTypeDto.setBranch(branch);
         memberPayTypeDto.setTradePwd(tradePassword);
         memberPayTypeDto.setQrCodeUrl(qrCodeUrl);
+        memberPayTypeDto.setRealName(name);
         new Thread(new Runnable() {
             @Override
             public void run() {

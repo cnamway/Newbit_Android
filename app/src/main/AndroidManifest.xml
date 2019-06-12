@@ -307,6 +307,11 @@
             android:configChanges="orientation|screenSize"
             android:screenOrientation="portrait" />
 
+        <activity
+            android:name=".activity.store.PayWaySelectActivity"
+            android:configChanges="orientation|screenSize"
+            android:screenOrientation="portrait" />
+
         <!--service-->
         <!--<service android:name="com.spark.newbitrade.serivce.TradeService" />-->
         <!--<service android:name="com.spark.newbitrade.serivce.MarketService" />-->

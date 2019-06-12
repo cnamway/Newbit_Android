@@ -134,9 +134,9 @@ public class BindBankActivity extends BaseActivity implements BindBankContract.V
 
     private void bindOrUpdateBnak(String bank, String branch, String pwd, String name, String account) {
         if (isUpdate) {
-            presenter.doUpdateBank(payWaySetting.getId(), GlobalConstant.card, account, bank, branch, pwd);
+            presenter.doUpdateBank(payWaySetting.getId(), GlobalConstant.card, account, bank, branch, pwd, name);
         } else {
-            presenter.doBindBank(GlobalConstant.card, account, bank, branch, pwd);
+            presenter.doBindBank(GlobalConstant.card, account, bank, branch, pwd, name);
         }
     }
 

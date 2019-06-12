@@ -49,9 +49,9 @@ public class BindBankPresenterImpl implements BindBankContract.Presenter {
      * @param tradePassword
      */
     @Override
-    public void doBindBank(String payType, String payAddress, final String bankNum, String branch, String tradePassword) {
+    public void doBindBank(String payType, String payAddress, final String bankNum, String branch, String tradePassword, String name) {
         showLoading();
-        payControllerModel.doBindBank(payType, payAddress, bankNum, branch, tradePassword, "",
+        payControllerModel.doBindBank(payType, payAddress, bankNum, branch, tradePassword, "", name,
                 new ResponseCallBack.SuccessListener<MessageResult>() {
                     @Override
                     public void onResponse(MessageResult response) {
@@ -90,9 +90,9 @@ public class BindBankPresenterImpl implements BindBankContract.Presenter {
      * @param tradePassword
      */
     @Override
-    public void doUpdateBank(Long id, String payType, String payAddress, String bankNum, String branch, String tradePassword) {
+    public void doUpdateBank(Long id, String payType, String payAddress, String bankNum, String branch, String tradePassword, String name) {
         showLoading();
-        payControllerModel.doUpdateBank(id, payType, payAddress, bankNum, branch, tradePassword, "",
+        payControllerModel.doUpdateBank(id, payType, payAddress, bankNum, branch, tradePassword, "", name,
                 new ResponseCallBack.SuccessListener<MessageResult>() {
                     @Override
                     public void onResponse(MessageResult response) {

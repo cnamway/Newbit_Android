@@ -103,15 +103,15 @@ public class BindPayPalActivity extends BaseActivity implements BindAliContract.
         } else {
             if (isUpdate) {
                 if (isPayPal) {
-                    presenter.getUpdateAliOrWechat(payWaySetting.getId(), GlobalConstant.PAYPAL, account, getString(R.string.str_paypal), "", pwd, "");
+                    presenter.getUpdateAliOrWechat(payWaySetting.getId(), GlobalConstant.PAYPAL, account, getString(R.string.str_paypal), "", pwd, "", name);
                 } else {
-                    presenter.getUpdateAliOrWechat(payWaySetting.getId(), GlobalConstant.other, account, getString(R.string.str_other), "", pwd, "");
+                    presenter.getUpdateAliOrWechat(payWaySetting.getId(), GlobalConstant.other, account, getString(R.string.str_other), "", pwd, "", name);
                 }
             } else {
                 if (isPayPal) {
-                    presenter.getBindAliOrWechat(GlobalConstant.PAYPAL, account, getString(R.string.str_paypal), "", pwd, "");
+                    presenter.getBindAliOrWechat(GlobalConstant.PAYPAL, account, getString(R.string.str_paypal), "", pwd, "", name);
                 } else {
-                    presenter.getBindAliOrWechat(GlobalConstant.other, account, getString(R.string.str_other), "", pwd, "");
+                    presenter.getBindAliOrWechat(GlobalConstant.other, account, getString(R.string.str_other), "", pwd, "", name);
                 }
             }
         }

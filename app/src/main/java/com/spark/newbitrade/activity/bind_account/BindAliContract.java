@@ -22,9 +22,9 @@ public interface BindAliContract {
 
         void uploadBase64Pic(String base64);
 
-        void getBindAliOrWechat(String payType, String payAddress, String bankNum, String branch, String tradePassword, String qrCodeUrl);
+        void getBindAliOrWechat(String payType, String payAddress, String bankNum, String branch, String tradePassword, String qrCodeUrl, String name);
 
-        void getUpdateAliOrWechat(Long id, String payType, String payAddress, String bankNum, String branch, String tradePassword, String qrCodeUrl);
+        void getUpdateAliOrWechat(Long id, String payType, String payAddress, String bankNum, String branch, String tradePassword, String qrCodeUrl, String name);
     }
 
 

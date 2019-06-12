@@ -71,9 +71,9 @@ public class BindAliPresenterImpl implements BindAliContract.Presenter {
     }
 
     @Override
-    public void getBindAliOrWechat(String payType, String payAddress, final String bank, String branch, String tradePassword, String qrCodeUrl) {
+    public void getBindAliOrWechat(String payType, String payAddress, final String bank, String branch, String tradePassword, String qrCodeUrl, String name) {
         showLoading();
-        payControllerModel.doBindBank(payType, payAddress, bank, branch, tradePassword, qrCodeUrl, new ResponseCallBack.SuccessListener<MessageResult>() {
+        payControllerModel.doBindBank(payType, payAddress, bank, branch, tradePassword, qrCodeUrl, name, new ResponseCallBack.SuccessListener<MessageResult>() {
             @Override
             public void onResponse(MessageResult response) {
                 hideLoading();
@@ -98,9 +98,9 @@ public class BindAliPresenterImpl implements BindAliContract.Presenter {
     }
 
     @Override
-    public void getUpdateAliOrWechat(Long id, String payType, String payAddress, final String bank, String branch, String tradePassword, String qrCodeUrl) {
+    public void getUpdateAliOrWechat(Long id, String payType, String payAddress, final String bank, String branch, String tradePassword, String qrCodeUrl, String name) {
         showLoading();
-        payControllerModel.doUpdateBank(id, payType, payAddress, bank, branch, tradePassword, qrCodeUrl, new ResponseCallBack.SuccessListener<MessageResult>() {
+        payControllerModel.doUpdateBank(id, payType, payAddress, bank, branch, tradePassword, qrCodeUrl, name, new ResponseCallBack.SuccessListener<MessageResult>() {
             @Override
             public void onResponse(MessageResult response) {
                 hideLoading();

@@ -21,8 +21,7 @@
 
         <EditText
             android:id="@+id/etName"
-            style="@style/edittext_normal"
-            android:enabled="false" />
+            style="@style/edittext_normal"/>
     </LinearLayout>
 
     <View style="@style/line_bg_grey" />

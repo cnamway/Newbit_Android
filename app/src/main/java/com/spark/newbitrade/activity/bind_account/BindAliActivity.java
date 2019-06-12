@@ -195,15 +195,15 @@ public class BindAliActivity extends BaseActivity implements BindAliContract.Vie
         } else {
             if (isUpdate) {
                 if (GlobalConstant.alipay.equals(payWay)) {
-                    presenter.getUpdateAliOrWechat(payWaySetting.getId(), GlobalConstant.alipay, account, getString(R.string.str_payway_ali), "", pwd, url);
+                    presenter.getUpdateAliOrWechat(payWaySetting.getId(), GlobalConstant.alipay, account, getString(R.string.str_payway_ali), "", pwd, url, name);
                 } else {
-                    presenter.getUpdateAliOrWechat(payWaySetting.getId(), GlobalConstant.wechat, account, getString(R.string.str_payway_wechat), "", pwd, url);
+                    presenter.getUpdateAliOrWechat(payWaySetting.getId(), GlobalConstant.wechat, account, getString(R.string.str_payway_wechat), "", pwd, url, name);
                 }
             } else {
                 if (GlobalConstant.alipay.equals(payWay)) {
-                    presenter.getBindAliOrWechat(GlobalConstant.alipay, account, getString(R.string.str_payway_ali), "", pwd, url);
+                    presenter.getBindAliOrWechat(GlobalConstant.alipay, account, getString(R.string.str_payway_ali), "", pwd, url, name);
                 } else {
-                    presenter.getBindAliOrWechat(GlobalConstant.wechat, account, getString(R.string.str_payway_wechat), "", pwd, url);
+                    presenter.getBindAliOrWechat(GlobalConstant.wechat, account, getString(R.string.str_payway_wechat), "", pwd, url, name);
                 }
             }
         }
