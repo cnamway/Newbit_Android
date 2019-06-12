@@ -18,6 +18,15 @@ public class PayWaySetting implements Serializable {
     private long createTime;
     private long updateTime;
     private String payNotes;
+    private int isSelected;
+
+    public int getIsSelected() {
+        return isSelected;
+    }
+
+    public void setIsSelected(int isSelected) {
+        this.isSelected = isSelected;
+    }
 
     public Long getId() {
         return id;

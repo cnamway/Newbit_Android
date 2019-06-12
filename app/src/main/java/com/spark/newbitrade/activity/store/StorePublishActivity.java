@@ -1,7 +1,7 @@
 package com.spark.newbitrade.activity.store;
 
-import android.app.ProgressDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
@@ -11,42 +11,24 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.google.gson.Gson;
 import com.spark.newbitrade.R;
-import com.spark.newbitrade.activity.aboutus.AboutUsContract;
-import com.spark.newbitrade.activity.aboutus.AboutUsPresenter;
-import com.spark.newbitrade.activity.feed.FeedbackActivity;
 import com.spark.newbitrade.adapter.SelectPayWayAdapter;
 import com.spark.newbitrade.base.BaseActivity;
 import com.spark.newbitrade.entity.Ads;
-import com.spark.newbitrade.entity.HttpErrorEntity;
 import com.spark.newbitrade.entity.PayWay;
 import com.spark.newbitrade.entity.PayWaySetting;
-import com.spark.newbitrade.entity.VisionEntity;
 import com.spark.newbitrade.event.CheckLoginSuccessEvent;
-import com.spark.newbitrade.ui.AppVersionDialog;
-import com.spark.newbitrade.utils.CommonUtils;
-import com.spark.newbitrade.utils.FileUtils;
 import com.spark.newbitrade.utils.GlobalConstant;
-import com.spark.newbitrade.utils.LogUtils;
 import com.spark.newbitrade.utils.MathUtils;
-import com.spark.newbitrade.utils.NetCodeUtils;
 import com.spark.newbitrade.utils.StringUtils;
 import com.spark.newbitrade.utils.ToastUtils;
-import com.spark.newbitrade.utils.okhttp.AppUtils;
-import com.spark.newbitrade.utils.okhttp.FileCallback;
-import com.spark.newbitrade.utils.okhttp.OkhttpUtils;
-import com.spark.library.cms.model.MessageResultWebConfigVo;
 import com.spark.library.otc.model.AdvertiseDto;
 import com.spark.library.otc.model.AuthMerchantApplyMarginType;
-import com.yanzhenjie.permission.Action;
-import com.yanzhenjie.permission.AndPermission;
-import com.yanzhenjie.permission.Permission;
 
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
-import java.io.File;
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -55,9 +37,7 @@ import java.util.List;
 import java.util.Set;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
-import okhttp3.Request;
 
 /**
  * 商家发布广告
@@ -87,6 +67,8 @@ public class StorePublishActivity extends BaseActivity implements StorePublishCo
     private SelectPayWayAdapter payWayAdapter;
     private AlertDialog payWayDialog;
     private Ads ads;
+    private List<PayWaySetting> payWaySettingsSelected = new ArrayList<>();//选择的收款方式
+    private String payIds = "";
 
     @Override
     protected int getActivityLayoutId() {
@@ -94,10 +76,20 @@ public class StorePublishActivity extends BaseActivity implements StorePublishCo
     }
 
     @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1 && resultCode == RESULT_OK && data != null) {
+            Bundle bundle = data.getExtras();
+            if (bundle != null)
+                payWaySettingsSelected = (List<PayWaySetting>) bundle.getSerializable("payWaySettingsSelected");
+            doClickPayWayItem2();
+        }
+    }
+
+    @Override
     protected void initView() {
         super.initView();
         setSetTitleAndBack(false, true);
-
     }
 
     @Override
@@ -118,6 +110,7 @@ public class StorePublishActivity extends BaseActivity implements StorePublishCo
                 etPrice.setText(ads.getNumber() + "");
                 String payType = getSetPayByCode(ads.getPayMode());
                 tvPayWay.setText(payType);
+                payIds = ads.getPayIds();
             } else {
                 setTitle("发布OTC广告");
                 coinName = bundle.getString("coinName");
@@ -139,11 +132,14 @@ public class StorePublishActivity extends BaseActivity implements StorePublishCo
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tvPayWay:
-                if (payWays.size() > 0) {
-                    showPayWayDialog();
-                } else {
-                    presenter.queryPayWayList();
-                }
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("payWaySettingsSelected", (Serializable) payWaySettingsSelected);
+                showActivity(PayWaySelectActivity.class, bundle, 1);
+//                if (payWays.size() > 0) {
+//                    showPayWayDialog();
+//                } else {
+//                    presenter.queryPayWayList();
+//                }
                 break;
             case R.id.tvRelease:
                 releaseOrEditAd();
@@ -225,11 +221,34 @@ public class StorePublishActivity extends BaseActivity implements StorePublishCo
     }
 
     /**
+     * 点击选择支付方式
+     */
+    private void doClickPayWayItem2() {
+        String content = "";
+        payIds = "";
+        for (PayWaySetting payWay : payWaySettingsSelected) {
+            payIds = payIds + "," + payWay.getId();
+            content = content + "," + getSetPayByCode(payWay.getPayType());
+        }
+        if (StringUtils.isEmpty(content)) {
+            tvPayWay.setText("");
+        } else {
+            tvPayWay.setText(content.length() > 1 ? content.substring(content.indexOf(",") + 1) : content);
+            payIds = payIds.length() > 1 ? payIds.substring(payIds.indexOf(",") + 1) : payIds;
+        }
+    }
+
+    /**
      * 发布或修改广告
      */
     private void releaseOrEditAd() {
         String number = etPrice.getText().toString().trim();
         String pay = getPayByCode(tvPayWay.getText().toString());
+        if (StringUtils.isEmpty(number)) {
+            ToastUtils.showToast(getString(R.string.str_prompt_trade_count));
+            etPrice.requestFocus();
+            return;
+        }
         if (coinInfo != null) {
             if (Double.valueOf(number) > MathUtils.getDoudleByBigDecimal(coinInfo.getAdvMaxLimit())) {
                 etPrice.requestFocus();
@@ -245,9 +264,6 @@ public class StorePublishActivity extends BaseActivity implements StorePublishCo
             ToastUtils.showToast(getString(R.string.text_enter_trade_price));
         } else if (Double.valueOf(priceStr) == 0) {
             ToastUtils.showToast(getString(R.string.text_trade_price_not_zero));
-        } else if (StringUtils.isEmpty(number)) {
-            ToastUtils.showToast(getString(R.string.str_prompt_trade_count));
-            etPrice.requestFocus();
         } else if (Double.valueOf(number) == 0) {
             ToastUtils.showToast(getString(R.string.text_trade_amount_not_zero));
             etPrice.requestFocus();
@@ -274,6 +290,7 @@ public class StorePublishActivity extends BaseActivity implements StorePublishCo
 //            } else {
             advertiseDto.setAutoReply(0);
             advertiseDto.setAutoword("");
+            advertiseDto.setPayIds(payIds);
 //            }
 
             /* 广告商家类型 0 普通 1 商家 */
@@ -335,7 +352,7 @@ public class StorePublishActivity extends BaseActivity implements StorePublishCo
             if (payway.contains(GlobalConstant.card)) {
                 stringBuffer = stringBuffer.append(getString(R.string.str_payway_union)).append(",");
             }
-            if (payway.contains(GlobalConstant.PAYPAL)) {
+            if (payway.toLowerCase().contains(GlobalConstant.PAYPAL)) {
                 stringBuffer = stringBuffer.append(getString(R.string.str_paypal)).append(",");
             }
             if (payway.contains(GlobalConstant.other)) {
@@ -371,7 +388,7 @@ public class StorePublishActivity extends BaseActivity implements StorePublishCo
                     if (payWaySetting.getPayType().contains(GlobalConstant.card)) {
                         payWaySet.add(getString(R.string.str_payway_union));
                     }
-                    if (payWaySetting.getPayType().contains(GlobalConstant.PAYPAL)) {
+                    if (payWaySetting.getPayType().toLowerCase().contains(GlobalConstant.PAYPAL)) {
                         payWaySet.add(getString(R.string.str_paypal));
                     }
                     if (payWaySetting.getPayType().contains(GlobalConstant.other)) {
