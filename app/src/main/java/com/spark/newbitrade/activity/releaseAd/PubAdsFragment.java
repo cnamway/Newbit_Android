@@ -873,7 +873,7 @@ public class PubAdsFragment extends BaseLazyFragment implements ReleaseAdContrac
             if (payway.contains(GlobalConstant.card)) {
                 stringBuffer = stringBuffer.append(getString(R.string.str_payway_union)).append(",");
             }
-            if (payway.contains(GlobalConstant.PAYPAL)) {
+            if (payway.toLowerCase().contains(GlobalConstant.PAYPAL)) {
                 stringBuffer = stringBuffer.append(getString(R.string.str_paypal)).append(",");
             }
             if (payway.contains(GlobalConstant.other)) {
@@ -1001,7 +1001,7 @@ public class PubAdsFragment extends BaseLazyFragment implements ReleaseAdContrac
                     if (payWaySetting.getPayType().contains(GlobalConstant.card)) {
                         payWaySet.add(getString(R.string.str_payway_union));
                     }
-                    if (payWaySetting.getPayType().contains(GlobalConstant.PAYPAL)) {
+                    if (payWaySetting.getPayType().toLowerCase().contains(GlobalConstant.PAYPAL)) {
                         payWaySet.add(getString(R.string.str_paypal));
                     }
                     if (payWaySetting.getPayType().contains(GlobalConstant.other)) {

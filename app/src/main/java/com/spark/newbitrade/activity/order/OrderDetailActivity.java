@@ -579,7 +579,7 @@ public class OrderDetailActivity extends BaseActivity implements OrderDetailCont
                 }
             }
         }
-        if (payMode.contains(GlobalConstant.PAYPAL)) {
+        if (payMode.toLowerCase().contains(GlobalConstant.PAYPAL)) {
             isPaypal = true;
             llPalpay.setVisibility(View.VISIBLE);
             for (PayWaySetting payData : payDatas) {

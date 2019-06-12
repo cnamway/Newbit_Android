@@ -159,7 +159,7 @@
 
         <TextView
             android:id="@+id/tvGoto"
-            android:layout_width="wrap_content"
+            android:layout_width="48dp"
             android:layout_height="match_parent"
             android:background="@drawable/ripple_global_item"
             android:gravity="center"

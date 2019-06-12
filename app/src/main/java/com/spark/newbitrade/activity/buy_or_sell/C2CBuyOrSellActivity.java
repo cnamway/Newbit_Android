@@ -312,7 +312,7 @@ public class C2CBuyOrSellActivity extends BaseActivity implements C2CBuyOrSellCo
             if (payMode.contains(GlobalConstant.card)) {
                 ivUnionPay.setVisibility(View.VISIBLE);
             }
-            if (payMode.contains(GlobalConstant.PAYPAL)) {
+            if (payMode.toLowerCase().contains(GlobalConstant.PAYPAL)) {
                 ivPalpay.setVisibility(View.VISIBLE);
             }
             if (payMode.contains(GlobalConstant.other)) {

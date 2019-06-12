@@ -48,7 +48,7 @@ public class C2CListAdapter extends BaseQuickAdapter<AdvertiseShowVo, BaseViewHo
         else helper.setGone(R.id.ivWeChat, false);
         if (payMode.contains(GlobalConstant.card)) helper.setVisible(R.id.ivUnionPay, true);
         else helper.setGone(R.id.ivUnionPay, false);
-        if (payMode.contains(GlobalConstant.PAYPAL)) helper.setVisible(R.id.ivPalpay, true);
+        if (payMode.toLowerCase().contains(GlobalConstant.PAYPAL)) helper.setVisible(R.id.ivPalpay, true);
         else helper.setGone(R.id.ivPalpay, false);
         if (payMode.contains(GlobalConstant.other)) helper.setVisible(R.id.ivOther, true);
         else helper.setGone(R.id.ivOther, false);

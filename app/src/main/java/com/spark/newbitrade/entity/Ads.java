@@ -26,6 +26,15 @@ public class Ads implements Serializable {
     private String coinName;
     private BigDecimal planFrozenFee;
     private BigDecimal remainFrozenFee;
+    private String payIds;
+
+    public String getPayIds() {
+        return payIds;
+    }
+
+    public void setPayIds(String payIds) {
+        this.payIds = payIds;
+    }
 
     private int status;// 0 上架 1 下架 2 关闭
 
