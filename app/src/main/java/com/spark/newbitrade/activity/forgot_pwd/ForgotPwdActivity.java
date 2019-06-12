@@ -173,8 +173,7 @@ public class ForgotPwdActivity extends BaseActivity implements ForgotPwdContract
         } else if (!password.equals(passwordRe)) {
             ToastUtils.showToast(R.string.pwd_diff);
         } else {
-            //第一步 校验短信验证码
-            presenter.checkPhoneCode(code);
+            presenter.updateForget(strAreaCode + phone, password, code);
         }
     }
 
@@ -231,10 +230,7 @@ public class ForgotPwdActivity extends BaseActivity implements ForgotPwdContract
 
     @Override
     public void checkPhoneCodeSuccess(String response) {
-        //第二步 修改登录密码
-        String phone = StringUtils.getText(etPhone);
-        String password = StringUtils.getText(etPassword);
-        presenter.updateForget(strAreaCode + phone, password);
+
     }
 
     @Override

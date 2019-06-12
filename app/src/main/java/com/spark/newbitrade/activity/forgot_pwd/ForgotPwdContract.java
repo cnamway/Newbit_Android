@@ -35,7 +35,7 @@ public interface ForgotPwdContract {
 
         void checkPhoneCode(String code);
 
-        void updateForget(String mobilePhone, String newPassword);
+        void updateForget(String mobilePhone, String newPassword, String code);
 
     }
 

@@ -4,7 +4,7 @@ import com.android.volley.VolleyError;
 import com.spark.newbitrade.callback.ResponseCallBack;
 import com.spark.newbitrade.entity.HttpErrorEntity;
 import com.spark.newbitrade.model.ac.AssetControllerModel;
-import com.spark.newbitrade.model.uc.CaptchaGetControllerModel;
+import com.spark.newbitrade.model.ac.CaptchaGetControllerModel;
 
 import org.json.JSONObject;
 

@@ -133,7 +133,8 @@ public class MemberControllerModel {
     /**
      * 忘记密码
      */
-    public void doForget(String phone, String password, final ResponseCallBack.SuccessListener<String> successListener, final ResponseCallBack.ErrorListener errorListener) {
+    public void doForget(String phone, String password, String code, final ResponseCallBack.SuccessListener<String> successListener, final ResponseCallBack.ErrorListener errorListener) {
+        memberControllerApi.addHeader("check", "phone:" + phone + ":" + code);
         final ResetLoginPasswordDto resetLoginPasswordDto = new ResetLoginPasswordDto();
         resetLoginPasswordDto.setMobilePhone(phone);
         resetLoginPasswordDto.setNewPassword(password);

@@ -21,7 +21,7 @@ public class MathUtils {
         for (int j = 0; j < n; j++) str += "0";
         pattern += str;
         int m = (int) Math.pow(10, n);
-        number = (Math.round(number * m)) / (m * 1.0);
+        number = (Math.floor(number * m)) / (m * 1.0);
         return new DecimalFormat(pattern).format(number);
     }
 

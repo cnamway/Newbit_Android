@@ -558,19 +558,21 @@ public class PubAdsFragment extends BaseLazyFragment implements ReleaseAdContrac
      * 买入数量或卖出数量
      */
     private void countChange() {
-        String count = etCount.getText().toString();
-        String max = MathUtils.subZeroAndDot(coinInfo.getAdvMaxLimit().toString());
-        String min = MathUtils.subZeroAndDot(coinInfo.getAdvMinLimit().toString());
+        if (coinInfo != null) {
+            String count = etCount.getText().toString();
+            String max = MathUtils.subZeroAndDot(coinInfo.getAdvMaxLimit().toString());
+            String min = MathUtils.subZeroAndDot(coinInfo.getAdvMinLimit().toString());
 
-        if (!StringUtils.isEmpty(count, max, min) && Double.valueOf(max) != 0 && Double.valueOf(min) != 0) {
-            if (Double.valueOf(count) > Double.valueOf(max) || Double.valueOf(count) < Double.valueOf(min)) {
-                if (advertiseType == 0) {
-                    ToastUtils.showToast(getString(R.string.text_buy_num) + "必须" + "大于等于" + MathUtils.subZeroAndDot(coinInfo.getAdvMinLimit().toString()) + " 且 " + "小于等于" + MathUtils.subZeroAndDot(coinInfo.getAdvMaxLimit().toString()));
-                } else if (advertiseType == 1) {
-                    ToastUtils.showToast(getString(R.string.text_sell_num) + "必须" + "大于等于" + MathUtils.subZeroAndDot(coinInfo.getAdvMinLimit().toString()) + " 且 " + "小于等于" + MathUtils.subZeroAndDot(coinInfo.getAdvMaxLimit().toString()));
-                }
-                if (Double.valueOf(count) > Double.valueOf(max)) {
-                    etCount.setText(max);
+            if (!StringUtils.isEmpty(count, max, min) && Double.valueOf(max) != 0 && Double.valueOf(min) != 0) {
+                if (Double.valueOf(count) > Double.valueOf(max) || Double.valueOf(count) < Double.valueOf(min)) {
+                    if (advertiseType == 0) {
+                        ToastUtils.showToast(getString(R.string.text_buy_num) + "必须" + "大于等于" + MathUtils.subZeroAndDot(coinInfo.getAdvMinLimit().toString()) + " 且 " + "小于等于" + MathUtils.subZeroAndDot(coinInfo.getAdvMaxLimit().toString()));
+                    } else if (advertiseType == 1) {
+                        ToastUtils.showToast(getString(R.string.text_sell_num) + "必须" + "大于等于" + MathUtils.subZeroAndDot(coinInfo.getAdvMinLimit().toString()) + " 且 " + "小于等于" + MathUtils.subZeroAndDot(coinInfo.getAdvMaxLimit().toString()));
+                    }
+                    if (Double.valueOf(count) > Double.valueOf(max)) {
+                        etCount.setText(max);
+                    }
                 }
             }
         }

@@ -36,9 +36,9 @@ public class ForgotPwdPresenter implements ForgotPwdContract.Presenter {
     }
 
     @Override
-    public void updateForget(String phone, String password) {
+    public void updateForget(String phone, String password, String code) {
         showLoading();
-        memberControllerModel.doForget(phone, password, new ResponseCallBack.SuccessListener<String>() {
+        memberControllerModel.doForget(phone, password, code, new ResponseCallBack.SuccessListener<String>() {
             @Override
             public void onResponse(String response) {
                 hideLoading();

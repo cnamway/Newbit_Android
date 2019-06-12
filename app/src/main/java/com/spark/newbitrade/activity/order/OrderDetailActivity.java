@@ -51,7 +51,6 @@ import java.util.List;
 import java.util.TimeZone;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class OrderDetailActivity extends BaseActivity implements OrderDetailContract.View, ISocket.TCPCallback {
@@ -198,7 +197,7 @@ public class OrderDetailActivity extends BaseActivity implements OrderDetailCont
                 select = payWay;
             }
         });
-        if (status == OrderFragment.Status.UNPAID) {
+        if (status == OrderFragment.Status.UNPAID || status == OrderFragment.Status.PAID) {
             llPayLayout.setVisibility(View.VISIBLE);
         } else {
             llPayLayout.setVisibility(View.GONE);
@@ -672,6 +671,17 @@ public class OrderDetailActivity extends BaseActivity implements OrderDetailCont
 //    };
 
     private void showWhichViews(String type, OrderFragment.Status status) {
+        llOperate.setVisibility(View.GONE);
+        tvRelease.setVisibility(View.GONE);
+        tvPayDone.setVisibility(View.GONE);
+        tvAppeal.setVisibility(View.GONE);
+        tvCancle.setVisibility(View.GONE);
+        tvLastTime.setVisibility(View.GONE);
+        if (timer != null) {
+            timer.cancel();
+            timer = null;
+        }
+
         switch (status) {
             case CANC:
 //                llPayInfo.setVisibility(View.GONE);
@@ -869,8 +879,10 @@ public class OrderDetailActivity extends BaseActivity implements OrderDetailCont
     public void paymentOrderUsingPOSTSuccess(String obj) {
         if (StringUtils.isNotEmpty(obj))
             ToastUtils.showToast(obj);
-        setResult(RESULT_OK);
-        finish();
+//        setResult(RESULT_OK);
+//        finish();
+        //付完款之后 详情页不关闭
+        getOrdetDetail();
     }
 
     @Override
