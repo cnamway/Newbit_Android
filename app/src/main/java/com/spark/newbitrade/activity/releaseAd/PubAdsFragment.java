@@ -29,6 +29,7 @@ import com.spark.library.otc.model.AuthMerchantApplyMarginType;
 import com.spark.newbitrade.R;
 import com.spark.newbitrade.activity.ads.MyAdsActivity;
 import com.spark.newbitrade.activity.country.CountryActivity;
+import com.spark.newbitrade.activity.store.PayWaySelectActivity;
 import com.spark.newbitrade.adapter.SelectPayWayAdapter;
 import com.spark.newbitrade.base.BaseLazyFragment;
 import com.spark.newbitrade.entity.Ads;
@@ -43,6 +44,7 @@ import com.spark.newbitrade.utils.ToastUtils;
 import com.spark.newbitrade.widget.TextWatcher;
 import com.spark.library.otc.model.MessageResult;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -146,12 +148,17 @@ public class PubAdsFragment extends BaseLazyFragment implements ReleaseAdContrac
     private String strCountry = "China";
     private String currentPayway;
     private int type;
+    private List<PayWaySetting> payWaySettingsSelected = new ArrayList<>();//选择的收款方式
+    private String payIds = "";
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == RESULT_OK && data != null) {
-            Country country = (Country) data.getSerializableExtra("country");
+        if (requestCode == 1 && resultCode == RESULT_OK && data != null) {
+            Bundle bundle = data.getExtras();
+            if (bundle != null)
+                payWaySettingsSelected = (List<PayWaySetting>) bundle.getSerializable("payWaySettingsSelected");
+            doClickPayWayItem2();
         }
     }
 
@@ -188,6 +195,7 @@ public class PubAdsFragment extends BaseLazyFragment implements ReleaseAdContrac
                 tvRelease.setText(getString(R.string.text_pub));
             } else {
                 tvRelease.setText(getString(R.string.text_change));
+                payIds = ads.getPayIds();
             }
         }
         setViewByFixPrice(true);
@@ -235,11 +243,14 @@ public class PubAdsFragment extends BaseLazyFragment implements ReleaseAdContrac
 //                showListDialog(1);
                 break;
             case R.id.tvPayWay:
-                if (payWays.size() > 0) {
-                    showPayWayDialog();
-                } else {
-                    presenter.queryPayWayList();
-                }
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("payWaySettingsSelected", (Serializable) payWaySettingsSelected);
+                showActivity(PayWaySelectActivity.class, bundle, 1);
+//                if (payWays.size() > 0) {
+//                    showPayWayDialog();
+//                } else {
+//                    presenter.queryPayWayList();
+//                }
                 break;
             case R.id.tvRelease:
                 releaseOrEditAd();
@@ -386,6 +397,24 @@ public class PubAdsFragment extends BaseLazyFragment implements ReleaseAdContrac
         if (StringUtils.isEmpty(content)) tvPayWay.setText("");
         else
             tvPayWay.setText(content.length() > 1 ? content.substring(content.indexOf(",") + 1) : content);
+    }
+
+    /**
+     * 点击选择支付方式
+     */
+    private void doClickPayWayItem2() {
+        String content = "";
+        payIds = "";
+        for (PayWaySetting payWay : payWaySettingsSelected) {
+            payIds = payIds + "," + payWay.getId();
+            content = content + "," + getSetPayByCode(payWay.getPayType());
+        }
+        if (StringUtils.isEmpty(content)) {
+            tvPayWay.setText("");
+        } else {
+            tvPayWay.setText(content.length() > 1 ? content.substring(content.indexOf(",") + 1) : content);
+            payIds = payIds.length() > 1 ? payIds.substring(payIds.indexOf(",") + 1) : payIds;
+        }
     }
 
     /**
@@ -696,7 +725,7 @@ public class PubAdsFragment extends BaseLazyFragment implements ReleaseAdContrac
                 advertiseDto.setAutoReply(0);
                 advertiseDto.setAutoword("");
             }
-
+            advertiseDto.setPayIds(payIds);
             /* 广告商家类型 0 普通 1 商家 */
             advertiseDto.setTradeType(0);
 
