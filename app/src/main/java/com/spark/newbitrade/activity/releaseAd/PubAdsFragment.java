@@ -64,6 +64,9 @@ import static com.spark.newbitrade.activity.releaseAd.PubAdsActivity.REQUEST_COU
  * Created by Administrator on 2018/9/27 0027.
  */
 
+/**
+ * 发布或编辑c2c广告
+ */
 public class PubAdsFragment extends BaseLazyFragment implements ReleaseAdContract.View {
     @BindView(R.id.tvCoin)
     TextView tvCoin;
@@ -213,13 +216,9 @@ public class PubAdsFragment extends BaseLazyFragment implements ReleaseAdContrac
 
     @Override
     protected void loadData() {
-//        presenter.all();
         presenter.listMerchantAdvertiseCoin();
         if (ads != null) {
-//            HashMap<String, String> map = new HashMap<>();
-//            map.put("id", ads.getId() + "");
-//            presenter.adDetail(map);
-            presenter.findAdvertiseDetail(ads.getId());
+            presenter.priceFind(ads.getCoinName(), "CNY");
         }
         sbPriceType.setChecked(true);
     }
@@ -284,15 +283,17 @@ public class PubAdsFragment extends BaseLazyFragment implements ReleaseAdContrac
             @Override
             public void afterTextChanged(Editable editable) {
                 super.afterTextChanged(editable);
-                String priceStr = tvPrice.getText().toString();
-                String overStr = etOverflow.getText().toString();
-                if (!StringUtils.isVaildText(etOverflow))
-                    return;
-                if (!StringUtils.isEmpty(priceStr, overStr)) {
-                    double price = Double.parseDouble(priceStr);
-                    double over = Double.parseDouble(overStr);
-                    double finalPrice = price * (0.01 * over);
-                    etjyPrice.setText(MathUtils.subZeroAndDot(MathUtils.getRundNumber(finalPrice, 2, null)));
+                if (ads == null || ads.getPriceType() == 1) {
+                    String priceStr = tvPrice.getText().toString();
+                    String overStr = etOverflow.getText().toString();
+                    if (!StringUtils.isVaildText(etOverflow))
+                        return;
+                    if (!StringUtils.isEmpty(priceStr, overStr)) {
+                        double price = Double.parseDouble(priceStr);
+                        double over = Double.parseDouble(overStr);
+                        double finalPrice = price * (0.01 * over);
+                        etjyPrice.setText(MathUtils.subZeroAndDot(MathUtils.getRundNumber(finalPrice, 2, null)));
+                    }
                 }
             }
         });
@@ -526,7 +527,7 @@ public class PubAdsFragment extends BaseLazyFragment implements ReleaseAdContrac
             etjyPrice.setText("");
             etjyPrice.setHint("");
             etjyPrice.setEnabled(false);
-        } else {
+        } else {//浮动价格
             llGdPrice.setVisibility(View.GONE);
             llOverflow.setVisibility(View.VISIBLE);
             llPrice.setVisibility(View.VISIBLE);
@@ -535,9 +536,11 @@ public class PubAdsFragment extends BaseLazyFragment implements ReleaseAdContrac
             etjyPrice.setText("");
             etjyPrice.setHint(getString(R.string.text_auto_calculate_price));
             etjyPrice.setEnabled(false);
-            String overStr = etOverflow.getText().toString();
+            String overStr = MathUtils.subZeroAndDot(etOverflow.getText().toString());
             if (StringUtils.isEmpty(overStr)) {
                 etOverflow.setText("100");
+            } else {
+                etOverflow.setText(overStr);
             }
         }
     }
@@ -593,7 +596,7 @@ public class PubAdsFragment extends BaseLazyFragment implements ReleaseAdContrac
             String min = MathUtils.subZeroAndDot(coinInfo.getAdvMinLimit().toString());
 
             if (!StringUtils.isEmpty(count, max, min) && Double.valueOf(max) != 0 && Double.valueOf(min) != 0) {
-                if (Double.valueOf(count) > Double.valueOf(max) || Double.valueOf(count) < Double.valueOf(min)) {
+                if (Double.valueOf(count) > Double.valueOf(max)) {
                     if (advertiseType == 0) {
                         ToastUtils.showToast(getString(R.string.text_buy_num) + "必须" + "大于等于" + MathUtils.subZeroAndDot(coinInfo.getAdvMinLimit().toString()) + " 且 " + "小于等于" + MathUtils.subZeroAndDot(coinInfo.getAdvMaxLimit().toString()));
                     } else if (advertiseType == 1) {
@@ -617,6 +620,9 @@ public class PubAdsFragment extends BaseLazyFragment implements ReleaseAdContrac
             coinName = coinInfo.getCoinName();
         } else if (ads != null) {
             coinName = ads.getCoinName() + "";
+        } else {
+            ToastUtils.showToast(getString(R.string.str_prompt_coin_kind));
+            return;
         }
         String price = MathUtils.subZeroAndDot(etjyPrice.getText().toString().trim());
         String minLimit = etMin.getText().toString().trim();
@@ -697,13 +703,6 @@ public class PubAdsFragment extends BaseLazyFragment implements ReleaseAdContrac
             ToastUtils.showToast(getString(R.string.max_limit_tag) + MathUtils.subZeroAndDot(MathUtils.getRundNumber(Double.valueOf(price) * Double.valueOf(number), 2, null)) + GlobalConstant.CNY);
             etMax.requestFocus();
         } else {
-//            if (ads == null) {
-//                doPost(-1, price, coinName, minLimit, maxLimit, Integer.valueOf(timeLimit),
-//                        priceType, strOverFlow, remark, number, pay, jyPassword, auto, autoword);
-//            } else {
-//                doPost(ads.getId(), price, coinName, minLimit, maxLimit, Integer.valueOf(timeLimit)
-//                        , priceType, strOverFlow, remark, number, pay, jyPassword, auto, autoword);
-//            }
 
             AdvertiseDto advertiseDto = new AdvertiseDto();
             advertiseDto.setPrice(new BigDecimal(price));
@@ -772,7 +771,6 @@ public class PubAdsFragment extends BaseLazyFragment implements ReleaseAdContrac
 //    }
     private void getPrice(String coin, String type) {
         if (!StringUtils.isEmpty(coin) && StringUtils.isEmpty(type)) {
-            tvPrice.setText(MathUtils.subZeroAndDot(MathUtils.getRundNumber(Double.valueOf(1), 2, null)));
         } else if (!StringUtils.isEmpty(coin) && !StringUtils.isEmpty(type)) {
             if (coinInfo == null) {
                 for (AuthMerchantApplyMarginType obj : coinInfos) {
@@ -781,19 +779,6 @@ public class PubAdsFragment extends BaseLazyFragment implements ReleaseAdContrac
                     }
                 }
             }
-
-            tvPrice.setText(MathUtils.subZeroAndDot(MathUtils.getRundNumber(Double.valueOf(1), 2, null)));
-
-//            if (type.equals("USD") && mCoinInfo.getUsdMarketPrice() != null) {
-//                tvPrice.setText(MathUtils.getRundNumber(Double.valueOf(mCoinInfo.getUsdMarketPrice()), 2, null));
-//            } else if (type.equals("JPY")) {
-//                tvPrice.setText(mCoinInfo.getJpyMarketPrice());
-//            }
-//            if (type.equals("HKD")) {
-//                tvPrice.setText(mCoinInfo.getHkMarketPrice());
-//            } else if (type.equals("CNY")) {
-//                tvPrice.setText(mCoinInfo.getMarketPrice());
-//            }
         }
     }
 
@@ -806,19 +791,14 @@ public class PubAdsFragment extends BaseLazyFragment implements ReleaseAdContrac
         advertiseType = ads.getAdvertiseType();
         tvCoin.setText(ads.getCoinName());
         strCountry = ads.getCountry();
-//        if (SharedPreferenceInstance.getInstance().getLanguageCode() == 1) {
-//            tvSelectCountry.setText(ads.getZhName());
-//        } else if (SharedPreferenceInstance.getInstance().getLanguageCode() == 2) {
         tvSelectCountry.setText(ads.getCountry());
-//        }
         tvCoinKind.setText(ads.getLocalCurrency());
         tvLocalCurrency.setText(ads.getLocalCurrency());
         tvjyPriceCurrency.setText(ads.getLocalCurrency());
         tvMinCurrency.setText(ads.getLocalCurrency());
         tvMaxCurrency.setText(ads.getLocalCurrency());
-        tvPrice.setText(ads.getMarketPrice() + "");
+        //tvPrice.setText(ads.getMarketPrice() + "");
         sbPriceType.setChecked(ads.getPriceType() == 0);
-        etOverflow.setText(ads.getPremiseRate() + "");
         etjyPrice.setText(MathUtils.subZeroAndDot(ads.getPrice() + ""));
         etMin.setText(ads.getMinLimit() + "");
         etMax.setText(ads.getMaxLimit() + "");
@@ -830,59 +810,14 @@ public class PubAdsFragment extends BaseLazyFragment implements ReleaseAdContrac
         sbReply.setChecked(ads.getAuto() == 1);
         etReplyContent.setText(StringUtils.isEmpty(ads.getAutoword()) ? "" : ads.getAutoword());
         etMessage.setText(StringUtils.isEmpty(ads.getRemark()) ? "" : ads.getRemark());
+        if (ads.getPriceType() == 0) {
+            etPrice.setText(MathUtils.subZeroAndDot(ads.getPrice() + ""));
+            etOverflow.setText("100");
+        } else {
+            etOverflow.setText(MathUtils.subZeroAndDot(ads.getPremiseRate() + ""));
+        }
     }
 
-
-//    @Override
-//    public void allSuccess(List<CoinInfo> obj) {
-//        if (obj == null) return;
-//        coinInfos.clear();
-//        coinInfos.addAll(obj);
-//        coinNames = new String[coinInfos.size()];
-//        for (int i = 0; i < coinInfos.size(); i++) {
-//            coinNames[i] = coinInfos.get(i).getUnit();
-//        }
-//    }
-//
-//    @Override
-//    public void createSuccess(String obj) {
-//        ToastUtils.showToast(obj);
-//        showCofirmDialog();
-//    }
-//
-//
-//    @Override
-//    public void adDetailSuccess(Ads obj) {
-//        if (obj == null) return;
-//        ads = obj;
-//        initAdsData(ads);
-//    }
-//
-//    @Override
-//    public void updateSuccess(String obj) {
-//        ToastUtils.showToast(obj);
-//        // setResult(RESULT_OK);
-//        finish();
-//    }
-//
-//    @Override
-//    public void getAccountSettingSuccess(AccountSetting obj) {
-//        accountSetting = obj;
-//        if (accountSetting.isAlipayVerified()) {
-//            payWays.add(new PayWay(getString(R.string.str_payway_ali)));
-//        }
-//        if (accountSetting.isWechatVerified()) {
-//            payWays.add(new PayWay(getString(R.string.str_payway_wechat)));
-//        }
-//        if (accountSetting.isCardVerified()) {
-//            payWays.add(new PayWay(getString(R.string.str_payway_union)));
-//        }
-//        if (payWays.size() != 0) {
-//            showPayWayDialog();
-//        } else {
-//            ToastUtils.showToast(getString(R.string.bind_account));
-//        }
-//    }
 
     /**
      * 将返回的中文根据系统语言
@@ -1066,7 +1001,7 @@ public class PubAdsFragment extends BaseLazyFragment implements ReleaseAdContrac
     @Override
     public void priceFindSuccess(MessageResult obj) {
         if (obj != null && obj.getData() != null) {
-            String priceStr = obj.getData().toString();
+            String priceStr = MathUtils.subZeroAndDot(MathUtils.subZeroAndDot(MathUtils.getRundNumber(Double.valueOf(new BigDecimal(obj.getData().toString()).toString()), 2, null)));
             tvPrice.setText(priceStr);
             String overStr = etOverflow.getText().toString();
             if (StringUtils.isNotEmpty(overStr) && StringUtils.isNotEmpty(priceStr)) {
@@ -1075,6 +1010,8 @@ public class PubAdsFragment extends BaseLazyFragment implements ReleaseAdContrac
                 double finalPrice = price * (0.01 * over);
                 etjyPrice.setText(MathUtils.subZeroAndDot(MathUtils.getRundNumber(finalPrice, 2, null)));
             }
+            if (ads != null)
+                presenter.findAdvertiseDetail(ads.getId());
         }
     }
 

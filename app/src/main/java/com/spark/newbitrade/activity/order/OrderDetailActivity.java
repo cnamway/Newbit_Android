@@ -548,52 +548,53 @@ public class OrderDetailActivity extends BaseActivity implements OrderDetailCont
         showWhichViews(type, status);
         List<PayWaySetting> payDatas = new Gson().fromJson(orderDetailVo.getPayData(), new TypeToken<List<PayWaySetting>>() {
         }.getType());
-
-        String payMode = orderDetailVo.getPayMode();
-        if (payMode.contains(GlobalConstant.alipay)) {
-            isAli = true;
-            llAli.setVisibility(View.VISIBLE);
-            for (PayWaySetting payData : payDatas) {
-                if (GlobalConstant.alipay.equals(payData.getPayType())) {
-                    tvAli.setText(payData.getPayAddress());
-                    qrCodeUrlAli = payData.getQrCodeUrl();
+        if (payDatas != null) {
+            String payMode = orderDetailVo.getPayMode();
+            if (payMode.contains(GlobalConstant.alipay)) {
+                isAli = true;
+                llAli.setVisibility(View.VISIBLE);
+                for (PayWaySetting payData : payDatas) {
+                    if (GlobalConstant.alipay.equals(payData.getPayType())) {
+                        tvAli.setText(payData.getPayAddress());
+                        qrCodeUrlAli = payData.getQrCodeUrl();
+                    }
                 }
             }
-        }
-        if (payMode.contains(GlobalConstant.wechat)) {
-            isWechat = true;
-            llWeChat.setVisibility(View.VISIBLE);
-            for (PayWaySetting payData : payDatas) {
-                if (GlobalConstant.wechat.equals(payData.getPayType())) {
-                    tvWechat.setText(payData.getPayAddress());
-                    qrCodeUrlWechat = payData.getQrCodeUrl();
+            if (payMode.contains(GlobalConstant.wechat)) {
+                isWechat = true;
+                llWeChat.setVisibility(View.VISIBLE);
+                for (PayWaySetting payData : payDatas) {
+                    if (GlobalConstant.wechat.equals(payData.getPayType())) {
+                        tvWechat.setText(payData.getPayAddress());
+                        qrCodeUrlWechat = payData.getQrCodeUrl();
+                    }
                 }
             }
-        }
-        if (payMode.contains(GlobalConstant.card)) {
-            isBank = true;
-            llBank.setVisibility(View.VISIBLE);
-            for (PayWaySetting payData : payDatas) {
-                if (GlobalConstant.card.equals(payData.getPayType())) {
-                    tvBank.setText(payData.getPayAddress());
+            if (payMode.contains(GlobalConstant.card)) {
+                isBank = true;
+                llBank.setVisibility(View.VISIBLE);
+                for (PayWaySetting payData : payDatas) {
+                    if (GlobalConstant.card.equals(payData.getPayType())) {
+                        tvBank.setText(payData.getPayAddress());
+                    }
                 }
             }
-        }
-        if (payMode.toLowerCase().contains(GlobalConstant.PAYPAL)) {
-            isPaypal = true;
-            llPalpay.setVisibility(View.VISIBLE);
-            for (PayWaySetting payData : payDatas) {
-                if (GlobalConstant.PAYPAL.equals(payData.getPayType())) {
-                    tvPaypal.setText(payData.getPayAddress());
+            if (payMode.toLowerCase().contains(GlobalConstant.PAYPAL)) {
+                isPaypal = true;
+                llPalpay.setVisibility(View.VISIBLE);
+                for (PayWaySetting payData : payDatas) {
+                    if (GlobalConstant.PAYPAL.equals(payData.getPayType())) {
+                        tvPaypal.setText(payData.getPayAddress());
+                    }
                 }
             }
-        }
-        if (payMode.contains(GlobalConstant.other)) {
-            isOther = true;
-            llOther.setVisibility(View.VISIBLE);
-            for (PayWaySetting payData : payDatas) {
-                if (GlobalConstant.other.equals(payData.getPayType())) {
-                    tvOther.setText(payData.getPayAddress());
+            if (payMode.contains(GlobalConstant.other)) {
+                isOther = true;
+                llOther.setVisibility(View.VISIBLE);
+                for (PayWaySetting payData : payDatas) {
+                    if (GlobalConstant.other.equals(payData.getPayType())) {
+                        tvOther.setText(payData.getPayAddress());
+                    }
                 }
             }
         }

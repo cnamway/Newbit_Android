@@ -283,7 +283,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:textColor="@color/btn_normal"
+                            android:text="---"
+                            android:textColor="@color/bg_btn_normal"
                             android:textSize="@dimen/sp_12" />
 
                         <TextView
@@ -293,7 +294,7 @@
                             android:layout_marginLeft="8dp"
                             android:gravity="right"
                             android:text="CNY"
-                            android:textColor="@color/btn_normal"
+                            android:textColor="@color/bg_btn_normal"
                             android:textSize="@dimen/font_mini" />
 
                     </LinearLayout>

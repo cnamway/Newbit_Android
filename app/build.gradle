@@ -7,8 +7,8 @@ def getDate() {
     return formattedDate
 }
 
-def verName = "1.4.8"
-def versioncode = 48
+def verName = "1.4.9"
+def versioncode = 49
 
 android {
     compileSdkVersion 27
