@@ -66,7 +66,7 @@ public class C2CListFragment extends BaseLazyFragment implements C2CListContract
     private int coinScale = 8;
     private C2CListPresenterImpl presenter;
     private int pageNo = 1;
-    private int advertiseType = 1; // 1卖 0买
+    private int advertiseType = 1; //1买  0卖
     private String country = "";
     private String payMode = "";
     private String lowQuota = "";
@@ -101,12 +101,12 @@ public class C2CListFragment extends BaseLazyFragment implements C2CListContract
     @Override
     protected void initData() {
         presenter = new C2CListPresenterImpl(this);
-        initRvContent();
         Bundle bundle = getArguments();
         if (bundle != null) {
             coinName = bundle.getString("coinName");
             coinScale = bundle.getInt("coinScale");
         }
+        initRvContent();
     }
 
     @Override
@@ -202,7 +202,6 @@ public class C2CListFragment extends BaseLazyFragment implements C2CListContract
         adapter.bindToRecyclerView(rvContent);
         adapter.isFirstOnly(true);
         adapter.setEnableLoadMore(false);
-        addHeadView(1);
     }
 
     /**
@@ -269,8 +268,8 @@ public class C2CListFragment extends BaseLazyFragment implements C2CListContract
         getC2cList(true);
     }
 
-    public void setAdvertiseType(int advertiseType) {
-        this.advertiseType = advertiseType;
+    public void setAdvertiseType(int advertiseTypes) {
+        this.advertiseType = advertiseTypes;
         adapter.setEnableLoadMore(false);
         pageNo = 1;
         getC2cList(true);
@@ -288,7 +287,7 @@ public class C2CListFragment extends BaseLazyFragment implements C2CListContract
             List<AdvertiseShowVo> list = obj.getRecords();
             if (list != null && list.size() > 0) {
                 if (pageNo == 1) {
-                    //addHeadView(1);
+                    addHeadView(1);
                     this.advertiseShowVoList.clear();
                 } else {
                     adapter.loadMoreEnd();
@@ -369,18 +368,29 @@ public class C2CListFragment extends BaseLazyFragment implements C2CListContract
 //        NetCodeUtils.checkedErrorCode(getmActivity(), code, toastMessage);
 //    }
 
-    //type 0 空列表 1非空
+    //type 0 空列表 1非空 2是否卖出
     private void addHeadView(int type) {
         View headerView = getLayoutInflater().inflate(R.layout.view_buy, null);
         headerView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
 
         LinearLayout emptyLayout = headerView.findViewById(R.id.emptyLayout);
-        if (type == 0) {
+        LinearLayout llBuyLayout = headerView.findViewById(R.id.llBuyLayout);
+        if (type == 0) {//无数据
             emptyLayout.setVisibility(View.VISIBLE);
+            if (advertiseType == 1) {//1买  0卖
+                llBuyLayout.setVisibility(View.VISIBLE);
+            } else {
+                llBuyLayout.setVisibility(View.GONE);
+            }
             adapter.setEmptyView(headerView);
-        } else {
+        } else {//有数据
             emptyLayout.setVisibility(View.GONE);
-            adapter.addHeaderView(headerView);
+            if (advertiseType == 1) {//1买  0卖
+                llBuyLayout.setVisibility(View.VISIBLE);
+            } else {
+                llBuyLayout.setVisibility(View.GONE);
+            }
+            adapter.setHeaderView(headerView);
         }
 
         tvBuyType = headerView.findViewById(R.id.tvBuyType);

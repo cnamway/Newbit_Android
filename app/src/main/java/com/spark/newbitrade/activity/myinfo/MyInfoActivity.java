@@ -23,6 +23,7 @@ import com.spark.newbitrade.activity.login.LoginActivity;
 import com.spark.newbitrade.activity.my_account.MyAccountActivity;
 import com.spark.newbitrade.base.BaseActivity;
 import com.spark.newbitrade.entity.User;
+import com.spark.newbitrade.event.CheckLoginSuccessEvent;
 import com.spark.newbitrade.ui.CircleImageView;
 import com.spark.newbitrade.utils.BitmapUtils;
 import com.spark.newbitrade.utils.FileUtils;
@@ -34,6 +35,9 @@ import com.spark.newbitrade.utils.UriUtils;
 import com.yanzhenjie.permission.Action;
 import com.yanzhenjie.permission.AndPermission;
 import com.yanzhenjie.permission.Permission;
+
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.io.File;
 import java.util.List;
@@ -338,5 +342,13 @@ public class MyInfoActivity extends BaseActivity implements MyInfoContract.MyInf
         }
     }
 
-
+    /**
+     * check uc、ac、acp成功后，通知刷新界面
+     */
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onCheckLoginSuccessEvent(CheckLoginSuccessEvent response) {
+        if (MyApplication.getApp().isLogin()) {
+            myInfoPresenter.getUserInfo();
+        }
+    }
 }
