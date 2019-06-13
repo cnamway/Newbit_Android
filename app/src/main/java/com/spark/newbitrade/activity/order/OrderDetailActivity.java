@@ -118,6 +118,8 @@ public class OrderDetailActivity extends BaseActivity implements OrderDetailCont
     LinearLayout llOther;
     @BindView(R.id.llPayLayout)
     LinearLayout llPayLayout;
+    @BindView(R.id.tvBankRealName)
+    TextView tvBankRealName;
 
     private String orderSn;
     private OrderFragment.Status status;//订单状态 0-已取消 1-未付款 2-已付款 3-已完成 4-申诉中
@@ -549,7 +551,16 @@ public class OrderDetailActivity extends BaseActivity implements OrderDetailCont
         List<PayWaySetting> payDatas = new Gson().fromJson(orderDetailVo.getPayData(), new TypeToken<List<PayWaySetting>>() {
         }.getType());
         if (payDatas != null) {
-            String payMode = orderDetailVo.getPayMode();
+            String payMode = "";
+            if (status == OrderFragment.Status.UNPAID) {
+                llPayLayout.setVisibility(View.VISIBLE);
+                payMode = orderDetailVo.getPayMode();
+            } else if (status == OrderFragment.Status.PAID) {
+                llPayLayout.setVisibility(View.VISIBLE);
+                payMode = orderDetailVo.getActualPayment();
+            } else {
+                llPayLayout.setVisibility(View.GONE);
+            }
             if (payMode.contains(GlobalConstant.alipay)) {
                 isAli = true;
                 llAli.setVisibility(View.VISIBLE);
@@ -575,6 +586,7 @@ public class OrderDetailActivity extends BaseActivity implements OrderDetailCont
                 llBank.setVisibility(View.VISIBLE);
                 for (PayWaySetting payData : payDatas) {
                     if (GlobalConstant.card.equals(payData.getPayType())) {
+                        tvBankRealName.setText(payData.getRealName());
                         tvBank.setText(payData.getPayAddress());
                     }
                 }
@@ -597,8 +609,9 @@ public class OrderDetailActivity extends BaseActivity implements OrderDetailCont
                     }
                 }
             }
+            selectDialog.setView(isAli, isWechat, isBank, isPaypal, isOther);
         }
-        selectDialog.setView(isAli, isWechat, isBank, isPaypal, isOther);
+
     }
 
     public void showPopWindow(String url) {
@@ -617,12 +630,6 @@ public class OrderDetailActivity extends BaseActivity implements OrderDetailCont
         ivQR.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-//                if (!PermissionUtils.isCanUseStorage(OrderDetailActivity.this))
-//                    checkPermission(GlobalConstant.PERMISSION_STORAGE, Permission.STORAGE);
-//                else {
-//                    ToastUtils.showToast(getString(R.string.download_tag));
-//                    presenter.doDownload(downloadUrl);
-//                }
                 return true;
             }
         });
@@ -646,30 +653,6 @@ public class OrderDetailActivity extends BaseActivity implements OrderDetailCont
         getWindow().setAttributes(lp);
 
     }
-
-//    private void checkPermission(int requestCode, String[] permissions) {
-//        AndPermission.with(OrderDetailActivity.this).requestCode(requestCode).permission(permissions).callback(permissionListener).start();
-//    }
-//
-//    private PermissionListener permissionListener = new PermissionListener() {
-//        @Override
-//        public void onSucceed(int requestCode, @NonNull List<String> grantPermissions) {
-//            switch (requestCode) {
-//                case GlobalConstant.PERMISSION_STORAGE:
-//                    presenter.doDownload(downloadUrl);
-//                    break;
-//            }
-//        }
-//
-//        @Override
-//        public void onFailed(int requestCode, @NonNull List<String> deniedPermissions) {
-//            switch (requestCode) {
-//                case GlobalConstant.PERMISSION_STORAGE:
-//                    ToastUtils.showToast(getString(R.string.storage_permission));
-//                    break;
-//            }
-//        }
-//    };
 
     private void showWhichViews(String type, OrderFragment.Status status) {
         llOperate.setVisibility(View.GONE);
