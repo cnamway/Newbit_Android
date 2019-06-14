@@ -555,7 +555,7 @@ public class PubAdsFragment extends BaseLazyFragment implements ReleaseAdContrac
         if (!StringUtils.isEmpty(maxLimit, price, number) && Double.valueOf(price) != 0 && Double.valueOf(number) != 0) {
             Double max = Double.valueOf(price) * Double.valueOf(number);
             if (Double.valueOf(maxLimit) > max) {
-                ToastUtils.showToast(getString(R.string.max_limit_tag) + max + GlobalConstant.CNY);
+                ToastUtils.showToast(getString(R.string.max_limit_tag) + MathUtils.subZeroAndDot(MathUtils.getRundNumber(max, 2, null)) + GlobalConstant.CNY);
             }
         }
     }
