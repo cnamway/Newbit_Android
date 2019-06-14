@@ -313,10 +313,8 @@
             android:screenOrientation="portrait" />
 
         <!--service-->
-        <!--<service android:name="com.spark.newbitrade.serivce.TradeService" />-->
-        <!--<service android:name="com.spark.newbitrade.serivce.MarketService" />-->
-        <!--<service android:name="com.spark.newbitrade.serivce.KlineService" />-->
-        <service android:name="com.spark.newbitrade.serivce.GroupService" />
+        <!--<service android:name="com.spark.newbitrade.serivce.GroupService" />-->
+        <service android:name="com.spark.newbitrade.serivce.ChatWebSocketService" />
 
 
     </application>

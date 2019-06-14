@@ -33,6 +33,7 @@ import com.spark.library.otc.model.OrderPaymentDto;
 import com.spark.newbitrade.MyApplication;
 import com.spark.newbitrade.R;
 import com.spark.newbitrade.activity.appeal.AppealActivity;
+import com.spark.newbitrade.activity.chat.ChatActivity;
 import com.spark.newbitrade.base.BaseActivity;
 import com.spark.newbitrade.dialog.PayWaySelectDialog;
 import com.spark.newbitrade.entity.OrderDetial;
@@ -191,7 +192,7 @@ public class OrderDetailActivity extends BaseActivity implements OrderDetailCont
             status = (OrderFragment.Status) bundle.getSerializable("status");
             boolean isChatList = bundle.getBoolean("isChatList");
             if (isChatList)
-                tvGoto.setVisibility(View.GONE);
+                tvGoto.setVisibility(View.INVISIBLE);
         }
         selectDialog = new PayWaySelectDialog(OrderDetailActivity.this, new PayWaySelectDialog.PayWaySelectListener() {
             @Override
@@ -268,9 +269,9 @@ public class OrderDetailActivity extends BaseActivity implements OrderDetailCont
                 orderDetial.setOrderSn(orderDetailVo.getOrderSn());
                 orderDetial.setMyId(MyApplication.getApp().getCurrentUser().getId() + "");
                 orderDetial.setHisId(orderDetailVo.getMemberId() + "");
-                orderDetial.setOtherSide(orderDetailVo.getTradeToUsername());
+                orderDetial.setOtherSide(orderDetailVo.getTrateToRealname());
                 bundle.putSerializable("orderDetial", orderDetial);
-//                showActivity(ChatActivity.class, bundle);
+                showActivity(ChatActivity.class, bundle);
                 break;
             case R.id.tvOrderSn:
                 CommonUtils.copyText(OrderDetailActivity.this, tvOrderSn.getText().toString());

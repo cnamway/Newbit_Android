@@ -3,6 +3,7 @@ package com.spark.newbitrade.activity.main;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -10,6 +11,7 @@ import com.bumptech.glide.Glide;
 import com.spark.newbitrade.MyApplication;
 import com.spark.newbitrade.R;
 import com.spark.newbitrade.activity.aboutus.AboutUsActivity;
+import com.spark.newbitrade.activity.chat.ChatListActivity;
 import com.spark.newbitrade.activity.login.LoginActivity;
 import com.spark.newbitrade.activity.my.ads.MyAdsActivity;
 import com.spark.newbitrade.activity.my.help.HelpActivity;
@@ -59,8 +61,11 @@ public class MyFragment extends BaseTransFragment {
     LinearLayout llAboutUs;
     @BindView(R.id.llHelp)
     LinearLayout llHelp;
+    @BindView(R.id.ivChatTip)
+    ImageView ivchatTip;
 
     private User user;
+    boolean hasNew;
 
     @Override
     protected void initImmersionBar() {
@@ -74,6 +79,10 @@ public class MyFragment extends BaseTransFragment {
     @Override
     public void onResume() {
         super.onResume();
+        if (ivchatTip != null) {
+            if (hasNew) ivchatTip.setVisibility(View.VISIBLE);
+            else ivchatTip.setVisibility(View.INVISIBLE);
+        }
         loadData();
     }
 
@@ -124,7 +133,7 @@ public class MyFragment extends BaseTransFragment {
         }
     }
 
-    @OnClick({R.id.llMyinfo, R.id.llAds, R.id.llSafe, R.id.llSettings, R.id.llPromotion, R.id.llAboutUs, R.id.llHelp, R.id.llOrder})
+    @OnClick({R.id.llMyinfo, R.id.llAds, R.id.llSafe, R.id.llSettings, R.id.llPromotion, R.id.llAboutUs, R.id.llHelp, R.id.llOrder, R.id.llMessage})
     @Override
     protected void setOnClickListener(View v) {
         super.setOnClickListener(v);
@@ -157,6 +166,11 @@ public class MyFragment extends BaseTransFragment {
                 break;
             case R.id.llOrder:
                 showActivity(MyOrderActivity.class, null);
+                break;
+            case R.id.llMessage:
+                hasNew = false;
+                ivchatTip.setVisibility(View.INVISIBLE);
+                showActivity(ChatListActivity.class, null);
                 break;
         }
     }
@@ -196,6 +210,14 @@ public class MyFragment extends BaseTransFragment {
             loginingViewText();
         } else {
             notLoginViewText();
+        }
+    }
+
+    public void setChatTip(boolean hasNew) {
+        this.hasNew = hasNew;
+        if (ivchatTip != null) {
+            if (hasNew) ivchatTip.setVisibility(View.VISIBLE);
+            else ivchatTip.setVisibility(View.INVISIBLE);
         }
     }
 }

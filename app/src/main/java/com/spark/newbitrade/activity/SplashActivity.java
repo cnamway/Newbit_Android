@@ -11,6 +11,7 @@ import com.spark.newbitrade.activity.lock.LockActivity;
 import com.spark.newbitrade.activity.login.LoginActivity;
 import com.spark.newbitrade.activity.main.MainActivity;
 import com.spark.newbitrade.base.BaseActivity;
+import com.spark.newbitrade.serivce.ChatWebSocketService;
 import com.spark.newbitrade.serivce.GroupService;
 import com.spark.newbitrade.utils.SharedPreferenceInstance;
 import com.spark.newbitrade.utils.okhttp.AppUtils;
@@ -44,7 +45,7 @@ public class SplashActivity extends BaseActivity {
      * 初始化服务
      */
     private void initService() {
-        //startService(new Intent(activity, GroupService.class));
+        startService(new Intent(activity, ChatWebSocketService.class));
     }
 
     @Override

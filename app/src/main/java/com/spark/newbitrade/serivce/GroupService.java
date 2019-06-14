@@ -8,7 +8,6 @@ import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
@@ -27,6 +26,7 @@ import com.spark.newbitrade.entity.ChatTable;
 import com.spark.newbitrade.entity.ChatTipEvent;
 import com.spark.newbitrade.entity.OrderDetial;
 import com.spark.newbitrade.factory.socket.ISocket;
+import com.spark.newbitrade.serivce.chatUtils.SocketMessage;
 import com.spark.newbitrade.utils.DatabaseUtils;
 import com.spark.newbitrade.utils.GlobalConstant;
 import com.spark.newbitrade.utils.LogUtils;
@@ -44,9 +44,7 @@ import java.net.Socket;
 import java.util.List;
 
 /**
- * author: wuzongjie
- * time  : 2018/4/27 0027 10:40
- * desc  :
+ * 聊天----弃用
  */
 
 public class GroupService extends Service {
@@ -96,7 +94,7 @@ public class GroupService extends Service {
             if (socket == null || !socket.isConnected()) {
                 releaseSocket(message);
             }
-            toRequest(message.getCmd(), message.getBody());
+            //toRequest(message.getCmd(), message.getBody());
         } /*else {
             socketThread = new SocketThread();
             socketThread.start();
@@ -155,7 +153,7 @@ public class GroupService extends Service {
                 dos = new DataOutputStream(socket.getOutputStream());
                 LogUtils.e("GroupService重连成功   message不清楚");
                 if (message != null) {
-                    toRequest(message.getCmd(), message.getBody()); // 这里我推送最后一次发送来的数据
+                    //toRequest(message.getCmd(), message.getBody()); // 这里我推送最后一次发送来的数据
                     LogUtils.e("GroupService重连成功   message不为空  " + message.getCmd());
                 }
             }
@@ -365,7 +363,6 @@ public class GroupService extends Service {
             table.setOrderId(chatEntity.getOrderId());
             table.setRead(false);
             table.setHasNew(true);
-            //table.setSendTimeStr(chatEntity.getSendTimeStr());
             //table.setSendTime(chatEntity.getSendTime());
             databaseUtils.saveChat(table);
             ChatTipEvent tipEvent = new ChatTipEvent();
@@ -382,7 +379,6 @@ public class GroupService extends Service {
                 table.setRead(false);
                 table.setHasNew(true);
                 table.setContent(chatEntity.getContent());
-                //table.setSendTimeStr(chatEntity.getSendTimeStr());
                 //table.setSendTime(chatEntity.getSendTime());
                 //WonderfulLogUtils.logi("MyService","  content  "+chatEntity.getContent());
                 databaseUtils.update(table);
@@ -402,7 +398,6 @@ public class GroupService extends Service {
         table.setOrderId(chatEntity.getOrderId());
         table.setRead(false);
         table.setHasNew(true);
-        //table.setSendTimeStr(chatEntity.getSendTimeStr());
         //table.setSendTime(chatEntity.getSendTime());
         databaseUtils.saveChat(table);
         ChatTipEvent tipEvent = new ChatTipEvent();

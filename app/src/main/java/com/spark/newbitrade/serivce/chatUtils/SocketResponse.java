@@ -1,4 +1,4 @@
-package com.spark.newbitrade.serivce;
+package com.spark.newbitrade.serivce.chatUtils;
 
 import com.spark.newbitrade.factory.socket.ISocket;
 
@@ -9,16 +9,16 @@ import com.spark.newbitrade.factory.socket.ISocket;
  */
 
 public class SocketResponse {
-    private ISocket.CMD cmd; // 传的指令
+    private short cmd; // 传的指令
     private String response; // 返回的参数
     private int code;
 
-    public SocketResponse(ISocket.CMD cmd, String response) {
+    public SocketResponse(short cmd, String response) {
         this.cmd = cmd;
         this.response = response;
     }
 
-    public SocketResponse(ISocket.CMD cmd, String response, int code) {
+    public SocketResponse(short cmd, String response, int code) {
         this.cmd = cmd;
         this.response = response;
         this.code = code;
@@ -28,11 +28,11 @@ public class SocketResponse {
         return code;
     }
 
-    public ISocket.CMD getCmd() {
+    public short getCmd() {
         return cmd;
     }
 
-    public void setCmd(ISocket.CMD cmd) {
+    public void setCmd(short cmd) {
         this.cmd = cmd;
     }
 
@@ -42,5 +42,15 @@ public class SocketResponse {
 
     public void setResponse(String response) {
         this.response = response;
+    }
+
+
+    @Override
+    public String toString() {
+        return "SocketResponse{" +
+                "cmd=" + cmd +
+                ", response='" + response + '\'' +
+                ", code=" + code +
+                '}';
     }
 }

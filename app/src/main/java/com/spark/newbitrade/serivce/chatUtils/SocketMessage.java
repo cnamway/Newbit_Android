@@ -1,6 +1,4 @@
-package com.spark.newbitrade.serivce;
-
-import com.spark.newbitrade.factory.socket.ISocket;
+package com.spark.newbitrade.serivce.chatUtils;
 
 /**
  * author: wuzongjie
@@ -11,21 +9,20 @@ import com.spark.newbitrade.factory.socket.ISocket;
 public class SocketMessage {
 
     private int code; // 0 为行情的socket
-    private ISocket.CMD cmd; // 传的指令
+    private short cmd; // 传的指令
     private byte[] body; // 参数
 
 
-    public SocketMessage(ISocket.CMD cmd, String response) {
+    public SocketMessage(short cmd, String response) {
         this.cmd = cmd;
 
     }
 
-    public SocketMessage(int code, ISocket.CMD cmd, byte[] body) {
+    public SocketMessage(int code, short cmd, byte[] body) {
         this.code = code;
         this.cmd = cmd;
         this.body = body;
     }
-
 
 
     public int getCode() {
@@ -36,11 +33,11 @@ public class SocketMessage {
         this.code = code;
     }
 
-    public ISocket.CMD getCmd() {
+    public short getCmd() {
         return cmd;
     }
 
-    public void setCmd(ISocket.CMD cmd) {
+    public void setCmd(short cmd) {
         this.cmd = cmd;
     }
 
