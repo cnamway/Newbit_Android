@@ -10,7 +10,6 @@ import java.util.Date;
 
 public class ChatEntity {
 
-    private String sendTimeStr;
     private Type type;
     private String fromAvatar;
     private String content;
@@ -19,18 +18,9 @@ public class ChatEntity {
     private String nameTo;
     private String orderId;
     private Integer partitionKey;
-    private Date sendTime;
+    private String sendTime;
     private String uidFrom;
     private String uidTo;
-
-
-    public String getSendTimeStr() {
-        return sendTimeStr;
-    }
-
-    public void setSendTimeStr(String sendTimeStr) {
-        this.sendTimeStr = sendTimeStr;
-    }
 
     public Type getType() {
         return type;
@@ -96,11 +86,11 @@ public class ChatEntity {
         this.partitionKey = partitionKey;
     }
 
-    public Date getSendTime() {
+    public String getSendTime() {
         return sendTime;
     }
 
-    public void setSendTime(Date sendTime) {
+    public void setSendTime(String sendTime) {
         this.sendTime = sendTime;
     }
 

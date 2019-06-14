@@ -13,7 +13,10 @@ import com.bumptech.glide.Glide;
 import com.spark.newbitrade.R;
 import com.spark.newbitrade.MyApplication;
 import com.spark.newbitrade.entity.ChatEntity;
+import com.spark.newbitrade.utils.DateUtils;
+import com.spark.newbitrade.utils.StringUtils;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -47,20 +50,37 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder> {
             holder.llRight.setVisibility(View.VISIBLE);
             if (MyApplication.app.getCurrentUser().getAvatar() == null) {
 
-            }else {
+            } else {
                 Glide.with(context).load(MyApplication.app.getCurrentUser().getAvatar())
                         .placeholder(R.mipmap.icon_avatar).into(holder.ivHeaderRight);
             }
             holder.tvMessageRight.setText(datas.get(position).getContent());
-            holder.tvTimeRight.setText(datas.get(position).getSendTimeStr());
-        } else{
+            if (StringUtils.isNotEmpty(datas.get(position).getSendTime())) {
+                if (StringUtils.isNotEmpty(datas.get(position).getSendTime())) {
+                    if (datas.get(position).getSendTime().length() != 13) {
+                        Date date = new Date(datas.get(position).getSendTime());
+                        holder.tvTimeRight.setText(DateUtils.getFormatTime(null, date));
+                    } else {
+                        Date date = new Date(Long.parseLong(datas.get(position).getSendTime()));
+                        holder.tvTimeRight.setText(DateUtils.getFormatTime(null, date));
+                    }
+                }
+            }
+        } else {
             holder.llLeft.setVisibility(View.VISIBLE);
             holder.llRight.setVisibility(View.GONE);
             Glide.with(context).load(datas.get(position).getFromAvatar())
                     .placeholder(R.mipmap.icon_avatar).into(holder.ivHeaderLeft);
             holder.tvMessageLeft.setText(datas.get(position).getContent());
-            holder.tvTimeLeft.setText(datas.get(position).getSendTimeStr());
-            //WonderfulLogUtils.logi("ChatActivity","onBindViewHolder()"+holder.tvMessageRight.getText());
+            if (StringUtils.isNotEmpty(datas.get(position).getSendTime())) {
+                if (datas.get(position).getSendTime().length() != 13) {
+                    Date date = new Date(datas.get(position).getSendTime());
+                    holder.tvTimeLeft.setText(DateUtils.getFormatTime(null, date));
+                } else {
+                    Date date = new Date(Long.parseLong(datas.get(position).getSendTime()));
+                    holder.tvTimeLeft.setText(DateUtils.getFormatTime(null, date));
+                }
+            }
         }
     }
 

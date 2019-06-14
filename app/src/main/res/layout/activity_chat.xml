@@ -43,10 +43,10 @@
                 android:layout_height="56dp"
                 android:background="@color/main_head_bg"
                 android:orientation="horizontal"
-                android:paddingBottom="6dp"
+                android:paddingBottom="2dp"
                 android:paddingLeft="10dp"
                 android:paddingRight="15dp"
-                android:paddingTop="6dp">
+                android:paddingTop="2dp">
 
                 <EditText
                     android:id="@+id/etContent"
@@ -68,8 +68,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginBottom="5dp"
-                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="2dp"
+                    android:layout_marginTop="2dp"
                     android:background="@drawable/ripple_btn_global_option_selector"
                     android:gravity="center"
                     android:paddingBottom="8dp"
