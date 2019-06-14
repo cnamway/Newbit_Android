@@ -36,6 +36,7 @@ import com.yanzhenjie.permission.Action;
 import com.yanzhenjie.permission.AndPermission;
 import com.yanzhenjie.permission.Permission;
 
+import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
@@ -130,6 +131,7 @@ public class MyInfoActivity extends BaseActivity implements MyInfoContract.MyInf
 
     @Override
     protected void initView() {
+        EventBus.getDefault().register(this);
         setSetTitleAndBack(false, true);
     }
 

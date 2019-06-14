@@ -387,7 +387,7 @@ public class C2CBuyOrSellActivity extends BaseActivity implements C2CBuyOrSellCo
 
     @Override
     public void createOrderSuccess(String obj) {
-        if (StringUtils.isNotEmpty(obj)){
+        if (StringUtils.isNotEmpty(obj)) {
             Bundle bundle = new Bundle();
             bundle.putString("orderSn", obj);
             bundle.putSerializable("status", OrderFragment.Status.UNPAID);
@@ -397,7 +397,7 @@ public class C2CBuyOrSellActivity extends BaseActivity implements C2CBuyOrSellCo
 
     @Override
     public void getAvgTimeSuccess(AuthMerchantFrontVo obj) {
-        if (obj != null && obj.getAvgReleaseTime() != null) {
+        if (obj != null && obj.getAvgReleaseTime() != null && tvTime != null) {
             tvTime.setText(obj.getAvgReleaseTime() + "");
         }
     }

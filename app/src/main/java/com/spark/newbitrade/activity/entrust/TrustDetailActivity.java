@@ -16,8 +16,8 @@ import com.spark.newbitrade.MyApplication;
 import com.spark.newbitrade.base.BaseActivity;
 import com.spark.newbitrade.entity.Entrust;
 import com.spark.newbitrade.factory.socket.ISocket;
-import com.spark.newbitrade.serivce.SocketMessage;
-import com.spark.newbitrade.serivce.SocketResponse;
+import com.spark.newbitrade.serivce.chatUtils.SocketMessage;
+import com.spark.newbitrade.serivce.chatUtils.SocketResponse;
 import com.spark.newbitrade.utils.GlobalConstant;
 import com.spark.newbitrade.utils.MathUtils;
 import com.spark.newbitrade.utils.NetCodeUtils;
@@ -141,7 +141,7 @@ public class TrustDetailActivity extends BaseActivity {
         HashMap<String, String> map = new HashMap<>();
         map.put("orderId", orderId);
         String json = new Gson().toJson(map);
-        EventBus.getDefault().post(new SocketMessage(GlobalConstant.CODE_TRADE, ISocket.CMD.ORDER_DETAIL, json.getBytes()));
+        EventBus.getDefault().post(new SocketMessage(GlobalConstant.CODE_TRADE, ISocket.CMD.ORDER_DETAIL.getCode(), json.getBytes()));
     }
 
     private void initRv(List<Entrust.ListBean.DetailBean> detail) {
@@ -158,9 +158,9 @@ public class TrustDetailActivity extends BaseActivity {
      */
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onGetMessage(SocketResponse response) {
-        if (response.getCmd() == null) return;
+        //if (response.getCmd() == null) return;
         switch (response.getCmd()) {
-            case ORDER_DETAIL:
+            case 0:
                 hideLoadingPopup();
                 try {
                     JSONObject object = new JSONObject(response.getResponse());

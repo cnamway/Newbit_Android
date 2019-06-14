@@ -25,6 +25,7 @@ import com.spark.newbitrade.utils.ToastUtils;
 import com.spark.library.otc.model.AdvertiseDto;
 import com.spark.library.otc.model.AuthMerchantApplyMarginType;
 
+import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
@@ -89,6 +90,7 @@ public class StorePublishActivity extends BaseActivity implements StorePublishCo
     @Override
     protected void initView() {
         super.initView();
+        EventBus.getDefault().register(this);
         setSetTitleAndBack(false, true);
     }
 
@@ -251,9 +253,11 @@ public class StorePublishActivity extends BaseActivity implements StorePublishCo
         }
         if (coinInfo != null) {
             if (Double.valueOf(number) > MathUtils.getDoudleByBigDecimal(coinInfo.getAdvMaxLimit())) {
+                ToastUtils.showToast(getString(R.string.text_sell_num) + "必须" + "大于等于" + MathUtils.subZeroAndDot(coinInfo.getAdvMinLimit().toString()) + " 且 " + "小于等于" + MathUtils.subZeroAndDot(coinInfo.getAdvMaxLimit().toString()));
                 etPrice.requestFocus();
                 return;
             } else if (Double.valueOf(number) < MathUtils.getDoudleByBigDecimal(coinInfo.getAdvMinLimit())) {
+                ToastUtils.showToast(getString(R.string.text_sell_num) + "必须" + "大于等于" + MathUtils.subZeroAndDot(coinInfo.getAdvMinLimit().toString()) + " 且 " + "小于等于" + MathUtils.subZeroAndDot(coinInfo.getAdvMaxLimit().toString()));
                 etPrice.requestFocus();
                 return;
             }
@@ -324,10 +328,10 @@ public class StorePublishActivity extends BaseActivity implements StorePublishCo
                 stringBuffer = stringBuffer.append(GlobalConstant.card).append(",");
             }
             if (payway.contains(getString(R.string.str_paypal))) {
-                stringBuffer = stringBuffer.append(getString(R.string.str_paypal)).append(",");
+                stringBuffer = stringBuffer.append(GlobalConstant.PAYPAL).append(",");
             }
             if (payway.contains(getString(R.string.str_other))) {
-                stringBuffer = stringBuffer.append(getString(R.string.str_other)).append(",");
+                stringBuffer = stringBuffer.append(GlobalConstant.other).append(",");
             }
             return StringUtils.getRealString(stringBuffer.toString());
         }

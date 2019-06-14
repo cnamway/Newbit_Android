@@ -14,8 +14,6 @@ import android.widget.LinearLayout;
 
 import com.android.volley.VolleyError;
 import com.google.gson.Gson;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 import com.google.gson.reflect.TypeToken;
 import com.spark.newbitrade.MyApplication;
 import com.spark.newbitrade.R;
@@ -38,16 +36,14 @@ import com.spark.newbitrade.entity.ExchangeLoginInfo;
 import com.spark.newbitrade.entity.Favorite;
 import com.spark.newbitrade.entity.HttpErrorEntity;
 import com.spark.newbitrade.entity.LoadExceptionEvent;
-import com.spark.newbitrade.entity.MarketSymbol;
-import com.spark.newbitrade.entity.User;
 import com.spark.newbitrade.entity.Vision;
 import com.spark.newbitrade.entity.VisionEntity;
 import com.spark.newbitrade.event.CheckLoginEvent;
 import com.spark.newbitrade.event.CheckLoginSuccessEvent;
 import com.spark.newbitrade.event.LoginoutWithoutApiEvent;
 import com.spark.newbitrade.factory.socket.ISocket;
-import com.spark.newbitrade.serivce.SocketMessage;
-import com.spark.newbitrade.serivce.SocketResponse;
+import com.spark.newbitrade.serivce.chatUtils.SocketMessage;
+import com.spark.newbitrade.serivce.chatUtils.SocketResponse;
 import com.spark.newbitrade.ui.AppVersionDialog;
 import com.spark.newbitrade.utils.FileUtils;
 import com.spark.newbitrade.utils.GlobalConstant;
@@ -175,7 +171,7 @@ public class MainActivity extends BaseTransFragmentActivity implements MainContr
                 isCheckVersion = true;
                 checkPermission();
             }
-            EventBus.getDefault().post(new SocketMessage(GlobalConstant.CODE_CHAT, ISocket.CMD.SUBSCRIBE_GROUP_CHAT, buildGetBodyJson().toString().getBytes()));
+            EventBus.getDefault().post(new SocketMessage(GlobalConstant.CODE_CHAT, ISocket.CMD.SUBSCRIBE_GROUP_CHAT.getCode(), buildGetBodyJson().toString().getBytes()));
         }
         hasNew = SharedPreferenceInstance.getInstance().getHasNew();
         SharedPreferenceInstance.getInstance().saveHasNew(false);
@@ -210,15 +206,11 @@ public class MainActivity extends BaseTransFragmentActivity implements MainContr
         if (!EventBus.getDefault().isRegistered(this)) {
             EventBus.getDefault().register(this);
         }
-        EventBus.getDefault().post(new SocketMessage(GlobalConstant.CODE_KLINE, ISocket.CMD.SUBSCRIBE_THUMB, new Gson().toJson(GlobalConstant.getMAP()).getBytes()));
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        EventBus.getDefault().post(new SocketMessage(GlobalConstant.CODE_KLINE, ISocket.CMD.UN_SUBSCRIBE_THUMB, new Gson().toJson(GlobalConstant.getMAP()).getBytes()));
-//        stopService(new Intent(MainActivity.this, TradeService.class));
-        settingPresenter.destory();
         versionPresenter.destory();
     }
 
@@ -348,8 +340,6 @@ public class MainActivity extends BaseTransFragmentActivity implements MainContr
 
     @Override
     protected void loadData() {
-        EventBus.getDefault().post(new SocketMessage(GlobalConstant.CODE_KLINE, ISocket.CMD.ENABLE_SYMBOL, new Gson().toJson(GlobalConstant.getMAP()).getBytes()));
-        EventBus.getDefault().post(new SocketMessage(GlobalConstant.CODE_KLINE, ISocket.CMD.GET_OVERVIEW_THUMB, new Gson().toJson(GlobalConstant.getMAP()).getBytes()));
     }
 
     /**
@@ -359,7 +349,6 @@ public class MainActivity extends BaseTransFragmentActivity implements MainContr
         HashMap<String, String> map = new HashMap<>();
         map.put("currency", GlobalConstant.CNY);
         String json = new Gson().toJson(map);
-        EventBus.getDefault().post(new SocketMessage(GlobalConstant.CODE_KLINE, ISocket.CMD.USD_CNY_RATE, json.getBytes()));
     }
 
     private void tcpNotify() {
@@ -382,158 +371,18 @@ public class MainActivity extends BaseTransFragmentActivity implements MainContr
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onSocketMessage(SocketResponse response) {
         hideLoadingPopup();
-        if (response.getCmd() == null) return;
         String json = response.getResponse();
         JSONObject object = null;
         switch (response.getCmd()) {
-            case PUSH_THUMB: // 首页缩略图订阅的消息
-                try {
-                    Currency temp = gson.fromJson(json, Currency.class);
-                    if (temp == null) return;
-                    for (Currency currency : currencies) {
-                        if (temp.getSymbol().equals(currency.getSymbol())) {
-                            Currency.shallowClone(currency, temp);
-                            break;
-                        }
-                    }
-                    for (Currency currency : currenciesTwo) {
-                        if (temp.getSymbol().equals(currency.getSymbol())) {
-                            Currency.shallowClone(currency, temp);
-                            break;
-                        }
-                    }
-                    for (Currency currency : currencyListAll) {
-                        if (temp.getSymbol().equals(currency.getSymbol())) {
-                            Currency.shallowClone(currency, temp);
-                            break;
-                        }
-                    }
-                    tcpNotify();
-                } catch (Exception e) {
-                    e.printStackTrace();
 
-                }
-                break;
-            case GET_ALL_THUMB:
-                try {
-                    object = new JSONObject(json);
-                    if (object.optInt("code") == GlobalConstant.SUCCESS_CODE) {
-                        List<Currency> currencies = new Gson().fromJson(object.getJSONArray("data").toString(), new TypeToken<List<Currency>>() {
-                        }.getType());
-                        allCurrencySuccess(currencies);
-                    } else {
-                        allCurrencyFail(object.optInt("code"), object.optString("message"));
-                    }
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    allCurrencyFail(JSON_ERROR, null);
-                }
-                break;
-            case GET_OVERVIEW_THUMB:
-                try {
-                    homeCurrencySuccess(json);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    homeCurrencyFail(JSON_ERROR, null);
-                }
-                break;
-            case ENABLE_SYMBOL:
-                if (!isAlreadExcute) {
-                    isAlreadExcute = true;
-                    try {
-                        object = new JSONObject(json);
-                        if (object.optInt("code") == GlobalConstant.SUCCESS_CODE) {
-                            List<MarketSymbol> objs = new Gson().fromJson(object.getJSONArray("data").toString(), new TypeToken<List<MarketSymbol>>() {
-                            }.getType());
-                            if (objs != null) {
-                                String symbol = "";
-                                for (int i = 0; i < objs.size(); i++) {
-                                    if (StringUtils.isNotEmpty(objs.get(i).getBaseSymbol())) {
-                                        if (!symbol.contains(objs.get(i).getBaseSymbol())) {
-                                            titleList.add(objs.get(i).getBaseSymbol());
-                                        }
-                                        symbol = objs.get(i).getBaseSymbol() + "," + symbol;
-                                    }
-                                }
-                                titleList.add(getString(R.string.self));
-                                if (savedInstanceState == null) {
-                                    addFragments();
-                                } else {
-                                    recoverMenuFragment();
-                                }
-                                initPager();
-                                EventBus.getDefault().post(new SocketMessage(GlobalConstant.CODE_KLINE, ISocket.CMD.GET_ALL_THUMB, new Gson().toJson(GlobalConstant.getMAP()).getBytes()));
-                            }
-                        } else {
-                            NetCodeUtils.checkedErrorCode((BaseActivity) activity, object.optInt("code"), object.optString("message"));
-                        }
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                        NetCodeUtils.checkedErrorCode((BaseActivity) activity, JSON_ERROR, null);
-                    }
-                }
-                break;
-            case JSONLOGIN:
-                try {
-                    object = new JSONObject(json);
-                    if (object.optInt("code") == GlobalConstant.SUCCESS_CODE) {
-                        User user = MyApplication.getApp().getCurrentUser();
-                        MyApplication.getApp().deleteCurrentUser();
-                        MyApplication.getApp().setCurrentUser(user);
-                        EventBus.getDefault().post(new SocketMessage(GlobalConstant.CODE_TRADE, ISocket.CMD.PUSH_REQUEST, null));
-                    } else {
-                        NetCodeUtils.checkedErrorCode((BaseActivity) activity, object.optInt("code"), object.optString("'message"));
-                    }
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    NetCodeUtils.checkedErrorCode((BaseActivity) activity, JSON_ERROR, null);
-                }
-                break;
-            case USD_CNY_RATE:
-                try {
-                    JsonObject jsonObject = new JsonParser().parse(response.getResponse()).getAsJsonObject();
-                    double rate = jsonObject.getAsJsonPrimitive("data").getAsDouble();
-                    getRateSuccess(rate);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    getRateFail(JSON_ERROR, null);
-                }
-                break;
-            case FIND_FAVOR:
-                try {
-                    object = new JSONObject(json);
-                    if (object.optInt("code") == GlobalConstant.SUCCESS_CODE) {
-                        List<Favorite> objs = new Gson().fromJson(object.getJSONArray("data").toString(), new TypeToken<List<Favorite>>() {
-                        }.getType());
-                        findSuccess(objs);
-                    } else {
-                        doPostFail(object.optInt("code"), object.optString("message"));
-                    }
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    doPostFail(JSON_ERROR, null);
-                }
-                break;
-            case PUSH_REQUEST:
-                try {
-                    object = new JSONObject(json);
-                    if (object.optInt("code") == GlobalConstant.SUCCESS_CODE) {
-                        find();
-                    } else {
-                        doPostFail(object.optInt("code"), object.optString("message"));
-                    }
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    doPostFail(JSON_ERROR, null);
-                }
-                break;
         }
     }
-//新消息提醒
-//    @Subscribe(threadMode = ThreadMode.MAIN)
-//    public void getGroupChatEvent(ChatTipEvent tipEvent) {
-//        homeFragment.setChatTip(tipEvent.isHasNew());
-//    }
+
+    //新消息提醒
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void getGroupChatEvent(ChatTipEvent tipEvent) {
+        myFragment.setChatTip(tipEvent.isHasNew());
+    }
 
     /**
      * 自选
@@ -599,7 +448,7 @@ public class MainActivity extends BaseTransFragmentActivity implements MainContr
         map.put("username", MyApplication.getApp().getCurrentUser().getId() + "");
         map.put("password", gson.toJson(exchangeLoginInfo));
         String json = gson.toJson(map);
-        EventBus.getDefault().post(new SocketMessage(GlobalConstant.CODE_TRADE, ISocket.CMD.JSONLOGIN, json.getBytes()));
+        EventBus.getDefault().post(new SocketMessage(GlobalConstant.CODE_TRADE, ISocket.CMD.JSONLOGIN.getCode(), json.getBytes()));
     }
 
     @Override

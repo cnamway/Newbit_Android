@@ -7,8 +7,8 @@ def getDate() {
     return formattedDate
 }
 
-def verName = "1.4.9"
-def versioncode = 49
+def verName = "1.5.2"
+def versioncode = 52
 
 android {
     compileSdkVersion 27
@@ -167,5 +167,6 @@ dependencies {
     api('com.spark.bitrade:otc-sys-client:1.0.0-SNAPSHOT') {
         exclude(group: 'org.apache.httpcomponents', module: 'httpclient-android')
     }
+
 
 }

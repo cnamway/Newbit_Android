@@ -22,10 +22,8 @@ import com.google.gson.Gson;
 import com.spark.newbitrade.MyApplication;
 import com.spark.newbitrade.R;
 import com.spark.newbitrade.activity.chat.ChatListActivity;
-import com.spark.newbitrade.activity.main.presenter.CommonPresenter;
 import com.spark.newbitrade.activity.main.presenter.HomePresenterImpl;
 import com.spark.newbitrade.activity.message.WebViewActivity;
-import com.spark.newbitrade.activity.mining.MiningActivity;
 import com.spark.newbitrade.adapter.BannerImageLoader;
 import com.spark.newbitrade.adapter.HomeFragmentPagerAdapter;
 import com.spark.newbitrade.adapter.HomeOneAdapter;
@@ -35,13 +33,12 @@ import com.spark.newbitrade.base.BaseTransFragment;
 import com.spark.newbitrade.entity.BannerEntity;
 import com.spark.newbitrade.entity.Currency;
 import com.spark.newbitrade.entity.HomeNewTenBean;
-import com.spark.newbitrade.entity.Message;
 import com.spark.newbitrade.entity.Notice;
 import com.spark.newbitrade.event.CheckLoginSuccessEvent;
 import com.spark.newbitrade.factory.UrlFactory;
 import com.spark.newbitrade.factory.socket.ISocket;
-import com.spark.newbitrade.serivce.SocketMessage;
-import com.spark.newbitrade.serivce.SocketResponse;
+import com.spark.newbitrade.serivce.chatUtils.SocketMessage;
+import com.spark.newbitrade.serivce.chatUtils.SocketResponse;
 import com.spark.newbitrade.ui.intercept.MyScrollView;
 import com.spark.newbitrade.utils.GlobalConstant;
 import com.spark.newbitrade.utils.LogUtils;
@@ -64,10 +61,8 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
-import config.Injection;
 
 import static android.app.Activity.RESULT_OK;
-import static com.spark.newbitrade.utils.GlobalConstant.JSON_ERROR;
 
 /**
  * Created by Administrator on 2018/1/7.
@@ -446,11 +441,11 @@ public class HomeFragment extends BaseTransFragment implements MainContract.Home
         String json = new Gson().toJson(map);
         LogUtils.i("json==" + json);
         if (currencies.get(position).isCollect()) {
-            EventBus.getDefault().post(new SocketMessage(GlobalConstant.CODE_TRADE, ISocket.CMD.DELETE_FAVOR, json.getBytes()));
+            EventBus.getDefault().post(new SocketMessage(GlobalConstant.CODE_TRADE, ISocket.CMD.DELETE_FAVOR.getCode(), json.getBytes()));
 //            commonPresenter.delete(map, position);
         } else {
 //            commonPresenter.add(map, position);
-            EventBus.getDefault().post(new SocketMessage(GlobalConstant.CODE_TRADE, ISocket.CMD.ADD_FAVOR, json.getBytes()));
+            EventBus.getDefault().post(new SocketMessage(GlobalConstant.CODE_TRADE, ISocket.CMD.ADD_FAVOR.getCode(), json.getBytes()));
         }
     }
 
@@ -617,12 +612,12 @@ public class HomeFragment extends BaseTransFragment implements MainContract.Home
         hideLoadingPopup();
         String obj = response.getResponse();
         switch (response.getCmd()) {
-            case ADD_FAVOR:
-            case DELETE_FAVOR:
+            case 0:
+            case 1:
                 try {
                     JSONObject object = new JSONObject(obj);
                     if (object.optInt("code") == GlobalConstant.SUCCESS_CODE) {
-                        if (response.getCmd() == ISocket.CMD.ADD_FAVOR) {
+                        if (response.getCmd() == ISocket.CMD.ADD_FAVOR.getCode()) {
 //                            addSuccess(object.optString("message"), position);
                         } else {
 //                            deleteSuccess(object.optString("message"), position);

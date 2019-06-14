@@ -23,8 +23,8 @@ import com.spark.newbitrade.entity.Entrust;
 import com.spark.newbitrade.entity.FilterBean;
 import com.spark.newbitrade.entity.MarketSymbol;
 import com.spark.newbitrade.factory.socket.ISocket;
-import com.spark.newbitrade.serivce.SocketMessage;
-import com.spark.newbitrade.serivce.SocketResponse;
+import com.spark.newbitrade.serivce.chatUtils.SocketMessage;
+import com.spark.newbitrade.serivce.chatUtils.SocketResponse;
 import com.spark.newbitrade.ui.FilterPopView;
 import com.spark.newbitrade.utils.GlobalConstant;
 import com.spark.newbitrade.utils.LogUtils;
@@ -40,7 +40,6 @@ import java.util.HashMap;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 import static com.spark.newbitrade.utils.GlobalConstant.JSON_ERROR;
 
@@ -234,7 +233,7 @@ public class AllTrustActivity extends BaseActivity implements FilterPopView.Filt
     @Override
     protected void loadData() {
         displayLoadingPopup();
-        EventBus.getDefault().post(new SocketMessage(GlobalConstant.CODE_KLINE, ISocket.CMD.ENABLE_SYMBOL, null));
+        EventBus.getDefault().post(new SocketMessage(GlobalConstant.CODE_KLINE, ISocket.CMD.ENABLE_SYMBOL.getCode(), null));
     }
 
     /**
@@ -257,7 +256,7 @@ public class AllTrustActivity extends BaseActivity implements FilterPopView.Filt
         map.put("side", side);
         map.put("status", status);//5 成交  6 撤单
         String json = new Gson().toJson(map);
-        EventBus.getDefault().post(new SocketMessage(GlobalConstant.CODE_TRADE, cmd, json.getBytes())); // app端请求数据
+        EventBus.getDefault().post(new SocketMessage(GlobalConstant.CODE_TRADE, cmd.getCode(), json.getBytes())); // app端请求数据
         //}
     }
 
@@ -266,11 +265,11 @@ public class AllTrustActivity extends BaseActivity implements FilterPopView.Filt
      */
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onGetMessage(SocketResponse response) {
-        if (response.getCmd() == null) return;
+       /// if (response.getCmd() == null) return;
         String json = response.getResponse();
         JSONObject object = null;
         switch (response.getCmd()) {
-            case HISTORY_ORDER:
+            case 0:
                 hideLoadingPopup();
                 refreshLayout.setEnabled(true);
                 refreshLayout.setRefreshing(false);
@@ -291,7 +290,7 @@ public class AllTrustActivity extends BaseActivity implements FilterPopView.Filt
                     doPostFail(JSON_ERROR, null);
                 }
                 break;
-            case CURRENT_ORDER:
+            case 1:
                 hideLoadingPopup();
                 refreshLayout.setEnabled(true);
                 refreshLayout.setRefreshing(false);
@@ -312,7 +311,7 @@ public class AllTrustActivity extends BaseActivity implements FilterPopView.Filt
                     doPostFail(JSON_ERROR, null);
                 }
                 break;
-            case ENABLE_SYMBOL:
+            case 2:
                 try {
                     object = new JSONObject(json);
                     if (object.optInt("code") == GlobalConstant.SUCCESS_CODE) {

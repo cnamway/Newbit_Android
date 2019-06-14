@@ -713,7 +713,7 @@ public class PubAdsFragment extends BaseLazyFragment implements ReleaseAdContrac
             advertiseDto.setTimeLimit(Integer.valueOf(timeLimit));
             advertiseDto.setCountry(strCountry);
             advertiseDto.setPriceType(priceType);
-            advertiseDto.setPremiseRate(new BigDecimal(strOverFlow));
+            advertiseDto.setPremiseRate(new BigDecimal(Double.parseDouble(strOverFlow) * 0.01));
             advertiseDto.setRemark(remark);
             advertiseDto.setPayMode(pay);
             advertiseDto.setNumber(new BigDecimal(number));
@@ -814,7 +814,7 @@ public class PubAdsFragment extends BaseLazyFragment implements ReleaseAdContrac
             etPrice.setText(MathUtils.subZeroAndDot(ads.getPrice() + ""));
             etOverflow.setText("100");
         } else {
-            etOverflow.setText(MathUtils.subZeroAndDot(ads.getPremiseRate() + ""));
+            etOverflow.setText(MathUtils.subZeroAndDot(ads.getPremiseRate() * 100 + ""));
         }
     }
 
@@ -867,10 +867,10 @@ public class PubAdsFragment extends BaseLazyFragment implements ReleaseAdContrac
                 stringBuffer = stringBuffer.append(GlobalConstant.card).append(",");
             }
             if (payway.contains(getString(R.string.str_paypal))) {
-                stringBuffer = stringBuffer.append(getString(R.string.str_paypal)).append(",");
+                stringBuffer = stringBuffer.append(GlobalConstant.PAYPAL).append(",");
             }
             if (payway.contains(getString(R.string.str_other))) {
-                stringBuffer = stringBuffer.append(getString(R.string.str_other)).append(",");
+                stringBuffer = stringBuffer.append(GlobalConstant.other).append(",");
             }
             return StringUtils.getRealString(stringBuffer.toString());
         }

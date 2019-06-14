@@ -16,8 +16,8 @@ import com.spark.newbitrade.base.BaseActivity;
 import com.spark.newbitrade.base.BaseFragment;
 import com.spark.newbitrade.entity.DepthResult;
 import com.spark.newbitrade.factory.socket.ISocket;
-import com.spark.newbitrade.serivce.SocketMessage;
-import com.spark.newbitrade.serivce.SocketResponse;
+import com.spark.newbitrade.serivce.chatUtils.SocketMessage;
+import com.spark.newbitrade.serivce.chatUtils.SocketResponse;
 import com.spark.newbitrade.utils.GlobalConstant;
 import com.spark.newbitrade.utils.LogUtils;
 import com.spark.newbitrade.utils.NetCodeUtils;
@@ -81,12 +81,12 @@ public class DepthFragment extends BaseFragment {
     @Override
     public void onPause() {
         super.onPause();
-        EventBus.getDefault().post(new SocketMessage(GlobalConstant.CODE_MARKET, ISocket.CMD.UNSUBSCRIBE_EXCHANGE_TRADE, new Gson().toJson(map).getBytes()));
+        EventBus.getDefault().post(new SocketMessage(GlobalConstant.CODE_MARKET, ISocket.CMD.UNSUBSCRIBE_EXCHANGE_TRADE.getCode(), new Gson().toJson(map).getBytes()));
         EventBus.getDefault().unregister(this);
     }
 
     private void startTCP() {
-        EventBus.getDefault().post(new SocketMessage(GlobalConstant.CODE_MARKET, ISocket.CMD.SUBSCRIBE_EXCHANGE_TRADE, new Gson().toJson(map).getBytes()));
+        EventBus.getDefault().post(new SocketMessage(GlobalConstant.CODE_MARKET, ISocket.CMD.SUBSCRIBE_EXCHANGE_TRADE.getCode(), new Gson().toJson(map).getBytes()));
     }
 
 
@@ -96,7 +96,7 @@ public class DepthFragment extends BaseFragment {
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onSocketMessage(SocketResponse response) {
         switch (response.getCmd()) {
-            case PUSH_EXCHANGE_DEPTH:
+            case 0:
                 try {
                     LogUtils.d("深度图 推送过来的信息==" + response.getResponse());
                     if (gson == null)
@@ -125,7 +125,7 @@ public class DepthFragment extends BaseFragment {
                     e.printStackTrace();
                 }
                 break;
-            case GET_TRADE_PLATE:
+            case 1:
                 String json = response.getResponse();
                 try {
                     JSONObject jsonObject = new JSONObject(json);
@@ -201,7 +201,7 @@ public class DepthFragment extends BaseFragment {
         map.put("symbol", symbol);
         map.put("size", "20");
         String json = new Gson().toJson(map);
-        EventBus.getDefault().post(new SocketMessage(GlobalConstant.CODE_MARKET, ISocket.CMD.GET_TRADE_PLATE, json.getBytes()));
+        EventBus.getDefault().post(new SocketMessage(GlobalConstant.CODE_MARKET, ISocket.CMD.GET_TRADE_PLATE.getCode(), json.getBytes()));
 //        presenter.getDepth(map);
     }
 

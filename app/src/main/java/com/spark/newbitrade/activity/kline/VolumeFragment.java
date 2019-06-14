@@ -15,8 +15,8 @@ import com.spark.newbitrade.base.BaseActivity;
 import com.spark.newbitrade.base.BaseFragment;
 import com.spark.newbitrade.entity.VolumeInfo;
 import com.spark.newbitrade.factory.socket.ISocket;
-import com.spark.newbitrade.serivce.SocketMessage;
-import com.spark.newbitrade.serivce.SocketResponse;
+import com.spark.newbitrade.serivce.chatUtils.SocketMessage;
+import com.spark.newbitrade.serivce.chatUtils.SocketResponse;
 import com.spark.newbitrade.utils.GlobalConstant;
 import com.spark.newbitrade.utils.LogUtils;
 import com.spark.newbitrade.utils.NetCodeUtils;
@@ -77,12 +77,12 @@ public class VolumeFragment extends BaseFragment {
     @Override
     public void onPause() {
         super.onPause();
-        EventBus.getDefault().post(new SocketMessage(GlobalConstant.CODE_KLINE, ISocket.CMD.UN_SUBSCRIBE_KLINE, new Gson().toJson(map).getBytes()));
+        EventBus.getDefault().post(new SocketMessage(GlobalConstant.CODE_KLINE, ISocket.CMD.UN_SUBSCRIBE_KLINE.getCode(), new Gson().toJson(map).getBytes()));
         EventBus.getDefault().unregister(this);
     }
 
     private void startTCP() {
-        EventBus.getDefault().post(new SocketMessage(GlobalConstant.CODE_KLINE, ISocket.CMD.SUBSCRIBE_KLINE, new Gson().toJson(map).getBytes()));
+        EventBus.getDefault().post(new SocketMessage(GlobalConstant.CODE_KLINE, ISocket.CMD.SUBSCRIBE_KLINE.getCode(), new Gson().toJson(map).getBytes()));
     }
 
 
@@ -93,7 +93,7 @@ public class VolumeFragment extends BaseFragment {
     public void onSocketMessage(SocketResponse response) {
         String json = response.getResponse();
         switch (response.getCmd()) {
-            case PUSH_TRADE:
+            case 0:
                 try {
                     LogUtils.d("成交 推送过来的信息==" + json);
                     if (gson == null)
@@ -112,7 +112,7 @@ public class VolumeFragment extends BaseFragment {
                     e.printStackTrace();
                 }
                 break;
-            case LATEST_TRADE:
+            case 1:
                 try {
                     JSONObject jsonObject = new JSONObject(json);
                     if (jsonObject.optInt("code") == GlobalConstant.SUCCESS_CODE) {
@@ -188,7 +188,7 @@ public class VolumeFragment extends BaseFragment {
         map.put("symbol", symbol);
         map.put("size", "20");
         String json = new Gson().toJson(map);
-        EventBus.getDefault().post(new SocketMessage(GlobalConstant.CODE_KLINE, ISocket.CMD.LATEST_TRADE, json.getBytes()));
+        EventBus.getDefault().post(new SocketMessage(GlobalConstant.CODE_KLINE, ISocket.CMD.LATEST_TRADE.getCode(), json.getBytes()));
     }
 
     /**

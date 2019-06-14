@@ -21,8 +21,8 @@ import com.spark.newbitrade.base.BaseActivity;
 import com.spark.newbitrade.dialog.EntrustDialog;
 import com.spark.newbitrade.entity.Entrust;
 import com.spark.newbitrade.factory.socket.ISocket;
-import com.spark.newbitrade.serivce.SocketMessage;
-import com.spark.newbitrade.serivce.SocketResponse;
+import com.spark.newbitrade.serivce.chatUtils.SocketMessage;
+import com.spark.newbitrade.serivce.chatUtils.SocketResponse;
 import com.spark.newbitrade.utils.DpPxUtils;
 import com.spark.newbitrade.utils.GlobalConstant;
 
@@ -300,9 +300,9 @@ public class CurrentTrustActivity extends BaseActivity {
             map.put("side", side);
             String json = new Gson().toJson(map);
             if (isSelf) {
-                EventBus.getDefault().post(new SocketMessage(GlobalConstant.CODE_TRADE, ISocket.CMD.HISTORY_ORDER, json.getBytes())); // app端请求数据
+                EventBus.getDefault().post(new SocketMessage(GlobalConstant.CODE_TRADE, ISocket.CMD.HISTORY_ORDER.getCode(), json.getBytes())); // app端请求数据
             }else {
-                EventBus.getDefault().post(new SocketMessage(GlobalConstant.CODE_TRADE, ISocket.CMD.CURRENT_ORDER, json.getBytes())); // app端请求数据
+                EventBus.getDefault().post(new SocketMessage(GlobalConstant.CODE_TRADE, ISocket.CMD.CURRENT_ORDER.getCode(), json.getBytes())); // app端请求数据
             }
         }
     }
@@ -316,7 +316,7 @@ public class CurrentTrustActivity extends BaseActivity {
         map.put("orderId", orderId);
         map.put("symbol", symbol);
         String json = new Gson().toJson(map);
-        EventBus.getDefault().post(new SocketMessage(GlobalConstant.CODE_TRADE, ISocket.CMD.CANCEL_ORDER, json.getBytes()));
+        EventBus.getDefault().post(new SocketMessage(GlobalConstant.CODE_TRADE, ISocket.CMD.CANCEL_ORDER.getCode(), json.getBytes()));
     }
 
     /**
@@ -326,11 +326,11 @@ public class CurrentTrustActivity extends BaseActivity {
      */
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onGetMessage(SocketResponse response) {
-        if (response.getCmd() == null) return;
+        //if (response.getCmd() == null) return;
         String json = response.getResponse();
         JSONObject object = null;
         switch (response.getCmd()) {
-            case CURRENT_ORDER:
+            case 0:
                 hideLoadingPopup();
                 try {
                     object = new JSONObject(json);
@@ -346,7 +346,7 @@ public class CurrentTrustActivity extends BaseActivity {
                     doPostFail(JSON_ERROR, null);
                 }
                 break;
-            case HISTORY_ORDER:
+            case 1:
                 hideLoadingPopup();
                 try {
                     object = new JSONObject(json);
@@ -362,7 +362,7 @@ public class CurrentTrustActivity extends BaseActivity {
                     doPostFail(JSON_ERROR, null);
                 }
                 break;
-            case PUSH_EXCHANGE_ORDER_CANCELED://服务器确认撤单回报
+            case 2://服务器确认撤单回报
                 hideLoadingPopup();
                 try {
                     object = new JSONObject(json);
