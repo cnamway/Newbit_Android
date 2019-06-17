@@ -571,6 +571,9 @@ public class OrderDetailActivity extends BaseActivity implements OrderDetailCont
                         qrCodeUrlAli = payData.getQrCodeUrl();
                     }
                 }
+            } else {
+                isAli = false;
+                llAli.setVisibility(View.GONE);
             }
             if (payMode.contains(GlobalConstant.wechat)) {
                 isWechat = true;
@@ -581,6 +584,9 @@ public class OrderDetailActivity extends BaseActivity implements OrderDetailCont
                         qrCodeUrlWechat = payData.getQrCodeUrl();
                     }
                 }
+            } else {
+                isWechat = false;
+                llWeChat.setVisibility(View.GONE);
             }
             if (payMode.contains(GlobalConstant.card)) {
                 isBank = true;
@@ -591,6 +597,9 @@ public class OrderDetailActivity extends BaseActivity implements OrderDetailCont
                         tvBank.setText(payData.getPayAddress());
                     }
                 }
+            } else {
+                isBank = false;
+                llBank.setVisibility(View.GONE);
             }
             if (payMode.toLowerCase().contains(GlobalConstant.PAYPAL)) {
                 isPaypal = true;
@@ -600,6 +609,9 @@ public class OrderDetailActivity extends BaseActivity implements OrderDetailCont
                         tvPaypal.setText(payData.getPayAddress());
                     }
                 }
+            } else {
+                isPaypal = false;
+                llPalpay.setVisibility(View.GONE);
             }
             if (payMode.contains(GlobalConstant.other)) {
                 isOther = true;
@@ -609,6 +621,9 @@ public class OrderDetailActivity extends BaseActivity implements OrderDetailCont
                         tvOther.setText(payData.getPayAddress());
                     }
                 }
+            } else {
+                isOther = false;
+                llOther.setVisibility(View.GONE);
             }
             selectDialog.setView(isAli, isWechat, isBank, isPaypal, isOther);
         }

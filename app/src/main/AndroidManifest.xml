@@ -313,9 +313,7 @@
             android:screenOrientation="portrait" />
 
         <!--service-->
-        <!--<service android:name="com.spark.newbitrade.serivce.GroupService" />-->
-        <service android:name="com.spark.newbitrade.serivce.ChatWebSocketService" />
-
+        <service android:name=".serivce.ChatWebSocketService" />
 
     </application>
 
