@@ -2,11 +2,13 @@ package com.spark.newbitrade.activity.main.presenter;
 
 import com.android.volley.VolleyError;
 import com.spark.library.otc.model.Coin;
+import com.spark.library.otc.model.MessageResultAuthMerchantFrontVo;
 import com.spark.newbitrade.activity.main.C2CContract;
 import com.spark.newbitrade.callback.ResponseCallBack;
 import com.spark.newbitrade.entity.Country;
 import com.spark.newbitrade.entity.HttpErrorEntity;
 import com.spark.newbitrade.model.otc.AdvertiseScanControllerModel;
+import com.spark.newbitrade.model.otc.AuthMerchantControllerModel;
 
 import java.util.List;
 
@@ -17,10 +19,12 @@ import java.util.List;
 public class C2CPresenterImpl implements C2CContract.C2CPresenter {
     private C2CContract.C2CView view;
     private AdvertiseScanControllerModel advertiseScanControllerModel;
+    private AuthMerchantControllerModel authMerchantControllerModel;
 
     public C2CPresenterImpl(C2CContract.C2CView view) {
         this.view = view;
         this.advertiseScanControllerModel = new AdvertiseScanControllerModel();
+        this.authMerchantControllerModel = new AuthMerchantControllerModel();
     }
 
     @Override
@@ -95,5 +99,31 @@ public class C2CPresenterImpl implements C2CContract.C2CPresenter {
         });
     }
 
+    @Override
+    public void findAuthMerchantStatus() {
+        showLoading();
+        authMerchantControllerModel.findAuthMerchantStatus(new ResponseCallBack.SuccessListener<MessageResultAuthMerchantFrontVo>() {
+            @Override
+            public void onResponse(MessageResultAuthMerchantFrontVo response) {
+                hideLoading();
+                if (view != null) {
+                    view.findAuthMerchantStatusSuccess(response);
+                }
+            }
+        }, new ResponseCallBack.ErrorListener() {
+            @Override
+            public void onErrorResponse(HttpErrorEntity httpErrorEntity) {
+                hideLoading();
+                if (view != null)
+                    view.dealError(httpErrorEntity);
+            }
 
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+                hideLoading();
+                if (view != null)
+                    view.dealError(volleyError);
+            }
+        });
+    }
 }

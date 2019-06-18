@@ -36,6 +36,7 @@
                     android:background="@color/main_bg"
                     app:delay_time="3000"
                     app:is_auto_play="true"
+                    app:image_scale_type="fit_xy"
                     app:scroll_time="800"
                     app:title_background="@color/transparent"
                     app:title_textcolor="@color/main_font_content" />

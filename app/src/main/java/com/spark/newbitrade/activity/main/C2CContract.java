@@ -2,6 +2,7 @@ package com.spark.newbitrade.activity.main;
 
 
 import com.spark.library.otc.model.Coin;
+import com.spark.library.otc.model.MessageResultAuthMerchantFrontVo;
 import com.spark.newbitrade.base.BaseContract;
 import com.spark.newbitrade.entity.Country;
 
@@ -14,6 +15,8 @@ public interface C2CContract {
         void listOtcTradeCoinSuccess(List<Coin> obj);
 
         void countrySuccess(List<Country> obj);
+
+        void findAuthMerchantStatusSuccess(MessageResultAuthMerchantFrontVo response);
     }
 
     interface C2CPresenter extends BaseContract.BasePresenter {
@@ -21,5 +24,7 @@ public interface C2CContract {
         void listOtcTradeCoin();
 
         void country();
+
+        void findAuthMerchantStatus();
     }
 }

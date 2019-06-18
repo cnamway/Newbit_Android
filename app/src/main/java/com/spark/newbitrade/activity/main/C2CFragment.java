@@ -7,6 +7,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.spark.library.otc.model.MessageResultAuthMerchantFrontVo;
 import com.spark.newbitrade.activity.login.LoginActivity;
 import com.spark.library.otc.model.Coin;
 import com.spark.newbitrade.MyApplication;
@@ -124,7 +125,7 @@ public class C2CFragment extends BaseNestingTransFragment implements C2CContract
                 clickTabSell();
                 break;
             case R.id.ivReleseAd://发布广告
-                showActivity(PubAdsActivity.class, null);
+                presenter.findAuthMerchantStatus();
                 break;
             case R.id.ivFilter:
                 if (filterPopView == null) {
@@ -306,6 +307,23 @@ public class C2CFragment extends BaseNestingTransFragment implements C2CContract
     public void onCheckLoginSuccessEvent(CheckLoginSuccessEvent response) {
         if (coinInfos.size() <= 0) {
             presenter.listOtcTradeCoin();
+        }
+    }
+
+    @Override
+    public void findAuthMerchantStatusSuccess(MessageResultAuthMerchantFrontVo obj) {
+        //认证商家状态 0：未认证 1：认证-待审核 2：认证-审核成功 3：认证-审核失败 5：退保-待审核 6：退保-审核失败 7:退保-审核成功
+        if (obj != null && obj.getData() != null) {
+            int certifiedBusinessStatus = obj.getData().getCertifiedBusinessStatus();
+            if (certifiedBusinessStatus == 2) {
+                showActivity(PubAdsActivity.class, null);
+            } else {
+                ToastUtils.showToast("请前往pc端进行商家认证后才能发布广告");
+            }
+        } else if (obj.getCode() == 30548) {
+            ToastUtils.showToast("请前往pc端进行商家认证后才能发布广告");
+        } else {
+            ToastUtils.showToast("认证信息获取失败");
         }
     }
 }

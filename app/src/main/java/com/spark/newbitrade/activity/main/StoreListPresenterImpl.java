@@ -1,8 +1,10 @@
 package com.spark.newbitrade.activity.main;
 
 import com.android.volley.VolleyError;
+import com.spark.library.otc.model.MessageResultAuthMerchantFrontVo;
 import com.spark.newbitrade.callback.ResponseCallBack;
 import com.spark.newbitrade.entity.HttpErrorEntity;
+import com.spark.newbitrade.model.otc.AuthMerchantControllerModel;
 import com.spark.newbitrade.model.otc.PriceControllerModel;
 import com.spark.library.otc.model.MessageResult;
 
@@ -14,10 +16,12 @@ public class StoreListPresenterImpl implements StoreListContract.Presenter {
 
     private StoreListContract.View view;
     private PriceControllerModel priceControllerModel;
+    private AuthMerchantControllerModel authMerchantControllerModel;
 
     public StoreListPresenterImpl(StoreListContract.View view) {
         this.view = view;
         this.priceControllerModel = new PriceControllerModel();
+        this.authMerchantControllerModel = new AuthMerchantControllerModel();
     }
 
     @Override
@@ -62,5 +66,33 @@ public class StoreListPresenterImpl implements StoreListContract.Presenter {
                             view.dealError(volleyError);
                     }
                 });
+    }
+
+    @Override
+    public void findAuthMerchantStatus() {
+        showLoading();
+        authMerchantControllerModel.findAuthMerchantStatus(new ResponseCallBack.SuccessListener<MessageResultAuthMerchantFrontVo>() {
+            @Override
+            public void onResponse(MessageResultAuthMerchantFrontVo response) {
+                hideLoading();
+                if (view != null) {
+                    view.findAuthMerchantStatusSuccess(response);
+                }
+            }
+        }, new ResponseCallBack.ErrorListener() {
+            @Override
+            public void onErrorResponse(HttpErrorEntity httpErrorEntity) {
+                hideLoading();
+                if (view != null)
+                    view.dealError(httpErrorEntity);
+            }
+
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+                hideLoading();
+                if (view != null)
+                    view.dealError(volleyError);
+            }
+        });
     }
 }

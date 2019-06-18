@@ -6,6 +6,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.spark.library.otc.model.MessageResultAuthMerchantFrontVo;
 import com.spark.newbitrade.R;
 import com.spark.newbitrade.activity.main.presenter.C2CPresenterImpl;
 import com.spark.newbitrade.adapter.PagerAdapter;
@@ -132,5 +133,9 @@ public class StoreFragment extends BaseNestingTransFragment implements C2CContra
         if (coinInfos.size() <= 0) {
             presenter.listOtcTradeCoin();
         }
+    }
+
+    @Override
+    public void findAuthMerchantStatusSuccess(MessageResultAuthMerchantFrontVo obj) {
     }
 }

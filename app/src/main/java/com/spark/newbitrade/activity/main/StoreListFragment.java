@@ -7,12 +7,15 @@ import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.spark.library.otc.model.MessageResultAuthMerchantFrontVo;
 import com.spark.newbitrade.R;
+import com.spark.newbitrade.activity.releaseAd.PubAdsActivity;
 import com.spark.newbitrade.activity.store.StorePublishActivity;
 import com.spark.newbitrade.base.BaseLazyFragment;
 import com.spark.newbitrade.event.CheckLoginSuccessEvent;
 import com.spark.newbitrade.utils.StringUtils;
 import com.spark.library.otc.model.MessageResult;
+import com.spark.newbitrade.utils.ToastUtils;
 
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
@@ -42,7 +45,7 @@ public class StoreListFragment extends BaseLazyFragment implements StoreListCont
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == Activity.RESULT_OK && requestCode == 1){
+        if (resultCode == Activity.RESULT_OK && requestCode == 1) {
 
         }
     }
@@ -99,10 +102,7 @@ public class StoreListFragment extends BaseLazyFragment implements StoreListCont
         super.setOnClickListener(v);
         switch (v.getId()) {
             case R.id.llBuy:
-                Bundle bundle = new Bundle();
-                bundle.putString("coinName", coinName);
-                bundle.putString("priceStr", priceStr);
-                showActivity(StorePublishActivity.class, bundle, 1);
+                presenter.findAuthMerchantStatus();
                 break;
         }
     }
@@ -114,6 +114,26 @@ public class StoreListFragment extends BaseLazyFragment implements StoreListCont
     public void onCheckLoginSuccessEvent(CheckLoginSuccessEvent response) {
         if (StringUtils.isNotEmpty(coinName)) {
             presenter.priceFind(coinName, "CNY");
+        }
+    }
+
+    @Override
+    public void findAuthMerchantStatusSuccess(MessageResultAuthMerchantFrontVo obj) {
+        //认证商家状态 0：未认证 1：认证-待审核 2：认证-审核成功 3：认证-审核失败 5：退保-待审核 6：退保-审核失败 7:退保-审核成功
+        if (obj != null && obj.getData() != null) {
+            int certifiedBusinessStatus = obj.getData().getCertifiedBusinessStatus();
+            if (certifiedBusinessStatus == 2) {
+                Bundle bundle = new Bundle();
+                bundle.putString("coinName", coinName);
+                bundle.putString("priceStr", priceStr);
+                showActivity(StorePublishActivity.class, bundle, 1);
+            } else {
+                ToastUtils.showToast("请前往pc端进行商家认证后才能发布广告");
+            }
+        } else if (obj.getCode() == 30548) {
+            ToastUtils.showToast("请前往pc端进行商家认证后才能发布广告");
+        } else {
+            ToastUtils.showToast("认证信息获取失败");
         }
     }
 }
