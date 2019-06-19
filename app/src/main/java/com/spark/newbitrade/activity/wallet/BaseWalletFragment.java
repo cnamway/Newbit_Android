@@ -182,14 +182,14 @@ public class BaseWalletFragment extends BaseTransFragment implements BaseWalletC
                 if (coins != null && coins.size() > 0) {
                     bundle.putSerializable("coin", (Serializable) coins);
                     bundle.putBoolean("recharge", true);
-                    showActivity(CoinListActivity.class, bundle);
+                    showActivity(CoinListActivity.class, bundle, 1);
                 }
                 break;
             case R.id.llExtract:
                 if (coins != null && coins.size() > 0) {
                     bundle.putSerializable("coin", (Serializable) coins);
                     bundle.putBoolean("recharge", false);
-                    showActivity(CoinListActivity.class, bundle);
+                    showActivity(CoinListActivity.class, bundle, 1);
                 }
                 break;
         }

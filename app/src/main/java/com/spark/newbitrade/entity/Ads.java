@@ -1,13 +1,17 @@
 package com.spark.newbitrade.entity;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.Date;
 
 /**
  * Created by Administrator on 2018/2/5.
  */
 
 public class Ads implements Serializable {
+
     private long id;
     private int advertiseType;// 0 BUY 1  SELL
     private double minLimit;
@@ -27,6 +31,33 @@ public class Ads implements Serializable {
     private BigDecimal planFrozenFee;
     private BigDecimal remainFrozenFee;
     private String payIds;
+    private Long memberId = null;
+    private int tradeType;
+    private String username;
+
+    public Long getMemberId() {
+        return memberId;
+    }
+
+    public void setMemberId(Long memberId) {
+        this.memberId = memberId;
+    }
+
+    public int getTradeType() {
+        return tradeType;
+    }
+
+    public void setTradeType(int tradeType) {
+        this.tradeType = tradeType;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
     public String getPayIds() {
         return payIds;

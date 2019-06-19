@@ -1,6 +1,7 @@
 package com.spark.newbitrade.activity.wallet_coin;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -27,6 +28,15 @@ public class CoinListActivity extends BaseActivity {
     private List<Wallet> coins;
     private boolean recharge;
     private WalletAdapter adapter;
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK) {
+            setResult(RESULT_OK);
+            finish();
+        }
+    }
 
     @Override
     protected int getActivityLayoutId() {
@@ -79,11 +89,11 @@ public class CoinListActivity extends BaseActivity {
                     if (recharge) {
                         Bundle bundle = new Bundle();
                         bundle.putSerializable("coin", coins.get(position));
-                        showActivity(RechargeActivity.class, bundle);
+                        showActivity(RechargeActivity.class, bundle, 1);
                     } else {
                         Bundle bundle = new Bundle();
                         bundle.putSerializable("coin", coins.get(position));
-                        showActivity(ExtractActivity.class, bundle);
+                        showActivity(ExtractActivity.class, bundle, 1);
                     }
                 }
             }

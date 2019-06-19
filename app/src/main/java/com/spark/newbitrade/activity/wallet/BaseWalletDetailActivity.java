@@ -133,13 +133,13 @@ public class BaseWalletDetailActivity extends BaseActivity implements BaseWallet
             case R.id.llRecharge:
                 if (wallet != null) {
                     bundle.putSerializable("coin", wallet);
-                    showActivity(RechargeActivity.class, bundle);
+                    showActivity(RechargeActivity.class, bundle, 1);
                 }
                 break;
             case R.id.llExtract:
                 if (wallet != null) {
                     bundle.putSerializable("coin", wallet);
-                    showActivity(ExtractActivity.class, bundle);
+                    showActivity(ExtractActivity.class, bundle, 1);
                 }
                 break;
             case R.id.llTransfer:
