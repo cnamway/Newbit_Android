@@ -34,6 +34,7 @@ public class OrderConfirmDialog extends Dialog {
     TextView tvConfirm;
     EditText etPassword;
     LinearLayout llContent;
+    LinearLayout llPassWord;
     private String type;
     private String price;
     private String count;
@@ -83,7 +84,7 @@ public class OrderConfirmDialog extends Dialog {
         tvTotal = view.findViewById(R.id.tvTotal);
         tvConfirm = view.findViewById(R.id.tvConfirm);
         llContent = view.findViewById(R.id.llContent);
-        etPassword = view.findViewById(R.id.etPassword);
+        etPassword = view.findViewById(R.id.etPassword);llPassWord = view.findViewById(R.id.llPassWord);
     }
 
     private void initData() {
@@ -91,10 +92,12 @@ public class OrderConfirmDialog extends Dialog {
             tvPriceText.setText(context.getString(R.string.dialog_three_ones) + ": ");
             tvCountText.setText(context.getString(R.string.dialog_three_twos) + ": ");
             tvTotalText.setText(context.getString(R.string.dialog_three_threes) + ": ");
+            llPassWord.setVisibility(View.VISIBLE);
         } else {
             tvPriceText.setText(context.getString(R.string.dialog_three_one) + ": ");
             tvCountText.setText(context.getString(R.string.dialog_three_two) + ": ");
             tvTotalText.setText(context.getString(R.string.dialog_three_three) + ": ");
+            llPassWord.setVisibility(View.GONE);
         }
         tvPrice.setText(price + "");
         tvCount.setText(count + "");
@@ -115,10 +118,14 @@ public class OrderConfirmDialog extends Dialog {
             public void onClick(View view) {
                 if (orderListener != null) {
                     String pwd = etPassword.getText().toString().trim();
-                    if (StringUtils.isNotEmpty(pwd)) {
-                        orderListener.onConfirm(pwd);
+                    if ("0".equals(type)) {
+                        if (StringUtils.isNotEmpty(pwd)) {
+                            orderListener.onConfirm(pwd);
+                        } else {
+                            ToastUtils.showToast(R.string.text_enter_money_pwd);
+                        }
                     } else {
-                        ToastUtils.showToast(R.string.text_enter_money_pwd);
+                        orderListener.onConfirm(pwd);
                     }
                 }
             }

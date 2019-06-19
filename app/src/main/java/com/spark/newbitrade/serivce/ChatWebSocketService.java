@@ -318,7 +318,7 @@ public class ChatWebSocketService extends Service {
                         if (webSocketConnection != null && requestBytes != null) {
                             webSocketConnection.sendBinaryMessage(requestBytes);//发送一个空消息给服务器，通过发送消息的成功失败来判断长连接的连接状态
                             sendTime = System.currentTimeMillis();
-                            Log.e(TAG, "WebSocketService- 发送一次心跳检测");
+                            //Log.e(TAG, "WebSocketService- 发送一次心跳检测");
                         }
                         mHandler.postDelayed(this, HEART_BEAT_RATE);//每隔一定的时间，对长连接进行一次心跳检测
                     }

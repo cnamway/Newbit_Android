@@ -1,11 +1,14 @@
 package com.spark.newbitrade.utils.okhttp;
 
+import android.os.Build;
 import android.os.Handler;
 import android.os.Looper;
+import android.webkit.WebSettings;
 
 import com.spark.newbitrade.MyApplication;
 import com.spark.newbitrade.R;
 import com.spark.newbitrade.entity.HttpErrorEntity;
+import com.spark.newbitrade.utils.LogUtils;
 import com.spark.newbitrade.utils.okhttp.delete.DeleteBuilder;
 import com.spark.newbitrade.utils.okhttp.get.GetBuilder;
 import com.spark.newbitrade.utils.okhttp.post.PostFormBuilder;
@@ -43,9 +46,7 @@ public class OkhttpUtils {
     public static OkhttpUtils getInstance() {
         if (mInstance == null) {
             synchronized (OkhttpUtils.class) {
-                if (mInstance == null) {
-                    mInstance = new OkhttpUtils();
-                }
+                mInstance = new OkhttpUtils();
             }
         }
         return mInstance;
@@ -161,5 +162,34 @@ public class OkhttpUtils {
 
     public Handler getHandler() {
         return handler;
+    }
+
+    /**
+     * Okhttp设置User-Agent
+     *
+     * @return
+     */
+    public static String getUserAgent() {
+        String userAgent = "";
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+            try {
+                userAgent = WebSettings.getDefaultUserAgent(MyApplication.getApp().getApplicationContext());
+            } catch (Exception e) {
+                userAgent = System.getProperty("http.agent");
+            }
+        } else {
+            userAgent = System.getProperty("http.agent");
+        }
+        StringBuffer sb = new StringBuffer();
+        for (int i = 0, length = userAgent.length(); i < length; i++) {
+            char c = userAgent.charAt(i);
+            if (c <= '\u001f' || c >= '\u007f') {
+                sb.append(String.format("\\u%04x", (int) c));
+            } else {
+                sb.append(c);
+            }
+        }
+        LogUtils.d("User-Agent: " + sb.toString());
+        return sb.toString();
     }
 }

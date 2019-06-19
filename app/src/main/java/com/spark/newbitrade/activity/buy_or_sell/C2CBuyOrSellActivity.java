@@ -248,7 +248,7 @@ public class C2CBuyOrSellActivity extends BaseActivity implements C2CBuyOrSellCo
             orderInTransitDto.setOrderType("0");
         }
 
-        /* 广告商家类型 0 普通 1 商家 */
+        /* 1按数量购买  2按金额购买 */
         orderInTransitDto.setTradeType(0);
 
         presenter.createOrder(orderInTransitDto);

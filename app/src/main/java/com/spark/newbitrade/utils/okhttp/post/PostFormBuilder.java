@@ -2,6 +2,7 @@ package com.spark.newbitrade.utils.okhttp.post;
 
 
 import com.spark.newbitrade.utils.SharedPreferenceInstance;
+import com.spark.newbitrade.utils.okhttp.OkhttpUtils;
 import com.spark.newbitrade.utils.okhttp.RequestBuilder;
 import com.spark.newbitrade.utils.okhttp.RequestCall;
 
@@ -62,6 +63,7 @@ public class PostFormBuilder extends RequestBuilder {
     @Override
     public PostFormBuilder addHeader(String key, String value) {
         if (this.headers == null) headers = new HashMap<>();
+        headers.put("User-Agent", OkhttpUtils.getUserAgent());
         headers.put(key, value);
         return this;
     }

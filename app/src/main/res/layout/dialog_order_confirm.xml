@@ -92,10 +92,12 @@
         <View style="@style/line_bg_grey" />
 
         <LinearLayout
+            android:id="@+id/llPassWord"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:orientation="horizontal"
-            android:padding="15dp">
+            android:padding="15dp"
+            android:visibility="gone">
 
             <TextView
                 style="@style/textview_tag"

@@ -27,7 +27,7 @@ public class UploadControllerModel {
     public void base64UpLoadUsingPOST(final String base64, final ResponseCallBack.SuccessListener<String> successListener, final ResponseCallBack.ErrorListener errorListener) {
         final OssUploadEntity ossUploadEntity = new OssUploadEntity();
         ossUploadEntity.setBase64Data(base64);
-        ossUploadEntity.setOss(true);
+        ossUploadEntity.setOss(false);
         new Thread(new Runnable() {
             @Override
             public void run() {

@@ -10,19 +10,29 @@ import java.text.DecimalFormat;
 
 public class MathUtils {
 
+    /**
+     * 小数精确到具体位数
+     *
+     * @param number
+     * @param n
+     * @param pattern
+     * @return
+     */
     public static String getRundNumber(double number, int n, String pattern) {
-        if (StringUtils.isEmpty(pattern)) pattern = "########0.";
-        String str = "";
-        if (n == 0) {
-            pattern = "########0";
+        String text = Double.toString(Math.abs(number));
+        int integerPlaces = text.indexOf('.');
+        int decimalPlaces = text.length() - integerPlaces - 1;
+        if (decimalPlaces > n) {
+            if (StringUtils.isEmpty(pattern)) pattern = "########0.";
+            String str = "";
+            for (int j = 0; j < n; j++) str += "0";
+            pattern += str;
+            int m = (int) Math.pow(10, n);
+            number = (Math.floor(number * m)) / (m * 1.0);
+            return new DecimalFormat(pattern).format(number);
         } else {
-            pattern = "########0.";
+            return number + "";
         }
-        for (int j = 0; j < n; j++) str += "0";
-        pattern += str;
-        int m = (int) Math.pow(10, n);
-        number = (Math.floor(number * m)) / (m * 1.0);
-        return new DecimalFormat(pattern).format(number);
     }
 
 //    public static double getDoubleTransferString(String strDouble) {
