@@ -8,12 +8,15 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.android.volley.VolleyError;
 import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.flyco.dialog.listener.OnOperItemClickL;
+import com.flyco.dialog.widget.ActionSheetDialog;
 import com.google.gson.Gson;
 import com.spark.library.otcSys.model.MessageResult;
 import com.spark.library.otcSys.model.TradeDto;
@@ -77,7 +80,7 @@ public class C2CListFragment extends BaseLazyFragment implements C2CListContract
     private TextView tvCoinName;
     private TextView tvBuy;
     private int buyType = 1;//1按数量购买  2按金额购买
-
+    private String actualPayment;
     public static C2CListFragment getInstance(String coinName, int coinScale) {
         C2CListFragment c2CFragment = new C2CListFragment();
         Bundle bundle = new Bundle();
@@ -422,33 +425,74 @@ public class C2CListFragment extends BaseLazyFragment implements C2CListContract
         tvBuy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String count = StringUtils.getText(etCount);
-                if (StringUtils.isEmpty(count)) {
-                    ToastUtils.showToast("请输入购买数量或金额");
-                } else {
-                    if (MyApplication.app.isLogin()) {
-                        TradeDto tradeDto = new TradeDto();
-                        if (buyType == 1) {//1按数量购买  2按金额购买
-                            tradeDto.setTradeType(0);
-                            tradeDto.setAmount(new BigDecimal(count));
-                            tradeDto.setCoinName(coinName);
-                            tradeDto.setCurrency(GlobalConstant.CNY);
-                            tradeDto.setMoney(null);
-                        } else {
-                            tradeDto.setTradeType(1);
-                            tradeDto.setAmount(null);
-                            tradeDto.setCoinName(coinName);
-                            tradeDto.setCurrency(GlobalConstant.CNY);
-                            tradeDto.setMoney(new BigDecimal(count));
-                        }
-                        presenter.createOrder(tradeDto);
-                    } else {
-                        ToastUtils.showToast(getString(R.string.text_login_first));
-                        showActivity(LoginActivity.class, null);
-                    }
-                }
+                showOrderDialog();
             }
         });
+    }
+
+    /**
+     * 选择交易类型
+     */
+    private void showOrderDialog() {
+        final String[] stringItems = getResources().getStringArray(R.array.pay_type);
+        final ActionSheetDialog dialog = new ActionSheetDialog(activity, stringItems, null);
+        dialog.isTitleShow(false).itemTextColor(getResources().getColor(R.color.font_main_title))
+                .cancelText(getResources().getColor(R.color.font_main_content))
+                .cancelText(getResources().getString(R.string.str_cancel)).show();
+        dialog.setOnOperItemClickL(new OnOperItemClickL() {
+            @Override
+            public void onOperItemClick(AdapterView<?> parent, View view, int position, long id) {
+                dialog.dismiss();
+                selectType(position);
+                checkInput();
+            }
+        });
+    }
+
+    private void selectType(int type) {
+        switch (type) {
+            case 0:
+                actualPayment = GlobalConstant.alipay;
+                break;
+            case 1:
+                actualPayment = GlobalConstant.wechat;
+                break;
+            case 2:
+                actualPayment = GlobalConstant.card;
+                break;
+        }
+    }
+
+    protected void checkInput() {
+        String count = StringUtils.getText(etCount);
+        if (StringUtils.isEmpty(count)) {
+            ToastUtils.showToast("请输入购买数量或金额");
+        } else if (StringUtils.isEmpty(actualPayment)) {
+            showOrderDialog();
+        } else {
+            if (MyApplication.app.isLogin()) {
+                TradeDto tradeDto = new TradeDto();
+                if (buyType == 1) {//1按数量购买  2按金额购买
+                    tradeDto.setTradeType(0);
+                    tradeDto.setAmount(new BigDecimal(count));
+                    tradeDto.setCoinName(coinName);
+                    tradeDto.setCurrency(GlobalConstant.CNY);
+                    tradeDto.setMoney(null);
+                    tradeDto.setActualPayment(actualPayment);
+                } else {
+                    tradeDto.setTradeType(1);
+                    tradeDto.setAmount(null);
+                    tradeDto.setCoinName(coinName);
+                    tradeDto.setCurrency(GlobalConstant.CNY);
+                    tradeDto.setMoney(new BigDecimal(count));
+                    tradeDto.setActualPayment(actualPayment);
+                }
+                presenter.createOrder(tradeDto);
+            } else {
+                ToastUtils.showToast(getString(R.string.text_login_first));
+                showActivity(LoginActivity.class, null);
+            }
+        }
     }
 
     @Override

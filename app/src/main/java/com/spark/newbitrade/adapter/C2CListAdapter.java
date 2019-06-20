@@ -33,7 +33,7 @@ public class C2CListAdapter extends BaseQuickAdapter<AdvertiseShowVo, BaseViewHo
         helper.setText(R.id.tvName, item.getRealName())
                 .setText(R.id.tvLimit, context.getString(R.string.text_quota) + ": " + MathUtils.subZeroAndDot(String.valueOf(item.getMinLimit())) + "~" + MathUtils.subZeroAndDot(String.valueOf(item.getMaxLimit())) + item.getLocalCurrency())
                 .setText(R.id.tvPrice, MathUtils.subZeroAndDot(MathUtils.getRundNumber(item.getPrice().doubleValue(), 2, null) + item.getLocalCurrency()))
-                .setText(R.id.tvTradeAmount, item.getRangeTimeOrder() + "  |  " + MathUtils.getRate(item.getRangeTimeSuccessOrder(), item.getRangeTimeOrder()))
+                .setText(R.id.tvTradeAmount, item.getRangeTimeSuccessOrder() + "  |  " + MathUtils.getRate(item.getRangeTimeSuccessOrder(), item.getRangeTimeOrder()))
                 .setText(R.id.tvCount, context.getString(R.string.amount) + ":" + MathUtils.subZeroAndDot(item.getRemainAmount().doubleValue() + ""));
 
 //        if (StringUtils.isNotEmpty(item.getAvatar()))

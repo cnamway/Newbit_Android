@@ -791,4 +791,11 @@
     <!--验证码-->
     <string name="str_send_code">发送验证码</string>
     <string name="str_resend_code">s</string>
+    <string name="str_cancel">取消</string>
+
+    <string-array name="pay_type">
+        <item>支付宝</item>
+        <item>微信</item>
+        <item>银行卡</item>
+    </string-array>
 </resources>

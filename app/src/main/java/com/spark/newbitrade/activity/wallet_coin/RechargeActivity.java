@@ -17,9 +17,11 @@ import com.google.zxing.qrcode.QRCodeWriter;
 import com.spark.library.ac.model.MemberWallet;
 import com.spark.newbitrade.R;
 import com.spark.newbitrade.base.BaseActivity;
+import com.spark.newbitrade.entity.ExtractInfo;
 import com.spark.newbitrade.entity.Wallet;
 import com.spark.newbitrade.utils.BitmapUtils;
 import com.spark.newbitrade.utils.CommonUtils;
+import com.spark.newbitrade.utils.MathUtils;
 import com.spark.newbitrade.utils.StringUtils;
 import com.spark.newbitrade.utils.ToastUtils;
 import com.yanzhenjie.permission.Action;
@@ -28,6 +30,7 @@ import com.yanzhenjie.permission.Permission;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.List;
 
@@ -38,16 +41,12 @@ import butterknife.OnClick;
  * 充币
  */
 public class RechargeActivity extends BaseActivity implements RechargeContract.WalletView {
-    //    @BindView(R.id.tvAddressText)
-//    TextView tvAddressText;
     @BindView(R.id.ivAddress)
     ImageView ivAddress;
     @BindView(R.id.tvAddress)
     TextView tvAddress;
     @BindView(R.id.tvNotice)
     TextView tvNotice;
-    //    @BindView(R.id.tvMinAccount)
-//    TextView tvMinAccount;
     private Wallet coin;
     private Bitmap saveBitmap;
     private String address;
@@ -75,21 +74,10 @@ public class RechargeActivity extends BaseActivity implements RechargeContract.W
             if (coin != null) {
                 tvTitle.setText(coin.getCoinId() + getString(R.string.charge_money));
                 tvNotice.setText(getString(R.string.risk_warning) + coin.getCoinId() + getString(R.string.assets));
-//                tvAddressText.setText(coin.getCoinId() + " Address");
-//                tvAddress.setText(coin.getAddress());
-//                tvMinAccount.setText(getString(R.string.min_account_tag) + "：" + coin.getMinRechargeAmount());
             } else {
                 tvAddress.setText(getString(R.string.no_address));
             }
         }
-//        ivAddress.post(new Runnable() {
-//            @Override
-//            public void run() {
-//                if (StringUtils.isEmpty(coin.getAddress())) return;
-//                saveBitmap = createQRCode(coin.getAddress(), Math.min(ivAddress.getWidth(), ivAddress.getHeight()));
-//                ivAddress.setImageBitmap(saveBitmap);
-//            }
-//        });
     }
 
     @OnClick({R.id.tvCopy, R.id.tvAlbum})
@@ -105,13 +93,6 @@ public class RechargeActivity extends BaseActivity implements RechargeContract.W
                 }
                 break;
             case R.id.tvAlbum:
-//                if (!PermissionUtils.isCanUseStorage(activity))
-//                    checkPermission(GlobalConstant.PERMISSION_STORAGE, Permission.STORAGE);
-//                else try {
-//                    save();
-//                } catch (Exception e) {
-//                    e.printStackTrace();
-//                }
                 if (StringUtils.isNotEmpty(address)) {
                     checkPermission();
                 } else {
@@ -143,34 +124,6 @@ public class RechargeActivity extends BaseActivity implements RechargeContract.W
                     }
                 }).start();
     }
-
-//    private void checkPermission(int requestCode, String[] permissions) {
-//        AndPermission.with(activity).requestCode(requestCode).permission(permissions).callback(permissionListener).start();
-//    }
-//
-//    private PermissionListener permissionListener = new PermissionListener() {
-//        @Override
-//        public void onSucceed(int requestCode, @NonNull List<String> grantPermissions) {
-//            switch (requestCode) {
-//                case GlobalConstant.PERMISSION_STORAGE:
-//                    try {
-//                        save();
-//                    } catch (Exception e) {
-//                        e.printStackTrace();
-//                    }
-//                    break;
-//            }
-//        }
-//
-//        @Override
-//        public void onFailed(int requestCode, @NonNull List<String> deniedPermissions) {
-//            switch (requestCode) {
-//                case GlobalConstant.PERMISSION_STORAGE:
-//                    ToastUtils.showToast(getString(R.string.storage_permission));
-//                    break;
-//            }
-//        }
-//    };
 
     /**
      * 保存到相册
@@ -212,6 +165,7 @@ public class RechargeActivity extends BaseActivity implements RechargeContract.W
     protected void loadData() {
         if (coin != null) {
             presenter.getAddress(coin.getCoinId());
+            presenter.getExtractInfo(coin.getCoinId());
         }
     }
 
@@ -260,5 +214,19 @@ public class RechargeActivity extends BaseActivity implements RechargeContract.W
         }
     }
 
-
+    @Override
+    public void getExtractInfoSuccess(List<ExtractInfo> list) {
+        if (list != null && list.size() > 0) {
+            HashMap<String, ExtractInfo> map = new HashMap<>();
+            for (ExtractInfo extractInfo : list) {
+                map.put(extractInfo.getCoinName(), extractInfo);
+            }
+            if (map != null) {
+                ExtractInfo extractInfo = map.get(coin.getCoinId());
+                if (extractInfo != null && extractInfo.getMinDepositAmount() != null) {
+                    tvNotice.setText(getString(R.string.risk_warning) + coin.getCoinId() + getString(R.string.assets) + "，最小提币金额" + MathUtils.subZeroAndDot(extractInfo.getMinDepositAmount().toString()) + " " + coin.getCoinId());
+                }
+            }
+        }
+    }
 }

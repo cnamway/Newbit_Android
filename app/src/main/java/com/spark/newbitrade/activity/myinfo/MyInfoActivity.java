@@ -19,6 +19,7 @@ import com.spark.newbitrade.MyApplication;
 import com.spark.newbitrade.R;
 import com.spark.newbitrade.activity.account_pwd.AccountPwdActivity;
 import com.spark.newbitrade.activity.credit.CreditActivity;
+import com.spark.newbitrade.activity.forgot_pwd.ForgotPwdActivity;
 import com.spark.newbitrade.activity.login.LoginActivity;
 import com.spark.newbitrade.activity.my_account.MyAccountActivity;
 import com.spark.newbitrade.base.BaseActivity;
@@ -182,12 +183,7 @@ public class MyInfoActivity extends BaseActivity implements MyInfoContract.MyInf
                 break;
             case R.id.llLoginPwd:
                 //登录密码
-//                if (!safeSetting.isPhoneVerified()) {
-//                    ToastUtils.showToast(getString(R.string.binding_phone_first));
-//                } else {
-//                    bundle.putString("phone", safeSetting.getMobilePhone());
-//                    showActivity(EditLoginPwdActivity.class, bundle, 1);
-//                }
+                showActivity(ForgotPwdActivity.class, null);
                 break;
             case R.id.llIdCard:
                 //身份验证
