@@ -28,6 +28,9 @@ import com.google.zxing.EncodeHintType;
 import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.QRCodeWriter;
+import com.spark.newbitrade.R;
+import com.spark.newbitrade.utils.StringUtils;
+import com.spark.newbitrade.utils.ToastUtils;
 import com.spark.newbitrade.utils.UriUtils;
 
 import java.io.File;
@@ -48,9 +51,15 @@ public class AppUtils {
      * @param content 剪切内容
      */
     public static void copyText(Context context, String content) {
-        ClipboardManager cm = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
-        ClipData mClipData = ClipData.newRawUri("copyLable", Uri.parse(content));
-        cm.setPrimaryClip(mClipData);
+        if (StringUtils.isNotEmpty(content)) {
+            ClipboardManager cm = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
+            ClipData mClipData = ClipData.newRawUri("copyLable", Uri.parse(content));
+            cm.setPrimaryClip(mClipData);
+            ToastUtils.showToast(context, context.getString(R.string.copy_success));
+        } else {
+            ToastUtils.showToast(context, context.getString(R.string.str_copy_fail));
+        }
+
     }
 
     /**

@@ -224,7 +224,7 @@ public class RechargeActivity extends BaseActivity implements RechargeContract.W
             if (map != null) {
                 ExtractInfo extractInfo = map.get(coin.getCoinId());
                 if (extractInfo != null && extractInfo.getMinDepositAmount() != null) {
-                    tvNotice.setText(getString(R.string.risk_warning) + coin.getCoinId() + getString(R.string.assets) + "，最小提币金额" + MathUtils.subZeroAndDot(extractInfo.getMinDepositAmount().toString()) + " " + coin.getCoinId());
+                    tvNotice.setText(getString(R.string.risk_warning) + coin.getCoinId() + getString(R.string.assets) + "，最小充值金额" + MathUtils.subZeroAndDot(extractInfo.getMinDepositAmount().toString()) + " " + coin.getCoinId());
                 }
             }
         }

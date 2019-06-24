@@ -665,7 +665,7 @@
 
     <!--充币-->
     <string name="copy_success">已成功复制到剪贴板!</string>
-
+    <string name="str_copy_fail">复制失败!</string>
     <!--挖矿-->
     <string name="str_mining">挖矿</string>
     <string name="str_ruler">规则</string>
@@ -798,4 +798,8 @@
         <item>微信</item>
         <item>银行卡</item>
     </string-array>
+    <string name="str_rec">收款人</string>
+    <string name="str_open_bank">开户银行</string>
+    <string name="str_branch">开户支行</string>
+    <string name="str_bank_num">银行卡号</string>
 </resources>

@@ -5,8 +5,12 @@ import com.spark.library.otc.model.AuthMerchantFrontVo;
 import com.spark.library.otc.model.OrderInTransitDto;
 import com.spark.newbitrade.callback.ResponseCallBack;
 import com.spark.newbitrade.entity.HttpErrorEntity;
+import com.spark.newbitrade.entity.PayWaySetting;
 import com.spark.newbitrade.model.otc.AdvertiseScanControllerModel;
+import com.spark.newbitrade.model.otc.PayControllerModel;
 import com.spark.newbitrade.model.otc.TradeControllerModel;
+
+import java.util.List;
 
 /**
  * Created by Administrator on 2018/2/28.
@@ -16,11 +20,13 @@ public class C2CBuyOrSellPresenterImpl implements C2CBuyOrSellContract.Presenter
     private C2CBuyOrSellContract.View view;
     private TradeControllerModel tradeControllerModel;
     private AdvertiseScanControllerModel advertiseScanControllerModel;
+    private PayControllerModel payControllerModel;
 
     public C2CBuyOrSellPresenterImpl(C2CBuyOrSellContract.View view) {
         this.view = view;
         this.tradeControllerModel = new TradeControllerModel();
         this.advertiseScanControllerModel = new AdvertiseScanControllerModel();
+        this.payControllerModel = new PayControllerModel();
     }
 
     @Override
@@ -88,6 +94,34 @@ public class C2CBuyOrSellPresenterImpl implements C2CBuyOrSellContract.Presenter
         });
     }
 
+    @Override
+    public void queryPayWayList() {
+        showLoading();
+        payControllerModel.queryListUsingGET(new ResponseCallBack.SuccessListener<List<PayWaySetting>>() {
+            @Override
+            public void onResponse(List<PayWaySetting> response) {
+                hideLoading();
+                if (view != null) {
+                    view.queryPayWayListSuccess(response);
+                }
+            }
+        }, new ResponseCallBack.ErrorListener() {
+            @Override
+            public void onErrorResponse(HttpErrorEntity httpErrorEntity) {
+                hideLoading();
+                if (view != null) {
+                    view.dealError(httpErrorEntity);
+                }
+            }
 
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+                hideLoading();
+                if (view != null) {
+                    view.dealError(volleyError);
+                }
+            }
+        });
+    }
 
 }

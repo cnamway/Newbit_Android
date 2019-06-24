@@ -82,10 +82,10 @@ public class PayControllerModel {
                     @Override
                     public void onResponse(MessageResult response) {
                         int code = response.getCode();
-                        Gson gson = new Gson();
-                        List<PayWaySetting> objList = gson.fromJson(gson.toJson(response.getData()), new TypeToken<List<PayWaySetting>>() {
-                        }.getType());
                         if (code == SUCCESS_CODE) {
+                            Gson gson = new Gson();
+                            List<PayWaySetting> objList = gson.fromJson(gson.toJson(response.getData()), new TypeToken<List<PayWaySetting>>() {
+                            }.getType());
                             if (successListener != null)
                                 successListener.onResponse(objList);
                         } else {

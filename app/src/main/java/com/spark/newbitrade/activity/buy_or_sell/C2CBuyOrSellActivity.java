@@ -19,6 +19,7 @@ import com.spark.newbitrade.activity.order.OrderDetailActivity;
 import com.spark.newbitrade.activity.order.OrderFragment;
 import com.spark.newbitrade.base.BaseActivity;
 import com.spark.newbitrade.entity.MyAdvertiseShowVo;
+import com.spark.newbitrade.entity.PayWaySetting;
 import com.spark.newbitrade.utils.GlobalConstant;
 import com.spark.newbitrade.utils.LogUtils;
 import com.spark.newbitrade.utils.MathUtils;
@@ -26,6 +27,8 @@ import com.spark.newbitrade.utils.StringUtils;
 import com.spark.newbitrade.utils.ToastUtils;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -90,6 +93,8 @@ public class C2CBuyOrSellActivity extends BaseActivity implements C2CBuyOrSellCo
 //    private String avatar;
     private MyAdvertiseShowVo myAdvertiseShowVo;
     private int coinScale = 8;
+    private boolean canSell;//判断是否有支付方式
+    List<PayWaySetting> payWaySettings = new ArrayList<>();
 
     @Override
     protected int getActivityLayoutId() {
@@ -157,30 +162,38 @@ public class C2CBuyOrSellActivity extends BaseActivity implements C2CBuyOrSellCo
         super.setOnClickListener(v);
         switch (v.getId()) {
             case R.id.tvConfirm:
-                if (MyApplication.getApp().isLogin()) {
-                    String countStr = etOtherCoin.getText().toString();
-                    String totalStr = etLocalCoin.getText().toString();
-
-                    String max = MathUtils.subZeroAndDot(myAdvertiseShowVo.getMaxLimit().toString());
-                    String min = MathUtils.subZeroAndDot(myAdvertiseShowVo.getMinLimit().toString());
-
-                    if (StringUtils.isEmpty(countStr, totalStr)) {
-                        ToastUtils.showToast(getString(R.string.incomplete_information));
-                    } else if (Double.valueOf(totalStr) == 0) {
-                        ToastUtils.showToast(getString(R.string.text_trade_amount_not_zero));
-                        etLocalCoin.requestFocus();
-                    } else if (Double.valueOf(totalStr) > Double.valueOf(max) || Double.valueOf(totalStr) < Double.valueOf(min)) {
-                        if (myAdvertiseShowVo.getAdvertiseType() == 0) {
-                            ToastUtils.showToast(getString(R.string.text_sell) + "必须" + "大于等于" + min + " 且 " + "小于等于" + max);
-                        } else if (myAdvertiseShowVo.getAdvertiseType() == 1) {
-                            ToastUtils.showToast(getString(R.string.text_buy) + "必须" + "大于等于" + min + " 且 " + "小于等于" + max);
-                        }
+                if (myAdvertiseShowVo.getAdvertiseType() == 0) {//出售判断是否有支付方式
+                    if (payWaySettings != null && payWaySettings.size() > 0) {
+                        checkPayway();
                     } else {
-                        showConfirmDialog();
+                        ToastUtils.showToast("请先开启收款方式");
                     }
                 } else {
-                    ToastUtils.showToast(getString(R.string.text_login_first));
-                    showActivity(LoginActivity.class, null);
+                    if (MyApplication.getApp().isLogin()) {
+                        String countStr = etOtherCoin.getText().toString();
+                        String totalStr = etLocalCoin.getText().toString();
+
+                        String max = MathUtils.subZeroAndDot(myAdvertiseShowVo.getMaxLimit().toString());
+                        String min = MathUtils.subZeroAndDot(myAdvertiseShowVo.getMinLimit().toString());
+
+                        if (StringUtils.isEmpty(countStr, totalStr)) {
+                            ToastUtils.showToast(getString(R.string.incomplete_information));
+                        } else if (Double.valueOf(totalStr) == 0) {
+                            ToastUtils.showToast(getString(R.string.text_trade_amount_not_zero));
+                            etLocalCoin.requestFocus();
+                        } else if (Double.valueOf(totalStr) > Double.valueOf(max) || Double.valueOf(totalStr) < Double.valueOf(min)) {
+                            if (myAdvertiseShowVo.getAdvertiseType() == 0) {
+                                ToastUtils.showToast(getString(R.string.text_sell) + "必须" + "大于等于" + min + " 且 " + "小于等于" + max);
+                            } else if (myAdvertiseShowVo.getAdvertiseType() == 1) {
+                                ToastUtils.showToast(getString(R.string.text_buy) + "必须" + "大于等于" + min + " 且 " + "小于等于" + max);
+                            }
+                        } else {
+                            showConfirmDialog();
+                        }
+                    } else {
+                        ToastUtils.showToast(getString(R.string.text_login_first));
+                        showActivity(LoginActivity.class, null);
+                    }
                 }
                 break;
             case R.id.tvGoto:
@@ -192,6 +205,44 @@ public class C2CBuyOrSellActivity extends BaseActivity implements C2CBuyOrSellCo
                     showActivity(LoginActivity.class, null);
                 }
                 break;
+        }
+    }
+
+    private void checkPayway() {
+        String payMode = myAdvertiseShowVo.getPayMode();
+        for (PayWaySetting payWaySetting : payWaySettings) {
+            if (payMode.contains(payWaySetting.getPayType())) {
+                canSell = true;
+            }
+        }
+        if (!canSell) {
+            ToastUtils.showToast("请先开启对方选择的收款方式");
+        } else {
+            if (MyApplication.getApp().isLogin()) {
+                String countStr = etOtherCoin.getText().toString();
+                String totalStr = etLocalCoin.getText().toString();
+
+                String max = MathUtils.subZeroAndDot(myAdvertiseShowVo.getMaxLimit().toString());
+                String min = MathUtils.subZeroAndDot(myAdvertiseShowVo.getMinLimit().toString());
+
+                if (StringUtils.isEmpty(countStr, totalStr)) {
+                    ToastUtils.showToast(getString(R.string.incomplete_information));
+                } else if (Double.valueOf(totalStr) == 0) {
+                    ToastUtils.showToast(getString(R.string.text_trade_amount_not_zero));
+                    etLocalCoin.requestFocus();
+                } else if (Double.valueOf(totalStr) > Double.valueOf(max) || Double.valueOf(totalStr) < Double.valueOf(min)) {
+                    if (myAdvertiseShowVo.getAdvertiseType() == 0) {
+                        ToastUtils.showToast(getString(R.string.text_sell) + "必须" + "大于等于" + min + " 且 " + "小于等于" + max);
+                    } else if (myAdvertiseShowVo.getAdvertiseType() == 1) {
+                        ToastUtils.showToast(getString(R.string.text_buy) + "必须" + "大于等于" + min + " 且 " + "小于等于" + max);
+                    }
+                } else {
+                    showConfirmDialog();
+                }
+            } else {
+                ToastUtils.showToast(getString(R.string.text_login_first));
+                showActivity(LoginActivity.class, null);
+            }
         }
     }
 
@@ -259,6 +310,19 @@ public class C2CBuyOrSellActivity extends BaseActivity implements C2CBuyOrSellCo
         fillViews();
         if (myAdvertiseShowVo != null) {
             presenter.getAvgTime(myAdvertiseShowVo.getMemberId());
+            presenter.queryPayWayList();
+        }
+    }
+
+    @Override
+    public void queryPayWayListSuccess(List<PayWaySetting> response) {
+        if (response != null) {
+            payWaySettings.clear();
+            for (PayWaySetting payWaySetting : response) {
+                if (payWaySetting.getStatus() == 1) {
+                    payWaySettings.add(payWaySetting);
+                }
+            }
         }
     }
 

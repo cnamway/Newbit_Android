@@ -66,6 +66,9 @@ public class WalletAdapter extends BaseQuickAdapter<Wallet, BaseViewHolder> {
             case "ZEC":
                 helper.setImageResource(R.id.ivIcon, R.mipmap.zec);
                 break;
+            case "NBTC":
+                helper.setImageResource(R.id.ivIcon, R.mipmap.nbtc);
+                break;
         }
 
     }

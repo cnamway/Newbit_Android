@@ -37,7 +37,7 @@ public class AssetRecordAdapter extends BaseQuickAdapter<AssetRecord, BaseViewHo
         int type = 6;//5资金交易-扣除 6资金交易-增加
         switch (item.getType()) {
             case 1:
-                helper.setText(R.id.tvType, "充值");
+                helper.setText(R.id.tvType, "充币");
                 type = 6;
                 break;
             case 2:
@@ -45,11 +45,11 @@ public class AssetRecordAdapter extends BaseQuickAdapter<AssetRecord, BaseViewHo
                 type = 5;
                 break;
             case 3:
-                helper.setText(R.id.tvType, "转入");
+                helper.setText(R.id.tvType, "资金划转转入");
                 type = 6;
                 break;
             case 4:
-                helper.setText(R.id.tvType, "转出");
+                helper.setText(R.id.tvType, "资金划转转出");
                 type = 5;
                 break;
             case 5:
@@ -69,11 +69,11 @@ public class AssetRecordAdapter extends BaseQuickAdapter<AssetRecord, BaseViewHo
                 type = 6;
                 break;
             case 9:
-                helper.setText(R.id.tvType, "缴纳商家认证保证金");
+                helper.setText(R.id.tvType, "缴纳商家保证金");
                 type = 5;
                 break;
             case 10:
-                helper.setText(R.id.tvType, "退回商家认证保证金");
+                helper.setText(R.id.tvType, "退回商家保证金");
                 type = 6;
                 break;
             default:

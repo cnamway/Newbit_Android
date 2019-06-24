@@ -214,4 +214,11 @@ public class BaseWalletFragment extends BaseTransFragment implements BaseWalletC
         getWalletList();
     }
 
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        if (!hidden) {
+            getWalletList();
+        }
+    }
 }

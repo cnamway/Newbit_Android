@@ -18,7 +18,7 @@ public class UploadControllerModel {
 
     public UploadControllerModel() {
         uploadControllerApi = new UploadControllerApi();
-        uploadControllerApi.setBasePath(HttpUrls.UC_HOST);
+        uploadControllerApi.setBasePath(HttpUrls.OTC_HOST);
     }
 
     /**

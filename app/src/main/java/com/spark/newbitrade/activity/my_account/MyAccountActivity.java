@@ -95,10 +95,10 @@ public class MyAccountActivity extends BaseActivity implements MyAccountContract
 
     private void initRv() {
         payWaySettings = new ArrayList<>();
-        adapter = new PayWayAdapter(payWaySettings);
         LinearLayoutManager manager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(manager);
-        recyclerView.setAdapter(adapter);
+        adapter = new PayWayAdapter(payWaySettings);
+        adapter.bindToRecyclerView(recyclerView);
     }
 
     @OnClick({R.id.ivAdd})
@@ -115,9 +115,18 @@ public class MyAccountActivity extends BaseActivity implements MyAccountContract
     @Override
     public void queryPayWayListSuccess(List<PayWaySetting> response) {
         if (response != null) {
+            adapter.setEnableLoadMore(false);
+            adapter.loadMoreComplete();
+            if (response == null) return;
             payWaySettings.clear();
-            payWaySettings.addAll(response);
+            if (response.size() == 0) {
+                adapter.loadMoreEnd();
+                adapter.setEmptyView(R.layout.empty_layout);
+            } else {
+                payWaySettings.addAll(response);
+            }
             adapter.notifyDataSetChanged();
+            adapter.disableLoadMoreIfNotFullPage();
         }
     }
 
@@ -206,22 +215,20 @@ public class MyAccountActivity extends BaseActivity implements MyAccountContract
      * 提示框-删除
      */
     private void showReleaseDialog(final Long id) {
-        if (deleteDialog == null) {
-            deleteDialog = new DeleteDialog(activity);
-            deleteDialog.setPositiveOnclickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    String pwd = StringUtils.getText(deleteDialog.getPwdEditText());
-                    if (StringUtils.isEmpty(pwd)) {
-                        ToastUtils.showToast(activity, getString(R.string.text_enter_money_pwd));
-                    } else {
-                        presenter.doDeleteBank(id, pwd);
-                        deleteDialog.dismiss();
-                    }
-
+        deleteDialog = new DeleteDialog(activity);
+        deleteDialog.setPositiveOnclickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String pwd = StringUtils.getText(deleteDialog.getPwdEditText());
+                if (StringUtils.isEmpty(pwd)) {
+                    ToastUtils.showToast(activity, getString(R.string.text_enter_money_pwd));
+                } else {
+                    presenter.doDeleteBank(id, pwd);
+                    deleteDialog.dismiss();
                 }
-            });
-        }
+
+            }
+        });
         deleteDialog.show();
     }
 

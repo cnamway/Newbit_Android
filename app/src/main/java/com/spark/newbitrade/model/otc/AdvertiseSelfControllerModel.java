@@ -110,10 +110,10 @@ public class AdvertiseSelfControllerModel {
                     @Override
                     public void onResponse(MessageResultAdvertiseDetailVo response) {
                         int code = response.getCode();
-                        Gson gson = new Gson();
-                        Ads ads = gson.fromJson(gson.toJson(response.getData()), new TypeToken<Ads>() {
-                        }.getType());
                         if (code == SUCCESS_CODE) {
+                            Gson gson = new Gson();
+                            Ads ads = gson.fromJson(gson.toJson(response.getData()), new TypeToken<Ads>() {
+                            }.getType());
                             if (successListener != null)
                                 successListener.onResponse(ads);
                         } else {
@@ -293,13 +293,13 @@ public class AdvertiseSelfControllerModel {
                     @Override
                     public void onResponse(MessageResultPageAdvertiseVo response) {
                         int code = response.getCode();
-                        Gson gson = new Gson();
-                        List<Ads> adsList = gson.fromJson(gson.toJson(response.getData().getRecords()), new TypeToken<List<Ads>>() {
-                        }.getType());
-                        for (Ads ads : adsList) {
-                            ads.setStatus(1);
-                        }
                         if (code == SUCCESS_CODE) {
+                            Gson gson = new Gson();
+                            List<Ads> adsList = gson.fromJson(gson.toJson(response.getData().getRecords()), new TypeToken<List<Ads>>() {
+                            }.getType());
+                            for (Ads ads : adsList) {
+                                ads.setStatus(1);
+                            }
                             if (successListener != null)
                                 successListener.onResponse(adsList);
                         } else {
@@ -329,13 +329,13 @@ public class AdvertiseSelfControllerModel {
                     @Override
                     public void onResponse(MessageResultListAdvertiseVo response) {
                         int code = response.getCode();
-                        Gson gson = new Gson();
-                        List<Ads> adsList = gson.fromJson(gson.toJson(response.getData()), new TypeToken<List<Ads>>() {
-                        }.getType());
-                        for (Ads ads : adsList) {
-                            ads.setStatus(0);
-                        }
                         if (code == SUCCESS_CODE) {
+                            Gson gson = new Gson();
+                            List<Ads> adsList = gson.fromJson(gson.toJson(response.getData()), new TypeToken<List<Ads>>() {
+                            }.getType());
+                            for (Ads ads : adsList) {
+                                ads.setStatus(0);
+                            }
                             if (successListener != null)
                                 successListener.onResponse(adsList);
                         } else {

@@ -41,10 +41,15 @@ public class CommonUtils {
      * @param content 剪切内容
      */
     public static void copyText(Context context, String content) {
-        ClipboardManager cm = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
-        ClipData mClipData = ClipData.newRawUri("copyLable", Uri.parse(content));
-        cm.setPrimaryClip(mClipData);
-        ToastUtils.showLong(R.string.copy_success);
+        if (StringUtils.isNotEmpty(content)) {
+            ClipboardManager cm = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
+            ClipData mClipData = ClipData.newRawUri("copyLable", Uri.parse(content));
+            cm.setPrimaryClip(mClipData);
+            ToastUtils.showToast(context, context.getString(R.string.copy_success));
+        } else {
+            ToastUtils.showToast(context, context.getString(R.string.str_copy_fail));
+        }
+
     }
 
     /**

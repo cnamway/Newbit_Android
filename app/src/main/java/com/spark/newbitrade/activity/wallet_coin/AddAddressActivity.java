@@ -104,7 +104,7 @@ public class AddAddressActivity extends BaseActivity implements AddAddressContra
             case R.id.tvSubmit://确定
                 if (!StringUtils.isEmpty(unit)) {
                     String remark = etRemark.getText().toString();
-                    String address = etAddress.getText().toString();
+                    String address = etAddress.getText().toString().replaceAll(" ", "");
                     String code = StringUtils.getText(etCode);
                     if (StringUtils.isEmpty(address)) {
                         ToastUtils.showToast(getString(R.string.str_please_input) + getString(R.string.mention_money_address));

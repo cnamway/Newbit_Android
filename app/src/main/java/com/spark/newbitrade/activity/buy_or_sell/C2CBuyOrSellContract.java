@@ -4,6 +4,9 @@ package com.spark.newbitrade.activity.buy_or_sell;
 import com.spark.library.otc.model.AuthMerchantFrontVo;
 import com.spark.library.otc.model.OrderInTransitDto;
 import com.spark.newbitrade.base.BaseContract;
+import com.spark.newbitrade.entity.PayWaySetting;
+
+import java.util.List;
 
 /**
  * Created by Administrator on 2017/9/25.
@@ -37,13 +40,16 @@ public interface C2CBuyOrSellContract {
 
         void getAvgTimeSuccess(AuthMerchantFrontVo obj);
 
+        void queryPayWayListSuccess(List<PayWaySetting> response);
     }
 
     interface Presenter extends BaseContract.BasePresenter {
 
         void createOrder(OrderInTransitDto orderInTransitDto);
 
-        void  getAvgTime(Long memberId);
+        void getAvgTime(Long memberId);
+
+        void queryPayWayList();
     }
 
 

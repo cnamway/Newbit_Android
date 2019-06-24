@@ -64,8 +64,13 @@ public class PayWaySelectActivity extends BaseActivity implements PayWaySelectCo
         presenter = new PayWaySelectPresenterImpl(this);
         initRv();
         Bundle bundle = getIntent().getExtras();
-        if (bundle != null)
+        if (bundle != null) {
             payWaySettingsSelected = (List<PayWaySetting>) bundle.getSerializable("payWaySettingsSelected");
+            for (PayWaySetting payWaySetting : payWaySettingsSelected) {
+                String payType = payWaySetting.getPayType();
+                hashMap.put(payType, payWaySetting);
+            }
+        }
     }
 
     @Override
@@ -84,16 +89,18 @@ public class PayWaySelectActivity extends BaseActivity implements PayWaySelectCo
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tvGoto:
-                if (payWaySettingsSelected != null && payWaySettingsSelected.size() > 0) {
-                    Intent intent = new Intent();
-                    Bundle bundle = new Bundle();
-                    bundle.putSerializable("payWaySettingsSelected", (Serializable) payWaySettingsSelected);
-                    intent.putExtras(bundle);
-                    setResult(RESULT_OK, intent);
-                    finish();
-                } else {
-                    finish();
+                List<PayWaySetting> payWaySettingsSelected = new ArrayList<>();//选择的收款方式
+                for (PayWaySetting payWaySetting : payWaySettings) {
+                    if (payWaySetting.getIsSelected() == 1) {
+                        payWaySettingsSelected.add(payWaySetting);
+                    }
                 }
+                Intent intent = new Intent();
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("payWaySettingsSelected", (Serializable) payWaySettingsSelected);
+                intent.putExtras(bundle);
+                setResult(RESULT_OK, intent);
+                finish();
                 break;
         }
     }
@@ -136,17 +143,15 @@ public class PayWaySelectActivity extends BaseActivity implements PayWaySelectCo
                 String payType = payWaySetting.getPayType();
                 if (hashMap.containsKey(payType)) {
                     PayWaySetting temp = hashMap.get(payType);
-                    if (temp.getId() != payWaySetting.getId()) {
+                    if (temp.getId().longValue() != payWaySetting.getId().longValue()) {
                         ToastUtils.showToast("同一种收款方式只能选择一个账户");
                     } else {
                         hashMap.remove(payType);
-                        payWaySettingsSelected.remove(payWaySetting);
                         ((PayWaySetting) adapter.getItem(position)).setIsSelected(0);
                         adapter.notifyDataSetChanged();
                     }
                 } else {
                     hashMap.put(payType, payWaySetting);
-                    payWaySettingsSelected.add(payWaySetting);
                     ((PayWaySetting) adapter.getItem(position)).setIsSelected(1);
                     adapter.notifyDataSetChanged();
                 }

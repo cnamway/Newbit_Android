@@ -121,6 +121,16 @@ public class OrderDetailActivity extends BaseActivity implements OrderDetailCont
     LinearLayout llPayLayout;
     @BindView(R.id.tvBankRealName)
     TextView tvBankRealName;
+    @BindView(R.id.tvRemarks)
+    TextView tvRemarks;
+    @BindView(R.id.tvOpenBank)
+    TextView tvOpenBank;
+    @BindView(R.id.tvBranch)
+    TextView tvBranch;
+    @BindView(R.id.tvAliName)
+    TextView tvAliName;
+    @BindView(R.id.tvWechatName)
+    TextView tvWechatName;
 
     private String orderSn;
     private OrderFragment.Status status;//订单状态 0-已取消 1-未付款 2-已付款 3-已完成 4-申诉中
@@ -140,6 +150,7 @@ public class OrderDetailActivity extends BaseActivity implements OrderDetailCont
     private String select;
     private PayWaySelectDialog selectDialog;
     private PayCodeDialog payCodeDialog;
+    private String bankNum;//银行卡号
 
     private String dir = Environment.getExternalStorageDirectory().getAbsolutePath() + "/digiccy/";//图片/
     private Handler handler = new Handler(new Handler.Callback() {
@@ -236,7 +247,7 @@ public class OrderDetailActivity extends BaseActivity implements OrderDetailCont
         });
     }
 
-    @OnClick({R.id.tvPayDone, R.id.tvCancle, R.id.tvRelease, R.id.tvAppeal, R.id.ivGoChat, R.id.tvOrderSn, R.id.tvOrderId, R.id.ivAliCode, R.id.ivWeChatCode})
+    @OnClick({R.id.tvPayDone, R.id.tvCancle, R.id.tvRelease, R.id.tvAppeal, R.id.ivGoChat, R.id.tvOrderSn, R.id.tvOrderId, R.id.ivAliCode, R.id.ivWeChatCode, R.id.tvBank})
     @Override
     protected void setOnClickListener(View v) {
         super.setOnClickListener(v);
@@ -291,6 +302,9 @@ public class OrderDetailActivity extends BaseActivity implements OrderDetailCont
                 if (StringUtils.isNotEmpty(qrCodeUrlWechat)) {
                     showPayCodeDialog(2);
                 }
+                break;
+            case R.id.tvBank:
+                CommonUtils.copyText(OrderDetailActivity.this, bankNum);
                 break;
         }
     }
@@ -441,7 +455,7 @@ public class OrderDetailActivity extends BaseActivity implements OrderDetailCont
         tvCount.setText(MathUtils.subZeroAndDot(orderDetailVo.getNumber() + "") + " " + orderDetailVo.getCoinName());
         tvTotal.setText(MathUtils.subZeroAndDot(orderDetailVo.getMoney() + "") + " CNY");
         tvTime.setText(simpleDateFormat.format(orderDetailVo.getCreateTime()));
-
+        tvRemarks.setText(orderDetailVo.getRemark());
 //        if (!StringUtils.isEmpty(orderDetailVo.getAvatar())) {
 //            Glide.with(OrderDetailActivity.this).load(orderDetailVo.getAvatar()).into(ivHeader);
 //        }
@@ -569,6 +583,7 @@ public class OrderDetailActivity extends BaseActivity implements OrderDetailCont
                     if (GlobalConstant.alipay.equals(payData.getPayType())) {
                         tvAli.setText(payData.getPayAddress());
                         qrCodeUrlAli = payData.getQrCodeUrl();
+                        tvAliName.setText(payData.getRealName());
                     }
                 }
             } else {
@@ -582,6 +597,7 @@ public class OrderDetailActivity extends BaseActivity implements OrderDetailCont
                     if (GlobalConstant.wechat.equals(payData.getPayType())) {
                         tvWechat.setText(payData.getPayAddress());
                         qrCodeUrlWechat = payData.getQrCodeUrl();
+                        tvWechatName.setText(payData.getRealName());
                     }
                 }
             } else {
@@ -595,6 +611,9 @@ public class OrderDetailActivity extends BaseActivity implements OrderDetailCont
                     if (GlobalConstant.card.equals(payData.getPayType())) {
                         tvBankRealName.setText(payData.getRealName());
                         tvBank.setText(payData.getPayAddress());
+                        tvOpenBank.setText(payData.getBank());
+                        tvBranch.setText(payData.getBranch());
+                        bankNum = payData.getPayAddress();
                     }
                 }
             } else {
