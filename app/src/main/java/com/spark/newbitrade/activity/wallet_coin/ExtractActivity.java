@@ -204,16 +204,32 @@ public class ExtractActivity extends BaseActivity implements ExtractContract.Ext
                 etCount.setSelection(etCount.length());
             } else {
                 if (StringUtils.isNotEmpty(amount)) {
-                    double fee = 0;
-                    if (extractInfo != null && extractInfo.getWithdrawFee() != null) {
-                        fee = extractInfo.getWithdrawFee().doubleValue();
-                    }
                     //withdrawFeeType //提币手续费类型：1-固定金额 2-按比例
                     if (withdrawFeeType == 2) {
                         double money = Double.parseDouble(amount);
-                        tvFinalCount.setText(MathUtils.subZeroAndDot(MathUtils.getRundNumber(money - money * fee, 8, null)));
-                        tvServiceFee.setText(MathUtils.subZeroAndDot(MathUtils.getRundNumber(money * fee, 8, null)));
+
+                        double fee = 0;
+                        if (extractInfo != null && extractInfo.getWithdrawFee() != null) {
+                            fee = extractInfo.getWithdrawFee().doubleValue();
+                        }
+
+                        double minFee = 0;
+                        if (extractInfo != null && extractInfo.getMinWithdrawFee() != null) {
+                            minFee = extractInfo.getMinWithdrawFee().doubleValue();
+                        }
+
+                        if (money * fee < minFee) {
+                            tvFinalCount.setText(MathUtils.subZeroAndDot(MathUtils.getRundNumber(money - minFee, 8, null)));
+                            tvServiceFee.setText(MathUtils.subZeroAndDot(MathUtils.getRundNumber(minFee, 8, null)));
+                        } else {
+                            tvFinalCount.setText(MathUtils.subZeroAndDot(MathUtils.getRundNumber(money - money * fee, 8, null)));
+                            tvServiceFee.setText(MathUtils.subZeroAndDot(MathUtils.getRundNumber(money * fee, 8, null)));
+                        }
                     } else {
+                        double fee = 0;
+                        if (extractInfo != null && extractInfo.getWithdrawFee() != null) {
+                            fee = extractInfo.getWithdrawFee().doubleValue();
+                        }
                         tvFinalCount.setText(MathUtils.subZeroAndDot("" + (Double.parseDouble(amount) - fee)));
                     }
                 } else {

@@ -23,7 +23,7 @@
     <color name="main_font_green_hover">#04cb8f</color><!--绿色点击色-->
     <color name="line_bg_grey">#EAE8E8</color><!--线条颜色-->
     <color name="btn_enable">#232540</color><!--按钮不可用时的颜色-->
-    <color name="btn_normal">#3d8afc</color><!--按钮可用时的颜色-->
+    <color name="btn_normal">#4c7af3</color><!--按钮可用时的颜色-->
     <color name="btn_hover">#6a99e4</color><!--按钮可用时的点击色-->
     <color name="tab_font">#6a6e8d</color>
     <color name="martket_buy_count">#BFBCBC</color>

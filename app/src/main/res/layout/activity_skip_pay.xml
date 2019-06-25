@@ -15,11 +15,7 @@
         android:orientation="vertical"
         android:padding="10dp">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="10dp">
+        <LinearLayout style="@style/layout_my_info">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -39,11 +35,7 @@
                 android:textSize="@dimen/font_normal" />
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="10dp">
+        <LinearLayout style="@style/layout_my_info">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -63,11 +55,7 @@
                 android:textSize="@dimen/font_normal" />
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="10dp">
+        <LinearLayout style="@style/layout_my_info">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -87,11 +75,27 @@
                 android:textSize="@dimen/font_normal" />
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="10dp">
+        <LinearLayout style="@style/layout_my_info">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="到账数量："
+                android:textColor="@color/black"
+                android:textSize="@dimen/font_normal" />
+
+            <TextView
+                android:id="@+id/tvFinalCount"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="right"
+                android:text="0"
+                android:textColor="@color/black"
+                android:textSize="@dimen/font_normal" />
+        </LinearLayout>
+
+        <LinearLayout style="@style/layout_my_info">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -109,6 +113,37 @@
                 android:text="0"
                 android:textColor="@color/black"
                 android:textSize="@dimen/font_normal" />
+        </LinearLayout>
+
+        <LinearLayout style="@style/layout_my_info">
+
+            <TextView
+                style="@style/textview_tag"
+                android:minWidth="90dp"
+                android:text="@string/phone_code"
+                android:textColor="@color/black"
+                android:textSize="@dimen/font_normal" />
+
+            <EditText
+                android:id="@+id/etCode"
+                style="@style/edittext_normal"
+                android:layout_weight="1"
+                android:hint="@string/code"
+                android:inputType="number" />
+
+            <TextView
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="15dp"
+                android:layout_marginTop="15dp"
+                android:background="@color/btn_normal" />
+
+            <TextView
+                android:id="@+id/tvGetCode"
+                style="@style/textveiw_msg_code"
+                android:background="@color/main_head_bg"
+                android:text="@string/send_code" />
+
         </LinearLayout>
 
         <TextView
