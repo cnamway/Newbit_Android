@@ -186,7 +186,7 @@ public class SkipPayActivity extends BaseActivity implements SkipPayContract.Vie
             @Override
             public void doConfirm(String password) {
                 passwordDialog.dismiss();
-                presnet.walletWithdraw(address, new BigDecimal(amount), coinName, password, code, phone);
+                presnet.walletWithdraw(address, new BigDecimal(amount), coinName, password, code, phone, orderNo);
             }
 
             @Override

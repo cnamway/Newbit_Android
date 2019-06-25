@@ -342,7 +342,7 @@ public class AssetControllerModel {
     /**
      * 用户提币请求
      */
-    public void walletWithdraw(String address, BigDecimal amount, String coinName, String tradePassword, String code, String phone,
+    public void walletWithdraw(String address, BigDecimal amount, String coinName, String tradePassword, String code, String phone, String orderNo,
                                final ResponseCallBack.SuccessListener<String> successListener, final ResponseCallBack.ErrorListener errorListener) {
         assetControllerApi.addHeader("check", "phone:" + phone + ":" + code);
         final AssetWithdrawDto assetWithdrawDto = new AssetWithdrawDto();
@@ -350,6 +350,7 @@ public class AssetControllerModel {
         assetWithdrawDto.setAmount(amount);
         assetWithdrawDto.setCoinName(coinName);
         assetWithdrawDto.setTradePassword(tradePassword);
+        assetWithdrawDto.setBusinessId(orderNo);
         new Thread(new Runnable() {
             @Override
             public void run() {

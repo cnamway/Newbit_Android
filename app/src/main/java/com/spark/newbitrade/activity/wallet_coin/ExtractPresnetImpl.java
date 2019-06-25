@@ -33,7 +33,7 @@ public class ExtractPresnetImpl implements ExtractContract.ExtractPresenter {
     @Override
     public void walletWithdraw(String address, BigDecimal amount, String coinName, String tradePassword, String code, String phone) {
         showLoading();
-        assetControllerModel.walletWithdraw(address, amount, coinName, tradePassword, code, phone,
+        assetControllerModel.walletWithdraw(address, amount, coinName, tradePassword, code, phone, "",
                 new ResponseCallBack.SuccessListener<String>() {
                     @Override
                     public void onResponse(String response) {

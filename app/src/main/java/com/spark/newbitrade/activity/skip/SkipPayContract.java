@@ -24,7 +24,7 @@ public interface SkipPayContract {
     }
 
     interface Presenter extends BaseContract.BasePresenter {
-        void walletWithdraw(String address, BigDecimal amount, String coinName, String tradePassword, String code, String phone);
+        void walletWithdraw(String address, BigDecimal amount, String coinName, String tradePassword, String code, String phone,String orderNo);
 
         void getCoinMessage(String coinName);
 
