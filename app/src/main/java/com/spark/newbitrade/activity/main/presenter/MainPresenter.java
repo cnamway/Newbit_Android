@@ -36,7 +36,7 @@ public class MainPresenter implements MainContract.Presenter {
         this.view = view;
         this.dataRepository = dataRepository;
         this.view.setPresenter(this);
-        casLoginModel = new CasLoginModel();
+        this.casLoginModel = new CasLoginModel();
     }
 
     @Override

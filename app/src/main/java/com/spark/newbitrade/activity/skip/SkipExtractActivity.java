@@ -10,9 +10,15 @@ import com.spark.newbitrade.activity.login.LoginActivity;
 import com.spark.library.ac.model.MemberWallet;
 import com.spark.newbitrade.MyApplication;
 import com.spark.newbitrade.R;
+import com.spark.newbitrade.base.ActivityManage;
 import com.spark.newbitrade.base.BaseActivity;
 import com.spark.newbitrade.dialog.SkipExtractTipDialog;
+import com.spark.newbitrade.entity.CasLoginEntity;
+import com.spark.newbitrade.entity.HttpErrorEntity;
 import com.spark.newbitrade.event.CheckLoginSuccessEvent;
+import com.spark.newbitrade.utils.GlobalConstant;
+import com.spark.newbitrade.utils.LogUtils;
+import com.spark.newbitrade.utils.SharedPreferenceInstance;
 import com.spark.newbitrade.utils.StringUtils;
 import com.spark.newbitrade.utils.ToastUtils;
 
@@ -22,6 +28,8 @@ import org.greenrobot.eventbus.ThreadMode;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+
+import static com.spark.newbitrade.factory.HttpUrls.TYPE_AC;
 
 /**
  * 其它app跳转进来的提币页面
@@ -155,6 +163,50 @@ public class SkipExtractActivity extends BaseActivity implements SkipExtractCont
      */
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onCheckLoginSuccessEvent(CheckLoginSuccessEvent response) {
+        getCoin();
+    }
+
+    @Override
+    public void dealError(HttpErrorEntity httpErrorEntity) {
+        if (httpErrorEntity != null) {
+            if (httpErrorEntity.getCode() == GlobalConstant.LOGIN_ERROR) {
+                if (StringUtils.isNotEmpty(httpErrorEntity.getUrl())) {
+                    LogUtils.e("HttpErrorEntity===" + httpErrorEntity.getCode() + ",httpErrorEntity.getUrl()==" + httpErrorEntity.getUrl());
+                    if (httpErrorEntity.getUrl().contains(TYPE_AC)) {
+                        presnet.checkBusinessLogin(TYPE_AC);
+                    } else {
+                        LogUtils.e("HttpErrorEntity===" + httpErrorEntity.getCode() + ",new LoadExceptionEvent()==退出登录=======");
+                        logOut();
+                    }
+                }
+            }
+        } else {
+            logOut();
+        }
+    }
+
+    private void logOut() {
+        MyApplication.getApp().deleteCurrentUser();
+        SharedPreferenceInstance.getInstance().saveIsNeedShowLock(false);
+        SharedPreferenceInstance.getInstance().saveLockPwd("");
+        MyApplication.getApp().getCookieManager().getCookieStore().removeAll();
+        ActivityManage.finishAll();
+        showActivity(LoginActivity.class, null);
+    }
+
+    @Override
+    public void checkBusinessLoginSuccess(CasLoginEntity casLoginEntity) {
+        if (casLoginEntity != null) {
+            String type = casLoginEntity.getType();
+            if (!casLoginEntity.isLogin()) {
+                String gtc = MyApplication.getApp().getCurrentUser().getGtc();
+                presnet.doLoginBusiness(gtc, type);
+            }
+        }
+    }
+
+    @Override
+    public void doLoginBusinessSuccess(String type) {
         getCoin();
     }
 }

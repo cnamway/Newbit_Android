@@ -12,12 +12,18 @@ import com.spark.newbitrade.activity.login.LoginActivity;
 import com.spark.library.ac.model.MemberWalletVo;
 import com.spark.newbitrade.MyApplication;
 import com.spark.newbitrade.R;
+import com.spark.newbitrade.base.ActivityManage;
 import com.spark.newbitrade.base.BaseActivity;
 import com.spark.newbitrade.dialog.PasswordDialog;
+import com.spark.newbitrade.entity.CasLoginEntity;
 import com.spark.newbitrade.entity.ExtractInfo;
+import com.spark.newbitrade.entity.HttpErrorEntity;
 import com.spark.newbitrade.entity.User;
 import com.spark.newbitrade.event.CheckLoginSuccessEvent;
+import com.spark.newbitrade.utils.GlobalConstant;
+import com.spark.newbitrade.utils.LogUtils;
 import com.spark.newbitrade.utils.MathUtils;
+import com.spark.newbitrade.utils.SharedPreferenceInstance;
 import com.spark.newbitrade.utils.StringUtils;
 import com.spark.newbitrade.utils.ToastUtils;
 import com.spark.newbitrade.widget.TimeCount;
@@ -32,6 +38,11 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+
+import static com.spark.newbitrade.factory.HttpUrls.TYPE_AC;
+import static com.spark.newbitrade.factory.HttpUrls.TYPE_OTC;
+import static com.spark.newbitrade.factory.HttpUrls.TYPE_OTC_SYSTEM;
+import static com.spark.newbitrade.factory.HttpUrls.TYPE_UC;
 
 /**
  * 其它app跳转进来的支付页面
@@ -288,6 +299,50 @@ public class SkipPayActivity extends BaseActivity implements SkipPayContract.Vie
      */
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onCheckLoginSuccessEvent(CheckLoginSuccessEvent response) {
+        getCoin();
+    }
+
+    @Override
+    public void dealError(HttpErrorEntity httpErrorEntity) {
+        if (httpErrorEntity != null) {
+            if (httpErrorEntity.getCode() == GlobalConstant.LOGIN_ERROR) {
+                if (StringUtils.isNotEmpty(httpErrorEntity.getUrl())) {
+                    LogUtils.e("HttpErrorEntity===" + httpErrorEntity.getCode() + ",httpErrorEntity.getUrl()==" + httpErrorEntity.getUrl());
+                    if (httpErrorEntity.getUrl().contains(TYPE_AC)) {
+                        presnet.checkBusinessLogin(TYPE_AC);
+                    } else {
+                        LogUtils.e("HttpErrorEntity===" + httpErrorEntity.getCode() + ",new LoadExceptionEvent()==退出登录=======");
+                        logOut();
+                    }
+                }
+            }
+        } else {
+            logOut();
+        }
+    }
+
+    private void logOut() {
+        MyApplication.getApp().deleteCurrentUser();
+        SharedPreferenceInstance.getInstance().saveIsNeedShowLock(false);
+        SharedPreferenceInstance.getInstance().saveLockPwd("");
+        MyApplication.getApp().getCookieManager().getCookieStore().removeAll();
+        ActivityManage.finishAll();
+        showActivity(LoginActivity.class, null);
+    }
+
+    @Override
+    public void checkBusinessLoginSuccess(CasLoginEntity casLoginEntity) {
+        if (casLoginEntity != null) {
+            String type = casLoginEntity.getType();
+            if (!casLoginEntity.isLogin()) {
+                String gtc = MyApplication.getApp().getCurrentUser().getGtc();
+                presnet.doLoginBusiness(gtc, type);
+            }
+        }
+    }
+
+    @Override
+    public void doLoginBusinessSuccess(String type) {
         getCoin();
     }
 }
