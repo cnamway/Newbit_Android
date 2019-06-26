@@ -16,10 +16,15 @@ import com.spark.newbitrade.base.BaseActivity;
 import com.spark.newbitrade.dialog.PasswordDialog;
 import com.spark.newbitrade.entity.ExtractInfo;
 import com.spark.newbitrade.entity.User;
+import com.spark.newbitrade.event.CheckLoginSuccessEvent;
 import com.spark.newbitrade.utils.MathUtils;
 import com.spark.newbitrade.utils.StringUtils;
 import com.spark.newbitrade.utils.ToastUtils;
 import com.spark.newbitrade.widget.TimeCount;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.math.BigDecimal;
 import java.util.HashMap;
@@ -71,8 +76,20 @@ public class SkipPayActivity extends BaseActivity implements SkipPayContract.Vie
     }
 
     @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode == RESULT_OK) {
+            switch (requestCode) {
+                case 1:
+                    getCoin();
+                    break;
+            }
+        }
+    }
+
+    @Override
     protected void initView() {
         super.initView();
+        EventBus.getDefault().register(this);
         setSetTitleAndBack(false, false);
     }
 
@@ -108,7 +125,10 @@ public class SkipPayActivity extends BaseActivity implements SkipPayContract.Vie
     @Override
     protected void loadData() {
         super.loadData();
+        getCoin();
+    }
 
+    private void getCoin() {
         if (MyApplication.getApp().isLogin()) {
             if (StringUtils.isNotEmpty(coinName)) {
                 presnet.getCoinMessage(coinName);
@@ -116,9 +136,10 @@ public class SkipPayActivity extends BaseActivity implements SkipPayContract.Vie
             }
         } else {
             ToastUtils.showToast(getString(R.string.text_login_first));
-            showActivity(LoginActivity.class, null);
+            Bundle bundle = new Bundle();
+            bundle.putBoolean("isJumpApp", true);
+            showActivity(LoginActivity.class, bundle, 1);
         }
-
     }
 
     @OnClick({R.id.tvPay, R.id.tvGetCode})
@@ -260,5 +281,13 @@ public class SkipPayActivity extends BaseActivity implements SkipPayContract.Vie
                 }
             }
         }
+    }
+
+    /**
+     * check uc、ac、acp成功后，通知刷新界面
+     */
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onCheckLoginSuccessEvent(CheckLoginSuccessEvent response) {
+        getCoin();
     }
 }

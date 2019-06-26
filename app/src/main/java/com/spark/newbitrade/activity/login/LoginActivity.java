@@ -72,7 +72,7 @@ public class LoginActivity extends BaseActivity implements LoginContract.LoginVi
     private GT3GeetestUtilsBind gt3GeetestUtils;
     private String cid;
     private String strAreaCode = "86";
-
+    private boolean isJumpApp = false;//SkipPayActivity或者SkipExtractActivity跳转过来，登陆成功后 返回到对应界面
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -120,6 +120,7 @@ public class LoginActivity extends BaseActivity implements LoginContract.LoginVi
                 etUsername.setText(username);
                 etPassword.requestFocus();
             }
+            isJumpApp = bundle.getBoolean("isJumpApp");
         } else {
             //显示手机号码
             String username = SharedPreferenceInstance.getInstance().getStringParam(SharedPreferenceInstance.SP_KEY_LOGIN_ACCOUNT);
@@ -276,27 +277,18 @@ public class LoginActivity extends BaseActivity implements LoginContract.LoginVi
      */
     @Override
     public void getUserInfoSuccess(User user) {
-//        int status = user.getRealNameStatus();
-//        if (status == 0) {
-//            Bundle bundle = new Bundle();
-//            bundle.putInt("NoticeType", 0);
-//            bundle.putString("Notice", "");
-//            showActivity(CreditActivity.class, bundle);
-//            ToastUtils.showToast(activity, getString(R.string.str_first_credit));
-//            finish();
-//        } else if (status == 1) {
-//            ToastUtils.showToast(activity, getString(R.string.str_creditting));
-//        } else if (status == 2) {
-//            ToastUtils.showToast(activity, getString(R.string.str_creditfail));
-//        } else if (status == 3) {
         user.setLogin(true);
         user.setGtc(gtc);
         MyApplication.getApp().setCurrentUser(user);
-        setResult(RESULT_OK);
         ToastUtils.showToast(getString(R.string.str_login_success));
-        showActivity(MainActivity.class, null);
-        finish();
-//        }
+        if (isJumpApp) {//SkipPayActivity或者SkipExtractActivity跳转过来，登陆成功后 返回到对应界面
+            setResult(RESULT_OK);
+            finish();
+        } else {
+            setResult(RESULT_OK);
+            showActivity(MainActivity.class, null);
+            finish();
+        }
     }
 
     @Override

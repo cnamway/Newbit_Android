@@ -12,8 +12,13 @@ import com.spark.newbitrade.MyApplication;
 import com.spark.newbitrade.R;
 import com.spark.newbitrade.base.BaseActivity;
 import com.spark.newbitrade.dialog.SkipExtractTipDialog;
+import com.spark.newbitrade.event.CheckLoginSuccessEvent;
 import com.spark.newbitrade.utils.StringUtils;
 import com.spark.newbitrade.utils.ToastUtils;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -42,8 +47,20 @@ public class SkipExtractActivity extends BaseActivity implements SkipExtractCont
     }
 
     @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode == RESULT_OK) {
+            switch (requestCode) {
+                case 1:
+                    getCoin();
+                    break;
+            }
+        }
+    }
+
+    @Override
     protected void initView() {
         super.initView();
+        EventBus.getDefault().register(this);
         setSetTitleAndBack(false, false);
     }
 
@@ -82,7 +99,9 @@ public class SkipExtractActivity extends BaseActivity implements SkipExtractCont
             }
         } else {
             ToastUtils.showToast(getString(R.string.text_login_first));
-            showActivity(LoginActivity.class, null);
+            Bundle bundle = new Bundle();
+            bundle.putBoolean("isJumpApp", true);
+            showActivity(LoginActivity.class, bundle, 1);
         }
     }
 
@@ -129,5 +148,13 @@ public class SkipExtractActivity extends BaseActivity implements SkipExtractCont
     public void getAddressSuccess(MemberWallet obj) {
         if (obj == null) return;
         memberWallet = obj;
+    }
+
+    /**
+     * check uc、ac、acp成功后，通知刷新界面
+     */
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onCheckLoginSuccessEvent(CheckLoginSuccessEvent response) {
+        getCoin();
     }
 }
