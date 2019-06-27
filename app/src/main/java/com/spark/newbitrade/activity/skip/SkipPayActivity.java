@@ -3,6 +3,8 @@ package com.spark.newbitrade.activity.skip;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -65,6 +67,8 @@ public class SkipPayActivity extends BaseActivity implements SkipPayContract.Vie
     TextView tvGetCode;
     @BindView(R.id.tvFinalCount)
     TextView tvFinalCount;
+    @BindView(R.id.tvFlag)
+    TextView tvFlag;
 
     private String orderNo;
     private String amount;
@@ -80,6 +84,7 @@ public class SkipPayActivity extends BaseActivity implements SkipPayContract.Vie
     private String phone;
     private String code;
     private int withdrawFeeType = 1;//提币手续费类型：1-固定金额 2-按比例
+    private boolean isCan = true;//金额是否足够
 
     @Override
     protected int getActivityLayoutId() {
@@ -157,24 +162,33 @@ public class SkipPayActivity extends BaseActivity implements SkipPayContract.Vie
     @Override
     protected void setOnClickListener(View v) {
         super.setOnClickListener(v);
+        if (!isCan) {
+            ToastUtils.showToast("到账数量不能为负值!");
+            return;
+        }
         switch (v.getId()) {
             case R.id.tvPay:
                 if (MyApplication.getApp().isLogin()) {
                     code = StringUtils.getText(etCode);
-                    if (memberWalletVo != null && StringUtils.isNotEmpty(amount, address, coinName, code)) {
-                        if (Double.valueOf(memberWalletVo.getBalance().toString()) >= Double.valueOf(amount)) {
-                            showPasswordDialog();
+                    if (StringUtils.isNotEmpty(amount, address, coinName, code)) {
+                        if (memberWalletVo != null) {
+                            if (Double.valueOf(memberWalletVo.getBalance().toString()) >= Double.valueOf(amount)) {
+                                showPasswordDialog();
+                            } else {
+                                ToastUtils.showToast(R.string.str_no_enough_balance);
+                            }
                         } else {
-                            ToastUtils.showToast(R.string.str_no_enough_balance);
+                            getCoin();
                         }
                     } else {
-                        if (StringUtils.isNotEmpty(coinName)) {
-                            presnet.getCoinMessage(coinName);
-                        }
+                        getCoin();
+                        ToastUtils.showToast(getString(R.string.incomplete_information));
                     }
                 } else {
                     ToastUtils.showToast(getString(R.string.text_login_first));
-                    showActivity(LoginActivity.class, null);
+                    Bundle bundle = new Bundle();
+                    bundle.putBoolean("isJumpApp", true);
+                    showActivity(LoginActivity.class, bundle, 1);
                 }
                 break;
             case R.id.tvGetCode:
@@ -263,6 +277,7 @@ public class SkipPayActivity extends BaseActivity implements SkipPayContract.Vie
             }
             ExtractInfo extractInfo = map.get(coinName);
             if (extractInfo != null) {
+                String isMoney = "0";
                 //提币手续费类型：1-固定金额 2-按比例
                 withdrawFeeType = extractInfo.getWithdrawFeeType();
                 if (withdrawFeeType == 2) {
@@ -279,17 +294,34 @@ public class SkipPayActivity extends BaseActivity implements SkipPayContract.Vie
                     }
 
                     if (money * fee < minFee) {
-                        tvFinalCount.setText(MathUtils.subZeroAndDot(MathUtils.getRundNumber(money - minFee, 8, null)) + " " + coinName);
+                        isMoney = MathUtils.subZeroAndDot(MathUtils.getBigDecimalSubtractWithScale(money + "", minFee + "", 8));
+                        tvFinalCount.setText(isMoney + " " + coinName);
                     } else {
-                        tvFinalCount.setText(MathUtils.subZeroAndDot(MathUtils.getRundNumber(money - money * fee, 8, null)) + " " + coinName);
+                        isMoney = MathUtils.subZeroAndDot(MathUtils.getBigDecimalSubtractWithScale(money + "", MathUtils.getBigDecimalMultiplyWithScale(money + "", fee + "", 8), 8));
+                        tvFinalCount.setText(isMoney + " " + coinName);
                     }
                 } else {
                     double fee = 0;
                     if (extractInfo != null && extractInfo.getWithdrawFee() != null) {
                         fee = extractInfo.getWithdrawFee().doubleValue();
                     }
-                    tvFinalCount.setText(MathUtils.subZeroAndDot("" + (Double.parseDouble(amount) - fee)) + " " + coinName);
+                    isMoney = MathUtils.subZeroAndDot(MathUtils.getBigDecimalSubtractWithScale(amount + "", fee + "", 8));
+                    tvFinalCount.setText(isMoney + " " + coinName);
                 }
+                try {
+                    if (Double.parseDouble(isMoney) < 0) {
+                        tvFlag.setBackgroundColor(getResources().getColor(R.color.grey_a5a5a5));
+                        tvGetCode.setTextColor(getResources().getColor(R.color.grey_a5a5a5));
+                        tvPay.setBackgroundResource(R.drawable.shape_gray_corner_background);
+                        tvPay.setTextColor(getResources().getColor(R.color.main_font_content));
+                        isCan = false;
+                    } else {
+                        isCan = true;
+                    }
+                } catch (Exception e) {
+
+                }
+
             }
         }
     }
@@ -315,11 +347,33 @@ public class SkipPayActivity extends BaseActivity implements SkipPayContract.Vie
                         logOut();
                     }
                 }
+            } else if (StringUtils.isNotEmpty(httpErrorEntity.getMessage())) {
+                Message message = new Message();
+                message.what = 1;
+                message.obj = httpErrorEntity.getMessage();
+                mToastHandler.sendMessage(message);
+            } else {
+                Message message = new Message();
+                message.what = 1;
+                message.obj = "" + httpErrorEntity.getCode();
+                mToastHandler.sendMessage(message);
             }
         } else {
             logOut();
         }
     }
+
+    private static Handler mToastHandler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            switch (msg.what) {
+                case 1:
+                    ToastUtils.showToast(msg.obj.toString());
+                    break;
+            }
+        }
+    };
 
     private void logOut() {
         MyApplication.getApp().deleteCurrentUser();

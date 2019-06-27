@@ -35,21 +35,24 @@ public class MathUtils {
         }
     }
 
-//    public static double getDoubleTransferString(String strDouble) {
-//        double transferNumber = 0.0;
-//        if (StringUtils.isNotEmpty(strDouble)) {
-//            BigDecimal bigDecimal = new BigDecimal(strDouble);
-//            transferNumber = bigDecimal.doubleValue();
-//        }
-//        return transferNumber;
-//    }
-//
-//    public static double mul(double num1, double num2) {
-//        BigDecimal b1 = new BigDecimal(num1);
-//        BigDecimal b2 = new BigDecimal(num2);
-//        return b1.multiply(b2).doubleValue();
-//    }
-//
+    public static double getDoubleTransferString(String strDouble) {
+        double transferNumber = 0.0;
+        if (StringUtils.isNotEmpty(strDouble)) {
+            BigDecimal bigDecimal = new BigDecimal(strDouble);
+            transferNumber = bigDecimal.doubleValue();
+        }
+        return transferNumber;
+    }
+
+    /**
+     * 多于8位以上的数字正常显示，不使用科学计数法
+     *
+     * @param doubleNum
+     * @return
+     */
+    public static String formatENumber(double doubleNum) {
+        return new DecimalFormat("#").format(doubleNum);
+    }
 
     /**
      * 当浮点型数据位数超过10位之后，数据变成科学计数法显示。用此方法可以使其正常显示。
@@ -86,6 +89,146 @@ public class MathUtils {
         } else {
             return 0;
         }
+    }
+
+    /**
+     * 加（精确度）
+     *
+     * @param number1
+     * @param number2
+     * @param n
+     * @return
+     */
+    public static String getBigDecimalAddWithScale(String number1, String number2, int n) {
+        if (StringUtils.isNotEmpty(number1, number2)) {
+            BigDecimal aBD = new BigDecimal(number1.trim()).setScale(n, BigDecimal.ROUND_HALF_UP);
+            BigDecimal bBD = new BigDecimal(number2.trim()).setScale(n, BigDecimal.ROUND_HALF_UP);
+            BigDecimal resultBD = aBD.add(bBD).setScale(n, BigDecimal.ROUND_HALF_UP);
+            return resultBD.toPlainString();
+        }
+        return "0";
+    }
+
+    /**
+     * 加
+     *
+     * @param number1
+     * @param number2
+     * @return
+     */
+    public static String getBigDecimalAdd(String number1, String number2) {
+        if (StringUtils.isNotEmpty(number1, number2)) {
+            BigDecimal b1 = new BigDecimal(number1);
+            BigDecimal b2 = new BigDecimal(number2);
+            return b1.add(b2).toPlainString();
+        }
+        return "0";
+    }
+
+
+    /**
+     * 减（精确度）
+     *
+     * @param number1
+     * @param number2
+     * @param n
+     * @return
+     */
+    public static String getBigDecimalSubtractWithScale(String number1, String number2, int n) {
+        if (StringUtils.isNotEmpty(number1, number2)) {
+            BigDecimal aBD = new BigDecimal(number1.trim()).setScale(n, BigDecimal.ROUND_HALF_UP);
+            BigDecimal bBD = new BigDecimal(number2.trim()).setScale(n, BigDecimal.ROUND_HALF_UP);
+            BigDecimal resultBD = aBD.subtract(bBD).setScale(n, BigDecimal.ROUND_HALF_UP);
+            return resultBD.toPlainString();
+        }
+        return "0";
+    }
+
+    /**
+     * 减
+     *
+     * @param number1
+     * @param number2
+     * @return
+     */
+    public static String getBigDecimalSubtract(String number1, String number2) {
+        if (StringUtils.isNotEmpty(number1, number2)) {
+            BigDecimal b1 = new BigDecimal(number1);
+            BigDecimal b2 = new BigDecimal(number2);
+            return b1.subtract(b2).toPlainString();
+        }
+        return "0";
+    }
+
+    /**
+     * 乘（精确度）
+     *
+     * @param number1
+     * @param number2
+     * @param n
+     * @return
+     */
+    public static String getBigDecimalMultiplyWithScale(String number1, String number2, int n) {
+        if (StringUtils.isNotEmpty(number1, number2)) {
+            BigDecimal aBD = new BigDecimal(number1.trim()).setScale(n, BigDecimal.ROUND_HALF_UP);
+            BigDecimal bBD = new BigDecimal(number2.trim()).setScale(n, BigDecimal.ROUND_HALF_UP);
+            BigDecimal resultBD = aBD.multiply(bBD).setScale(n, BigDecimal.ROUND_HALF_UP);
+            return resultBD.toPlainString();
+        }
+        return "0";
+
+    }
+
+    /**
+     * 乘
+     *
+     * @param number1
+     * @param number2
+     * @param n
+     * @return
+     */
+    public static String getBigDecimalMultiply(String number1, String number2) {
+        if (StringUtils.isNotEmpty(number1, number2)) {
+            BigDecimal b1 = new BigDecimal(number1);
+            BigDecimal b2 = new BigDecimal(number2);
+            return b1.multiply(b2).toPlainString();
+        }
+        return "0";
+    }
+
+
+    /**
+     * 除（精确度）
+     *
+     * @param number1
+     * @param number2
+     * @param n
+     * @return
+     */
+    public static String getBigDecimalDivideWithScale(String number1, String number2, int n) {
+        if (StringUtils.isNotEmpty(number1, number2)) {
+            BigDecimal aBD = new BigDecimal(number1.trim()).setScale(n, BigDecimal.ROUND_HALF_UP);
+            BigDecimal bBD = new BigDecimal(number2.trim()).setScale(n, BigDecimal.ROUND_HALF_UP);
+            BigDecimal resultBD = aBD.divide(bBD, n, BigDecimal.ROUND_HALF_UP);
+            return resultBD.toPlainString();
+        }
+        return "0";
+    }
+
+    /**
+     * 除
+     *
+     * @param number1
+     * @param number2
+     * @return
+     */
+    public static String getBigDecimalDivide(String number1, String number2) {
+        if (StringUtils.isNotEmpty(number1, number2)) {
+            BigDecimal b1 = new BigDecimal(number1);
+            BigDecimal b2 = new BigDecimal(number2);
+            return b1.divide(b2).toPlainString();
+        }
+        return "0";
     }
 
     /**

@@ -3,6 +3,8 @@ package com.spark.newbitrade.activity.skip;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.view.View;
 import android.widget.TextView;
 
@@ -179,11 +181,33 @@ public class SkipExtractActivity extends BaseActivity implements SkipExtractCont
                         logOut();
                     }
                 }
+            } else if (StringUtils.isNotEmpty(httpErrorEntity.getMessage())) {
+                Message message = new Message();
+                message.what = 1;
+                message.obj = httpErrorEntity.getMessage();
+                mToastHandler.sendMessage(message);
+            } else {
+                Message message = new Message();
+                message.what = 1;
+                message.obj = "" + httpErrorEntity.getCode();
+                mToastHandler.sendMessage(message);
             }
         } else {
             logOut();
         }
     }
+
+    private static Handler mToastHandler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            switch (msg.what) {
+                case 1:
+                    ToastUtils.showToast(msg.obj.toString());
+                    break;
+            }
+        }
+    };
 
     private void logOut() {
         MyApplication.getApp().deleteCurrentUser();

@@ -24,33 +24,6 @@
         <View style="@style/line_bg_grey" />
 
         <LinearLayout
-            android:id="@+id/llBank"
-            style="@style/layout_my_info"
-            android:visibility="gone">
-
-            <TextView
-                style="@style/textview_tag"
-                android:drawableLeft="@mipmap/icon_unionpay"
-                android:drawablePadding="8dp"
-                android:gravity="center_vertical"
-                android:text="@string/unionpay_account" />
-
-            <View
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
-
-            <ImageView
-                android:id="@+id/ivBank"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@mipmap/icon_uncheck" />
-
-        </LinearLayout>
-
-        <View style="@style/line_bg_grey" />
-
-        <LinearLayout
             android:id="@+id/llAli"
             style="@style/layout_my_info"
             android:visibility="gone">
@@ -96,6 +69,33 @@
 
             <ImageView
                 android:id="@+id/ivWeChat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/icon_uncheck" />
+
+        </LinearLayout>
+
+        <View style="@style/line_bg_grey" />
+
+        <LinearLayout
+            android:id="@+id/llBank"
+            style="@style/layout_my_info"
+            android:visibility="gone">
+
+            <TextView
+                style="@style/textview_tag"
+                android:drawableLeft="@mipmap/icon_unionpay"
+                android:drawablePadding="8dp"
+                android:gravity="center_vertical"
+                android:text="@string/unionpay_account" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <ImageView
+                android:id="@+id/ivBank"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@mipmap/icon_uncheck" />

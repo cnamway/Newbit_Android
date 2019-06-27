@@ -219,10 +219,10 @@ public class ExtractActivity extends BaseActivity implements ExtractContract.Ext
                         }
 
                         if (money * fee < minFee) {
-                            tvFinalCount.setText(MathUtils.subZeroAndDot(MathUtils.getRundNumber(money - minFee, 8, null)));
+                            tvFinalCount.setText(MathUtils.subZeroAndDot(MathUtils.getBigDecimalSubtractWithScale(money + "", minFee + "", 8)));
                             tvServiceFee.setText(MathUtils.subZeroAndDot(MathUtils.getRundNumber(minFee, 8, null)));
                         } else {
-                            tvFinalCount.setText(MathUtils.subZeroAndDot(MathUtils.getRundNumber(money - money * fee, 8, null)));
+                            tvFinalCount.setText(MathUtils.subZeroAndDot(MathUtils.getBigDecimalSubtractWithScale(money + "", MathUtils.getBigDecimalMultiplyWithScale(money + "", fee + "", 8), 8)));
                             tvServiceFee.setText(MathUtils.subZeroAndDot(MathUtils.getRundNumber(money * fee, 8, null)));
                         }
                     } else {
@@ -230,7 +230,7 @@ public class ExtractActivity extends BaseActivity implements ExtractContract.Ext
                         if (extractInfo != null && extractInfo.getWithdrawFee() != null) {
                             fee = extractInfo.getWithdrawFee().doubleValue();
                         }
-                        tvFinalCount.setText(MathUtils.subZeroAndDot("" + (Double.parseDouble(amount) - fee)));
+                        tvFinalCount.setText(MathUtils.subZeroAndDot(MathUtils.getBigDecimalSubtractWithScale(amount + "", fee + "", 8)));
                     }
                 } else {
                     tvFinalCount.setText(0 + "");

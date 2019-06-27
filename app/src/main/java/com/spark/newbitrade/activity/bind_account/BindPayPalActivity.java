@@ -76,6 +76,7 @@ public class BindPayPalActivity extends BaseActivity implements BindAliContract.
                 isUpdate = true;
                 tvConfirm.setText(getResources().getString(R.string.str_text_change));
                 etAccount.setText(payWaySetting.getPayAddress());
+                etName.setText(payWaySetting.getRealName());
             }
             isPayPal = bundle.getBoolean("isPayPal");
         }

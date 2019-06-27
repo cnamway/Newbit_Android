@@ -55,12 +55,12 @@ public class PayWaySelectAdapter extends BaseQuickAdapter<PayWaySetting, BaseVie
         } else {
             helper.setVisible(R.id.ivStatus, false);
         }
-        String name = "";
-        User user = MyApplication.getApp().getCurrentUser();
-        if (user != null && StringUtils.isNotEmpty(user.getRealName())) {
-            name = user.getRealName();
-        }
-        helper.setText(R.id.tvName, name).setText(R.id.tvBankNum, item.getPayAddress());
+//        String name = "";
+//        User user = MyApplication.getApp().getCurrentUser();
+//        if (user != null && StringUtils.isNotEmpty(user.getRealName())) {
+//            name = user.getRealName();
+//        }
+        helper.setText(R.id.tvName, item.getRealName()).setText(R.id.tvBankNum, item.getPayAddress());
 
     }
 

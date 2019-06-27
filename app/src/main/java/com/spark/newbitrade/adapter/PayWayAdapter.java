@@ -55,12 +55,12 @@ public class PayWayAdapter extends BaseQuickAdapter<PayWaySetting, BaseViewHolde
         } else {
             helper.getView(R.id.ivStatus).setSelected(false);
         }
-        String name = "";
-        User user = MyApplication.getApp().getCurrentUser();
-        if (user != null && StringUtils.isNotEmpty(user.getRealName())) {
-            name = user.getRealName();
-        }
-        helper.setText(R.id.tvName, name)
+//        String name = "";
+//        User user = MyApplication.getApp().getCurrentUser();
+//        if (user != null && StringUtils.isNotEmpty(user.getRealName())) {
+//            name = user.getRealName();
+//        }
+        helper.setText(R.id.tvName, item.getRealName())
                 .setText(R.id.tvBankNum, item.getPayAddress());
 
         helper.addOnClickListener(R.id.ivStatus);

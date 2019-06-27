@@ -147,6 +147,7 @@ public class BindAliActivity extends BaseActivity implements BindAliContract.Vie
                 }
                 url = payWaySetting.getQrCodeUrl().toString();
                 Glide.with(this).load(url).into(ivIdFace);
+                etName.setText(payWaySetting.getRealName());
             }
         }
         if (isUpdate) {

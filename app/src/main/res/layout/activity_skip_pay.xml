@@ -132,6 +132,7 @@
                 android:inputType="number" />
 
             <TextView
+                android:id="@+id/tvFlag"
                 android:layout_width="1dp"
                 android:layout_height="match_parent"
                 android:layout_marginBottom="15dp"

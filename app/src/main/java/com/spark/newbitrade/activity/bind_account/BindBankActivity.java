@@ -87,6 +87,7 @@ public class BindBankActivity extends BaseActivity implements BindBankContract.V
                 tvBank.setText(payWaySetting.getBank());
                 etBranch.setText(payWaySetting.getBranch());
                 etAccount.setText(payWaySetting.getPayAddress());
+                etName.setText(payWaySetting.getRealName());
             }
         }
         if (isUpdate) {
