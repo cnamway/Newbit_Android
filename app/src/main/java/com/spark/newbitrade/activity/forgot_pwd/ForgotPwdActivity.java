@@ -183,7 +183,7 @@ public class ForgotPwdActivity extends BaseActivity implements ForgotPwdContract
     private void getCode() {
         String phone = etPhone.getText().toString().trim();
         if (StringUtils.isEmpty(phone)) {
-            ToastUtils.showToast(R.string.phone_not_correct);
+            ToastUtils.showToast(R.string.phone_empty);
         } else {
             presenter.getPhoneCode(strAreaCode + phone);
         }

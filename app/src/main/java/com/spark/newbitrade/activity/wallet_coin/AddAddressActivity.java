@@ -127,7 +127,7 @@ public class AddAddressActivity extends BaseActivity implements AddAddressContra
      */
     private void getCode() {
         if (StringUtils.isEmpty(phone)) {
-            ToastUtils.showToast(R.string.phone_not_correct);
+            ToastUtils.showToast(R.string.phone_empty);
         } else {
             presenter.getPhoneCode(phone);
         }

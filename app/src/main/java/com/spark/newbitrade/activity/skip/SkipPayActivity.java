@@ -202,7 +202,14 @@ public class SkipPayActivity extends BaseActivity implements SkipPayContract.Vie
      */
     private void getCode() {
         if (StringUtils.isEmpty(phone)) {
-            ToastUtils.showToast(R.string.phone_not_correct);
+            User user = MyApplication.getApp().getCurrentUser();
+            if (user != null) {
+                phone = user.getMobilePhone();
+            }
+        }
+
+        if (StringUtils.isEmpty(phone)) {
+            ToastUtils.showToast(R.string.phone_empty);
         } else {
             presnet.getPhoneCode(phone);
         }

@@ -802,4 +802,5 @@
     <string name="str_open_bank">开户银行</string>
     <string name="str_branch">开户支行</string>
     <string name="str_bank_num">银行卡号</string>
+    <string name="phone_empty">未找到手机号码</string>
 </resources>

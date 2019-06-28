@@ -238,13 +238,13 @@ public abstract class BaseFragment extends Fragment implements BaseContract.Base
             if (httpErrorEntity.getCode() == GlobalConstant.LOGIN_ERROR) {
                 if (StringUtils.isNotEmpty(httpErrorEntity.getUrl())) {
                     LogUtils.e("HttpErrorEntity===" + httpErrorEntity.getCode() + ",httpErrorEntity.getUrl()==" + httpErrorEntity.getUrl());
-                    if (httpErrorEntity.getUrl().contains(TYPE_OTC_SYSTEM)) {
+                    if (httpErrorEntity.getUrl().contains("/" + TYPE_OTC_SYSTEM)) {
                         EventBus.getDefault().post(new CheckLoginEvent(TYPE_OTC_SYSTEM));
-                    } else if (httpErrorEntity.getUrl().contains(TYPE_OTC)) {
+                    } else if (httpErrorEntity.getUrl().contains("/" + TYPE_OTC)) {
                         EventBus.getDefault().post(new CheckLoginEvent(TYPE_OTC));
-                    } else if (httpErrorEntity.getUrl().contains(TYPE_UC)) {
+                    } else if (httpErrorEntity.getUrl().contains("/" + TYPE_UC)) {
                         EventBus.getDefault().post(new CheckLoginEvent(TYPE_UC));
-                    } else if (httpErrorEntity.getUrl().contains(TYPE_AC)) {
+                    } else if (httpErrorEntity.getUrl().contains("/" + TYPE_AC)) {
                         EventBus.getDefault().post(new CheckLoginEvent(TYPE_AC));
                     } else {
                         LogUtils.e("HttpErrorEntity===" + httpErrorEntity.getCode() + ",new LoadExceptionEvent()==退出登录=======");
