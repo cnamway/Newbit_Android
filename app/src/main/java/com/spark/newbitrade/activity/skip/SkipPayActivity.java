@@ -84,7 +84,8 @@ public class SkipPayActivity extends BaseActivity implements SkipPayContract.Vie
     private String phone;
     private String code;
     private int withdrawFeeType = 1;//提币手续费类型：1-固定金额 2-按比例
-    private boolean isCan = true;//金额是否足够
+    private boolean isCan = true;//到账数量不能为负值
+    private boolean isCan2 = true;//可用余额不足
 
     @Override
     protected int getActivityLayoutId() {
@@ -147,7 +148,7 @@ public class SkipPayActivity extends BaseActivity implements SkipPayContract.Vie
                 presnet.getExtractInfo(coinName);
             }
         } else {
-            ToastUtils.showToast(getString(R.string.text_login_first));
+            ToastUtils.showToast(getString(R.string.text_login_first) + getString(R.string.app_name));
             Bundle bundle = new Bundle();
             bundle.putBoolean("isJumpApp", true);
             showActivity(LoginActivity.class, bundle, 1);
@@ -158,6 +159,10 @@ public class SkipPayActivity extends BaseActivity implements SkipPayContract.Vie
     @Override
     protected void setOnClickListener(View v) {
         super.setOnClickListener(v);
+        if (!isCan2) {
+            ToastUtils.showToast(R.string.str_no_enough_balance);
+            return;
+        }
         if (!isCan) {
             ToastUtils.showToast("到账数量不能为负值!");
             return;
@@ -181,7 +186,7 @@ public class SkipPayActivity extends BaseActivity implements SkipPayContract.Vie
                         ToastUtils.showToast(getString(R.string.incomplete_information));
                     }
                 } else {
-                    ToastUtils.showToast(getString(R.string.text_login_first));
+                    ToastUtils.showToast(getString(R.string.text_login_first) + getString(R.string.app_name));
                     Bundle bundle = new Bundle();
                     bundle.putBoolean("isJumpApp", true);
                     showActivity(LoginActivity.class, bundle, 1);
@@ -263,6 +268,14 @@ public class SkipPayActivity extends BaseActivity implements SkipPayContract.Vie
         if (obj == null) return;
         memberWalletVo = obj;
         tvUse.setText(MathUtils.subZeroAndDot(MathUtils.getRundNumber(Double.valueOf(obj.getBalance().toString()), 8, null)) + " " + coinName);
+        if (Double.valueOf(memberWalletVo.getBalance().toString()) < Double.valueOf(amount)) {
+            ToastUtils.showToast(R.string.str_no_enough_balance);
+            tvFlag.setBackgroundColor(getResources().getColor(R.color.grey_a5a5a5));
+            tvGetCode.setTextColor(getResources().getColor(R.color.grey_a5a5a5));
+            tvPay.setBackgroundResource(R.drawable.shape_gray_corner_background);
+            tvPay.setTextColor(getResources().getColor(R.color.main_font_content));
+            isCan2 = false;
+        }
     }
 
     @Override
@@ -350,6 +363,11 @@ public class SkipPayActivity extends BaseActivity implements SkipPayContract.Vie
                         logOut();
                     }
                 }
+            } else if (httpErrorEntity.getCode() == GlobalConstant.CAPTCH2) {
+                Message message = new Message();
+                message.what = 1;
+                message.obj = getString(R.string.str_code_error);
+                mToastHandler.sendMessage(message);
             } else if (StringUtils.isNotEmpty(httpErrorEntity.getMessage())) {
                 Message message = new Message();
                 message.what = 1;
@@ -361,9 +379,12 @@ public class SkipPayActivity extends BaseActivity implements SkipPayContract.Vie
                 message.obj = "" + httpErrorEntity.getCode();
                 mToastHandler.sendMessage(message);
             }
-        } else {
+        } else
+
+        {
             logOut();
         }
+
     }
 
     private static Handler mToastHandler = new Handler() {
@@ -384,7 +405,7 @@ public class SkipPayActivity extends BaseActivity implements SkipPayContract.Vie
         SharedPreferenceInstance.getInstance().saveLockPwd("");
         MyApplication.getApp().getCookieManager().getCookieStore().removeAll();
         ActivityManage.finishAll();
-        ToastUtils.showToast(getString(R.string.text_login_first));
+        ToastUtils.showToast(getString(R.string.text_login_first) + getString(R.string.app_name));
         Bundle bundle = new Bundle();
         bundle.putBoolean("isJumpApp", true);
         showActivity(LoginActivity.class, bundle, 1);

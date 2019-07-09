@@ -654,7 +654,7 @@
     <string name="chg_phone_number">新的手机号码</string>
     <string name="new_code">新的验证码</string>
     <string name="promotion_code">邀请码（选填）</string>
-    <string name="str_code_error">验证码错误或已失效</string>
+    <string name="str_code_error">验证码错误或已失效，请重新获取验证码</string>
 
     <!--忘记密码-->
     <string name="email">邮箱</string>

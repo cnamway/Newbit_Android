@@ -269,6 +269,7 @@ public class SignUpActivity extends BaseActivity implements SignUpContract.SignV
             gt3GeetestUtils = new GT3GeetestUtilsBind(activity);
             presenter.captch();
         } else if (code == CAPTCH2 && StringUtils.isNotEmpty(msg) && msg.contains("Captcha")) {//解决验证码失效问题
+            ToastUtils.showToast(getResources().getString(R.string.str_code_error));
             cid = httpErrorEntity.getCid();
             gt3GeetestUtils = new GT3GeetestUtilsBind(activity);
             presenter.captch();

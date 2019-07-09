@@ -21,21 +21,16 @@ import com.spark.newbitrade.entity.Captcha;
 import com.spark.newbitrade.entity.Country;
 import com.spark.newbitrade.entity.HttpErrorEntity;
 import com.spark.newbitrade.factory.HttpUrls;
-import com.spark.newbitrade.factory.UrlFactory;
 import com.spark.newbitrade.utils.CommonUtils;
-import com.spark.newbitrade.utils.NetCodeUtils;
 import com.spark.newbitrade.utils.StringUtils;
 import com.spark.newbitrade.utils.ToastUtils;
 import com.spark.newbitrade.widget.TimeCount;
 
 import org.json.JSONObject;
 
-import java.util.HashMap;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
-import config.Injection;
 
 import static com.spark.newbitrade.utils.GlobalConstant.CAPTCH;
 import static com.spark.newbitrade.utils.GlobalConstant.CAPTCH2;
