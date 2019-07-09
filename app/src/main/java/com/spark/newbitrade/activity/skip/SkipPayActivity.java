@@ -96,7 +96,7 @@ public class SkipPayActivity extends BaseActivity implements SkipPayContract.Vie
         if (resultCode == RESULT_OK) {
             switch (requestCode) {
                 case 1:
-                    getCoin();
+                    loadData();
                     break;
             }
         }
@@ -141,10 +141,6 @@ public class SkipPayActivity extends BaseActivity implements SkipPayContract.Vie
     @Override
     protected void loadData() {
         super.loadData();
-        getCoin();
-    }
-
-    private void getCoin() {
         if (MyApplication.getApp().isLogin()) {
             if (StringUtils.isNotEmpty(coinName)) {
                 presnet.getCoinMessage(coinName);
@@ -178,10 +174,10 @@ public class SkipPayActivity extends BaseActivity implements SkipPayContract.Vie
                                 ToastUtils.showToast(R.string.str_no_enough_balance);
                             }
                         } else {
-                            getCoin();
+                            loadData();
                         }
                     } else {
-                        getCoin();
+                        loadData();
                         ToastUtils.showToast(getString(R.string.incomplete_information));
                     }
                 } else {
@@ -338,7 +334,7 @@ public class SkipPayActivity extends BaseActivity implements SkipPayContract.Vie
      */
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onCheckLoginSuccessEvent(CheckLoginSuccessEvent response) {
-        getCoin();
+        loadData();
     }
 
     @Override
@@ -347,7 +343,7 @@ public class SkipPayActivity extends BaseActivity implements SkipPayContract.Vie
             if (httpErrorEntity.getCode() == GlobalConstant.LOGIN_ERROR) {
                 if (StringUtils.isNotEmpty(httpErrorEntity.getUrl())) {
                     LogUtils.e("HttpErrorEntity===" + httpErrorEntity.getCode() + ",httpErrorEntity.getUrl()==" + httpErrorEntity.getUrl());
-                    if (httpErrorEntity.getUrl().contains(TYPE_AC)) {
+                    if (httpErrorEntity.getUrl().contains("/" + TYPE_AC)) {
                         presnet.checkBusinessLogin(TYPE_AC);
                     } else {
                         LogUtils.e("HttpErrorEntity===" + httpErrorEntity.getCode() + ",new LoadExceptionEvent()==退出登录=======");
@@ -388,7 +384,10 @@ public class SkipPayActivity extends BaseActivity implements SkipPayContract.Vie
         SharedPreferenceInstance.getInstance().saveLockPwd("");
         MyApplication.getApp().getCookieManager().getCookieStore().removeAll();
         ActivityManage.finishAll();
-        showActivity(LoginActivity.class, null);
+        ToastUtils.showToast(getString(R.string.text_login_first));
+        Bundle bundle = new Bundle();
+        bundle.putBoolean("isJumpApp", true);
+        showActivity(LoginActivity.class, bundle, 1);
     }
 
     @Override
@@ -404,6 +403,6 @@ public class SkipPayActivity extends BaseActivity implements SkipPayContract.Vie
 
     @Override
     public void doLoginBusinessSuccess(String type) {
-        getCoin();
+        loadData();
     }
 }

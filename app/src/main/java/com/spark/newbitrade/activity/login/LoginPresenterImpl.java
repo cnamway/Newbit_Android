@@ -151,7 +151,7 @@ public class LoginPresenterImpl implements LoginContract.LoginPresenter {
         casLoginModel.casLogn(username, password, remember, new ResponseCallBack.SuccessListener<String>() {
             @Override
             public void onResponse(String response) {
-                hideLoading();
+                //hideLoading();
                 if (loginView != null)
                     loginView.casLoginSuccess(response);
             }
@@ -178,7 +178,7 @@ public class LoginPresenterImpl implements LoginContract.LoginPresenter {
         casLoginModel.getBussinessTicket(gtc, type, new ResponseCallBack.SuccessListener<String>() {
             @Override
             public void onResponse(String response) {
-                hideLoading();
+                //hideLoading();
                 if (loginView != null)
                     loginView.ucLoginSuccess(response);
             }

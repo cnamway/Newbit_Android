@@ -1,6 +1,5 @@
 package com.spark.newbitrade.activity.skip;
 
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -61,7 +60,7 @@ public class SkipExtractActivity extends BaseActivity implements SkipExtractCont
         if (resultCode == RESULT_OK) {
             switch (requestCode) {
                 case 1:
-                    getCoin();
+                    loadData();
                     break;
             }
         }
@@ -99,10 +98,6 @@ public class SkipExtractActivity extends BaseActivity implements SkipExtractCont
     @Override
     protected void loadData() {
         super.loadData();
-        getCoin();
-    }
-
-    private void getCoin() {
         if (MyApplication.getApp().isLogin()) {
             if (StringUtils.isNotEmpty(coinName)) {
                 presnet.getAddress(coinName);
@@ -141,7 +136,7 @@ public class SkipExtractActivity extends BaseActivity implements SkipExtractCont
                     finish();
                 } else {
                     ToastUtils.showToast("未获取到提币地址,请重试");
-                    getCoin();
+                    loadData();
                 }
             }
         });
@@ -165,7 +160,7 @@ public class SkipExtractActivity extends BaseActivity implements SkipExtractCont
      */
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onCheckLoginSuccessEvent(CheckLoginSuccessEvent response) {
-        getCoin();
+        loadData();
     }
 
     @Override
@@ -174,7 +169,7 @@ public class SkipExtractActivity extends BaseActivity implements SkipExtractCont
             if (httpErrorEntity.getCode() == GlobalConstant.LOGIN_ERROR) {
                 if (StringUtils.isNotEmpty(httpErrorEntity.getUrl())) {
                     LogUtils.e("HttpErrorEntity===" + httpErrorEntity.getCode() + ",httpErrorEntity.getUrl()==" + httpErrorEntity.getUrl());
-                    if (httpErrorEntity.getUrl().contains(TYPE_AC)) {
+                    if (httpErrorEntity.getUrl().contains("/" + TYPE_AC)) {
                         presnet.checkBusinessLogin(TYPE_AC);
                     } else {
                         LogUtils.e("HttpErrorEntity===" + httpErrorEntity.getCode() + ",new LoadExceptionEvent()==退出登录=======");
@@ -215,7 +210,10 @@ public class SkipExtractActivity extends BaseActivity implements SkipExtractCont
         SharedPreferenceInstance.getInstance().saveLockPwd("");
         MyApplication.getApp().getCookieManager().getCookieStore().removeAll();
         ActivityManage.finishAll();
-        showActivity(LoginActivity.class, null);
+        ToastUtils.showToast(getString(R.string.text_login_first));
+        Bundle bundle = new Bundle();
+        bundle.putBoolean("isJumpApp", true);
+        showActivity(LoginActivity.class, bundle, 1);
     }
 
     @Override
@@ -231,6 +229,6 @@ public class SkipExtractActivity extends BaseActivity implements SkipExtractCont
 
     @Override
     public void doLoginBusinessSuccess(String type) {
-        getCoin();
+        loadData();
     }
 }
