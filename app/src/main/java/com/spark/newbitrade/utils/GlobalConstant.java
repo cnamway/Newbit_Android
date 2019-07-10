@@ -29,6 +29,7 @@ public class GlobalConstant {
     public static final int CAPTCH = 411; // 全局拦截，显示极验
     public static final int CAPTCH2 = 412; //解决验证码失效问题
     public static final int LOGIN_ERROR = 401; // 用户名密码错误/业务系统失效
+    public static final int CAPTCHA_HADBEEN_SEND = 20001; // 用户名密码错误/业务系统失效
     //自定义错误码
     public static final int JSON_ERROR = -9999;
     public static final int VOLLEY_ERROR = -9998;

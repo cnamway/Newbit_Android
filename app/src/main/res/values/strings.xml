@@ -792,6 +792,7 @@
     <string name="str_send_code">发送验证码</string>
     <string name="str_resend_code">s</string>
     <string name="str_cancel">取消</string>
+    <string name="str_no_repeat">验证码已发送，请勿重复获取！</string>
 
     <string-array name="pay_type">
         <item>支付宝</item>

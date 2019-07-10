@@ -429,6 +429,11 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseCont
                         EventBus.getDefault().post(new LoadExceptionEvent());
                     }
                 }
+            } else if (httpErrorEntity.getCode() == GlobalConstant.CAPTCHA_HADBEEN_SEND) {
+                Message message = new Message();
+                message.what = 1;
+                message.obj = getString(R.string.str_no_repeat);
+                mToastHandler.sendMessage(message);
             } else if (StringUtils.isNotEmpty(httpErrorEntity.getMessage())) {
                 Message message = new Message();
                 message.what = 1;

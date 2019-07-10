@@ -22,6 +22,7 @@ import com.spark.newbitrade.entity.Country;
 import com.spark.newbitrade.entity.HttpErrorEntity;
 import com.spark.newbitrade.factory.HttpUrls;
 import com.spark.newbitrade.utils.CommonUtils;
+import com.spark.newbitrade.utils.GlobalConstant;
 import com.spark.newbitrade.utils.StringUtils;
 import com.spark.newbitrade.utils.ToastUtils;
 import com.spark.newbitrade.widget.TimeCount;
@@ -291,6 +292,8 @@ public class ForgotPwdActivity extends BaseActivity implements ForgotPwdContract
             presenter.captch();
         } else if (code == CAPTCH2 && StringUtils.isNotEmpty(msg) && msg.contains("Captcha")) {//解决验证码失效问题
             ToastUtils.showToast(getResources().getString(R.string.str_code_error));
+        } else if (httpErrorEntity.getCode() == GlobalConstant.CAPTCHA_HADBEEN_SEND) {
+            ToastUtils.showToast(getResources().getString(R.string.str_no_repeat));
         } else {
             ToastUtils.showToast(activity, httpErrorEntity.getMessage());
         }

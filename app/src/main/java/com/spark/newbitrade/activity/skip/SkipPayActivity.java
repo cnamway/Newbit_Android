@@ -148,10 +148,7 @@ public class SkipPayActivity extends BaseActivity implements SkipPayContract.Vie
                 presnet.getExtractInfo(coinName);
             }
         } else {
-            ToastUtils.showToast(getString(R.string.text_login_first) + getString(R.string.app_name));
-            Bundle bundle = new Bundle();
-            bundle.putBoolean("isJumpApp", true);
-            showActivity(LoginActivity.class, bundle, 1);
+            goLogin();
         }
     }
 
@@ -186,10 +183,7 @@ public class SkipPayActivity extends BaseActivity implements SkipPayContract.Vie
                         ToastUtils.showToast(getString(R.string.incomplete_information));
                     }
                 } else {
-                    ToastUtils.showToast(getString(R.string.text_login_first) + getString(R.string.app_name));
-                    Bundle bundle = new Bundle();
-                    bundle.putBoolean("isJumpApp", true);
-                    showActivity(LoginActivity.class, bundle, 1);
+                    goLogin();
                 }
                 break;
             case R.id.tvGetCode:
@@ -211,6 +205,7 @@ public class SkipPayActivity extends BaseActivity implements SkipPayContract.Vie
 
         if (StringUtils.isEmpty(phone)) {
             ToastUtils.showToast(R.string.phone_empty);
+            goLogin();
         } else {
             presnet.getPhoneCode(phone);
         }
@@ -368,6 +363,11 @@ public class SkipPayActivity extends BaseActivity implements SkipPayContract.Vie
                 message.what = 1;
                 message.obj = getString(R.string.str_code_error);
                 mToastHandler.sendMessage(message);
+            } else if (httpErrorEntity.getCode() == GlobalConstant.CAPTCHA_HADBEEN_SEND) {
+                Message message = new Message();
+                message.what = 1;
+                message.obj = getString(R.string.str_no_repeat);
+                mToastHandler.sendMessage(message);
             } else if (StringUtils.isNotEmpty(httpErrorEntity.getMessage())) {
                 Message message = new Message();
                 message.what = 1;
@@ -405,10 +405,8 @@ public class SkipPayActivity extends BaseActivity implements SkipPayContract.Vie
         SharedPreferenceInstance.getInstance().saveLockPwd("");
         MyApplication.getApp().getCookieManager().getCookieStore().removeAll();
         ActivityManage.finishAll();
-        ToastUtils.showToast(getString(R.string.text_login_first) + getString(R.string.app_name));
-        Bundle bundle = new Bundle();
-        bundle.putBoolean("isJumpApp", true);
-        showActivity(LoginActivity.class, bundle, 1);
+
+        goLogin();
     }
 
     @Override
@@ -425,5 +423,13 @@ public class SkipPayActivity extends BaseActivity implements SkipPayContract.Vie
     @Override
     public void doLoginBusinessSuccess(String type) {
         loadData();
+    }
+
+    private void goLogin() {
+        ToastUtils.showToast(getString(R.string.text_login_first) + getString(R.string.app_name));
+        Bundle bundle = new Bundle();
+        bundle.putBoolean("isJumpApp", true);
+        showActivity(LoginActivity.class, bundle, 1);
+        finish();
     }
 }

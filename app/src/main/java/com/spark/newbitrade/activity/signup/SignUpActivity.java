@@ -3,6 +3,7 @@ package com.spark.newbitrade.activity.signup;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Message;
 import android.text.Html;
 import android.view.View;
 import android.widget.EditText;
@@ -19,6 +20,7 @@ import com.spark.newbitrade.entity.CountryEntity;
 import com.spark.newbitrade.entity.HttpErrorEntity;
 import com.spark.newbitrade.factory.HttpUrls;
 import com.spark.newbitrade.utils.FormatDataUtils;
+import com.spark.newbitrade.utils.GlobalConstant;
 import com.spark.newbitrade.utils.StringFormatUtils;
 import com.spark.newbitrade.utils.StringUtils;
 import com.spark.newbitrade.utils.ToastUtils;
@@ -273,6 +275,8 @@ public class SignUpActivity extends BaseActivity implements SignUpContract.SignV
             cid = httpErrorEntity.getCid();
             gt3GeetestUtils = new GT3GeetestUtilsBind(activity);
             presenter.captch();
+        } else if (httpErrorEntity.getCode() == GlobalConstant.CAPTCHA_HADBEEN_SEND) {
+            ToastUtils.showToast(getResources().getString(R.string.str_no_repeat));
         } else {
             ToastUtils.showToast(httpErrorEntity.getMessage());
         }

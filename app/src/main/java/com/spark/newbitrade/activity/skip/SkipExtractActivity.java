@@ -103,10 +103,7 @@ public class SkipExtractActivity extends BaseActivity implements SkipExtractCont
                 presnet.getAddress(coinName);
             }
         } else {
-            ToastUtils.showToast(getString(R.string.text_login_first) + getString(R.string.app_name));
-            Bundle bundle = new Bundle();
-            bundle.putBoolean("isJumpApp", true);
-            showActivity(LoginActivity.class, bundle, 1);
+            goLogin();
         }
     }
 
@@ -135,8 +132,8 @@ public class SkipExtractActivity extends BaseActivity implements SkipExtractCont
                     setResult(RESULT_OK, intent);
                     finish();
                 } else {
-                    ToastUtils.showToast("未获取到提币地址,请重试");
-                    loadData();
+                    //ToastUtils.showToast("未获取到提币地址,请重试");
+                    goLogin();
                 }
             }
         });
@@ -181,6 +178,11 @@ public class SkipExtractActivity extends BaseActivity implements SkipExtractCont
                 message.what = 1;
                 message.obj = getString(R.string.str_code_error);
                 mToastHandler.sendMessage(message);
+            } else if (httpErrorEntity.getCode() == GlobalConstant.CAPTCHA_HADBEEN_SEND) {
+                Message message = new Message();
+                message.what = 1;
+                message.obj = getString(R.string.str_no_repeat);
+                mToastHandler.sendMessage(message);
             } else if (StringUtils.isNotEmpty(httpErrorEntity.getMessage())) {
                 Message message = new Message();
                 message.what = 1;
@@ -215,10 +217,8 @@ public class SkipExtractActivity extends BaseActivity implements SkipExtractCont
         SharedPreferenceInstance.getInstance().saveLockPwd("");
         MyApplication.getApp().getCookieManager().getCookieStore().removeAll();
         ActivityManage.finishAll();
-        ToastUtils.showToast(getString(R.string.text_login_first) + getString(R.string.app_name));
-        Bundle bundle = new Bundle();
-        bundle.putBoolean("isJumpApp", true);
-        showActivity(LoginActivity.class, bundle, 1);
+
+        goLogin();
     }
 
     @Override
@@ -235,5 +235,13 @@ public class SkipExtractActivity extends BaseActivity implements SkipExtractCont
     @Override
     public void doLoginBusinessSuccess(String type) {
         loadData();
+    }
+
+    private void goLogin() {
+        ToastUtils.showToast(getString(R.string.text_login_first) + getString(R.string.app_name));
+        Bundle bundle = new Bundle();
+        bundle.putBoolean("isJumpApp", true);
+        showActivity(LoginActivity.class, bundle, 1);
+        finish();
     }
 }
