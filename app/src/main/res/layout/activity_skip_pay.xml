@@ -11,9 +11,10 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_10"
         android:background="@color/white"
         android:orientation="vertical"
-        android:padding="10dp">
+        android:paddingBottom="@dimen/dp_40">
 
         <LinearLayout style="@style/layout_my_info">
 
@@ -21,8 +22,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="流水号："
-                android:textColor="@color/black"
-                android:textSize="@dimen/font_normal" />
+                android:textColor="@color/main_font_content"
+                android:textSize="@dimen/font_small" />
 
             <TextView
                 android:id="@+id/tvId"
@@ -41,8 +42,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="订单信息："
-                android:textColor="@color/black"
-                android:textSize="@dimen/font_normal" />
+                android:textColor="@color/main_font_content"
+                android:textSize="@dimen/font_small" />
 
             <TextView
                 android:id="@+id/tvMessage"
@@ -61,8 +62,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="支付数量："
-                android:textColor="@color/black"
-                android:textSize="@dimen/font_normal" />
+                android:textColor="@color/main_font_content"
+                android:textSize="@dimen/font_small" />
 
             <TextView
                 android:id="@+id/tvAmount"
@@ -70,19 +71,21 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="right"
-                android:text="0"
+                android:text="---"
                 android:textColor="@color/black"
                 android:textSize="@dimen/font_normal" />
         </LinearLayout>
 
-        <LinearLayout style="@style/layout_my_info">
+        <LinearLayout
+            style="@style/layout_my_info"
+            android:visibility="gone">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="到账数量："
-                android:textColor="@color/black"
-                android:textSize="@dimen/font_normal" />
+                android:textColor="@color/main_font_content"
+                android:textSize="@dimen/font_small" />
 
             <TextView
                 android:id="@+id/tvFinalCount"
@@ -90,7 +93,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="right"
-                android:text="0"
+                android:text="---"
                 android:textColor="@color/black"
                 android:textSize="@dimen/font_normal" />
         </LinearLayout>
@@ -98,11 +101,12 @@
         <LinearLayout style="@style/layout_my_info">
 
             <TextView
+                android:id="@+id/tvCoinName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="充值币余额："
-                android:textColor="@color/black"
-                android:textSize="@dimen/font_normal" />
+                android:textColor="@color/main_font_content"
+                android:textSize="@dimen/font_small" />
 
             <TextView
                 android:id="@+id/tvUse"
@@ -110,18 +114,20 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="right"
-                android:text="0"
+                android:text="---"
                 android:textColor="@color/black"
                 android:textSize="@dimen/font_normal" />
         </LinearLayout>
 
-        <LinearLayout style="@style/layout_my_info">
+        <LinearLayout
+            style="@style/layout_my_info"
+            android:visibility="gone">
 
             <TextView
                 style="@style/textview_tag"
                 android:minWidth="90dp"
                 android:text="@string/phone_code"
-                android:textColor="@color/black"
+                android:textColor="@color/main_font_content"
                 android:textSize="@dimen/font_normal" />
 
             <EditText

@@ -11,22 +11,19 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_10"
         android:background="@color/white"
         android:orientation="vertical"
-        android:padding="10dp">
+        android:paddingBottom="@dimen/dp_40">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="10dp">
+        <LinearLayout style="@style/layout_my_info">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="币种："
-                android:textColor="@color/black"
-                android:textSize="@dimen/font_normal" />
+                android:textColor="@color/main_font_content"
+                android:textSize="@dimen/font_small" />
 
             <TextView
                 android:id="@+id/tvCoinName"
@@ -39,18 +36,14 @@
                 android:textSize="@dimen/font_normal" />
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="10dp">
+        <LinearLayout style="@style/layout_my_info">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="提币数量："
-                android:textColor="@color/black"
-                android:textSize="@dimen/font_normal" />
+                android:textColor="@color/main_font_content"
+                android:textSize="@dimen/font_small" />
 
             <TextView
                 android:id="@+id/tvAmount"
@@ -58,7 +51,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="right"
-                android:text="0"
+                android:text="---"
                 android:textColor="@color/black"
                 android:textSize="@dimen/font_normal" />
         </LinearLayout>

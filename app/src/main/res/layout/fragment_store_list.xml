@@ -3,7 +3,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/main_bg"
-    android:gravity="center"
     android:orientation="vertical"
     android:padding="@dimen/dp_20">
 
@@ -12,6 +11,7 @@
         android:visibility="gone" />
 
     <TextView
+        android:layout_marginTop="@dimen/dp_72"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/dp_20"
@@ -19,7 +19,7 @@
         android:gravity="center"
         android:text="为VIP承兑商安全高价群集交易"
         android:textColor="@color/black"
-        android:textSize="@dimen/font_xlager"
+        android:textSize="@dimen/font_lager"
         android:textStyle="bold" />
 
     <TextView
@@ -31,14 +31,14 @@
         android:gravity="center|right"
         android:text="VIP商家群集回收价"
         android:textColor="@color/black"
-        android:textSize="@dimen/font_small" />
+        android:textSize="@dimen/font_mini" />
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/dp_20"
         android:layout_marginRight="@dimen/dp_20"
-        android:layout_marginTop="@dimen/dp_6"
+        android:layout_marginTop="@dimen/dp_10"
         android:background="@drawable/shape_bg_blue"
         android:gravity="center_vertical"
         android:padding="@dimen/dp_12">
@@ -50,7 +50,7 @@
             android:gravity="center|left"
             android:text=""
             android:textColor="@color/white"
-            android:textSize="@dimen/font_normal" />
+            android:textSize="@dimen/font_small" />
 
         <TextView
             android:id="@+id/tvPrice"
@@ -60,7 +60,7 @@
             android:layout_gravity="right"
             android:text=""
             android:textColor="@color/white"
-            android:textSize="@dimen/font_normal" />
+            android:textSize="@dimen/font_small" />
 
     </RelativeLayout>
 
@@ -82,7 +82,7 @@
             android:gravity="center|left"
             android:text=""
             android:textColor="@color/color_blue"
-            android:textSize="@dimen/font_normal" />
+            android:textSize="@dimen/font_small" />
 
     </RelativeLayout>
 </LinearLayout>

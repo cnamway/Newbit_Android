@@ -13,6 +13,7 @@ import com.spark.newbitrade.activity.releaseAd.PubAdsActivity;
 import com.spark.newbitrade.activity.store.StorePublishActivity;
 import com.spark.newbitrade.base.BaseLazyFragment;
 import com.spark.newbitrade.event.CheckLoginSuccessEvent;
+import com.spark.newbitrade.utils.MathUtils;
 import com.spark.newbitrade.utils.StringUtils;
 import com.spark.library.otc.model.MessageResult;
 import com.spark.newbitrade.utils.ToastUtils;
@@ -92,7 +93,7 @@ public class StoreListFragment extends BaseLazyFragment implements StoreListCont
     public void priceFindSuccess(MessageResult obj) {
         if (obj != null && obj.getData() != null) {
             priceStr = obj.getData().toString();
-            tvPrice.setText(priceStr + " CNY");
+            tvPrice.setText(MathUtils.subZeroAndDot(priceStr) + " CNY");
         }
     }
 

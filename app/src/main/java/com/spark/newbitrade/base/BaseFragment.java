@@ -256,6 +256,8 @@ public abstract class BaseFragment extends Fragment implements BaseContract.Base
                 message.what = 1;
                 message.obj = getString(R.string.str_no_repeat);
                 mToastHandler.sendMessage(message);
+            } else if (httpErrorEntity.getCode() == GlobalConstant.SERVER_ERROR_CODE) {
+                LogUtils.e("BaseFragment==dealError==HttpErrorEntity==" + httpErrorEntity.getCode());
             } else if (StringUtils.isNotEmpty(httpErrorEntity.getMessage())) {
                 Message message = new Message();
                 message.what = 1;

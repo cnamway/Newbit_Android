@@ -90,8 +90,8 @@
             android:layout_weight="1"
             android:gravity="center"
             android:text="---"
-            android:textColor="@color/main_font_content"
-            android:textSize="@dimen/font_lager"
+            android:textColor="@color/black"
+            android:textSize="@dimen/font_normal"
             android:visibility="visible" />
 
         <LinearLayout

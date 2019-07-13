@@ -108,8 +108,8 @@ public class StorePublishActivity extends BaseActivity implements StorePublishCo
                 priceStr = ads.getPrice() + "";
 
                 tvCoinName.setText(coinName);
-                tvPrice.setText(priceStr);
-                etPrice.setText(ads.getNumber() + "");
+                tvPrice.setText(MathUtils.subZeroAndDot(priceStr));
+                etPrice.setText(MathUtils.subZeroAndDot(ads.getNumber() + ""));
                 String payType = getSetPayByCode(ads.getPayMode());
                 tvPayWay.setText(payType);
                 payIds = ads.getPayIds();
@@ -119,7 +119,7 @@ public class StorePublishActivity extends BaseActivity implements StorePublishCo
                 priceStr = bundle.getString("priceStr");
 
                 tvCoinName.setText(coinName);
-                tvPrice.setText(priceStr);
+                tvPrice.setText(MathUtils.subZeroAndDot(priceStr));
             }
         }
     }

@@ -569,7 +569,8 @@ public class OrderDetailActivity extends BaseActivity implements OrderDetailCont
             String payMode = "";
             if (status == OrderFragment.Status.UNPAID) {
                 llPayLayout.setVisibility(View.VISIBLE);
-                payMode = orderDetailVo.getPayMode();
+                //payMode = orderDetailVo.getPayMode();
+                payMode = getPayMode(payDatas);
             } else if (status == OrderFragment.Status.PAID) {
                 llPayLayout.setVisibility(View.VISIBLE);
                 payMode = orderDetailVo.getActualPayment();
@@ -647,6 +648,20 @@ public class OrderDetailActivity extends BaseActivity implements OrderDetailCont
             selectDialog.setView(isAli, isWechat, isBank, isPaypal, isOther);
         }
 
+    }
+
+    /**
+     * 获取payMode
+     *
+     * @param payDatas
+     * @return
+     */
+    private String getPayMode(List<PayWaySetting> payDatas) {
+        String payType = "";
+        for (PayWaySetting payWay : payDatas) {
+            payType = payType + "," + payWay.getPayType();
+        }
+        return payType;
     }
 
     public void showPopWindow(String url) {

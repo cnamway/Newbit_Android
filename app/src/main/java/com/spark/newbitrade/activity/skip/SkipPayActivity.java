@@ -51,6 +51,7 @@ import static com.spark.newbitrade.factory.HttpUrls.TYPE_UC;
  */
 
 public class SkipPayActivity extends BaseActivity implements SkipPayContract.View {
+
     @BindView(R.id.tvPay)
     TextView tvPay;
     @BindView(R.id.tvId)
@@ -69,6 +70,8 @@ public class SkipPayActivity extends BaseActivity implements SkipPayContract.Vie
     TextView tvFinalCount;
     @BindView(R.id.tvFlag)
     TextView tvFlag;
+    @BindView(R.id.tvCoinName)
+    TextView tvCoinName;
 
     private String orderNo;
     private String amount;
@@ -81,8 +84,8 @@ public class SkipPayActivity extends BaseActivity implements SkipPayContract.Vie
     private TimeCount timeCount;
     private GT3GeetestUtilsBind gt3GeetestUtils;
     private String cid;
-    private String phone;
-    private String code;
+    private String phone = "";
+    private String code = "";
     private int withdrawFeeType = 1;//提币手续费类型：1-固定金额 2-按比例
     private boolean isCan = true;//到账数量不能为负值
     private boolean isCan2 = true;//可用余额不足
@@ -130,7 +133,9 @@ public class SkipPayActivity extends BaseActivity implements SkipPayContract.Vie
 
             if (StringUtils.isNotEmpty(amount) && StringUtils.isNotEmpty(coinName)) {
                 tvAmount.setText(amount + " " + coinName);
+                tvCoinName.setText(tvCoinName + "余额：");
             }
+
         }
         User user = MyApplication.getApp().getCurrentUser();
         if (user != null) {
@@ -168,7 +173,8 @@ public class SkipPayActivity extends BaseActivity implements SkipPayContract.Vie
             case R.id.tvPay:
                 if (MyApplication.getApp().isLogin()) {
                     code = StringUtils.getText(etCode);
-                    if (StringUtils.isNotEmpty(amount, address, coinName, code)) {
+                    //if (StringUtils.isNotEmpty(amount, address, coinName, code)) {
+                    if (StringUtils.isNotEmpty(amount, address, coinName)) {
                         if (memberWalletVo != null) {
                             if (Double.valueOf(memberWalletVo.getBalance().toString()) >= Double.valueOf(amount)) {
                                 showPasswordDialog();
@@ -368,6 +374,8 @@ public class SkipPayActivity extends BaseActivity implements SkipPayContract.Vie
                 message.what = 1;
                 message.obj = getString(R.string.str_no_repeat);
                 mToastHandler.sendMessage(message);
+            } else if (httpErrorEntity.getCode() == GlobalConstant.SERVER_ERROR_CODE) {
+                LogUtils.e("SkipPayActivity==dealError==HttpErrorEntity==" + httpErrorEntity.getCode());
             } else if (StringUtils.isNotEmpty(httpErrorEntity.getMessage())) {
                 Message message = new Message();
                 message.what = 1;

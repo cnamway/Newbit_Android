@@ -38,6 +38,7 @@ public class GlobalConstant {
     public static final int NO_DATA = -9995;
     public static final int SERVER_ERROR = -9994;
     public static final int REQUEST_CANCEL = -9993;
+    public static final int SERVER_ERROR_CODE = 500;
 
     ///////////////////permission
     public static final int PERMISSION_CONTACT = 0;
