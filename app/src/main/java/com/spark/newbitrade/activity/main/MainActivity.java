@@ -836,7 +836,7 @@ public class MainActivity extends BaseTransFragmentActivity implements MainContr
         if (casLoginEntity != null) {
             String type = casLoginEntity.getType();
             if (!casLoginEntity.isLogin()) {
-                String gtc = MyApplication.getApp().getCurrentUser().getGtc();
+                String gtc = SharedPreferenceInstance.getInstance().getTgt();
                 presenter.doLoginBusiness(gtc, type);
             }
         }

@@ -373,7 +373,7 @@ public class CreditActivity extends BaseActivity implements CreditContract.View 
                 tvTitle.setVisibility(View.VISIBLE);
                 tvTitle.setText(R.string.str_id_card_credit);
                 etName.setText(dataBean.getRealName());
-                etIdNumber.setText(dataBean.getIdCard().substring(0, 4) + "**********" + dataBean.getIdCard().substring(14));
+                etIdNumber.setText(dataBean.getIdCard());
                 Glide.with(this).load(dataBean.getIdentityCardImgFront()).into(ivIdFace);
                 Glide.with(this).load(dataBean.getIdentityCardImgReverse()).into(ivIdBack);
                 Glide.with(this).load(dataBean.getIdentityCardImgInHand()).into(ivHold);
@@ -390,9 +390,9 @@ public class CreditActivity extends BaseActivity implements CreditContract.View 
                 showBySwitchTab(R.id.tvRight);
                 etName.setText(dataBean.getRealName());
                 try {
-                    etPassPortNumber.setText(dataBean.getIdCard().substring(0, 2) + "***" + dataBean.getIdCard().substring(5));
+                    etPassPortNumber.setText(dataBean.getIdCard());
                 } catch (Exception e) {
-                    etPassPortNumber.setText(dataBean.getIdCard().substring(0, 1) + "***");
+                    etPassPortNumber.setText(dataBean.getIdCard());
                 }
                 Glide.with(this).load(dataBean.getIdentityCardImgFront()).into(ivPassportFace);
                 Glide.with(this).load(dataBean.getIdentityCardImgReverse()).into(ivPassportHand);
@@ -410,7 +410,7 @@ public class CreditActivity extends BaseActivity implements CreditContract.View 
             ivNoticeIcon.setImageResource(R.mipmap.icon_check_failed);
             if (dataBean.getCertifiedType().equals("0")) {
                 etName.setText(dataBean.getRealName());
-                etIdNumber.setText(dataBean.getIdCard().substring(0, 4) + "**********" + dataBean.getIdCard().substring(14));
+                etIdNumber.setText(dataBean.getIdCard());
                 Glide.with(this).load(dataBean.getIdentityCardImgFront()).into(ivIdFace);
                 Glide.with(this).load(dataBean.getIdentityCardImgReverse()).into(ivIdBack);
                 Glide.with(this).load(dataBean.getIdentityCardImgInHand()).into(ivHold);
@@ -421,9 +421,9 @@ public class CreditActivity extends BaseActivity implements CreditContract.View 
                 showBySwitchTab(R.id.tvRight);
                 etName.setText(dataBean.getRealName());
                 try {
-                    etPassPortNumber.setText(dataBean.getIdCard().substring(0, 2) + "***" + dataBean.getIdCard().substring(5));
+                    etPassPortNumber.setText(dataBean.getIdCard());
                 } catch (Exception e) {
-                    etPassPortNumber.setText(dataBean.getIdCard().substring(0, 1) + "***");
+                    etPassPortNumber.setText(dataBean.getIdCard());
                 }
                 Glide.with(this).load(dataBean.getIdentityCardImgFront()).into(ivPassportFace);
                 Glide.with(this).load(dataBean.getIdentityCardImgReverse()).into(ivPassportHand);
@@ -445,11 +445,11 @@ public class CreditActivity extends BaseActivity implements CreditContract.View 
             if (dataBean.getCertifiedType().equals("0")) {
                 tvTitle.setVisibility(View.VISIBLE);
                 tvTitle.setText(R.string.str_id_card_credit);
-                etName.setText("**" + dataBean.getRealName().substring(dataBean.getRealName().length() - 1, dataBean.getRealName().length()));
+                etName.setText(dataBean.getRealName());
                 try {
-                    etIdNumber.setText(dataBean.getIdCard().substring(0, 4) + "**********" + dataBean.getIdCard().substring(14));
+                    etIdNumber.setText(dataBean.getIdCard());
                 } catch (Exception e) {
-                    etIdNumber.setText(dataBean.getIdCard().substring(0, 1) + "**********");
+                    etIdNumber.setText(dataBean.getIdCard());
                 }
                 etIdNumber.setEnabled(false);
                 Glide.with(this).load(dataBean.getIdentityCardImgFront()).into(ivIdFace);
@@ -462,11 +462,11 @@ public class CreditActivity extends BaseActivity implements CreditContract.View 
                 tvTitle.setVisibility(View.VISIBLE);
                 tvTitle.setText(R.string.str_port_credit);
                 showBySwitchTab(R.id.tvRight);
-                etName.setText("**" + dataBean.getRealName().substring(dataBean.getRealName().length() - 1, dataBean.getRealName().length()));
+                etName.setText(dataBean.getRealName());
                 try {
-                    etPassPortNumber.setText(dataBean.getIdCard().substring(0, 4) + "***" + dataBean.getIdCard().substring(14));
+                    etPassPortNumber.setText(dataBean.getIdCard());
                 } catch (Exception e) {
-                    etPassPortNumber.setText(dataBean.getIdCard().substring(0, 1) + "***");
+                    etPassPortNumber.setText(dataBean.getIdCard());
                 }
                 etPassPortNumber.setEnabled(false);
                 Glide.with(this).load(dataBean.getIdentityCardImgFront()).into(ivPassportFace);

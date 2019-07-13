@@ -54,13 +54,13 @@ public class CheckVolleyErrorUtil {
                 return;
             }
             if (StringUtils.isNotEmpty(error.getMessage()) && error.getMessage().contains("BEGIN_")) {
-                if (error.getMessage().contains("/" + TYPE_OTC_SYSTEM)) {
+                if (error.getMessage().contains("." + TYPE_OTC_SYSTEM)) {
                     EventBus.getDefault().post(new CheckLoginEvent(TYPE_OTC_SYSTEM));
-                } else if (error.getMessage().contains("/" + TYPE_OTC)) {
+                } else if (error.getMessage().contains("." + TYPE_OTC)) {
                     EventBus.getDefault().post(new CheckLoginEvent(TYPE_OTC));
-                } else if (error.getMessage().contains("/" + TYPE_UC)) {
+                } else if (error.getMessage().contains("." + TYPE_UC)) {
                     EventBus.getDefault().post(new CheckLoginEvent(TYPE_UC));
-                } else if (error.getMessage().contains("/" + TYPE_AC)) {
+                } else if (error.getMessage().contains("." + TYPE_AC)) {
                     EventBus.getDefault().post(new CheckLoginEvent(TYPE_AC));
                 } else {
                     LogUtils.e("CheckVolleyErrorUtil.checkError(VolleyError error)===error.getMessage()==" + error.getMessage() + ",new LoadExceptionEvent()==退出登录=======");

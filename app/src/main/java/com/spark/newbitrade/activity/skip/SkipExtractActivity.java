@@ -226,7 +226,7 @@ public class SkipExtractActivity extends BaseActivity implements SkipExtractCont
         if (casLoginEntity != null) {
             String type = casLoginEntity.getType();
             if (!casLoginEntity.isLogin()) {
-                String gtc = MyApplication.getApp().getCurrentUser().getGtc();
+                String gtc = SharedPreferenceInstance.getInstance().getTgt();
                 presnet.doLoginBusiness(gtc, type);
             }
         }

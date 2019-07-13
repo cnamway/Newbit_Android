@@ -86,50 +86,6 @@ public class SettingActivity extends BaseActivity implements SettingContact.View
         });
     }
 
-//    private void doDelete() {
-//        OkHttpClient mOkHttpClient = new OkHttpClient().newBuilder().build();
-//        FormBody formBody = new FormBody.Builder().build();
-//        Request.Builder builder = new Request.Builder().url(UrlFactory.getServiceTickets() + MyApplication.getApp().getCurrentUser().getGtc())
-//                .delete(formBody);
-//        final Request request = builder.build();
-//        mOkHttpClient.newCall(request).enqueue(new Callback() {
-//            @Override
-//            public void onFailure(Call call, IOException e) {
-//                runOnUiThread(new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        ToastUtils.showToast("退出登录异常");
-//                    }
-//                });
-//            }
-//
-//            @Override
-//            public void onResponse(Call call, Response response) throws IOException {
-//                if (response.code() == 200) {
-//                    MyApplication.getApp().deleteCurrentUser();
-//                    SharedPreferenceInstance.getInstance().saveIsNeedShowLock(false);
-//                    SharedPreferenceInstance.getInstance().saveLockPwd("");
-//                    MyApplication.getApp().getCookieManager().getCookieStore().removeAll();
-//                    setResult(RESULT_OK);
-//                    activity.finish();
-//                }
-//            }
-//        });
-//    }
-
-
-//    @Override
-//    public void doLoginOutSuccess(String obj) {
-//       /* presenter.doAcLoginOut();
-//        presenter.doOtcLoginOut();*/
-//        //ToastUtils.showToast(obj);
-//        MyApplication.getApp().deleteCurrentUser();
-//        SharedPreferenceInstance.getInstance().saveIsNeedShowLock(false);
-//        SharedPreferenceInstance.getInstance().saveLockPwd("");
-//        setResult(RESULT_OK);
-//        activity.finish();
-//    }
-
     @Override
     public void loginOutSuccess(String obj) {
         MyApplication.getApp().deleteCurrentUser();

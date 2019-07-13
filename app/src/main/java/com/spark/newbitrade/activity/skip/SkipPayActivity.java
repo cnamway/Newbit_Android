@@ -414,7 +414,7 @@ public class SkipPayActivity extends BaseActivity implements SkipPayContract.Vie
         if (casLoginEntity != null) {
             String type = casLoginEntity.getType();
             if (!casLoginEntity.isLogin()) {
-                String gtc = MyApplication.getApp().getCurrentUser().getGtc();
+                String gtc = SharedPreferenceInstance.getInstance().getTgt();
                 presnet.doLoginBusiness(gtc, type);
             }
         }
