@@ -370,7 +370,9 @@ public class StorePublishActivity extends BaseActivity implements StorePublishCo
     @Override
     public void createAdvertiseSuccess(String obj) {
         if (StringUtils.isNotEmpty(obj)) {
-            ToastUtils.showToast(obj);
+            if (obj.equals(getString(R.string.str_success)))
+                ToastUtils.showToast(getString(R.string.str_success_tag));
+            else ToastUtils.showToast(obj);
         }
         finish();
     }
@@ -428,7 +430,9 @@ public class StorePublishActivity extends BaseActivity implements StorePublishCo
     @Override
     public void updateAdvertiseSuccess(String obj) {
         if (StringUtils.isNotEmpty(obj)) {
-            ToastUtils.showToast(obj);
+            if (obj.equals(getString(R.string.str_success)))
+                ToastUtils.showToast(getString(R.string.str_success_tag));
+            else ToastUtils.showToast(obj);
         }
         setResult(RESULT_OK);
         finish();

@@ -68,7 +68,11 @@ public class GoogleUnbindActivity extends BaseActivity implements GoogleContract
 
     @Override
     public void doUnbindSuccess(String obj) {
-        ToastUtils.showToast(obj);
+        if (StringUtils.isNotEmpty(obj)) {
+            if (obj.equals(getString(R.string.str_success)))
+                ToastUtils.showToast(getString(R.string.str_success_tag));
+            else ToastUtils.showToast(obj);
+        }
         setResult(RESULT_OK);
         finish();
     }

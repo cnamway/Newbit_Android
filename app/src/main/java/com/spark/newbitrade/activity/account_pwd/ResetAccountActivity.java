@@ -98,7 +98,11 @@ public class ResetAccountActivity extends BaseActivity implements AccountPwdCont
 
     @Override
     public void resetAccountPwdSuccess(String obj) {
-        ToastUtils.showToast(obj);
+        if (StringUtils.isNotEmpty(obj)) {
+            if (obj.equals(getString(R.string.str_success)))
+                ToastUtils.showToast(getString(R.string.str_success_tag));
+            else ToastUtils.showToast(obj);
+        }
         setResult(RESULT_OK);
         finish();
     }
@@ -110,7 +114,11 @@ public class ResetAccountActivity extends BaseActivity implements AccountPwdCont
 
     @Override
     public void resetAccountPwdCodeSuccess(String obj) {
-        ToastUtils.showToast(obj);
+        if (StringUtils.isNotEmpty(obj)) {
+            if (obj.equals(getString(R.string.str_success)))
+                ToastUtils.showToast(getString(R.string.str_success_tag));
+            else ToastUtils.showToast(obj);
+        }
         timeCount.start();
         tvGetCode.setEnabled(false);
     }

@@ -216,7 +216,9 @@ public class AddressActivity extends BaseActivity implements AddressContract.Vie
     public void delWalletWithdrawAddressUsingGETSuccess(String obj) {
         hideAll();
         if (StringUtils.isNotEmpty(obj)) {
-            ToastUtils.showToast(obj);
+            if (obj.equals(getString(R.string.str_success)))
+                ToastUtils.showToast(getString(R.string.str_success_tag));
+            else ToastUtils.showToast(obj);
         }
 
         getAddressList(true);

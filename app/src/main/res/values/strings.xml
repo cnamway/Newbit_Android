@@ -804,4 +804,6 @@
     <string name="str_branch">开户支行</string>
     <string name="str_bank_num">银行卡号</string>
     <string name="phone_empty">未找到手机号码</string>
+    <string name="str_success">SUCCESS</string>
+    <string name="str_success_tag">操作成功</string>
 </resources>

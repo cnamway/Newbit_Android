@@ -120,7 +120,11 @@ public class AccountPwdActivity extends BaseActivity implements AccountPwdContra
 
     @Override
     public void accountPwdSuccess(String obj) {
-        ToastUtils.showToast(obj);
+        if (StringUtils.isNotEmpty(obj)) {
+            if (obj.equals(getString(R.string.str_success)))
+                ToastUtils.showToast(getString(R.string.str_success_tag));
+            else ToastUtils.showToast(obj);
+        }
         MyApplication.getApp().getCurrentUser().setFundsVerified(1);
         setResult(RESULT_OK);
         finish();
@@ -128,7 +132,11 @@ public class AccountPwdActivity extends BaseActivity implements AccountPwdContra
 
     @Override
     public void editAccountPwdSuccess(String obj) {
-        ToastUtils.showToast(obj);
+        if (StringUtils.isNotEmpty(obj)) {
+            if (obj.equals(getString(R.string.str_success)))
+                ToastUtils.showToast(getString(R.string.str_success_tag));
+            else ToastUtils.showToast(obj);
+        }
         finish();
     }
 

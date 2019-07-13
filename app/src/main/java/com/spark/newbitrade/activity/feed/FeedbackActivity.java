@@ -108,7 +108,11 @@ public class FeedbackActivity extends BaseActivity implements FeedBackContract.V
 
     @Override
     public void doFeedBackSuccess(String obj) {
-        ToastUtils.showToast(obj);
+        if (StringUtils.isNotEmpty(obj)) {
+            if (obj.equals(getString(R.string.str_success)))
+                ToastUtils.showToast(getString(R.string.str_success_tag));
+            else ToastUtils.showToast(obj);
+        }
         finish();
     }
 

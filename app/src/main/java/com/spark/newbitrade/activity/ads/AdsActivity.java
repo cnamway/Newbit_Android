@@ -242,71 +242,6 @@ public class AdsActivity extends BaseActivity implements AdsContract.View, Filte
         adapter.bindToRecyclerView(recyclerView);
     }
 
-//    @Override
-//    public void allAdsSuccess(List<Ads> obj) {
-//        adapter.setEnableLoadMore(true);
-//        adapter.loadMoreComplete();
-//        if (refreshLayout != null) {
-//            refreshLayout.setEnabled(true);
-//            refreshLayout.setRefreshing(false);
-//        }
-//        if (obj == null) return;
-//        if (pageNo == 1) {
-//            objList.clear();
-//            if (obj.size() == 0) {
-//                adapter.setEmptyView(R.layout.empty_no_message);
-//                adapter.notifyDataSetChanged();
-//            }
-//        } else if (obj.size() == 0) {
-//            adapter.loadMoreEnd();
-//        }
-//        objList.addAll(obj);
-//        adapter.notifyDataSetChanged();
-//        adapter.disableLoadMoreIfNotFullPage();
-//    }
-//
-//    @Override
-//    public void allAdsFail(Integer code, String toastMessage) {
-//        adapter.setEnableLoadMore(true);
-//        refreshLayout.setEnabled(true);
-//        refreshLayout.setRefreshing(false);
-//        NetCodeUtils.checkedErrorCode((BaseActivity) activity, code, toastMessage);
-//    }
-//
-//    @Override
-//    public void doOptionSucess(String obj) {
-//        ToastUtils.showToast(obj);
-//        pageNo = 1;
-//        getList(true);
-//    }
-//
-//    @Override
-//    public void allSuccess(List<CoinInfo> obj) {
-//        if (obj == null || obj.size() == 0) return;
-//        firList = new ArrayList<>();
-//        for (CoinInfo coinInfo : obj) {
-//            FilterBean filterBean = new FilterBean();
-//            filterBean.setName(coinInfo.getUnit());
-//            filterBean.setStrUpload(coinInfo.getUnit());
-//            firList.add(filterBean);
-//        }
-//        secList = new ArrayList<>();
-//        secList.add(new FilterBean(getString(R.string.all), "", true));
-//        secList.add(new FilterBean(getString(R.string.text_buy), "0", false));
-//        secList.add(new FilterBean(getString(R.string.text_sell), "1", false));
-//
-//        thdList = new ArrayList<>();
-//        thdList.add(new FilterBean(getString(R.string.all), "", true));
-//        thdList.add(new FilterBean(getString(R.string.grounding), "0", false));
-//        thdList.add(new FilterBean(getString(R.string.shelved), "1", false));
-//
-//        filterPopView = new FilterPopView(activity, this, FilterPopView.CALLFROM_ADS,
-//                LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-//        filterPopView.setFirstList(firList);
-//        filterPopView.setSecList(secList);
-//        filterPopView.setThdList(thdList);
-//        showPopWind();
-//    }
 
     private void showPopWind() {
         filterPopView.setFocusable(true);
@@ -423,7 +358,9 @@ public class AdsActivity extends BaseActivity implements AdsContract.View, Filte
     public void onShelvesAdvertiseSuccess(String obj) {
         hideAll();
         if (StringUtils.isNotEmpty(obj)) {
-            ToastUtils.showToast(obj);
+            if (obj.equals(getString(R.string.str_success)))
+                ToastUtils.showToast(getString(R.string.str_success_tag));
+            else ToastUtils.showToast(obj);
         }
         adapter.setEnableLoadMore(false);
         pageNo = 1;
@@ -434,7 +371,9 @@ public class AdsActivity extends BaseActivity implements AdsContract.View, Filte
     public void offShelvesAdvertiseSuccess(String obj) {
         hideAll();
         if (StringUtils.isNotEmpty(obj)) {
-            ToastUtils.showToast(obj);
+            if (obj.equals(getString(R.string.str_success)))
+                ToastUtils.showToast(getString(R.string.str_success_tag));
+            else ToastUtils.showToast(obj);
         }
         adapter.setEnableLoadMore(false);
         pageNo = 1;
@@ -445,7 +384,9 @@ public class AdsActivity extends BaseActivity implements AdsContract.View, Filte
     public void deleteAdvertiseSuccess(String obj) {
         hideAll();
         if (StringUtils.isNotEmpty(obj)) {
-            ToastUtils.showToast(obj);
+            if (obj.equals(getString(R.string.str_success)))
+                ToastUtils.showToast(getString(R.string.str_success_tag));
+            else ToastUtils.showToast(obj);
         }
         adapter.setEnableLoadMore(false);
         pageNo = 1;

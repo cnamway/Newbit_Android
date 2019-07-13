@@ -916,7 +916,9 @@ public class PubAdsFragment extends BaseLazyFragment implements ReleaseAdContrac
     @Override
     public void createAdvertiseSuccess(String obj) {
         if (StringUtils.isNotEmpty(obj)) {
-            ToastUtils.showToast(obj);
+            if (obj.equals(getString(R.string.str_success)))
+                ToastUtils.showToast(getString(R.string.str_success_tag));
+            else ToastUtils.showToast(obj);
         }
         finish();
     }
@@ -924,7 +926,9 @@ public class PubAdsFragment extends BaseLazyFragment implements ReleaseAdContrac
     @Override
     public void updateAdvertiseSuccess(String obj) {
         if (StringUtils.isNotEmpty(obj)) {
-            ToastUtils.showToast(obj);
+            if (obj.equals(getString(R.string.str_success)))
+                ToastUtils.showToast(getString(R.string.str_success_tag));
+            else ToastUtils.showToast(obj);
         }
         finish();
     }

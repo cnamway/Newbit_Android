@@ -801,74 +801,6 @@ public class OrderDetailActivity extends BaseActivity implements OrderDetailCont
         }
     }
 
-//    @Override
-//    public void payDoneSuccess(String obj) {
-//        ToastUtils.showToast(obj);
-//        setResult(RESULT_OK);
-//        finish();
-//        JSONObject json = buildBodyJson();
-//        SocketFactory.produceSocket(ISocket.C2C).sendRequest(ISocket.CMD.SEND_CHAT, json.toString().getBytes(), OrderDetailActivity.this);
-//    }
-//
-//    @Override
-//    public void cancleSuccess(String obj) {
-//        ToastUtils.showToast(obj);
-//        setResult(RESULT_OK);
-//        handler.postDelayed(new Runnable() {
-//            @Override
-//            public void run() {
-//                getOrdetDetail();
-//            }
-//        }, 500);
-//    }
-//
-//    @Override
-//    public void releaseSuccess(String obj) {
-//        ToastUtils.showToast(obj);
-//        setResult(RESULT_OK);
-//        handler.postDelayed(new Runnable() {
-//            @Override
-//            public void run() {
-//                getOrdetDetail();
-//            }
-//        }, 500);
-//    }
-//
-//    @Override
-//    public void downloadSuccess(Response response) {
-//        InputStream inputStream = response.body().byteStream(); // 将响应数据转化为输入流数据
-//        Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
-//        Calendar now = new GregorianCalendar();
-//        SimpleDateFormat simpleDate = new SimpleDateFormat("yyyyMMddHHmmss", Locale.getDefault());
-//        String fileName = simpleDate.format(now.getTime());
-//        File folderFile = new File(dir);
-//        if (!folderFile.exists()) {
-//            folderFile.mkdirs();
-//        }
-//        File file = new File(dir + fileName + ".jpg");
-//        try {
-//            if (file.exists()) {
-//                file.delete();
-//            }
-//            file.createNewFile();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//        FileOutputStream out = null;
-//        try {
-//            out = new FileOutputStream(file);
-//            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, out);
-//            out.flush();
-//            out.close();
-//            Uri uri = Uri.fromFile(file);
-//            sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, uri));
-//            Message message = Message.obtain();
-//            message.what = 2;
-//            handler.sendMessage(message);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//    }
 
     @Override
     public void dataSuccess(ISocket.CMD cmd, String response) {
@@ -880,24 +812,34 @@ public class OrderDetailActivity extends BaseActivity implements OrderDetailCont
 
     @Override
     public void cancelOrderUsingGETSuccess(String obj) {
-        if (StringUtils.isNotEmpty(obj))
-            ToastUtils.showToast(obj);
+        if (StringUtils.isNotEmpty(obj)) {
+            if (obj.equals(getString(R.string.str_success)))
+                ToastUtils.showToast(getString(R.string.str_success_tag));
+            else ToastUtils.showToast(obj);
+        }
         setResult(RESULT_OK);
         finish();
     }
 
     @Override
     public void releaseOrderUsingGETSuccess(String obj) {
-        if (StringUtils.isNotEmpty(obj))
-            ToastUtils.showToast(obj);
+        if (StringUtils.isNotEmpty(obj)) {
+            if (obj.equals(getString(R.string.str_success)))
+                ToastUtils.showToast(getString(R.string.str_success_tag));
+            else ToastUtils.showToast(obj);
+
+        }
         setResult(RESULT_OK);
         finish();
     }
 
     @Override
     public void paymentOrderUsingPOSTSuccess(String obj) {
-        if (StringUtils.isNotEmpty(obj))
-            ToastUtils.showToast(obj);
+        if (StringUtils.isNotEmpty(obj)) {
+            if (obj.equals(getString(R.string.str_success)))
+                ToastUtils.showToast(getString(R.string.str_success_tag));
+            else ToastUtils.showToast(obj);
+        }
 //        setResult(RESULT_OK);
 //        finish();
         //付完款之后 详情页不关闭

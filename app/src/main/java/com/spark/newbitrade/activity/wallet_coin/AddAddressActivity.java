@@ -137,8 +137,12 @@ public class AddAddressActivity extends BaseActivity implements AddAddressContra
 
     @Override
     public void addWalletWithdrawAddressUsingPOSTSuccess(String obj) {
-        if (StringUtils.isNotEmpty(obj))
-            ToastUtils.showToast(obj);
+        if (StringUtils.isNotEmpty(obj)) {
+            if (obj.equals(getString(R.string.str_success)))
+                ToastUtils.showToast(getString(R.string.str_success_tag));
+            else ToastUtils.showToast(obj);
+
+        }
 
         Intent intent = new Intent();
         intent.putExtra("unit", unit);

@@ -283,35 +283,6 @@ public class AppealActivity extends BaseActivity implements AppealContract.View 
         dialog.show();
     }
 
-//    @Override
-//    public void appealSuccess(String obj) {
-//        ToastUtils.showToast(obj);
-//        finish();
-//    }
-//
-//    @Override
-//    public void uploadBase64PicSuccess(String obj, int type) {
-//        if (StringUtils.isEmpty(obj)) {
-//            ToastUtils.showToast(getString(R.string.empty_address));
-//            return;
-//        }
-//        ToastUtils.showToast(getString(R.string.upload_success));
-//        if (!obj.contains("http")) {
-//            obj = UrlFactory.getHost() + "/" + obj;
-//        }
-//        Glide.with(this).load(obj).into(currentImg);
-//        switch (type) {
-//            case FACE:
-//                idCardFront = obj;
-//                break;
-//            case BACK:
-//                idCardBack = obj;
-//                break;
-//            case HOLD:
-//                handHeldIdCard = obj;
-//                break;
-//        }
-//    }
 
 
     @Override
@@ -389,7 +360,9 @@ public class AppealActivity extends BaseActivity implements AppealContract.View 
     @Override
     public void appealApplySuccess(String obj) {
         if (StringUtils.isNotEmpty(obj)) {
-            ToastUtils.showToast(obj);
+            if (obj.equals(getString(R.string.str_success)))
+                ToastUtils.showToast(getString(R.string.str_success_tag));
+            else ToastUtils.showToast(obj);
             setResult(Activity.RESULT_OK);
             finish();
         }

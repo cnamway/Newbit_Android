@@ -341,7 +341,11 @@ public class CreditActivity extends BaseActivity implements CreditContract.View 
         user.setRealName(strRealName);
         MyApplication.getApp().setCurrentUser(user);
 
-        ToastUtils.showToast(obj);
+        if (StringUtils.isNotEmpty(obj)) {
+            if (obj.equals(getString(R.string.str_success)))
+                ToastUtils.showToast(getString(R.string.str_success_tag));
+            else ToastUtils.showToast(obj);
+        }
         setResult(RESULT_OK);
         finish();
     }

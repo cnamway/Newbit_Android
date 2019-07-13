@@ -225,28 +225,44 @@ public class BindPhoneActivity extends BaseActivity implements BindPhoneContract
 
     @Override
     public void bindPhoneSuccess(String obj) {
-        ToastUtils.showToast(obj);
+        if (StringUtils.isNotEmpty(obj)) {
+            if (obj.equals(getString(R.string.str_success)))
+                ToastUtils.showToast(getString(R.string.str_success_tag));
+            else ToastUtils.showToast(obj);
+        }
         setResult(RESULT_OK);
         finish();
     }
 
     @Override
     public void sendChangePhoneCodeSuccess(String obj) {
-        ToastUtils.showToast(obj);
+        if (StringUtils.isNotEmpty(obj)) {
+            if (obj.equals(getString(R.string.str_success)))
+                ToastUtils.showToast(getString(R.string.str_success_tag));
+            else ToastUtils.showToast(obj);
+        }
         timeCount.start();
         tvGetCode.setEnabled(false);
     }
 
     @Override
     public void changePhoneSuccess(String obj) {
-        ToastUtils.showToast(obj);
+        if (StringUtils.isNotEmpty(obj)) {
+            if (obj.equals(getString(R.string.str_success)))
+                ToastUtils.showToast(getString(R.string.str_success_tag));
+            else ToastUtils.showToast(obj);
+        }
         setResult(RESULT_OK);
         finish();
     }
 
     @Override
     public void sendCodeSuccess(String obj,int type) {
-        ToastUtils.showToast(obj);
+        if (StringUtils.isNotEmpty(obj)) {
+            if (obj.equals(getString(R.string.str_success)))
+                ToastUtils.showToast(getString(R.string.str_success_tag));
+            else ToastUtils.showToast(obj);
+        }
         if(type == 2) { // 这个是发送新验证码的返回
             newTimeCount.start();
             tvNewGetCode.setEnabled(false);

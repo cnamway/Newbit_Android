@@ -109,7 +109,11 @@ public class BindEmailActivity extends BaseActivity implements BindEmailContract
 
     @Override
     public void bindEmailSuccess(String obj) {
-        ToastUtils.showToast(obj);
+        if (StringUtils.isNotEmpty(obj)) {
+            if (obj.equals(getString(R.string.str_success)))
+                ToastUtils.showToast(getString(R.string.str_success_tag));
+            else ToastUtils.showToast(obj);
+        }
         setResult(RESULT_OK);
         finish();
     }
@@ -121,7 +125,11 @@ public class BindEmailActivity extends BaseActivity implements BindEmailContract
 
     @Override
     public void sendEmailCodeSuccess(String obj) {
-        ToastUtils.showToast(obj);
+        if (StringUtils.isNotEmpty(obj)) {
+            if (obj.equals(getString(R.string.str_success)))
+                ToastUtils.showToast(getString(R.string.str_success_tag));
+            else ToastUtils.showToast(obj);
+        }
         timeCount.start();
     }
 

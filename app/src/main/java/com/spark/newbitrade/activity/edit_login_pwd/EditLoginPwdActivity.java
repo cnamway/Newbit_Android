@@ -124,7 +124,6 @@ public class EditLoginPwdActivity extends BaseActivity implements EditLoginPwdCo
 
     @Override
     public void doLoginOutSuccess(String obj) {
-       // ToastUtils.showToast(obj);
         MyApplication.getApp().deleteCurrentUser();
         SharedPreferenceInstance.getInstance().saveIsNeedShowLock(false);
         SharedPreferenceInstance.getInstance().saveLockPwd("");
@@ -134,7 +133,11 @@ public class EditLoginPwdActivity extends BaseActivity implements EditLoginPwdCo
 
     @Override
     public void sendEditLoginPwdCodeSuccess(String obj) {
-        ToastUtils.showToast(obj);
+        if (StringUtils.isNotEmpty(obj)) {
+            if (obj.equals(getString(R.string.str_success)))
+                ToastUtils.showToast(getString(R.string.str_success_tag));
+            else ToastUtils.showToast(obj);
+        }
         timeCount.start();
         tvGetCode.setEnabled(false);
     }
