@@ -92,7 +92,7 @@ public class OrderConfirmDialog extends Dialog {
             tvPriceText.setText(context.getString(R.string.dialog_three_ones) + ": ");
             tvCountText.setText(context.getString(R.string.dialog_three_twos) + ": ");
             tvTotalText.setText(context.getString(R.string.dialog_three_threes) + ": ");
-            llPassWord.setVisibility(View.VISIBLE);
+            llPassWord.setVisibility(View.GONE);
         } else {
             tvPriceText.setText(context.getString(R.string.dialog_three_one) + ": ");
             tvCountText.setText(context.getString(R.string.dialog_three_two) + ": ");
@@ -119,11 +119,11 @@ public class OrderConfirmDialog extends Dialog {
                 if (orderListener != null) {
                     String pwd = etPassword.getText().toString().trim();
                     if ("0".equals(type)) {
-                        if (StringUtils.isNotEmpty(pwd)) {
+//                        if (StringUtils.isNotEmpty(pwd)) {
                             orderListener.onConfirm(pwd);
-                        } else {
-                            ToastUtils.showToast(R.string.text_enter_money_pwd);
-                        }
+//                        } else {
+//                            ToastUtils.showToast(R.string.text_enter_money_pwd);
+//                        }
                     } else {
                         orderListener.onConfirm(pwd);
                     }

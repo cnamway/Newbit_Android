@@ -133,7 +133,7 @@ public class SkipPayActivity extends BaseActivity implements SkipPayContract.Vie
 
             if (StringUtils.isNotEmpty(amount) && StringUtils.isNotEmpty(coinName)) {
                 tvAmount.setText(amount + " " + coinName);
-                tvCoinName.setText(tvCoinName + "余额：");
+                tvCoinName.setText(coinName + "余额：");
             }
 
         }
@@ -354,6 +354,7 @@ public class SkipPayActivity extends BaseActivity implements SkipPayContract.Vie
     @Override
     public void dealError(HttpErrorEntity httpErrorEntity) {
         if (httpErrorEntity != null) {
+            LogUtils.e("SkipPayActivity===ccse==response==" + "dealError===HttpErrorEntity===" + httpErrorEntity.toString());
             if (httpErrorEntity.getCode() == GlobalConstant.LOGIN_ERROR) {
                 if (StringUtils.isNotEmpty(httpErrorEntity.getUrl())) {
                     LogUtils.e("HttpErrorEntity===" + httpErrorEntity.getCode() + ",httpErrorEntity.getUrl()==" + httpErrorEntity.getUrl());
@@ -382,17 +383,16 @@ public class SkipPayActivity extends BaseActivity implements SkipPayContract.Vie
                 message.obj = httpErrorEntity.getMessage();
                 mToastHandler.sendMessage(message);
             } else {
-                Message message = new Message();
-                message.what = 1;
-                message.obj = "" + httpErrorEntity.getCode();
-                mToastHandler.sendMessage(message);
+                if (GlobalConstant.isDebug) {
+                    Message message = new Message();
+                    message.what = 1;
+                    message.obj = "" + httpErrorEntity.getCode();
+                    mToastHandler.sendMessage(message);
+                }
             }
-        } else
-
-        {
+        } else {
             logOut();
         }
-
     }
 
     private static Handler mToastHandler = new Handler() {
@@ -430,7 +430,10 @@ public class SkipPayActivity extends BaseActivity implements SkipPayContract.Vie
 
     @Override
     public void doLoginBusinessSuccess(String type) {
-        loadData();
+        if (StringUtils.isNotEmpty(coinName)) {
+            presnet.getCoinMessage(coinName);
+            presnet.getExtractInfo(coinName);
+        }
     }
 
     private void goLogin() {

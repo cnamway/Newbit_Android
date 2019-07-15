@@ -235,6 +235,7 @@ public abstract class BaseFragment extends Fragment implements BaseContract.Base
     @Override
     public void dealError(HttpErrorEntity httpErrorEntity) {
         if (httpErrorEntity != null) {
+            LogUtils.e("BaseFragment===ccse==response==" + "dealError===HttpErrorEntity===" + httpErrorEntity.toString());
             if (httpErrorEntity.getCode() == GlobalConstant.LOGIN_ERROR) {
                 if (StringUtils.isNotEmpty(httpErrorEntity.getUrl())) {
                     LogUtils.e("HttpErrorEntity===" + httpErrorEntity.getCode() + ",httpErrorEntity.getUrl()==" + httpErrorEntity.getUrl());
@@ -264,10 +265,12 @@ public abstract class BaseFragment extends Fragment implements BaseContract.Base
                 message.obj = httpErrorEntity.getMessage();
                 mToastHandler.sendMessage(message);
             } else {
-                Message message = new Message();
-                message.what = 1;
-                message.obj = "" + httpErrorEntity.getCode();
-                mToastHandler.sendMessage(message);
+                if (GlobalConstant.isDebug) {
+                    Message message = new Message();
+                    message.what = 1;
+                    message.obj = "" + httpErrorEntity.getCode();
+                    mToastHandler.sendMessage(message);
+                }
             }
         } else {
             EventBus.getDefault().post(new LoginoutWithoutApiEvent());

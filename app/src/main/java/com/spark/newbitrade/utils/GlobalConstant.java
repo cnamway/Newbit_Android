@@ -17,7 +17,7 @@ public class GlobalConstant {
         return map;
     }
 
-    public static final boolean isDebug = true; // 是否代开log日志
+    public static final boolean isDebug = false; // 是否代开log日志
     public static final boolean isOPenGoogle = false; // 是否打开谷歌验证
     public static final boolean isUpLoadFile = false; // 上传图片是否为文件上传
 

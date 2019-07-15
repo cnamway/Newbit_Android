@@ -163,6 +163,7 @@ public class SkipExtractActivity extends BaseActivity implements SkipExtractCont
     @Override
     public void dealError(HttpErrorEntity httpErrorEntity) {
         if (httpErrorEntity != null) {
+            LogUtils.e("SkipExtractActivity===ccse==response==" + "dealError===HttpErrorEntity===" + httpErrorEntity.toString());
             if (httpErrorEntity.getCode() == GlobalConstant.LOGIN_ERROR) {
                 if (StringUtils.isNotEmpty(httpErrorEntity.getUrl())) {
                     LogUtils.e("HttpErrorEntity===" + httpErrorEntity.getCode() + ",httpErrorEntity.getUrl()==" + httpErrorEntity.getUrl());
@@ -191,10 +192,12 @@ public class SkipExtractActivity extends BaseActivity implements SkipExtractCont
                 message.obj = httpErrorEntity.getMessage();
                 mToastHandler.sendMessage(message);
             } else {
-                Message message = new Message();
-                message.what = 1;
-                message.obj = "" + httpErrorEntity.getCode();
-                mToastHandler.sendMessage(message);
+                if (GlobalConstant.isDebug) {
+                    Message message = new Message();
+                    message.what = 1;
+                    message.obj = "" + httpErrorEntity.getCode();
+                    mToastHandler.sendMessage(message);
+                }
             }
         } else {
             logOut();
@@ -236,7 +239,9 @@ public class SkipExtractActivity extends BaseActivity implements SkipExtractCont
 
     @Override
     public void doLoginBusinessSuccess(String type) {
-        loadData();
+        if (StringUtils.isNotEmpty(coinName)) {
+            presnet.getAddress(coinName);
+        }
     }
 
     private void goLogin() {

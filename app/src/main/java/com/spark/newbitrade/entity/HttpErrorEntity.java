@@ -71,4 +71,14 @@ public class HttpErrorEntity {
         this.url = url;
     }
 
+    @Override
+    public String toString() {
+        return "HttpErrorEntity{" +
+                "code=" + code +
+                ", message='" + message + '\'' +
+                ", url='" + url + '\'' +
+                ", cid='" + cid + '\'' +
+                ", data='" + data + '\'' +
+                '}';
+    }
 }

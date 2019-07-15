@@ -166,7 +166,9 @@
 
     <View style="@style/line_bg_grey" />
 
-    <LinearLayout style="@style/layout_my_info">
+    <LinearLayout
+        style="@style/layout_my_info"
+        android:visibility="gone">
 
         <TextView
             style="@style/textview_tag"

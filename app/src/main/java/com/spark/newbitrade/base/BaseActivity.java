@@ -413,6 +413,7 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseCont
     @Override
     public void dealError(HttpErrorEntity httpErrorEntity) {
         if (httpErrorEntity != null) {
+            LogUtils.e("BaseActivity===ccse==response==" + "dealError===HttpErrorEntity===" + httpErrorEntity.toString());
             if (httpErrorEntity.getCode() == GlobalConstant.LOGIN_ERROR) {
                 if (StringUtils.isNotEmpty(httpErrorEntity.getUrl())) {
                     LogUtils.e("HttpErrorEntity===" + httpErrorEntity.getCode() + ",httpErrorEntity.getUrl()==" + httpErrorEntity.getUrl());
@@ -434,16 +435,20 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseCont
                 message.what = 1;
                 message.obj = getString(R.string.str_no_repeat);
                 mToastHandler.sendMessage(message);
+            } else if (httpErrorEntity.getCode() == GlobalConstant.SERVER_ERROR_CODE) {
+                LogUtils.e("BaseFragment==dealError==HttpErrorEntity==" + httpErrorEntity.getCode());
             } else if (StringUtils.isNotEmpty(httpErrorEntity.getMessage())) {
                 Message message = new Message();
                 message.what = 1;
                 message.obj = httpErrorEntity.getMessage();
                 mToastHandler.sendMessage(message);
             } else {
-                Message message = new Message();
-                message.what = 1;
-                message.obj = "" + httpErrorEntity.getCode();
-                mToastHandler.sendMessage(message);
+                if (GlobalConstant.isDebug) {
+                    Message message = new Message();
+                    message.what = 1;
+                    message.obj = "" + httpErrorEntity.getCode();
+                    mToastHandler.sendMessage(message);
+                }
             }
         } else {
             EventBus.getDefault().post(new LoginoutWithoutApiEvent());

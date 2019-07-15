@@ -262,9 +262,11 @@ public class ExtractActivity extends BaseActivity implements ExtractContract.Ext
                 ToastUtils.showToast(getString(R.string.str_please_input) + getString(R.string.text_number));
             } else if (StringUtils.isEmpty(tradePassword)) {
                 ToastUtils.showToast(getString(R.string.str_please_input) + getString(R.string.text_money_pwd));
-            } else if (StringUtils.isEmpty(code)) {
-                ToastUtils.showToast(getString(R.string.str_please_input) + getString(R.string.code));
-            } else if (Double.parseDouble(amount) > wallet.getBalance()) {
+            }
+//            else if (StringUtils.isEmpty(code)) {
+//                ToastUtils.showToast(getString(R.string.str_please_input) + getString(R.string.code));
+//            }
+            else if (Double.parseDouble(amount) > wallet.getBalance()) {
                 ToastUtils.showToast(getString(R.string.str_coin_can_banlance) + wallet.getBalance());
             } else if (Double.parseDouble(amount) < minWithdrawAmount) {
                 ToastUtils.showToast(getString(R.string.str_min_coin_num_tag) + minWithdrawAmount);
