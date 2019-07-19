@@ -31,6 +31,7 @@ import com.spark.newbitrade.entity.ChatEvent;
 import com.spark.newbitrade.entity.ChatTable;
 import com.spark.newbitrade.entity.ChatTipEvent;
 import com.spark.newbitrade.entity.OrderDetial;
+import com.spark.newbitrade.factory.HttpUrls;
 import com.spark.newbitrade.factory.socket.ISocket;
 import com.spark.newbitrade.serivce.chatUtils.NettyInitDataUtils;
 import com.spark.newbitrade.serivce.chatUtils.SendMsgListener;
@@ -77,7 +78,7 @@ public class ChatWebSocketService extends Service {
     private static boolean isClosed = true;//连接是否被关闭
 
     //WebSocket地址配置
-    private static String WEBSOCKET_HOST_AND_PORT = "ws://47.74.48.49:28905/ws";
+    private static String WEBSOCKET_HOST_AND_PORT = HttpUrls.WEBSOCKET_HOST_AND_PORT;
 
     private SocketMessage lastMessage; // 聊天订阅指令消息
     private Gson gson = new Gson();

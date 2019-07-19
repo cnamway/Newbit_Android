@@ -21,6 +21,7 @@ import com.spark.newbitrade.entity.CasLoginEntity;
 import com.spark.newbitrade.entity.ExtractInfo;
 import com.spark.newbitrade.entity.HttpErrorEntity;
 import com.spark.newbitrade.entity.User;
+import com.spark.newbitrade.event.CheckLoginEvent;
 import com.spark.newbitrade.event.CheckLoginSuccessEvent;
 import com.spark.newbitrade.utils.GlobalConstant;
 import com.spark.newbitrade.utils.LogUtils;
@@ -100,6 +101,7 @@ public class SkipPayActivity extends BaseActivity implements SkipPayContract.Vie
         if (resultCode == RESULT_OK) {
             switch (requestCode) {
                 case 1:
+                    LogUtils.e("SkipPayActivity==onActivityResult==loadData==");
                     loadData();
                     break;
             }
@@ -109,6 +111,7 @@ public class SkipPayActivity extends BaseActivity implements SkipPayContract.Vie
     @Override
     protected void initView() {
         super.initView();
+        LogUtils.e("SkipPayActivity==onActivityResult==EventBus.getDefault().register==");
         EventBus.getDefault().register(this);
         setSetTitleAndBack(false, false);
     }
@@ -149,6 +152,7 @@ public class SkipPayActivity extends BaseActivity implements SkipPayContract.Vie
         super.loadData();
         if (MyApplication.getApp().isLogin()) {
             if (StringUtils.isNotEmpty(coinName)) {
+                LogUtils.e("SkipPayActivity==loadData()==开始加载数据==");
                 presnet.getCoinMessage(coinName);
                 presnet.getExtractInfo(coinName);
             }
@@ -175,13 +179,16 @@ public class SkipPayActivity extends BaseActivity implements SkipPayContract.Vie
                     code = StringUtils.getText(etCode);
                     //if (StringUtils.isNotEmpty(amount, address, coinName, code)) {
                     if (StringUtils.isNotEmpty(amount, address, coinName)) {
+                        LogUtils.e("SkipPayActivity==setOnClickListener()==memberWalletVo==" + memberWalletVo);
                         if (memberWalletVo != null) {
+                            LogUtils.e("SkipPayActivity==setOnClickListener()==memberWalletVo==" + memberWalletVo.toString());
                             if (Double.valueOf(memberWalletVo.getBalance().toString()) >= Double.valueOf(amount)) {
                                 showPasswordDialog();
                             } else {
                                 ToastUtils.showToast(R.string.str_no_enough_balance);
                             }
                         } else {
+                            LogUtils.e("SkipPayActivity==点击立即支付()==memberWalletVo是空重新加载数据==");
                             loadData();
                         }
                     } else {
@@ -235,6 +242,7 @@ public class SkipPayActivity extends BaseActivity implements SkipPayContract.Vie
     }
 
     private void showPasswordDialog() {
+        LogUtils.e("SkipPayActivity==showPasswordDialog()==弹出资金密码弹框==");
         final PasswordDialog passwordDialog = new PasswordDialog(this);
         passwordDialog.show();
         passwordDialog.setClicklistener(new PasswordDialog.ClickListenerInterface() {
@@ -413,7 +421,6 @@ public class SkipPayActivity extends BaseActivity implements SkipPayContract.Vie
         SharedPreferenceInstance.getInstance().saveLockPwd("");
         MyApplication.getApp().getCookieManager().getCookieStore().removeAll();
         ActivityManage.finishAll();
-
         goLogin();
     }
 
@@ -430,10 +437,7 @@ public class SkipPayActivity extends BaseActivity implements SkipPayContract.Vie
 
     @Override
     public void doLoginBusinessSuccess(String type) {
-        if (StringUtils.isNotEmpty(coinName)) {
-            presnet.getCoinMessage(coinName);
-            presnet.getExtractInfo(coinName);
-        }
+        loadData();
     }
 
     private void goLogin() {
@@ -442,5 +446,22 @@ public class SkipPayActivity extends BaseActivity implements SkipPayContract.Vie
         bundle.putBoolean("isJumpApp", true);
         showActivity(LoginActivity.class, bundle, 1);
         finish();
+    }
+
+    /**
+     * 检测登录状态
+     */
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onCheckLoginEvent(CheckLoginEvent event) {
+        LogUtils.e("SkipPayActivity==onCheckLoginEvent==event.type==" + event.type);
+        if (event.type.contains(TYPE_OTC_SYSTEM)) {
+            presnet.checkBusinessLogin(TYPE_OTC_SYSTEM);
+        } else if (event.type.contains(TYPE_OTC)) {
+            presnet.checkBusinessLogin(TYPE_OTC);
+        } else if (event.type.contains(TYPE_UC)) {
+            presnet.checkBusinessLogin(TYPE_UC);
+        } else if (event.type.contains(TYPE_AC)) {
+            presnet.checkBusinessLogin(TYPE_AC);
+        }
     }
 }

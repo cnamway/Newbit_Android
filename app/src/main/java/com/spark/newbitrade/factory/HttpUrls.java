@@ -14,6 +14,8 @@ public class HttpUrls {
     public static final String OTC_SYSTEM_HOST = "http://api.newbtc.online/otc-system";
     public static final String CMS_HOST = "http://api.newbtc.online/cms-api";
 
+    public static String WEBSOCKET_HOST_AND_PORT = "ws://47.91.22.195:28905/ws";
+
     /**
      * AC,UC,OTC模块地址后缀
      */

@@ -16,6 +16,7 @@ import com.spark.newbitrade.base.BaseActivity;
 import com.spark.newbitrade.dialog.SkipExtractTipDialog;
 import com.spark.newbitrade.entity.CasLoginEntity;
 import com.spark.newbitrade.entity.HttpErrorEntity;
+import com.spark.newbitrade.event.CheckLoginEvent;
 import com.spark.newbitrade.event.CheckLoginSuccessEvent;
 import com.spark.newbitrade.utils.GlobalConstant;
 import com.spark.newbitrade.utils.LogUtils;
@@ -31,6 +32,9 @@ import butterknife.BindView;
 import butterknife.OnClick;
 
 import static com.spark.newbitrade.factory.HttpUrls.TYPE_AC;
+import static com.spark.newbitrade.factory.HttpUrls.TYPE_OTC;
+import static com.spark.newbitrade.factory.HttpUrls.TYPE_OTC_SYSTEM;
+import static com.spark.newbitrade.factory.HttpUrls.TYPE_UC;
 
 /**
  * 其它app跳转进来的提币页面
@@ -60,6 +64,7 @@ public class SkipExtractActivity extends BaseActivity implements SkipExtractCont
         if (resultCode == RESULT_OK) {
             switch (requestCode) {
                 case 1:
+                    LogUtils.e("SkipExtractActivity==onActivityResult==loadData==");
                     loadData();
                     break;
             }
@@ -69,6 +74,7 @@ public class SkipExtractActivity extends BaseActivity implements SkipExtractCont
     @Override
     protected void initView() {
         super.initView();
+        LogUtils.e("SkipExtractActivity==onActivityResult==EventBus.getDefault().register==");
         EventBus.getDefault().register(this);
         setSetTitleAndBack(false, false);
     }
@@ -100,6 +106,7 @@ public class SkipExtractActivity extends BaseActivity implements SkipExtractCont
         super.loadData();
         if (MyApplication.getApp().isLogin()) {
             if (StringUtils.isNotEmpty(coinName)) {
+                LogUtils.e("SkipExtractActivity==loadData()==开始加载数据==");
                 presnet.getAddress(coinName);
             }
         } else {
@@ -124,7 +131,9 @@ public class SkipExtractActivity extends BaseActivity implements SkipExtractCont
             @Override
             public void onClick(View v) {
                 extractTipDialog.dismiss();
+                LogUtils.e("SkipExtractActivity==setOnClickListener()==memberWallet==" + memberWallet);
                 if (memberWallet != null && StringUtils.isNotEmpty(memberWallet.getAddress())) {
+                    LogUtils.e("SkipExtractActivity==setOnClickListener()==memberWalletVo==" + memberWallet.toString());
                     Intent intent = new Intent();
                     Bundle bundle = new Bundle();
                     bundle.putString("address", memberWallet.getAddress());
@@ -150,6 +159,8 @@ public class SkipExtractActivity extends BaseActivity implements SkipExtractCont
     public void getAddressSuccess(MemberWallet obj) {
         if (obj == null) return;
         memberWallet = obj;
+
+        LogUtils.e("SkipExtractActivity==getAddressSuccess()==memberWallet==" + memberWallet.toString());
     }
 
     /**
@@ -222,7 +233,6 @@ public class SkipExtractActivity extends BaseActivity implements SkipExtractCont
         SharedPreferenceInstance.getInstance().saveLockPwd("");
         MyApplication.getApp().getCookieManager().getCookieStore().removeAll();
         ActivityManage.finishAll();
-
         goLogin();
     }
 
@@ -239,9 +249,7 @@ public class SkipExtractActivity extends BaseActivity implements SkipExtractCont
 
     @Override
     public void doLoginBusinessSuccess(String type) {
-        if (StringUtils.isNotEmpty(coinName)) {
-            presnet.getAddress(coinName);
-        }
+        loadData();
     }
 
     private void goLogin() {
@@ -250,5 +258,22 @@ public class SkipExtractActivity extends BaseActivity implements SkipExtractCont
         bundle.putBoolean("isJumpApp", true);
         showActivity(LoginActivity.class, bundle, 1);
         finish();
+    }
+
+    /**
+     * 检测登录状态
+     */
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onCheckLoginEvent(CheckLoginEvent event) {
+        LogUtils.e("SkipExtractActivity==onCheckLoginEvent==event.type==" + event.type);
+        if (event.type.contains(TYPE_OTC_SYSTEM)) {
+            presnet.checkBusinessLogin(TYPE_OTC_SYSTEM);
+        } else if (event.type.contains(TYPE_OTC)) {
+            presnet.checkBusinessLogin(TYPE_OTC);
+        } else if (event.type.contains(TYPE_UC)) {
+            presnet.checkBusinessLogin(TYPE_UC);
+        } else if (event.type.contains(TYPE_AC)) {
+            presnet.checkBusinessLogin(TYPE_AC);
+        }
     }
 }

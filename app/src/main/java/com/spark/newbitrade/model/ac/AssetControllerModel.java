@@ -272,7 +272,7 @@ public class AssetControllerModel {
                 assetControllerApi.findSupportCoinUsingGET(new Response.Listener<MessageResultListCoin>() {
                     @Override
                     public void onResponse(MessageResultListCoin response) {
-                        LogUtils.i("response==" + response);
+                        LogUtils.e("查询平台支持的业务钱包信息结果==" + response.toString());
                         int code = response.getCode();
                         if (code == SUCCESS_CODE) {
                             Gson gson = new Gson();
@@ -430,7 +430,7 @@ public class AssetControllerModel {
                 assetControllerApi.findWalletByCoinNameUsingGET(busiType, coinName, new Response.Listener<MessageResultMemberWalletVo>() {
                     @Override
                     public void onResponse(MessageResultMemberWalletVo response) {
-                        LogUtils.i("response==" + response);
+                        LogUtils.e("根据币种名查询币种信息结果==" + response.toString());
                         int code = response.getCode();
                         if (code == SUCCESS_CODE) {
                             MemberWalletVo memberWalletVo = response.getData();
