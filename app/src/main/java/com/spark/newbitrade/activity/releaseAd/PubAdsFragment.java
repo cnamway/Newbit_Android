@@ -1047,13 +1047,18 @@ public class PubAdsFragment extends BaseLazyFragment implements ReleaseAdContrac
     }
 
     private void goUp() {
-        ConfirmDialog dialog = new ConfirmDialog(activity);
+        final ConfirmDialog dialog = new ConfirmDialog(activity);
         dialog.setPositiveOnclickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Bundle bundle = new Bundle();
-                bundle.putBoolean("adUp", true);
-                showActivity(MyAdsActivity.class, bundle);
+                dialog.dismiss();
+                if (ads == null) {
+                    Bundle bundle = new Bundle();
+                    bundle.putBoolean("adUp", true);
+                    showActivity(MyAdsActivity.class, bundle);
+                } else {
+                    getActivity().setResult(Activity.RESULT_OK);
+                }
                 finish();
             }
         });

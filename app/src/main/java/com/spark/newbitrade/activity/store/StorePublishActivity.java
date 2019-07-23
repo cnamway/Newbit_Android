@@ -1,5 +1,6 @@
 package com.spark.newbitrade.activity.store;
 
+import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -448,10 +449,13 @@ public class StorePublishActivity extends BaseActivity implements StorePublishCo
             @Override
             public void onClick(View v) {
                 dialog.dismiss();
-                Bundle bundle = new Bundle();
-                bundle.putBoolean("adUp", true);
-                bundle.putBoolean("isOTC", true);
-                showActivity(MyAdsActivity.class, bundle);
+                if (ads == null) {
+                    Bundle bundle = new Bundle();
+                    bundle.putBoolean("adUp", true);
+                    showActivity(MyAdsActivity.class, bundle);
+                } else {
+                    setResult(Activity.RESULT_OK);
+                }
                 finish();
             }
         });

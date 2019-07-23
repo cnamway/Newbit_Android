@@ -2,8 +2,6 @@ package com.spark.newbitrade.activity.releaseAd;
 
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
-import android.support.v4.view.ViewPager;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.LinearLayout;
 
@@ -12,7 +10,6 @@ import com.spark.newbitrade.adapter.PagerAdapter;
 import com.spark.newbitrade.base.BaseActivity;
 import com.spark.newbitrade.base.BaseFragment;
 import com.spark.newbitrade.entity.Ads;
-import com.spark.newbitrade.ui.CustomViewPager;
 import com.spark.newbitrade.ui.NoScrollViewPager;
 import com.spark.newbitrade.utils.GlobalConstant;
 
@@ -20,7 +17,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 /**
  * 发布广告
