@@ -18,7 +18,7 @@
             android:layout_marginBottom="10dp"
             android:text="@string/match_money"
             android:textColor="@color/white"
-            android:textSize="@dimen/font_lager" />
+            android:textSize="@dimen/font_normal" />
 
         <LinearLayout
             android:id="@+id/llMaxMatchAmount"

@@ -419,9 +419,9 @@ public class MainActivity extends BaseTransFragmentActivity implements MainContr
     }
 
     @Override
-    public void checkVersionSuccess(String response) {
-        if (StringUtils.isNotEmpty(response)) {
-            VisionEntity entity = new Gson().fromJson(response, VisionEntity.class);
+    public void checkVersionSuccess(String obj) {
+        if (StringUtils.isNotEmpty(obj)) {
+            VisionEntity entity = new Gson().fromJson(obj, VisionEntity.class);
             if (entity != null && entity.getData() != null && (AppUtils.compareVersion(entity.getData().getVersion(), AppUtils.getVersionName(activity)) == 1)) {
                 if (StringUtils.isNotEmpty(entity.getData().getUrl())) {
                     showVersionDialog(entity);

@@ -215,17 +215,6 @@ public class C2CListFragment extends BaseLazyFragment implements C2CListContract
             if (isShow)
                 showLoading();
 
-//            HashMap<String, String> map = new HashMap<>();
-//            map.put("pageNo", pageNo + "");
-//            map.put("pageSize", GlobalConstant.PageSize + "");
-//            map.put("advertiseType", advertiseType + "");
-//            map.put("unit", coinName);
-//            map.put("conuty", conuty);
-//            map.put("payMode", payMode);
-//            map.put("lowQuota", lowQuota);
-//            map.put("highQuota", highQuota);
-//            presenter.advertise(map);
-
             QueryParamAdvertiseShowVo queryParam = new QueryParamAdvertiseShowVo();
             queryParam.setPageIndex(pageNo);
             queryParam.setPageSize(GlobalConstant.PageSize);

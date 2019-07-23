@@ -13,7 +13,7 @@
         android:paddingTop="25dp"
         android:text="@string/str_pay_confirm_delete"
         android:textColor="@color/black"
-        android:textSize="@dimen/font_lager" />
+        android:textSize="@dimen/font_normal" />
 
     <EditText
         android:id="@+id/etPwd"

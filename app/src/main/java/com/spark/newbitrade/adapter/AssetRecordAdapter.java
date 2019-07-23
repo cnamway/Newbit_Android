@@ -69,11 +69,11 @@ public class AssetRecordAdapter extends BaseQuickAdapter<AssetRecord, BaseViewHo
                 type = 6;
                 break;
             case 9:
-                helper.setText(R.id.tvType, "缴纳商家保证金");
+                helper.setText(R.id.tvType, "缴纳商家认证保证金");
                 type = 5;
                 break;
             case 10:
-                helper.setText(R.id.tvType, "退回商家保证金");
+                helper.setText(R.id.tvType, "退回商家认证保证金");
                 type = 6;
                 break;
             default:

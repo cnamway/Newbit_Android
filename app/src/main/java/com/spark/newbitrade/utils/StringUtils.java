@@ -719,4 +719,20 @@ public class StringUtils {
         return editText.getText().toString().trim();
     }
 
+    /**
+     * 手机号码加*号
+     *
+     * @param mobile
+     * @return
+     */
+    public static String addStar(String mobile) {
+        if (mobile == null || "".equals(mobile)) {
+            mobile = "";
+        } else {
+            String front = mobile.substring(0, 3);
+            String last = mobile.substring(7);
+            mobile = front + "****" + last;
+        }
+        return mobile;
+    }
 }

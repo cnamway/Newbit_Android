@@ -66,7 +66,8 @@ public class BaseWalletDetailActivity extends BaseActivity implements BaseWallet
     private int pageNo = 1;
     private ArrayList<AssetRecord> mDatas = new ArrayList<>();
     private AssetRecordAdapter adapter;
-    private Integer[] types = {null, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+    //private Integer[] types = {null, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+    private Integer[] types = {null, 1, 2, 7, 8, 9, 10};
     //1充值，2提币，3转入，4转出，5资金交易-扣除，6资金交易-增加，7法币卖出，8法币买入，9.缴纳商家认证保证金，10退回商家认证保证金
     Integer type;
     private boolean isBase = false;

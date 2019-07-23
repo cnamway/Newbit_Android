@@ -1,32 +1,37 @@
 package com.spark.newbitrade.activity.edit_login_pwd;
 
 
-import com.spark.newbitrade.base.Contract;
+import com.spark.newbitrade.base.BaseContract;
 
-import java.util.HashMap;
+import org.json.JSONObject;
 
 /**
  * Created by Administrator on 2017/9/25.
  */
 
 public interface EditLoginPwdContract {
-    interface View extends Contract.BaseView<Presenter> {
+    interface View extends BaseContract.BaseView {
+        void getPhoneCodeSuccess(String obj);
 
-        void doLoginOutSuccess(String obj);
+        void captchSuccess(JSONObject obj);
 
-        void sendEditLoginPwdCodeSuccess(String obj);
+        void updateForgetSuccess(String obj);
 
-        void editPwdSuccess(String obj);
+        void codeSuccess(String obj);
 
-        void doPostFail(Integer code, String toastMessage);
+        void loginOutSuccess(String obj);
     }
 
-    interface Presenter extends Contract.BasePresenter {
+    interface Presenter extends BaseContract.BasePresenter {
 
-        void doLoginOut();
+        void getPhoneCode(String phone);
 
-        void sendEditLoginPwdCode(HashMap<String, String> map);
+        void captch();
 
-        void editPwd(HashMap<String, String> map);
+        void getPhoneCode(String phone, String check, String cid);
+
+        void updateForget(String phone, String code, String oldPassword, String newPassword);
+
+        void loginOut();
     }
 }

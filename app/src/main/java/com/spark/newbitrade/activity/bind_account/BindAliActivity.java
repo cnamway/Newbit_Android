@@ -223,14 +223,22 @@ public class BindAliActivity extends BaseActivity implements BindAliContract.Vie
 
     @Override
     public void doBindAliOrWechatSuccess(MessageResult obj) {
-        ToastUtils.showToast(this, obj.getMessage());
+        if (StringUtils.isNotEmpty(obj.getMessage())) {
+            if (obj.getMessage().equals(getString(R.string.str_success)))
+                ToastUtils.showToast(getString(R.string.str_success_tag));
+            else ToastUtils.showToast(obj.getMessage());
+        }
         setResult(RESULT_OK);
         finish();
     }
 
     @Override
     public void doUpdateAliOrWechatSuccess(MessageResult obj) {
-        ToastUtils.showToast(this, obj.getMessage());
+        if (StringUtils.isNotEmpty(obj.getMessage())) {
+            if (obj.getMessage().equals(getString(R.string.str_success)))
+                ToastUtils.showToast(getString(R.string.str_success_tag));
+            else ToastUtils.showToast(obj.getMessage());
+        }
         setResult(RESULT_OK);
         finish();
     }

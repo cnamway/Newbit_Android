@@ -24,6 +24,7 @@ import com.spark.newbitrade.R;
 import com.spark.newbitrade.activity.chat.ChatListActivity;
 import com.spark.newbitrade.activity.main.presenter.HomePresenterImpl;
 import com.spark.newbitrade.activity.message.WebViewActivity;
+import com.spark.newbitrade.activity.mining.MiningActivity;
 import com.spark.newbitrade.adapter.BannerImageLoader;
 import com.spark.newbitrade.adapter.HomeFragmentPagerAdapter;
 import com.spark.newbitrade.adapter.HomeOneAdapter;
@@ -113,6 +114,11 @@ public class HomeFragment extends BaseTransFragment implements MainContract.Home
 //    private boolean isFirst = true;
 
     @Override
+    protected int getLayoutId() {
+        return R.layout.fragment_home;
+    }
+
+    @Override
     public void onResume() {
         super.onResume();
         if (!EventBus.getDefault().isRegistered(this)) {
@@ -155,11 +161,6 @@ public class HomeFragment extends BaseTransFragment implements MainContract.Home
     @Override
     protected String getmTag() {
         return TAG;
-    }
-
-    @Override
-    protected int getLayoutId() {
-        return R.layout.fragment_home;
     }
 
     @Override
@@ -317,6 +318,11 @@ public class HomeFragment extends BaseTransFragment implements MainContract.Home
                 break;
             case R.id.ivMining:
                 //showActivity(MiningActivity.class, null);
+                Bundle bundle = new Bundle();
+                bundle.putString("title", getString(R.string.str_heyue));
+                bundle.putString("url", GlobalConstant.He_Yue);
+                bundle.putBoolean("isImage", true);
+                showActivity(WebViewActivity.class, bundle);
                 break;
             case R.id.ivDownload:
                 showPop();

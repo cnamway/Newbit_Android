@@ -302,11 +302,13 @@ public class ExtractActivity extends BaseActivity implements ExtractContract.Ext
     }
 
     @Override
-    public void walletWithdrawSuccess(String response) {
-        if (StringUtils.isNotEmpty()) {
-            ToastUtils.showToast(response);
+    public void walletWithdrawSuccess(String obj) {
+        if (StringUtils.isNotEmpty(obj)) {
+            if (obj.equals(getString(R.string.str_success)))
+                ToastUtils.showToast(getString(R.string.str_success_tag));
+            else ToastUtils.showToast(obj);
         } else {
-            ToastUtils.showToast(getString(R.string.savesuccess));
+            ToastUtils.showToast(getString(R.string.str_success_tag));
         }
         setResult(RESULT_OK);
         finish();

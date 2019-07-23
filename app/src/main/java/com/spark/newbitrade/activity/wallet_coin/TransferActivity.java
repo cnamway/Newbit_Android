@@ -176,11 +176,13 @@ public class TransferActivity extends BaseActivity implements TransferContract.T
     }
 
     @Override
-    public void doWithDrawSuccess(String response) {
-        if (StringUtils.isNotEmpty()) {
-            ToastUtils.showToast(this, response);
+    public void doWithDrawSuccess(String obj) {
+        if (StringUtils.isNotEmpty(obj)) {
+            if (obj.equals(getString(R.string.str_success)))
+                ToastUtils.showToast(getString(R.string.str_success_tag));
+            else ToastUtils.showToast(obj);
         } else {
-            ToastUtils.showToast(this, getString(R.string.savesuccess));
+            ToastUtils.showToast(this, getString(R.string.str_success_tag));
         }
         setResult(RESULT_OK);
         finish();

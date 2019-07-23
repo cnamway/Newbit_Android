@@ -68,6 +68,11 @@ public class MyFragment extends BaseTransFragment {
     boolean hasNew;
 
     @Override
+    protected int getLayoutId() {
+        return R.layout.fragment_my;
+    }
+
+    @Override
     protected void initImmersionBar() {
         super.initImmersionBar();
         if (!isSetTitle) {
@@ -107,11 +112,6 @@ public class MyFragment extends BaseTransFragment {
             }
         }
 
-    }
-
-    @Override
-    protected int getLayoutId() {
-        return R.layout.fragment_my;
     }
 
     @Override

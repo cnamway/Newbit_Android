@@ -19,7 +19,7 @@
             android:padding="10dp"
             android:text="@string/text_dialog_entrust_cancel_confirm"
             android:textColor="@color/main_font_content"
-            android:textSize="@dimen/font_lager" />
+            android:textSize="@dimen/font_normal" />
 
         <View style="@style/line_bg_grey" />
 

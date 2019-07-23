@@ -1,5 +1,6 @@
 package com.spark.newbitrade.activity.releaseAd;
 
+import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
@@ -34,11 +35,14 @@ import com.spark.newbitrade.adapter.SelectPayWayAdapter;
 import com.spark.newbitrade.base.BaseLazyFragment;
 import com.spark.newbitrade.entity.Ads;
 import com.spark.newbitrade.entity.Country;
+import com.spark.newbitrade.entity.CountryEntity;
 import com.spark.newbitrade.entity.PayWay;
 import com.spark.newbitrade.entity.PayWaySetting;
+import com.spark.newbitrade.utils.FormatDataUtils;
 import com.spark.newbitrade.utils.GlobalConstant;
 import com.spark.newbitrade.utils.IMyTextChange;
 import com.spark.newbitrade.utils.MathUtils;
+import com.spark.newbitrade.utils.SharedPreferenceInstance;
 import com.spark.newbitrade.utils.StringUtils;
 import com.spark.newbitrade.utils.ToastUtils;
 import com.spark.newbitrade.widget.TextWatcher;
@@ -57,8 +61,6 @@ import java.util.regex.Pattern;
 import butterknife.BindView;
 import butterknife.OnClick;
 
-import static android.app.Activity.RESULT_OK;
-import static com.spark.newbitrade.activity.releaseAd.PubAdsActivity.REQUEST_COUNTRY;
 
 /**
  * Created by Administrator on 2018/9/27 0027.
@@ -134,6 +136,8 @@ public class PubAdsFragment extends BaseLazyFragment implements ReleaseAdContrac
     EditText etPrice;
     @BindView(R.id.llGdPrice)
     LinearLayout llGdPrice;
+    @BindView(R.id.tvPriceCurrency)
+    TextView tvPriceCurrency;
 
     private int advertiseType;
     private AuthMerchantApplyMarginType coinInfo;
@@ -157,11 +161,27 @@ public class PubAdsFragment extends BaseLazyFragment implements ReleaseAdContrac
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 1 && resultCode == RESULT_OK && data != null) {
+        if (requestCode == 1 && resultCode == Activity.RESULT_OK && data != null) {
             Bundle bundle = data.getExtras();
             if (bundle != null)
                 payWaySettingsSelected = (List<PayWaySetting>) bundle.getSerializable("payWaySettingsSelected");
             doClickPayWayItem2();
+        }
+        if (requestCode == CountryActivity.RETURN_COUNTRY && resultCode == Activity.RESULT_OK) {
+            if (data != null) {
+                Country country = (Country) data.getSerializableExtra("country");
+
+                currency = country.getLocalCurrency();
+                tvSelectCountry.setText(country.getZhName());
+                strCountry = country.getEnName();
+                tvCoinKind.setText(currency);
+                tvLocalCurrency.setText(currency);
+                tvjyPriceCurrency.setText(currency);
+                tvMinCurrency.setText(currency);
+                tvMaxCurrency.setText(currency);
+                tvPriceCurrency.setText(currency);
+                getPrice(tvCoin.getText().toString(), tvLocalCurrency.getText().toString());
+            }
         }
     }
 
@@ -206,11 +226,12 @@ public class PubAdsFragment extends BaseLazyFragment implements ReleaseAdContrac
         currency = GlobalConstant.CNY;
         tvSelectCountry.setText(R.string.china);
         strCountry = "China";
-        tvCoinKind.setText(GlobalConstant.CNY);
+        tvCoinKind.setText(currency);
         tvLocalCurrency.setText(currency);
         tvjyPriceCurrency.setText(currency);
         tvMinCurrency.setText(currency);
         tvMaxCurrency.setText(currency);
+        tvPriceCurrency.setText(currency);
         getPrice(tvCoin.getText().toString(), tvLocalCurrency.getText().toString());
     }
 
@@ -229,7 +250,7 @@ public class PubAdsFragment extends BaseLazyFragment implements ReleaseAdContrac
         super.setOnClickListener(v);
         switch (v.getId()) {
             case R.id.tvSelectCountry:
-                showActivity(CountryActivity.class, null, REQUEST_COUNTRY);
+                showActivity(CountryActivity.class, null, CountryActivity.RETURN_COUNTRY);
                 break;
             case R.id.tvCoin:
                 if (coinNames != null) {
@@ -555,7 +576,7 @@ public class PubAdsFragment extends BaseLazyFragment implements ReleaseAdContrac
         if (!StringUtils.isEmpty(maxLimit, price, number) && Double.valueOf(price) != 0 && Double.valueOf(number) != 0) {
             Double max = Double.valueOf(price) * Double.valueOf(number);
             if (Double.valueOf(maxLimit) > max) {
-                ToastUtils.showToast(getString(R.string.max_limit_tag) + MathUtils.subZeroAndDot(MathUtils.getRundNumber(max, 2, null)) + GlobalConstant.CNY);
+                ToastUtils.showToast(getString(R.string.max_limit_tag) + MathUtils.subZeroAndDot(MathUtils.getRundNumber(max, 2, null)) + currency);
             }
         }
     }
@@ -567,9 +588,9 @@ public class PubAdsFragment extends BaseLazyFragment implements ReleaseAdContrac
         String minLimit = etMin.getText().toString();
         if (!StringUtils.isEmpty(minLimit, currency)) {
             if (Double.valueOf(minLimit) <= 0) {
-                ToastUtils.showToast(getString(R.string.min_limit_tag) + 0 + GlobalConstant.CNY);
+                ToastUtils.showToast(getString(R.string.min_limit_tag) + 0 + currency);
             }
-            /*if (currency.equals(GlobalConstant.CNY) && Double.valueOf(minLimit) < 100) {
+            /*if (currency.equals(currency) && Double.valueOf(minLimit) < 100) {
                 ToastUtils.showToast(getString(R.string.min_limit_tag) + 100 + currency);
             }
             if (currency.contains("HK") && Double.valueOf(minLimit) < 100) {
@@ -697,10 +718,10 @@ public class PubAdsFragment extends BaseLazyFragment implements ReleaseAdContrac
             ToastUtils.showToast(getString(R.string.str_warrinig_overflow));
             etPayTime.requestFocus();
         } else if (Double.valueOf(minLimit) <= 0) {
-            ToastUtils.showToast(getString(R.string.min_limit_tag) + 0 + GlobalConstant.CNY);
+            ToastUtils.showToast(getString(R.string.min_limit_tag) + 0 + currency);
             etMin.requestFocus();
         } else if (Double.valueOf(maxLimit) > Double.valueOf(price) * Double.valueOf(number)) {
-            ToastUtils.showToast(getString(R.string.max_limit_tag) + MathUtils.subZeroAndDot(MathUtils.getRundNumber(Double.valueOf(price) * Double.valueOf(number), 2, null)) + GlobalConstant.CNY);
+            ToastUtils.showToast(getString(R.string.max_limit_tag) + MathUtils.subZeroAndDot(MathUtils.getRundNumber(Double.valueOf(price) * Double.valueOf(number), 2, null)) + currency);
             etMax.requestFocus();
         } else {
 
@@ -791,12 +812,18 @@ public class PubAdsFragment extends BaseLazyFragment implements ReleaseAdContrac
         advertiseType = ads.getAdvertiseType();
         tvCoin.setText(ads.getCoinName());
         strCountry = ads.getCountry();
-        tvSelectCountry.setText(ads.getCountry());
+        if (ads.getCountry().equals("China")) {
+            tvSelectCountry.setText(R.string.china);
+        } else {
+            tvSelectCountry.setText(R.string.str_usa);
+        }
+        //tvSelectCountry.setText(ads.getCountry());
         tvCoinKind.setText(ads.getLocalCurrency());
         tvLocalCurrency.setText(ads.getLocalCurrency());
         tvjyPriceCurrency.setText(ads.getLocalCurrency());
         tvMinCurrency.setText(ads.getLocalCurrency());
         tvMaxCurrency.setText(ads.getLocalCurrency());
+        tvPriceCurrency.setText(ads.getLocalCurrency());
         //tvPrice.setText(ads.getMarketPrice() + "");
         sbPriceType.setChecked(ads.getPriceType() == 0);
         etjyPrice.setText(MathUtils.subZeroAndDot(ads.getPrice() + ""));

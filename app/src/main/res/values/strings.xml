@@ -148,6 +148,7 @@
     <string name="nationality">国籍</string>
     <string name="china">中国</string>
     <string name="start_bind">开始绑定</string>
+    <string name="str_usa">美国</string>
 
     <!--修改手机号-->
     <string name="change_phone_num">修改手机号</string>
@@ -171,7 +172,7 @@
     <string name="change_login_pwd">更改登录密码</string>
     <string name="change_login_pwd_tag">您正在修改登录密码</string>
     <string name="change_login_pwd_bind_phone_tag">您已经绑定手机号</string>
-    <string name="change_login_pwd_success_tag">修改成功请重新登录</string>
+    <string name="change_login_pwd_success_tag">修改成功，请重新登录</string>
     <string name="old_login_pwd">旧登录密码</string>
     <string name="new_login_pwd">新登录密码</string>
     <string name="confirm_pwd">确认密码</string>
@@ -491,7 +492,7 @@
     <string name="simplified_chinese">简体中文</string>
     <string name="japanese">日语</string>
     <string name="webSite">网址</string>
-    <string name="service_tel">客服电话</string>
+    <string name="service_tel">客服邮箱</string>
     <string name="not_need_update_tag">暂无最新版本，无需更新</string>
     <string name="confirm_update">是否开始更新</string>
     <string name="update_address_error_tag">下载地址不存在!!</string>
@@ -767,10 +768,10 @@
         <item>全部</item>
         <item>充币</item>
         <item>提币</item>
-        <item>资金划转转入</item>
-        <item>资金划转转出</item>
-        <item>资金交易扣除</item>
-        <item>资金交易增加</item>
+        <!--<item>资金划转转入</item>-->
+        <!--<item>资金划转转出</item>-->
+        <!--<item>资金交易扣除</item>-->
+        <!--<item>资金交易增加</item>-->
         <item>法币卖出</item>
         <item>法币买入</item>
         <item>缴纳商家认证保证金</item>
@@ -806,4 +807,5 @@
     <string name="phone_empty">未找到手机号码</string>
     <string name="str_success">SUCCESS</string>
     <string name="str_success_tag">操作成功</string>
+    <string name="str_heyue">智能合约</string>
 </resources>

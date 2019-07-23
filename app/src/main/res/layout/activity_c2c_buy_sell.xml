@@ -60,7 +60,7 @@
                             android:maxLines="1"
                             android:text="---"
                             android:textColor="@color/main_font_content"
-                            android:textSize="@dimen/font_lager" />
+                            android:textSize="@dimen/font_normal" />
 
 
                         <ImageView
@@ -147,7 +147,7 @@
                         android:minHeight="24dp"
                         android:text="0.00CNY"
                         android:textColor="@color/main_font_content"
-                        android:textSize="@dimen/font_lager" />
+                        android:textSize="@dimen/font_normal" />
 
 
                 </LinearLayout>

@@ -190,7 +190,7 @@
                 <!--android:scaleY="0.8"-->
                 <!--android:text="@string/text_price_fixed"-->
                 <!--android:textColor="@color/sec_font_black"-->
-                <!--android:textSize="@dimen/font_lager" />-->
+                <!--android:textSize="@dimen/font_normal" />-->
 
                 <!--<RadioButton-->
                 <!--android:id="@+id/rbChange"-->
@@ -201,7 +201,7 @@
                 <!--android:scaleY="0.8"-->
                 <!--android:text="@string/text_price_market"-->
                 <!--android:textColor="@color/sec_font_black"-->
-                <!--android:textSize="@dimen/font_lager" />-->
+                <!--android:textSize="@dimen/font_normal" />-->
                 <!--</RadioGroup>-->
 
             </LinearLayout>
@@ -722,7 +722,7 @@
                         android:scaleY="0.8"
                         android:text="@string/text_yes"
                         android:textColor="@color/sec_font_black"
-                        android:textSize="@dimen/font_lager" />
+                        android:textSize="@dimen/font_normal" />
 
                     <RadioButton
                         android:id="@+id/rbNo"
@@ -733,7 +733,7 @@
                         android:scaleY="0.8"
                         android:text="@string/text_no"
                         android:textColor="@color/sec_font_black"
-                        android:textSize="@dimen/font_lager" />
+                        android:textSize="@dimen/font_normal" />
 
                 </RadioGroup>-->
 

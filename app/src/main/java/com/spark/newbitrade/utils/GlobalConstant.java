@@ -107,5 +107,5 @@ public class GlobalConstant {
     //public static final String ACP = "ACP";
     public static final String OTC = "OTC";
 
-
+    public static final String He_Yue = "http://www.newbtc.online/contract/#/contract-mobile";
 }

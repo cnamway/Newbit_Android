@@ -18,7 +18,6 @@
         android:text="@string/change_login_pwd_tag"
         android:textColor="@color/main_font_content" />
 
-
     <LinearLayout style="@style/layout_my_info">
 
         <TextView

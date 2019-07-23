@@ -48,6 +48,10 @@ public class ToastUtils {
     public static void showToast(CharSequence message) {
         if (isShow) {
             if (mToast == null) {
+                if (StringUtils.isNotEmpty(message.toString())) {
+                    if (message.toString().equals(MyApplication.getApp().getString(R.string.str_success)))
+                        message = MyApplication.getApp().getString(R.string.str_success_tag);
+                }
                 mToast = Toast.makeText(MyApplication.getApp(), message, Toast.LENGTH_SHORT);
             } else {
                 mToast.setText(message);
@@ -80,6 +84,10 @@ public class ToastUtils {
     public static void showToast(Context context, CharSequence message) {
         if (isShow) {
             if (mToast == null) {
+                if (StringUtils.isNotEmpty(message.toString())) {
+                    if (message.toString().equals(MyApplication.getApp().getString(R.string.str_success)))
+                        message = MyApplication.getApp().getString(R.string.str_success_tag);
+                }
                 mToast = Toast.makeText(context, message, Toast.LENGTH_SHORT);
             } else {
                 mToast.setText(message);
@@ -112,6 +120,10 @@ public class ToastUtils {
     public static void showLong(CharSequence message) {
         if (isShow) {
             if (mToast == null) {
+                if (StringUtils.isNotEmpty(message.toString())) {
+                    if (message.toString().equals(MyApplication.getApp().getString(R.string.str_success)))
+                        message = MyApplication.getApp().getString(R.string.str_success_tag);
+                }
                 mToast = Toast.makeText(MyApplication.getApp(), message, Toast.LENGTH_LONG);
             } else {
                 mToast.setText(message);

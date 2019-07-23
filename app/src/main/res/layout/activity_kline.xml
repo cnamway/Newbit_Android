@@ -459,7 +459,7 @@
             android:gravity="center"
             android:text="买入BTC"
             android:textColor="@android:color/white"
-            android:textSize="@dimen/font_lager" />
+            android:textSize="@dimen/font_normal" />
 
         <TextView
             android:id="@+id/tvSell"
@@ -470,7 +470,7 @@
             android:gravity="center"
             android:text="卖出BTC"
             android:textColor="@android:color/white"
-            android:textSize="@dimen/font_lager" />
+            android:textSize="@dimen/font_normal" />
 
         <TextView
             android:id="@+id/tv_collect"

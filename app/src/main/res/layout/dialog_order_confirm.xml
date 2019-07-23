@@ -16,7 +16,7 @@
             android:layout_gravity="center"
             android:padding="10dp"
             android:text="@string/dialog_three_title"
-            android:textSize="@dimen/font_lager" />
+            android:textSize="@dimen/font_normal" />
 
         <View style="@style/line_bg_grey" />
 

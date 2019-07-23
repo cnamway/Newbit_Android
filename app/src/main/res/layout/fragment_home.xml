@@ -35,8 +35,8 @@
                     android:layout_height="200dp"
                     android:background="@color/main_bg"
                     app:delay_time="3000"
-                    app:is_auto_play="true"
                     app:image_scale_type="fit_xy"
+                    app:is_auto_play="true"
                     app:scroll_time="800"
                     app:title_background="@color/transparent"
                     app:title_textcolor="@color/main_font_content" />
@@ -45,8 +45,8 @@
                     android:layout_width="48dp"
                     android:layout_height="45dp"
                     android:layout_alignParentEnd="true"
-                    android:visibility="gone"
-                    android:layout_marginTop="25dp">
+                    android:layout_marginTop="25dp"
+                    android:visibility="gone">
 
                     <ImageButton
                         android:id="@+id/ivChat"
@@ -71,7 +71,8 @@
 
             <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/dp_40">
+                android:layout_height="@dimen/dp_40"
+                android:visibility="gone">
 
                 <ImageView
                     android:layout_width="@dimen/dp_40"
@@ -123,12 +124,12 @@
                         android:paddingTop="15dp" />
                 </RelativeLayout>
 
-
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="15dp"
                     android:layout_marginRight="15dp"
+                    android:layout_marginTop="@dimen/dp_10"
                     android:orientation="vertical">
 
                     <ImageView

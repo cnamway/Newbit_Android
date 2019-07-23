@@ -15,7 +15,7 @@
         android:padding="15dp"
         android:text="@string/google_authentication_tag"
         android:textColor="@color/black"
-        android:textSize="@dimen/font_lager"
+        android:textSize="@dimen/font_normal"
         android:visibility="gone" />
 
     <TextView

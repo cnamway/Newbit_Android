@@ -108,7 +108,7 @@ public class AboutUsActivity extends BaseActivity implements com.spark.newbitrad
     @Override
     public void getWebConfigSuccess(MessageResultWebConfigVo response) {
         if (response != null && response.getData() != null) {
-            tvPhone.setText(response.getData().getPhone());
+            tvPhone.setText(response.getData().getServiceEmail());
             tvWeb.setText(response.getData().getWebsite());
         }
 
@@ -201,9 +201,9 @@ public class AboutUsActivity extends BaseActivity implements com.spark.newbitrad
     }
 
     @Override
-    public void checkVersionSuccess(String response) {
-        if (StringUtils.isNotEmpty(response)) {
-            VisionEntity entity = new Gson().fromJson(response, VisionEntity.class);
+    public void checkVersionSuccess(String obj) {
+        if (StringUtils.isNotEmpty(obj)) {
+            VisionEntity entity = new Gson().fromJson(obj, VisionEntity.class);
             if (entity == null) {
                 ToastUtils.showToast(activity, getString(R.string.str_version_new));
                 return;

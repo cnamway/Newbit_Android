@@ -162,14 +162,22 @@ public class BindBankActivity extends BaseActivity implements BindBankContract.V
 
     @Override
     public void doBindBankSuccess(MessageResult obj) {
-        ToastUtils.showToast(this, obj.getMessage());
+        if (StringUtils.isNotEmpty(obj.getMessage())) {
+            if (obj.getMessage().equals(getString(R.string.str_success)))
+                ToastUtils.showToast(getString(R.string.str_success_tag));
+            else ToastUtils.showToast(obj.getMessage());
+        }
         setResult(RESULT_OK);
         finish();
     }
 
     @Override
     public void doUpdateBankSuccess(MessageResult obj) {
-        ToastUtils.showToast(this, obj.getMessage());
+        if (StringUtils.isNotEmpty(obj.getMessage())) {
+            if (obj.getMessage().equals(getString(R.string.str_success)))
+                ToastUtils.showToast(getString(R.string.str_success_tag));
+            else ToastUtils.showToast(obj.getMessage());
+        }
         setResult(RESULT_OK);
         finish();
     }

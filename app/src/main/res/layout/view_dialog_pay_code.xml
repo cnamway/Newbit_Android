@@ -21,7 +21,7 @@
             style="@style/style_font_normal_weight"
             android:gravity="center"
             android:text="@string/str_rec_code"
-            android:textSize="@dimen/font_lager" />
+            android:textSize="@dimen/font_normal" />
 
         <ImageView
             android:id="@+id/ivClose"

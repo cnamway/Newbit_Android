@@ -150,7 +150,7 @@
             <LinearLayout
                 android:id="@+id/llPromotion"
                 style="@style/layout_my_item_transparent"
-                android:visibility="visible">
+                android:visibility="gone">
 
                 <ImageView
                     android:layout_width="25dp"
@@ -166,7 +166,7 @@
 
             <View
                 style="@style/line_bg_grey"
-                android:visibility="visible" />
+                android:visibility="gone" />
 
             <!--安全中心-->
             <LinearLayout

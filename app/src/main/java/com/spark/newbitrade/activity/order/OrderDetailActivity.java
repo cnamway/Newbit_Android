@@ -577,6 +577,9 @@ public class OrderDetailActivity extends BaseActivity implements OrderDetailCont
             } else {
                 llPayLayout.setVisibility(View.GONE);
             }
+            if (StringUtils.isEmpty(payMode)) {
+                payMode = "";
+            }
             if (payMode.contains(GlobalConstant.alipay)) {
                 isAli = true;
                 llAli.setVisibility(View.VISIBLE);

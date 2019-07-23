@@ -84,6 +84,7 @@ public class MyInfoPresenterImpl implements MyInfoContract.MyInfoPresenter {
 
     @Override
     public void getUserInfo() {
+        showLoading();
         memberControllerModel.getUserInfo(new ResponseCallBack.SuccessListener<User>() {
             @Override
             public void onResponse(User response) {

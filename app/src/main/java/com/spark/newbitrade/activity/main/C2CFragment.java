@@ -19,11 +19,13 @@ import com.spark.newbitrade.base.BaseFragment;
 import com.spark.newbitrade.base.BaseNestingTransFragment;
 import com.spark.newbitrade.entity.Country;
 import com.spark.newbitrade.entity.FilterBean;
+import com.spark.newbitrade.event.CheckLoginEvent;
 import com.spark.newbitrade.event.CheckLoginSuccessEvent;
 import com.spark.newbitrade.ui.FilterPopView;
 import com.spark.newbitrade.utils.GlobalConstant;
 import com.spark.newbitrade.utils.ToastUtils;
 
+import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
@@ -33,6 +35,8 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+
+import static com.spark.newbitrade.factory.HttpUrls.TYPE_OTC_SYSTEM;
 
 /**
  * Created by Administrator on 2018/1/29.
@@ -101,6 +105,7 @@ public class C2CFragment extends BaseNestingTransFragment implements C2CContract
     protected void loadData() {
         super.loadData();
         if (coinInfos.size() <= 0) {
+            EventBus.getDefault().post(new CheckLoginEvent(TYPE_OTC_SYSTEM));
             presenter.listOtcTradeCoin();
         }
     }

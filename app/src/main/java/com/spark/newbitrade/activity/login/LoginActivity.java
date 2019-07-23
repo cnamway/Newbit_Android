@@ -280,7 +280,7 @@ public class LoginActivity extends BaseActivity implements LoginContract.LoginVi
         user.setLogin(true);
         user.setGtc(gtc);
         MyApplication.getApp().setCurrentUser(user);
-        ToastUtils.showToast(getString(R.string.str_login_success));
+        //ToastUtils.showToast(getString(R.string.str_login_success));
         if (isJumpApp) {//SkipPayActivity或者SkipExtractActivity跳转过来，登陆成功后 返回到对应界面
             setResult(RESULT_OK);
             finish();

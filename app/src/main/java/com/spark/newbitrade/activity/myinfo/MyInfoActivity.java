@@ -19,6 +19,7 @@ import com.spark.newbitrade.MyApplication;
 import com.spark.newbitrade.R;
 import com.spark.newbitrade.activity.account_pwd.AccountPwdActivity;
 import com.spark.newbitrade.activity.credit.CreditActivity;
+import com.spark.newbitrade.activity.edit_login_pwd.EditLoginPwdActivity;
 import com.spark.newbitrade.activity.forgot_pwd.ForgotPwdActivity;
 import com.spark.newbitrade.activity.login.LoginActivity;
 import com.spark.newbitrade.activity.my_account.MyAccountActivity;
@@ -183,7 +184,8 @@ public class MyInfoActivity extends BaseActivity implements MyInfoContract.MyInf
                 break;
             case R.id.llLoginPwd:
                 //登录密码
-                showActivity(ForgotPwdActivity.class, null);
+                //showActivity(ForgotPwdActivity.class, null);
+                showActivity(EditLoginPwdActivity.class, null);
                 break;
             case R.id.llIdCard:
                 //身份验证

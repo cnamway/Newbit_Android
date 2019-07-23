@@ -1,25 +1,35 @@
 package com.spark.newbitrade.activity.edit_login_pwd;
 
-import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.geetest.sdk.Bind.GT3GeetestBindListener;
+import com.geetest.sdk.Bind.GT3GeetestUtilsBind;
+import com.google.gson.Gson;
 import com.spark.newbitrade.MyApplication;
 import com.spark.newbitrade.R;
 import com.spark.newbitrade.activity.login.LoginActivity;
+import com.spark.newbitrade.base.ActivityManage;
 import com.spark.newbitrade.base.BaseActivity;
-import com.spark.newbitrade.utils.NetCodeUtils;
+import com.spark.newbitrade.entity.Captcha;
+import com.spark.newbitrade.entity.HttpErrorEntity;
+import com.spark.newbitrade.entity.User;
+import com.spark.newbitrade.factory.HttpUrls;
+import com.spark.newbitrade.utils.GlobalConstant;
 import com.spark.newbitrade.utils.SharedPreferenceInstance;
 import com.spark.newbitrade.utils.StringUtils;
 import com.spark.newbitrade.utils.ToastUtils;
 import com.spark.newbitrade.widget.TimeCount;
 
-import java.util.HashMap;
+import org.json.JSONObject;
+
 
 import butterknife.BindView;
 import butterknife.OnClick;
-import config.Injection;
+
+import static com.spark.newbitrade.utils.GlobalConstant.CAPTCH;
+import static com.spark.newbitrade.utils.GlobalConstant.CAPTCH2;
 
 /**
  * 修改登录密码
@@ -39,10 +49,12 @@ public class EditLoginPwdActivity extends BaseActivity implements EditLoginPwdCo
     TextView tvGetCode;
     @BindView(R.id.tvNumber)
     TextView tvNumber;
-    private EditLoginPwdContract.Presenter presenter;
+
+    private EditLoginPwdPresenter presenter;
     private String phone;
     private TimeCount timeCount;
-
+    private GT3GeetestUtilsBind gt3GeetestUtils;
+    private String cid;
 
     @Override
     protected int getActivityLayoutId() {
@@ -58,18 +70,32 @@ public class EditLoginPwdActivity extends BaseActivity implements EditLoginPwdCo
     @Override
     protected void initData() {
         super.initData();
+        presenter = new EditLoginPwdPresenter(this);
         timeCount = new TimeCount(60000, 1000, tvGetCode);
         setTitle(getString(R.string.change_login_pwd));
-        new EditLoginPwdPresenter(Injection.provideTasksRepository(getApplicationContext()), this);
-        Bundle bundle = getIntent().getExtras();
-        if (bundle != null) {
-            phone = bundle.getString("phone");
-            if (StringUtils.isMobile(phone)) {
-                tvNumber.setText(getString(R.string.change_login_pwd_bind_phone_tag) + phone.substring(0, 3) + "****" + phone.substring(7));
-            }else {
-                tvNumber.setText(getString(R.string.change_login_pwd_bind_phone_tag) + phone + "****" + phone);
+        gt3GeetestUtils = new GT3GeetestUtilsBind(activity);
+        User user = MyApplication.getApp().getCurrentUser();
+        if (user != null) {
+            phone = user.getMobilePhone();
+            if (StringUtils.isNotEmpty(phone)) {
+                String phoneNumber = phone;
+                if (phoneNumber.startsWith("86")) {
+                    phoneNumber = phoneNumber.substring(2, phoneNumber.length());
+                }
+                phoneNumber = StringUtils.addStar(phoneNumber);
+                tvNumber.setText(getString(R.string.change_login_pwd_bind_phone_tag) + phoneNumber);
             }
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (gt3GeetestUtils != null) {
+            gt3GeetestUtils.cancelUtils();
+            gt3GeetestUtils = null;
+        }
+        presenter.destory();
     }
 
     @OnClick({R.id.tvGetCode, R.id.tvConfirm})
@@ -90,9 +116,7 @@ public class EditLoginPwdActivity extends BaseActivity implements EditLoginPwdCo
      * 获取验证码
      */
     private void getCode() {
-        HashMap<String, String> map = new HashMap<>();
-        map.put("type", "1");
-        presenter.sendEditLoginPwdCode(map);
+        presenter.getPhoneCode(phone);
     }
 
     /**
@@ -108,49 +132,90 @@ public class EditLoginPwdActivity extends BaseActivity implements EditLoginPwdCo
         } else if (!newPassword.equals(repeatePwd)) {
             ToastUtils.showToast(getString(R.string.pwd_diff));
         } else {
-            HashMap<String, String> map = new HashMap<>();
-            map.put("oldPassword", oldPassword);
-            map.put("newPassword", newPassword);
-            map.put("code", code);
-            presenter.editPwd(map);
+            presenter.updateForget(phone, code, oldPassword, newPassword);
         }
     }
 
     @Override
-    public void setPresenter(EditLoginPwdContract.Presenter presenter) {
-        this.presenter = presenter;
-    }
-
-
-    @Override
-    public void doLoginOutSuccess(String obj) {
-        MyApplication.getApp().deleteCurrentUser();
-        SharedPreferenceInstance.getInstance().saveIsNeedShowLock(false);
-        SharedPreferenceInstance.getInstance().saveLockPwd("");
-        setResult(RESULT_OK);
-        showActivity(LoginActivity.class, null, LoginActivity.RETURN_LOGIN);
-    }
-
-    @Override
-    public void sendEditLoginPwdCodeSuccess(String obj) {
-        if (StringUtils.isNotEmpty(obj)) {
-            if (obj.equals(getString(R.string.str_success)))
-                ToastUtils.showToast(getString(R.string.str_success_tag));
-            else ToastUtils.showToast(obj);
+    public void getPhoneCodeSuccess(String obj) {
+        if (gt3GeetestUtils != null) {
+            gt3GeetestUtils.gt3TestFinish();
+            gt3GeetestUtils = null;
         }
+        ToastUtils.showToast("请注意查收手机验证码");
         timeCount.start();
         tvGetCode.setEnabled(false);
     }
 
     @Override
-    public void editPwdSuccess(String obj) {
-        ToastUtils.showToast(getString(R.string.change_login_pwd_success_tag));
-        MyApplication.getApp().deleteCurrentUser();
-        presenter.doLoginOut();
+    public void captchSuccess(JSONObject obj) {
+        gt3GeetestUtils.gtSetApi1Json(obj);
+        gt3GeetestUtils.getGeetest(activity, HttpUrls.UC_HOST + "/captcha/mm/gee", null, null, new GT3GeetestBindListener() {
+            @Override
+            public boolean gt3SetIsCustom() {
+                return true;
+            }
+
+            @Override
+            public void gt3GetDialogResult(boolean status, String result) {
+                if (status) {
+                    Captcha captcha = new Gson().fromJson(result, Captcha.class);
+                    String checkData = "gee::" + captcha.getGeetest_challenge() + "$" + captcha.getGeetest_validate() + "$" + captcha.getGeetest_seccode();
+                    presenter.getPhoneCode(phone, checkData, cid);
+                }
+            }
+        });
+        gt3GeetestUtils.setDialogTouch(true);
     }
 
     @Override
-    public void doPostFail(Integer code, String toastMessage) {
-        NetCodeUtils.checkedErrorCode(this, code, toastMessage);
+    public void updateForgetSuccess(String obj) {
+        ToastUtils.showToast(getString(R.string.change_login_pwd_success_tag));
+        presenter.loginOut();
     }
+
+
+    @Override
+    public void loginOutSuccess(String obj) {
+        MyApplication.getApp().deleteCurrentUser();
+        SharedPreferenceInstance.getInstance().saveIsNeedShowLock(false);
+        SharedPreferenceInstance.getInstance().saveLockPwd("");
+        MyApplication.getApp().getCookieManager().getCookieStore().removeAll();
+        ActivityManage.finishAll();
+        showActivity(LoginActivity.class, null);
+    }
+
+
+    @Override
+    public void dealError(HttpErrorEntity httpErrorEntity) {
+        if (gt3GeetestUtils != null) {
+            gt3GeetestUtils.gt3TestClose();
+            gt3GeetestUtils = null;
+        }
+        int code = httpErrorEntity.getCode();
+        String msg = httpErrorEntity.getMessage();
+        if (code == CAPTCH && StringUtils.isNotEmpty(msg) && msg.contains("captcha")) {
+            cid = httpErrorEntity.getCid();
+            gt3GeetestUtils = new GT3GeetestUtilsBind(activity);
+            presenter.captch();
+        } else if (code == CAPTCH2 && StringUtils.isNotEmpty(msg) && msg.contains("Captcha")) {//解决验证码失效问题
+            ToastUtils.showToast(getResources().getString(R.string.str_code_error));
+        } else if (httpErrorEntity.getCode() == GlobalConstant.CAPTCHA_HADBEEN_SEND) {
+            ToastUtils.showToast(getResources().getString(R.string.str_no_repeat));
+        } else {
+            ToastUtils.showToast(httpErrorEntity.getMessage());
+        }
+    }
+
+    @Override
+    public void codeSuccess(String obj) {
+        if (gt3GeetestUtils != null) {
+            gt3GeetestUtils.gt3TestFinish();
+            gt3GeetestUtils = null;
+        }
+        ToastUtils.showToast("请注意查收手机验证码");
+        timeCount.start();
+        tvGetCode.setEnabled(false);
+    }
+
 }

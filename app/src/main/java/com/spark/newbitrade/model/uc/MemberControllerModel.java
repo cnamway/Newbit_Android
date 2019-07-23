@@ -8,6 +8,7 @@ import com.spark.library.uc.model.MessageResult;
 import com.spark.library.uc.model.MessageResultMemberVo;
 import com.spark.library.uc.model.ResetLoginPasswordDto;
 import com.spark.library.uc.model.TradePasswordSetDto;
+import com.spark.library.uc.model.UpdateLoginPasswordDto;
 import com.spark.library.uc.model.UpdateTradePasswordDto;
 import com.spark.newbitrade.callback.ResponseCallBack;
 import com.spark.newbitrade.entity.HttpErrorEntity;
@@ -142,6 +143,41 @@ public class MemberControllerModel {
             @Override
             public void run() {
                 memberControllerApi.resetLoginPasswordUsingPOST(resetLoginPasswordDto, new Response.Listener<MessageResult>() {
+                    @Override
+                    public void onResponse(MessageResult response) {
+                        LogUtils.i("response==" + response.toString());
+                        int code = response.getCode();
+                        if (code == SUCCESS_CODE) {
+                            if (successListener != null)
+                                successListener.onResponse(response.getMessage());
+                        } else {
+                            if (errorListener != null)
+                                errorListener.onErrorResponse(new HttpErrorEntity(response.getCode(), response.getMessage(), response.getUrl(), response.getCid()));
+                        }
+                    }
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        if (errorListener != null)
+                            errorListener.onErrorResponse(error);
+                    }
+                });
+            }
+        }).start();
+    }
+
+    /**
+     * 更改登录密码
+     */
+    public void updateLoginPasswordUsing(String phone, String code, String oldPassword, String newPassword, final ResponseCallBack.SuccessListener<String> successListener, final ResponseCallBack.ErrorListener errorListener) {
+        memberControllerApi.addHeader("check", "phone:" + phone + ":" + code);
+        final UpdateLoginPasswordDto resetLoginPasswordDto = new UpdateLoginPasswordDto();
+        resetLoginPasswordDto.setOldPassword(oldPassword);
+        resetLoginPasswordDto.setNewPassword(newPassword);
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                memberControllerApi.updateLoginPasswordUsingPOST(resetLoginPasswordDto, new Response.Listener<MessageResult>() {
                     @Override
                     public void onResponse(MessageResult response) {
                         LogUtils.i("response==" + response.toString());

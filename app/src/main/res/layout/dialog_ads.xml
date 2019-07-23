@@ -22,7 +22,7 @@
                 android:gravity="center"
                 android:text="@string/my_ads"
                 android:textColor="@color/main_font_content"
-                android:textSize="@dimen/font_lager" />
+                android:textSize="@dimen/font_normal" />
 
             <ImageButton
                 android:id="@+id/ivClose"

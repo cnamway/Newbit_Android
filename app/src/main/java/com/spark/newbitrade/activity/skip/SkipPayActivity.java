@@ -260,8 +260,8 @@ public class SkipPayActivity extends BaseActivity implements SkipPayContract.Vie
     }
 
     @Override
-    public void walletWithdrawSuccess(String response) {
-        if (StringUtils.isNotEmpty(response)) {
+    public void walletWithdrawSuccess(String obj) {
+        if (StringUtils.isNotEmpty(obj)) {
             ToastUtils.showToast("支付成功");
             Intent intent = new Intent();
             Bundle bundle = new Bundle();
