@@ -28,7 +28,7 @@ public interface HelpContract {
 
         void queryList(int id);
 
-        void queryList2(int id);
+        void queryList2(Integer id);
 
         void webArticleQuery(Long articleTypeId);
     }

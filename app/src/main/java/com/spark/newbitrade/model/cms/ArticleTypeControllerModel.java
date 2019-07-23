@@ -1,5 +1,7 @@
 package com.spark.newbitrade.model.cms;
 
+import android.view.View;
+
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.spark.library.cms.api.ArticleTypeControllerApi;
@@ -13,7 +15,9 @@ import com.spark.library.cms.model.MessageResultWebConfigVo;
 import com.spark.library.cms.model.WebArticleVo;
 import com.spark.newbitrade.callback.ResponseCallBack;
 import com.spark.newbitrade.factory.HttpUrls;
+import com.spark.newbitrade.utils.LanguageUtil;
 import com.spark.newbitrade.utils.LogUtils;
+import com.spark.newbitrade.utils.SharedPreferenceInstance;
 
 import java.util.List;
 
@@ -35,9 +39,14 @@ public class ArticleTypeControllerModel {
     /**
      * 帮助中心
      */
-    public void articleQuery(int id, final ResponseCallBack.SuccessListener<List<ArticleType>> successListener, final ResponseCallBack.ErrorListener errorListener) {
+    public void articleQuery(Integer id, final ResponseCallBack.SuccessListener<List<ArticleType>> successListener, final ResponseCallBack.ErrorListener errorListener) {
+        int languageCode = SharedPreferenceInstance.getInstance().getLanguageCode();
+
         final ArticleTypeDto articleType = new ArticleTypeDto();
         articleType.setParentType(id);
+        if (languageCode == 1) articleType.setSysLanguage("cn");
+        else if (languageCode == 2) articleType.setSysLanguage(LanguageUtil.ENGLISH);
+        else if (languageCode == 3) articleType.setSysLanguage(LanguageUtil.ENGLISH);
         new Thread(new Runnable() {
             @Override
             public void run() {

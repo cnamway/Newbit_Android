@@ -97,11 +97,13 @@ public class HelpActivity extends BaseActivity implements HelpContract.View {
     @Override
     public void queryListSuccess(List<ArticleType> response) {
         if (response != null) {
+            Integer id = null;
             for (ArticleType articleType : response) {
                 if (articleType.getName().equals(getString(R.string.str_help))) {
-                    presenter.queryList2(articleType.getId().intValue());
+                    id = articleType.getId().intValue();
                 }
             }
+            presenter.queryList2(id);
         }
     }
 

@@ -58,7 +58,7 @@ public class HelpPresenterImpl implements HelpContract.Presenter {
     }
 
     @Override
-    public void queryList2(int id) {
+    public void queryList2(Integer id) {
         showLoading();
         articleTypeControllerModel.articleQuery(id, new ResponseCallBack.SuccessListener<List<ArticleType>>() {
             @Override
