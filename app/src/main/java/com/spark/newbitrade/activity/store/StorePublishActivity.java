@@ -12,8 +12,10 @@ import android.widget.TextView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.spark.newbitrade.R;
+import com.spark.newbitrade.activity.my.ads.MyAdsActivity;
 import com.spark.newbitrade.adapter.SelectPayWayAdapter;
 import com.spark.newbitrade.base.BaseActivity;
+import com.spark.newbitrade.dialog.ConfirmDialog;
 import com.spark.newbitrade.entity.Ads;
 import com.spark.newbitrade.entity.PayWay;
 import com.spark.newbitrade.entity.PayWaySetting;
@@ -369,12 +371,13 @@ public class StorePublishActivity extends BaseActivity implements StorePublishCo
 
     @Override
     public void createAdvertiseSuccess(String obj) {
-        if (StringUtils.isNotEmpty(obj)) {
+        /*if (StringUtils.isNotEmpty(obj)) {
             if (obj.equals(getString(R.string.str_success)))
                 ToastUtils.showToast(getString(R.string.str_success_tag));
             else ToastUtils.showToast(obj);
         }
-        finish();
+        finish();*/
+        goUp();
     }
 
     @Override
@@ -429,12 +432,32 @@ public class StorePublishActivity extends BaseActivity implements StorePublishCo
 
     @Override
     public void updateAdvertiseSuccess(String obj) {
-        if (StringUtils.isNotEmpty(obj)) {
+        /*if (StringUtils.isNotEmpty(obj)) {
             if (obj.equals(getString(R.string.str_success)))
                 ToastUtils.showToast(getString(R.string.str_success_tag));
             else ToastUtils.showToast(obj);
         }
         setResult(RESULT_OK);
-        finish();
+        finish();*/
+        goUp();
+    }
+
+    private void goUp() {
+        final ConfirmDialog dialog = new ConfirmDialog(activity);
+        dialog.setPositiveOnclickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+                Bundle bundle = new Bundle();
+                bundle.putBoolean("adUp", true);
+                bundle.putBoolean("isOTC", true);
+                showActivity(MyAdsActivity.class, bundle);
+                finish();
+            }
+        });
+        dialog.setCancelable(false);
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.setData("温馨提示", "操作成功，是否去上架？", "取消", "确定");
+        dialog.show();
     }
 }

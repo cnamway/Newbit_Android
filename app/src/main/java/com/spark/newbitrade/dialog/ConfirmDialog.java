@@ -15,23 +15,21 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.spark.newbitrade.R;
+import com.spark.newbitrade.utils.StringUtils;
 
 
 /**
- * 删除收款方式
+ * 确认、取消对话框
  */
 
-public class DeleteDialog extends Dialog {
+public class ConfirmDialog extends Dialog {
     private Context context;
+    private TextView tvTitle;
+    private TextView tvContent;
     private TextView leftView;
     private TextView rightView;
-    private EditText pwdEditText;
 
-    public EditText getPwdEditText() {
-        return pwdEditText;
-    }
-
-    public DeleteDialog(@NonNull Context context) {
+    public ConfirmDialog(@NonNull Context context) {
         super(context);
         this.context = context;
         setDialogTheme();
@@ -63,9 +61,10 @@ public class DeleteDialog extends Dialog {
      * 初始化view
      */
     private void initView() {
-        View view = LayoutInflater.from(context).inflate(R.layout.dialog_delete, null);
+        View view = LayoutInflater.from(context).inflate(R.layout.dialog_confirm, null);
         setContentView(view);
-        pwdEditText = view.findViewById(R.id.etPwd);
+        tvTitle = view.findViewById(R.id.tvTitle);
+        tvContent = view.findViewById(R.id.tvContent);
         leftView = view.findViewById(R.id.tvLeft);
         leftView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,5 +77,12 @@ public class DeleteDialog extends Dialog {
 
     public void setPositiveOnclickListener(View.OnClickListener onclickListener) {
         rightView.setOnClickListener(onclickListener);
+    }
+
+    public void setData(String title, String content, String left, String right) {
+        if (StringUtils.isNotEmpty(title)) tvTitle.setText(title);
+        if (StringUtils.isNotEmpty(content)) tvContent.setText(content);
+        if (StringUtils.isNotEmpty(left)) leftView.setText(left);
+        if (StringUtils.isNotEmpty(right)) rightView.setText(right);
     }
 }

@@ -1,5 +1,6 @@
 package com.spark.newbitrade.activity.my.ads;
 
+import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.view.View;
@@ -50,6 +51,17 @@ public class MyAdsFragment extends BaseNestingTransFragment {
     private FilterPopView filterPopView;
     private ArrayList<FilterBean> firList;
     private ArrayList<FilterBean> secList;
+    private boolean adUp;//是否上架
+    private boolean isOTC;//是否OTC
+
+    public static MyAdsFragment getInstance(boolean adUp, boolean isOTC) {
+        MyAdsFragment myAdsListFragment = new MyAdsFragment();
+        Bundle bundle = new Bundle();
+        bundle.putBoolean("adUp", adUp);
+        bundle.putBoolean("isOTC", isOTC);
+        myAdsListFragment.setArguments(bundle);
+        return myAdsListFragment;
+    }
 
     @Override
     protected void initImmersionBar() {
@@ -108,6 +120,18 @@ public class MyAdsFragment extends BaseNestingTransFragment {
             vp.setOffscreenPageLimit(fragments.size() - 1);
         } else adapter.notifyDataSetChanged();
         isNeedLoad = false;
+
+        Bundle bundle = getArguments();
+        if (bundle != null) {
+            adUp = bundle.getBoolean("adUp");
+            isOTC = bundle.getBoolean("isOTC");
+
+            if (isOTC) {
+                clickTabSell();
+            } else {
+                clickTabBuy();
+            }
+        }
     }
 
     @OnClick({R.id.tvBuy, R.id.tvSell, R.id.ivFilter})

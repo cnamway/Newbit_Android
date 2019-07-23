@@ -28,21 +28,19 @@ import com.kyleduo.switchbutton.SwitchButton;
 import com.spark.library.otc.model.AdvertiseDto;
 import com.spark.library.otc.model.AuthMerchantApplyMarginType;
 import com.spark.newbitrade.R;
-import com.spark.newbitrade.activity.ads.MyAdsActivity;
 import com.spark.newbitrade.activity.country.CountryActivity;
+import com.spark.newbitrade.activity.my.ads.MyAdsActivity;
 import com.spark.newbitrade.activity.store.PayWaySelectActivity;
 import com.spark.newbitrade.adapter.SelectPayWayAdapter;
 import com.spark.newbitrade.base.BaseLazyFragment;
+import com.spark.newbitrade.dialog.ConfirmDialog;
 import com.spark.newbitrade.entity.Ads;
 import com.spark.newbitrade.entity.Country;
-import com.spark.newbitrade.entity.CountryEntity;
 import com.spark.newbitrade.entity.PayWay;
 import com.spark.newbitrade.entity.PayWaySetting;
-import com.spark.newbitrade.utils.FormatDataUtils;
 import com.spark.newbitrade.utils.GlobalConstant;
 import com.spark.newbitrade.utils.IMyTextChange;
 import com.spark.newbitrade.utils.MathUtils;
-import com.spark.newbitrade.utils.SharedPreferenceInstance;
 import com.spark.newbitrade.utils.StringUtils;
 import com.spark.newbitrade.utils.ToastUtils;
 import com.spark.newbitrade.widget.TextWatcher;
@@ -942,22 +940,24 @@ public class PubAdsFragment extends BaseLazyFragment implements ReleaseAdContrac
 
     @Override
     public void createAdvertiseSuccess(String obj) {
-        if (StringUtils.isNotEmpty(obj)) {
+        /*if (StringUtils.isNotEmpty(obj)) {
             if (obj.equals(getString(R.string.str_success)))
                 ToastUtils.showToast(getString(R.string.str_success_tag));
             else ToastUtils.showToast(obj);
         }
-        finish();
+        finish();*/
+        goUp();
     }
 
     @Override
     public void updateAdvertiseSuccess(String obj) {
-        if (StringUtils.isNotEmpty(obj)) {
+        /*if (StringUtils.isNotEmpty(obj)) {
             if (obj.equals(getString(R.string.str_success)))
                 ToastUtils.showToast(getString(R.string.str_success_tag));
             else ToastUtils.showToast(obj);
         }
-        finish();
+        finish();*/
+        goUp();
     }
 
     @Override
@@ -1044,6 +1044,23 @@ public class PubAdsFragment extends BaseLazyFragment implements ReleaseAdContrac
             if (ads != null)
                 presenter.findAdvertiseDetail(ads.getId());
         }
+    }
+
+    private void goUp() {
+        ConfirmDialog dialog = new ConfirmDialog(activity);
+        dialog.setPositiveOnclickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Bundle bundle = new Bundle();
+                bundle.putBoolean("adUp", true);
+                showActivity(MyAdsActivity.class, bundle);
+                finish();
+            }
+        });
+        dialog.setCancelable(false);
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.setData("温馨提示", "操作成功，是否去上架？", "取消", "确定");
+        dialog.show();
     }
 
 }

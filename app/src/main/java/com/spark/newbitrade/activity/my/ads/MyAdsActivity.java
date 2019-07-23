@@ -1,6 +1,9 @@
 package com.spark.newbitrade.activity.my.ads;
 
 import android.content.Intent;
+import android.os.Bundle;
+import android.os.PersistableBundle;
+import android.support.annotation.Nullable;
 import android.widget.FrameLayout;
 
 import com.spark.newbitrade.R;
@@ -17,10 +20,22 @@ public class MyAdsActivity extends BaseTransFragmentActivity {
     FrameLayout flContainer;
 
     private MyAdsFragment orderFragment;
+    private boolean adUp;//是否上架
+    private boolean isOTC;//是否OTC
 
     @Override
     protected int getActivityLayoutId() {
         return R.layout.activity_my_order2;
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        Bundle bundle = getIntent().getExtras();
+        if (bundle != null) {
+            adUp = bundle.getBoolean("adUp");
+            isOTC = bundle.getBoolean("isOTC");
+        }
+        super.onCreate(savedInstanceState);
     }
 
     @Override
@@ -49,16 +64,15 @@ public class MyAdsActivity extends BaseTransFragmentActivity {
         setIntent(intent);
     }
 
-
     @Override
     protected void initFragments() {
-        if (orderFragment == null) fragments.add(orderFragment = new MyAdsFragment());
+        if (orderFragment == null) fragments.add(MyAdsFragment.getInstance(adUp, isOTC));
     }
 
     @Override
     protected void recoverFragment() {
         orderFragment = (MyAdsFragment) getSupportFragmentManager().findFragmentByTag(MyAdsFragment.TAG);
-        if (orderFragment == null) fragments.add(orderFragment = new MyAdsFragment());
+        if (orderFragment == null) fragments.add(MyAdsFragment.getInstance(adUp, isOTC));
         else fragments.add(orderFragment);
     }
 

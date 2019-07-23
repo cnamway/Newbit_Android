@@ -73,7 +73,7 @@ public class PayCodeDialog extends Dialog {
         WindowManager.LayoutParams lp = dialogWindow.getAttributes();
         int heightMax = context.getResources().getDisplayMetrics().heightPixels;
         int widthMax = context.getResources().getDisplayMetrics().widthPixels;
-        lp.width = (int) (widthMax * 0.9);
+        lp.width = (int) (widthMax * 0.8);
         dialogWindow.setAttributes(lp);
         dialogWindow.setGravity(Gravity.CENTER);
     }
