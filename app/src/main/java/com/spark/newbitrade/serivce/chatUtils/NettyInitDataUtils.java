@@ -76,7 +76,8 @@ public class NettyInitDataUtils {
             }
             String str = new String(buffer);
             //不监听的消息：心跳消息、订阅消息、发送的消息、
-            if (cmd != ISocket.CMD.HEART_BEAT.getCode() && cmd != ISocket.CMD.SUBSCRIBE_GROUP_CHAT.getCode() && cmd != ISocket.CMD.SEND_CHAT.getCode()) {
+//            if (cmd != ISocket.CMD.HEART_BEAT.getCode() && cmd != ISocket.CMD.SUBSCRIBE_GROUP_CHAT.getCode() && cmd != ISocket.CMD.SEND_CHAT.getCode()) {
+            if (cmd != ISocket.CMD.HEART_BEAT.getCode() && cmd != ISocket.CMD.SUBSCRIBE_GROUP_CHAT.getCode()) {
                 Log.e("开始接收返回数据", "返回数据指令==" + cmd + ",,,,返回数据==" + str);
                 SocketResponse socketResponse = new SocketResponse(cmd, str, 0);
                 if (sendMsgListener != null)

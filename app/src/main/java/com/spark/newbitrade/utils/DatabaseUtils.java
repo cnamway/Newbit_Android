@@ -65,7 +65,7 @@ public class DatabaseUtils {
 
     public void update(ChatTable table) {
         try {
-            db.update(table, "content", "isRead", "hasNew");
+            db.update(table, "content", "isRead", "hasNew", "sendTime");
         } catch (DbException e) {
             e.printStackTrace();
         }
@@ -79,4 +79,22 @@ public class DatabaseUtils {
             e.printStackTrace();
         }
     }
+
+    /**
+     * 是否有新消息
+     *
+     * @return
+     */
+    public boolean getHasNew() {
+        List<ChatTable> chatLists = findAll();
+        if (chatLists != null && chatLists.size() > 0) {
+            for (ChatTable table : chatLists) {
+                if (table.hasNew) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
 }

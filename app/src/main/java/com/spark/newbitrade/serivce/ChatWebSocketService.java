@@ -12,6 +12,9 @@ import android.content.Intent;
 import android.content.ServiceConnection;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
+import android.net.ConnectivityManager;
+import android.net.Network;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Binder;
 import android.os.Build;
@@ -198,15 +201,16 @@ public class ChatWebSocketService extends Service {
                     InputStream is = new ByteArrayInputStream(content);
                     DataInputStream dis = new DataInputStream(is);
                     SocketResponse socketResponse = NettyInitDataUtils.startRecTask(sendMsgListener, dis);
-                    if (socketResponse != null) {
+                    if (socketResponse != null && socketResponse.getCmd() != ISocket.CMD.SEND_CHAT.getCode()) {
                         int cmd = socketResponse.getCmd();
                         String str = socketResponse.getResponse();
 
-                        if (isAppOnForeground()) {
-                            startAlarm(getApplicationContext());
+                        startAlarm(getApplicationContext());
+
+                        if (!isAppOnForeground()) {
+                            showNotice(str);
                         }
                         ISocket.CMD cmd2 = ISocket.CMD.PUSH_GROUP_CHAT;
-                        showNotice(str);
                         storageData(str);
                         ChatEvent chatEvent = new ChatEvent();
                         chatEvent.setResonpce(str);
@@ -366,8 +370,12 @@ public class ChatWebSocketService extends Service {
      */
     private synchronized void initWebSocketConnect() {
         if (isClosed) {
-            Log.e(TAG, "WebSocketService- 创建一个新的连接WEBSOCKET_HOST_AND_PORT==" + WEBSOCKET_HOST_AND_PORT);
-            new InitSocketThread().start();//创建一个新的连接
+            if (checkNetwork(this)) {
+                Log.e(TAG, "WebSocketService- 创建一个新的连接WEBSOCKET_HOST_AND_PORT==" + WEBSOCKET_HOST_AND_PORT);
+                new InitSocketThread().start();//创建一个新的连接
+            } else {
+                Log.e(TAG, "WebSocketService- 无网络连接   不在重新连接");
+            }
         }
     }
 
@@ -530,5 +538,60 @@ public class ChatWebSocketService extends Service {
         tipEvent.setHasNew(hasNew);
         tipEvent.setOrderId(chatEntity.getOrderId());
         EventBus.getDefault().post(tipEvent);
+    }
+
+    /**
+     * 检查网络连接
+     *
+     * @param context
+     * @return
+     */
+    public static boolean checkNetwork(Context context) {
+        boolean isNetStatus = false;
+        //检测API是不是小于23，因为到了API23之后getNetworkInfo(int networkType)方法被弃用
+        if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.M) {
+            //获得ConnectivityManager对象
+            ConnectivityManager connMgr = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+            //获取ConnectivityManager对象对应的NetworkInfo对象
+            //获取WIFI连接的信息
+            NetworkInfo wifiNetworkInfo = connMgr.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+            //获取移动数据连接的信息
+            NetworkInfo dataNetworkInfo = connMgr.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
+            if (wifiNetworkInfo.isConnected() || dataNetworkInfo.isConnected()) {
+                if (wifiNetworkInfo.isAvailable() || dataNetworkInfo.isAvailable()) {
+                    isNetStatus = true;
+                }
+            } else {
+                isNetStatus = false;
+            }
+        } else {//API大于23时使用下面的方式进行网络监听
+            System.out.println("API level 大于23");
+            //获得ConnectivityManager对象
+            ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+            //获取所有网络连接的信息
+            Network[] networks = connectivityManager.getAllNetworks();
+            //通过循环将网络信息逐个取出来
+            for (int i = 0; i < networks.length; i++) {
+                //获取ConnectivityManager对象对应的NetworkInfo对象
+                NetworkInfo networkInfo = connectivityManager.getNetworkInfo(networks[i]);
+                if (networkInfo != null) {
+                    String typeName = networkInfo.getTypeName();
+                    if (typeName.equalsIgnoreCase("WIFI")) {
+                        if (networkInfo.isConnected() && networkInfo.isAvailable()) {
+                            isNetStatus = true;
+                            return isNetStatus;
+                        }
+                    } else if (typeName.equalsIgnoreCase("MOBILE")) {
+                        if (networkInfo.isConnected() && networkInfo.isAvailable()) {
+                            isNetStatus = true;
+                            return isNetStatus;
+                        }
+                    } else {
+                        isNetStatus = false;
+                    }
+                }
+            }
+        }
+        return isNetStatus;
     }
 }

@@ -12,7 +12,6 @@ import com.spark.newbitrade.activity.login.LoginActivity;
 import com.spark.newbitrade.activity.main.MainActivity;
 import com.spark.newbitrade.base.BaseActivity;
 import com.spark.newbitrade.serivce.ChatWebSocketService;
-import com.spark.newbitrade.serivce.GroupService;
 import com.spark.newbitrade.utils.SharedPreferenceInstance;
 import com.spark.newbitrade.utils.okhttp.AppUtils;
 

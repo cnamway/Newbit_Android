@@ -140,7 +140,7 @@ public class OrderDetailPresenterImpl implements OrderDetailContract.Presenter {
                     public void onErrorResponse(HttpErrorEntity httpErrorEntity) {
                         hideLoading();
                         if (view != null)
-                            view.dealError(httpErrorEntity);
+                            view.findOrderInTransitDetailUsingGETFail(httpErrorEntity);
                     }
 
                     @Override
@@ -168,7 +168,7 @@ public class OrderDetailPresenterImpl implements OrderDetailContract.Presenter {
                     public void onErrorResponse(HttpErrorEntity httpErrorEntity) {
                         hideLoading();
                         if (view != null)
-                            view.dealError(httpErrorEntity);
+                            view.findOrderAchiveDetailUsingGETFail(httpErrorEntity);
                     }
 
                     @Override

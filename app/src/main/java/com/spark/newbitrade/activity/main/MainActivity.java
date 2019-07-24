@@ -129,7 +129,6 @@ public class MainActivity extends BaseTransFragmentActivity implements MainContr
     private int type; // 1 去买币  2 去卖币
     private LinearLayout[] lls;
     private Gson gson = new Gson();
-    private boolean hasNew = false;
     public static double rate = 1.0;
     public static boolean isAgain = false;
     public static List<Favorite> mFavorte = new ArrayList<>();
@@ -173,8 +172,6 @@ public class MainActivity extends BaseTransFragmentActivity implements MainContr
             }
             EventBus.getDefault().post(new SocketMessage(GlobalConstant.CODE_CHAT, ISocket.CMD.SUBSCRIBE_GROUP_CHAT.getCode(), buildGetBodyJson().toString().getBytes()));
         }
-        hasNew = SharedPreferenceInstance.getInstance().getHasNew();
-        SharedPreferenceInstance.getInstance().saveHasNew(false);
         if (!MyApplication.getApp().isLogin() && currencyListAll != null && currencyListAll.size() != 0) { // 退出登录后 刷新展示未登录状态的数据
             notLoginCurrencies();
         }

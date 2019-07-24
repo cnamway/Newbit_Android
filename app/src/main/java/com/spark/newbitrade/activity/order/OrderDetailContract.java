@@ -5,6 +5,7 @@ import com.spark.library.otc.model.MemberPayType;
 import com.spark.library.otc.model.OrderDetailVo;
 import com.spark.library.otc.model.OrderPaymentDto;
 import com.spark.newbitrade.base.BaseContract;
+import com.spark.newbitrade.entity.HttpErrorEntity;
 
 import java.util.List;
 
@@ -53,6 +54,10 @@ public interface OrderDetailContract {
         void findOrderAchiveDetailUsingGETSuccess(OrderDetailVo obj);
 
         void queryOrderPayTypeUsingGETSuccess(List<MemberPayType> obj);
+
+        void findOrderAchiveDetailUsingGETFail(HttpErrorEntity httpErrorEntity);
+
+        void findOrderInTransitDetailUsingGETFail(HttpErrorEntity httpErrorEntity);
 
     }
 

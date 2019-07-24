@@ -149,7 +149,21 @@ public class ChatListActivity extends BaseActivity {
             chatLists.addAll(databaseUtils.findAll());
             for (ChatTable table : chatLists) {
                 if (table.getOrderId().equals(tipEvent.getOrderId())) {
-                    table.setHasNew(true);
+                    table.setHasNew(hasNew);
+                    databaseUtils.deleteByOrderId(tipEvent.getOrderId());
+                    databaseUtils.saveChat(table);
+                }
+            }
+            chatLists.clear();
+            chatLists.addAll(databaseUtils.findAll());
+            Collections.reverse(chatLists);
+            adapter.notifyDataSetChanged();
+        } else {
+            chatLists.clear();
+            chatLists.addAll(databaseUtils.findAll());
+            for (ChatTable table : chatLists) {
+                if (table.getOrderId().equals(tipEvent.getOrderId())) {
+                    table.setHasNew(hasNew);
                     databaseUtils.deleteByOrderId(tipEvent.getOrderId());
                     databaseUtils.saveChat(table);
                 }
@@ -160,6 +174,5 @@ public class ChatListActivity extends BaseActivity {
             adapter.notifyDataSetChanged();
         }
     }
-
 
 }

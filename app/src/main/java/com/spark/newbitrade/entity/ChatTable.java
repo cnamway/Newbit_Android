@@ -62,6 +62,7 @@ public class ChatTable {
         this.hasNew = hasNew;
     }
 
+
     @Column(name = "id", isId = true)
     public int id;
 

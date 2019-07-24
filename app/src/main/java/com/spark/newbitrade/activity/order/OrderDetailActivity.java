@@ -36,6 +36,7 @@ import com.spark.newbitrade.activity.appeal.AppealActivity;
 import com.spark.newbitrade.activity.chat.ChatActivity;
 import com.spark.newbitrade.base.BaseActivity;
 import com.spark.newbitrade.dialog.PayWaySelectDialog;
+import com.spark.newbitrade.entity.HttpErrorEntity;
 import com.spark.newbitrade.entity.OrderDetial;
 import com.spark.newbitrade.entity.PayWaySetting;
 import com.spark.newbitrade.factory.socket.ISocket;
@@ -278,8 +279,13 @@ public class OrderDetailActivity extends BaseActivity implements OrderDetailCont
             case R.id.ivGoChat:
                 OrderDetial orderDetial = new OrderDetial();
                 orderDetial.setOrderSn(orderDetailVo.getOrderSn());
-                orderDetial.setMyId(MyApplication.getApp().getCurrentUser().getId() + "");
-                orderDetial.setHisId(orderDetailVo.getMemberId() + "");
+                long myId = MyApplication.getApp().getCurrentUser().getId();
+                orderDetial.setMyId(myId + "");
+                if (myId != orderDetailVo.getCustomerId()) {
+                    orderDetial.setHisId(String.valueOf(orderDetailVo.getCustomerId()));
+                } else {
+                    orderDetial.setHisId(String.valueOf(orderDetailVo.getMemberId()));
+                }
                 orderDetial.setOtherSide(orderDetailVo.getTrateToRealname());
                 bundle.putSerializable("orderDetial", orderDetial);
                 showActivity(ChatActivity.class, bundle);
@@ -883,6 +889,18 @@ public class OrderDetailActivity extends BaseActivity implements OrderDetailCont
     @Override
     public void queryOrderPayTypeUsingGETSuccess(List<MemberPayType> obj) {
 
+    }
+
+    @Override
+    public void findOrderAchiveDetailUsingGETFail(HttpErrorEntity httpErrorEntity) {
+        //查询我的在途订单(未付款，已付款，申诉中)
+        presenter.findOrderInTransitDetailUsingGET(orderSn);
+    }
+
+    @Override
+    public void findOrderInTransitDetailUsingGETFail(HttpErrorEntity httpErrorEntity) {
+        //查询我的归档订单（已完成，已取消）
+        presenter.findOrderAchiveDetailUsingGET(orderSn);
     }
 
 }
