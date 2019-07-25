@@ -71,11 +71,13 @@ public class WebViewActivity extends BaseActivity {
             @Override
             public void onPageStarted(WebView view, String url, Bitmap favicon) {
                 super.onPageStarted(view, url, favicon);
+                showLoading();
             }
 
             @Override
             public void onPageFinished(WebView view, String url) {
                 super.onPageFinished(view, url);
+                hideLoading();
                 if (!StringUtils.isEmpty(view.getTitle())) {
                     if (view.getTitle().length() > 10) {
 //                        tvTitle.setText(view.getTitle().substring(0, 10) + "...");

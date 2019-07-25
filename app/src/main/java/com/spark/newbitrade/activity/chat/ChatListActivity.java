@@ -43,7 +43,6 @@ public class ChatListActivity extends BaseActivity {
     private ChatListAdapter adapter;
     private List<ChatTable> chatLists = new ArrayList<>();
     private DatabaseUtils databaseUtils;
-    private boolean hasNew = false;
 
     @Override
     protected int getActivityLayoutId() {
@@ -140,39 +139,21 @@ public class ChatListActivity extends BaseActivity {
 
     }
 
-
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void getGroupChatEvent(ChatTipEvent tipEvent) {
-        hasNew = tipEvent.isHasNew();
-        if (hasNew) {
-            chatLists.clear();
-            chatLists.addAll(databaseUtils.findAll());
-            for (ChatTable table : chatLists) {
-                if (table.getOrderId().equals(tipEvent.getOrderId())) {
-                    table.setHasNew(hasNew);
-                    databaseUtils.deleteByOrderId(tipEvent.getOrderId());
-                    databaseUtils.saveChat(table);
-                }
+        chatLists.clear();
+        chatLists.addAll(databaseUtils.findAll());
+        for (ChatTable table : chatLists) {
+            if (table.getOrderId().equals(tipEvent.getOrderId())) {
+                table.setHasNew(tipEvent.isHasNew());
+                databaseUtils.deleteByOrderId(tipEvent.getOrderId());
+                databaseUtils.saveChat(table);
             }
-            chatLists.clear();
-            chatLists.addAll(databaseUtils.findAll());
-            Collections.reverse(chatLists);
-            adapter.notifyDataSetChanged();
-        } else {
-            chatLists.clear();
-            chatLists.addAll(databaseUtils.findAll());
-            for (ChatTable table : chatLists) {
-                if (table.getOrderId().equals(tipEvent.getOrderId())) {
-                    table.setHasNew(hasNew);
-                    databaseUtils.deleteByOrderId(tipEvent.getOrderId());
-                    databaseUtils.saveChat(table);
-                }
-            }
-            chatLists.clear();
-            chatLists.addAll(databaseUtils.findAll());
-            Collections.reverse(chatLists);
-            adapter.notifyDataSetChanged();
         }
+        chatLists.clear();
+        chatLists.addAll(databaseUtils.findAll());
+        Collections.reverse(chatLists);
+        adapter.notifyDataSetChanged();
     }
 
 }
