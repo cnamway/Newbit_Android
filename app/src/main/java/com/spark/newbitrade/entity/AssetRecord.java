@@ -1,5 +1,8 @@
 package com.spark.newbitrade.entity;
 
+import com.google.gson.annotations.SerializedName;
+import com.spark.library.ac.model.MemberTransactionVo;
+
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -10,17 +13,26 @@ import io.swagger.annotations.ApiModelProperty;
  */
 
 public class AssetRecord {
-    private String address;
-    private double amount;
-    private String businessId;
-    private String coinName;
-    private Date createTime;
-    private double fee;
-    private Long id;
-    private Long memberId;
-    private Integer subType;
-    private Integer type;
-
+    @SerializedName("address")
+    private String address = null;
+    @SerializedName("amount")
+    private BigDecimal amount = null;
+    @SerializedName("businessId")
+    private String businessId = null;
+    @SerializedName("coinName")
+    private String coinName = null;
+    @SerializedName("createTime")
+    private Date createTime = null;
+    @SerializedName("fee")
+    private BigDecimal fee = null;
+    @SerializedName("id")
+    private Long id = null;
+    @SerializedName("memberId")
+    private Long memberId = null;
+    @SerializedName("subType")
+    private Integer subType = null;
+    @SerializedName("type")
+    private Integer type = null;
 
     @ApiModelProperty("充值或提现地址、或转账地址")
     public String getAddress() {
@@ -32,11 +44,11 @@ public class AssetRecord {
     }
 
     @ApiModelProperty("充币金额")
-    public double getAmount() {
+    public BigDecimal getAmount() {
         return this.amount;
     }
 
-    public void setAmount(double amount) {
+    public void setAmount(BigDecimal amount) {
         this.amount = amount;
     }
 
@@ -68,11 +80,11 @@ public class AssetRecord {
     }
 
     @ApiModelProperty("手续费")
-    public double getFee() {
+    public BigDecimal getFee() {
         return this.fee;
     }
 
-    public void setFee(double fee) {
+    public void setFee(BigDecimal fee) {
         this.fee = fee;
     }
 
@@ -103,13 +115,30 @@ public class AssetRecord {
         this.subType = subType;
     }
 
-    @ApiModelProperty("业务类型 0充值1.提现2转到合约账户，3.币币交易，4.法币买入，5.法币卖出，6.活动奖励，7.推广奖励，8.分红，9.投票，10.人工充值，11配对      * 12.缴纳商家认证保证金，13.退回商家认证保证金，15.法币充值，16.币币兑换，17.渠道推广，19.注册奖励，20.实名奖励，21.推广注册奖励，22.推广实名奖励，23.推广法币交易奖励，24.推广币币交易奖励，25.空投，26.锁仓")
+    @ApiModelProperty("1-充币 2-提币 3-资金划转转入 4-资金划转转出 5-资金交易扣除 6-资金交易增加")
     public Integer getType() {
         return this.type;
     }
 
     public void setType(Integer type) {
         this.type = type;
+    }
+
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("class MemberTransactionVo {\n");
+        sb.append("  address: ").append(this.address).append("\n");
+        sb.append("  amount: ").append(this.amount).append("\n");
+        sb.append("  businessId: ").append(this.businessId).append("\n");
+        sb.append("  coinName: ").append(this.coinName).append("\n");
+        sb.append("  createTime: ").append(this.createTime).append("\n");
+        sb.append("  fee: ").append(this.fee).append("\n");
+        sb.append("  id: ").append(this.id).append("\n");
+        sb.append("  memberId: ").append(this.memberId).append("\n");
+        sb.append("  subType: ").append(this.subType).append("\n");
+        sb.append("  type: ").append(this.type).append("\n");
+        sb.append("}\n");
+        return sb.toString();
     }
 
 }

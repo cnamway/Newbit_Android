@@ -181,7 +181,9 @@ public class ForgotPwdActivity extends BaseActivity implements ForgotPwdContract
         if (StringUtils.isEmpty(phone)) {
             ToastUtils.showToast(R.string.phone_empty);
         } else {
-            presenter.getPhoneCode(strAreaCode + phone);
+            //presenter.getPhoneCode(strAreaCode + phone);
+            gt3GeetestUtils = new GT3GeetestUtilsBind(activity);
+            presenter.captch();
         }
     }
 
@@ -292,6 +294,9 @@ public class ForgotPwdActivity extends BaseActivity implements ForgotPwdContract
             presenter.captch();
         } else if (code == CAPTCH2 && StringUtils.isNotEmpty(msg) && msg.contains("Captcha")) {//解决验证码失效问题
             ToastUtils.showToast(getResources().getString(R.string.str_code_error));
+            cid = httpErrorEntity.getCid();
+            gt3GeetestUtils = new GT3GeetestUtilsBind(activity);
+            presenter.captch();
         } else if (httpErrorEntity.getCode() == GlobalConstant.CAPTCHA_HADBEEN_SEND) {
             ToastUtils.showToast(getResources().getString(R.string.str_no_repeat));
         } else {

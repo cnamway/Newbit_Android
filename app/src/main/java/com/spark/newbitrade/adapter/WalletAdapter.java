@@ -24,7 +24,7 @@ public class WalletAdapter extends BaseQuickAdapter<Wallet, BaseViewHolder> {
     protected void convert(BaseViewHolder helper, Wallet item) {
         helper.setText(R.id.tvCoinUnit, item.getCoinId())
                 .setText(R.id.tvCoinName, item.getCoinId())
-                .setText(R.id.tvBuyCanUse, MathUtils.subZeroAndDot(MathUtils.getRundNumber(Double.valueOf(new BigDecimal(item.getBalance()).toString()), 8, null)));
+                .setText(R.id.tvBuyCanUse, MathUtils.subZeroAndDot(String.valueOf(item.getBalance().toPlainString())));
 //                .setText(R.id.tvFrozon, MathUtils.subZeroAndDot(MathUtils.getRundNumber(Double.valueOf(new BigDecimal(item.getFrozenBalance()).toString()), 8, null)));
         switch (item.getCoinId()) {
             case "BTC":

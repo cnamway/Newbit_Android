@@ -192,7 +192,7 @@ public class TransferActivity extends BaseActivity implements TransferContract.T
     public void findWalletByCoinNameSuccess(Wallet obj) {
         if (obj != null) {
             wallet = obj;
-            useBanlance = obj.getBalance();
+            useBanlance = obj.getBalance().doubleValue();
             setCurBalance();
         }
     }

@@ -1,6 +1,7 @@
 package com.spark.newbitrade.entity;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 
 /**
  * Created by Administrator on 2018/9/18 0018.
@@ -25,18 +26,18 @@ public class Wallet implements Serializable {
      */
 
     private String address;
-    private double balance;
-    private double frozenBalance;
+    private BigDecimal balance;
+    private BigDecimal frozenBalance;
     private int isLock;
     private int memberId;
     private String coinId;
-    private double cnyRate;
-    private double usdRate;
+    private BigDecimal cnyRate;
+    private BigDecimal usdRate;
     private int canAutoWithdraw;
     private int canRecharge;
     private int canTransfer;
     private int canWithdraw;
-    private double minRechargeAmount;
+    private BigDecimal minRechargeAmount;
     private double totalLegalAssetBalance;
     private String name;
     private int isDefault;
@@ -73,19 +74,19 @@ public class Wallet implements Serializable {
         this.address = address;
     }
 
-    public double getBalance() {
+    public BigDecimal getBalance() {
         return balance;
     }
 
-    public void setBalance(double balance) {
+    public void setBalance(BigDecimal balance) {
         this.balance = balance;
     }
 
-    public double getFrozenBalance() {
+    public BigDecimal getFrozenBalance() {
         return frozenBalance;
     }
 
-    public void setFrozenBalance(double frozenBalance) {
+    public void setFrozenBalance(BigDecimal frozenBalance) {
         this.frozenBalance = frozenBalance;
     }
 
@@ -113,19 +114,19 @@ public class Wallet implements Serializable {
         this.coinId = coinId;
     }
 
-    public double getCnyRate() {
+    public BigDecimal getCnyRate() {
         return cnyRate;
     }
 
-    public void setCnyRate(double cnyRate) {
+    public void setCnyRate(BigDecimal cnyRate) {
         this.cnyRate = cnyRate;
     }
 
-    public double getUsdRate() {
+    public BigDecimal getUsdRate() {
         return usdRate;
     }
 
-    public void setUsdRate(double usdRate) {
+    public void setUsdRate(BigDecimal usdRate) {
         this.usdRate = usdRate;
     }
 
@@ -161,11 +162,11 @@ public class Wallet implements Serializable {
         this.canWithdraw = canWithdraw;
     }
 
-    public double getMinRechargeAmount() {
+    public BigDecimal getMinRechargeAmount() {
         return minRechargeAmount;
     }
 
-    public void setMinRechargeAmount(double minRechargeAmount) {
+    public void setMinRechargeAmount(BigDecimal minRechargeAmount) {
         this.minRechargeAmount = minRechargeAmount;
     }
 }

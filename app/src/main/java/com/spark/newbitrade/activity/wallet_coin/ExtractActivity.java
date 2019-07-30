@@ -122,7 +122,7 @@ public class ExtractActivity extends BaseActivity implements ExtractContract.Ext
                 tvCanUseUnit.setText(wallet.getCoinId());
                 tvGetUnit.setText(wallet.getCoinId());
                 tvCollectUnit.setText(wallet.getCoinId());
-                tvBuyCanUse.setText(MathUtils.subZeroAndDot(MathUtils.getRundNumber(Double.valueOf(new BigDecimal(wallet.getBalance()).toString()), 8, null)));
+                tvBuyCanUse.setText(MathUtils.subZeroAndDot(String.valueOf(wallet.getBalance().toPlainString())));
             }
         }
         timeCount = new TimeCount(60000, 1000, tvGetCode);
@@ -266,7 +266,7 @@ public class ExtractActivity extends BaseActivity implements ExtractContract.Ext
 //            else if (StringUtils.isEmpty(code)) {
 //                ToastUtils.showToast(getString(R.string.str_please_input) + getString(R.string.code));
 //            }
-            else if (Double.parseDouble(amount) > wallet.getBalance()) {
+            else if (Double.parseDouble(amount) > wallet.getBalance().doubleValue()) {
                 ToastUtils.showToast(getString(R.string.str_coin_can_banlance) + wallet.getBalance());
             } else if (Double.parseDouble(amount) < minWithdrawAmount) {
                 ToastUtils.showToast(getString(R.string.str_min_coin_num_tag) + minWithdrawAmount);
@@ -290,11 +290,11 @@ public class ExtractActivity extends BaseActivity implements ExtractContract.Ext
                     minWithdrawAmount = extractInfo.getMinWithdrawAmount().doubleValue();
                 }
                 etCount.setHint(getString(R.string.str_min_coin_num_tag) + MathUtils.subZeroAndDot(String.valueOf(minWithdrawAmount)));
-                double withdrawFee = 0;
+                /*double withdrawFee = 0;
                 if (extractInfo != null && extractInfo.getWithdrawFee() != null) {
                     withdrawFee = extractInfo.getWithdrawFee().doubleValue();
-                }
-                tvServiceFee.setText(MathUtils.subZeroAndDot(String.valueOf(withdrawFee)));
+                }*/
+                tvServiceFee.setText(MathUtils.subZeroAndDot(String.valueOf(extractInfo.getWithdrawFee().toPlainString())));
                 //提币手续费类型：1-固定金额 2-按比例
                 withdrawFeeType = extractInfo.getWithdrawFeeType();
             }

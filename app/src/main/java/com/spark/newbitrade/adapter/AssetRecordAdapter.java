@@ -12,6 +12,7 @@ import com.spark.newbitrade.entity.AssetRecord;
 import com.spark.newbitrade.utils.DateUtils;
 import com.spark.newbitrade.utils.MathUtils;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 /**
@@ -83,16 +84,16 @@ public class AssetRecordAdapter extends BaseQuickAdapter<AssetRecord, BaseViewHo
         }
         if (type == 5) {
             helper.setTextColor(R.id.tvBuyCanUse, MyApplication.getApp().getResources().getColor(R.color.font_red));
-            helper.setText(R.id.tvBuyCanUse, "- " + MathUtils.subZeroAndDot(MathUtils.getRundNumber(item.getAmount(), BaseConstant.MONEY_FORMAT, null)) );
+            helper.setText(R.id.tvBuyCanUse, "- " + MathUtils.subZeroAndDot(String.valueOf(item.getAmount().toPlainString())));
         } else if (type == 6) {
             helper.setTextColor(R.id.tvBuyCanUse, MyApplication.getApp().getResources().getColor(R.color.bg_btn_normal));
-            helper.setText(R.id.tvBuyCanUse, MathUtils.subZeroAndDot(MathUtils.getRundNumber(item.getAmount(), BaseConstant.MONEY_FORMAT, null)) );
+            helper.setText(R.id.tvBuyCanUse, MathUtils.subZeroAndDot(String.valueOf(item.getAmount().toPlainString())));
         } else {
             helper.setTextColor(R.id.tvBuyCanUse, MyApplication.getApp().getResources().getColor(R.color.bg_btn_normal));
-            helper.setText(R.id.tvBuyCanUse, MathUtils.subZeroAndDot(MathUtils.getRundNumber(item.getAmount(), BaseConstant.MONEY_FORMAT, null)) );
+            helper.setText(R.id.tvBuyCanUse, MathUtils.subZeroAndDot(String.valueOf(item.getAmount().toPlainString())));
         }
 
         helper.setText(R.id.tvFrozon, DateUtils.getFormatTime("HH:mm:ss MM/dd", item.getCreateTime()));
-        helper.setText(R.id.tvFee, MathUtils.subZeroAndDot(MathUtils.getRundNumber(item.getFee(), BaseConstant.MONEY_FORMAT, null)) );
+        helper.setText(R.id.tvFee, MathUtils.subZeroAndDot(String.valueOf(item.getFee().toPlainString())));
     }
 }
