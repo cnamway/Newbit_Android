@@ -235,11 +235,12 @@ public class ExtractActivity extends BaseActivity implements ExtractContract.Ext
                     }
                 } else {
                     tvFinalCount.setText(0 + "");
-                    double fee = 0;
-                    if (extractInfo != null && extractInfo.getWithdrawFee() != null) {
-                        fee = extractInfo.getWithdrawFee().doubleValue();
-                    }
-                    tvServiceFee.setText(MathUtils.subZeroAndDot(fee + ""));
+//                    double fee = 0;
+//                    if (extractInfo != null && extractInfo.getWithdrawFee() != null) {
+//                        fee = extractInfo.getWithdrawFee().doubleValue();
+//                    }
+                    //tvServiceFee.setText(MathUtils.subZeroAndDot(fee + ""));
+                    tvServiceFee.setText(MathUtils.subZeroAndDot(String.valueOf(extractInfo.getWithdrawFee().toPlainString())));
                 }
             }
 
