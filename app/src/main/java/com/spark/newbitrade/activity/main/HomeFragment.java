@@ -42,14 +42,17 @@ import com.spark.newbitrade.serivce.chatUtils.SocketMessage;
 import com.spark.newbitrade.serivce.chatUtils.SocketResponse;
 import com.spark.newbitrade.ui.intercept.MyScrollView;
 import com.spark.newbitrade.utils.GlobalConstant;
+import com.spark.newbitrade.utils.LanguageUtil;
 import com.spark.newbitrade.utils.LogUtils;
 import com.spark.newbitrade.utils.NetCodeUtils;
+import com.spark.newbitrade.utils.SharedPreferenceInstance;
 import com.spark.newbitrade.utils.StringUtils;
 import com.spark.newbitrade.utils.ToastUtils;
 import com.sunfusheng.marqueeview.MarqueeView;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
 import com.youth.banner.listener.OnBannerListener;
+import com.yzq.zxinglibrary.common.Constant;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -388,10 +391,10 @@ public class HomeFragment extends BaseTransFragment implements MainContract.Home
             @Override
             public void OnBannerClick(int position) {
                 BannerEntity bannerEntity = objList.get(position);
-                if (bannerEntity != null && StringUtils.isNotEmpty(bannerEntity.getLinkUrl())) {
+                if (bannerEntity != null && StringUtils.isNotEmpty(bannerEntity.getLink()) && bannerEntity.getLink().contains("http")) {
                     Bundle bundle = new Bundle();
                     bundle.putString("title", getString(R.string.detail_title));
-                    bundle.putString("url", bannerEntity.getLinkUrl());
+                    bundle.putString("url", bannerEntity.getLink());
                     bundle.putBoolean("isImage", true);
                     showActivity(WebViewActivity.class, bundle);
                 }
@@ -554,15 +557,23 @@ public class HomeFragment extends BaseTransFragment implements MainContract.Home
     public void bannersSuccess(final List<BannerEntity> obj) {
         if (obj == null) return;
         objList = obj;
+        int languageType = SharedPreferenceInstance.getInstance().getLanguageCode();
         for (BannerEntity bannerEntity : obj) {
-            String url = bannerEntity.getPicture();
-            if (StringUtils.isNotEmpty(url)) {
-                if (!url.contains("http")) {
-                    url = UrlFactory.getHost() + "/" + url;
+            if (languageType == 1) {//中文
+                List<BannerEntity.PictureBean> urls = bannerEntity.getPicture();
+                for (BannerEntity.PictureBean pictureBean : urls) {
+                    if (pictureBean.getLanguage().equals("zh")) {
+                        imageUrls.add(pictureBean.getUrl());
+                    }
                 }
-                imageUrls.add(url);
+            } else {//英文
+                List<BannerEntity.PictureBean> urls = bannerEntity.getPicture();
+                for (BannerEntity.PictureBean pictureBean : urls) {
+                    if (pictureBean.getLanguage().equals("en")) {
+                        imageUrls.add(pictureBean.getUrl());
+                    }
+                }
             }
-
         }
         if (imageUrls.size() > 0) {
             banner.setImages(imageUrls); // 设置图片集合

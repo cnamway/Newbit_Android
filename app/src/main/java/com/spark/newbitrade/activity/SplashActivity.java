@@ -37,7 +37,7 @@ public class SplashActivity extends BaseActivity {
     @Override
     protected void initView() {
         //启动页变形优化
-        AppUtils.scaleImage(this, ivPic, R.mipmap.splash);
+        //AppUtils.scaleImage(this, ivPic, R.mipmap.splash);
     }
 
     /**
