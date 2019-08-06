@@ -91,9 +91,9 @@ public class AdsActivity extends BaseActivity implements AdsContract.View, Filte
             position = bundle.getInt("position");
         }
         if (position == 2) {
-            setTitle("上架中");
+            setTitle(getString(R.string.grounding));
         } else {
-            setTitle("已下架");
+            setTitle(getString(R.string.shelved));
         }
     }
 

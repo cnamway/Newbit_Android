@@ -166,7 +166,7 @@ public class StorePublishActivity extends BaseActivity implements StorePublishCo
         for (AuthMerchantApplyMarginType type : coinInfos) {
             if (coinName.equals(type.getCoinName())) {
                 coinInfo = type;
-                etPrice.setHint(">=" + MathUtils.subZeroAndDot(coinInfo.getAdvMinLimit().toString()) + " 且 " + "<=" + MathUtils.subZeroAndDot(coinInfo.getAdvMaxLimit().toString()));
+                etPrice.setHint(">=" + MathUtils.subZeroAndDot(coinInfo.getAdvMinLimit().toString()) + getString(R.string.str_and) + "<=" + MathUtils.subZeroAndDot(coinInfo.getAdvMaxLimit().toString()));
             }
         }
     }
@@ -256,11 +256,11 @@ public class StorePublishActivity extends BaseActivity implements StorePublishCo
         }
         if (coinInfo != null) {
             if (Double.valueOf(number) > MathUtils.getDoudleByBigDecimal(coinInfo.getAdvMaxLimit())) {
-                ToastUtils.showToast(getString(R.string.text_sell_num) + "必须" + "大于等于" + MathUtils.subZeroAndDot(coinInfo.getAdvMinLimit().toString()) + " 且 " + "小于等于" + MathUtils.subZeroAndDot(coinInfo.getAdvMaxLimit().toString()));
+                ToastUtils.showToast(getString(R.string.str_ad_sell_must_min) + MathUtils.subZeroAndDot(coinInfo.getAdvMinLimit().toString()) + getString(R.string.str_and) + getString(R.string.str_ad_sell_must_max) + MathUtils.subZeroAndDot(coinInfo.getAdvMaxLimit().toString()));
                 etPrice.requestFocus();
                 return;
             } else if (Double.valueOf(number) < MathUtils.getDoudleByBigDecimal(coinInfo.getAdvMinLimit())) {
-                ToastUtils.showToast(getString(R.string.text_sell_num) + "必须" + "大于等于" + MathUtils.subZeroAndDot(coinInfo.getAdvMinLimit().toString()) + " 且 " + "小于等于" + MathUtils.subZeroAndDot(coinInfo.getAdvMaxLimit().toString()));
+                ToastUtils.showToast(getString(R.string.str_ad_sell_must_min) + MathUtils.subZeroAndDot(coinInfo.getAdvMinLimit().toString()) + getString(R.string.str_and) + getString(R.string.str_ad_sell_must_max) + MathUtils.subZeroAndDot(coinInfo.getAdvMaxLimit().toString()));
                 etPrice.requestFocus();
                 return;
             }

@@ -107,5 +107,11 @@ public class GlobalConstant {
     //public static final String ACP = "ACP";
     public static final String OTC = "OTC";
 
+    //智能合约中文版
     public static final String He_Yue = "http://www.newbtc.online/contract/#/contract-mobile";
+    //智能合约英文版
+    public static final String He_Yue_EN = "http://www.newbtc.online/contract/#/contract-mobile-en";
+    //钱包下载
+    public static final String Wallet_Download = "https://fir.im/hedb";
+    //http://www.newbitcoins.net/wallet_cn.html
 }

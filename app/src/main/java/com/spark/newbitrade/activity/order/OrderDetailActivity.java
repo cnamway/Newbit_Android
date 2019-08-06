@@ -242,7 +242,7 @@ public class OrderDetailActivity extends BaseActivity implements OrderDetailCont
                     presenter.paymentOrderUsingPOST(orderPaymentDto);
                     selectDialog.dismiss();
                 } else {
-                    ToastUtils.showToast("请选择支付方式");
+                    ToastUtils.showToast(getString(R.string.str_please_select_payway));
                 }
             }
         });
@@ -373,6 +373,7 @@ public class OrderDetailActivity extends BaseActivity implements OrderDetailCont
                     .contentTextColor(Color.parseColor("#6a6e8a"))
                     .btnTextColor(Color.parseColor("#6a6e8a"), Color.parseColor("#6a6e8a"))
                     //.btnPressColor(Color.parseColor("#2B2B2B"))
+                    .btnText(getString(R.string.str_cancel), getString(R.string.dialog_sure))
                     .show();
             dialog.setOnBtnClickL(new OnBtnClickL() {
                 @Override

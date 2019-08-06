@@ -16,7 +16,7 @@
 
         <TextView
             style="@style/textview_tag"
-            android:minWidth="90dp"
+            android:layout_width="100dp"
             android:text="@string/name" />
 
         <EditText
@@ -33,7 +33,7 @@
 
         <TextView
             style="@style/textview_tag"
-            android:minWidth="90dp"
+            android:layout_width="100dp"
             android:text="@string/bank" />
 
         <TextView
@@ -58,7 +58,7 @@
 
         <TextView
             style="@style/textview_tag"
-            android:minWidth="90dp"
+            android:layout_width="100dp"
             android:text="@string/account_opening_branch" />
 
         <EditText
@@ -76,7 +76,7 @@
         <TextView
             android:id="@+id/tvAccount"
             style="@style/textview_tag"
-            android:minWidth="90dp"
+            android:layout_width="100dp"
             android:text="@string/unionpay_account" />
 
         <EditText
@@ -95,7 +95,7 @@
 
         <TextView
             style="@style/textview_tag"
-            android:minWidth="90dp"
+            android:layout_width="100dp"
             android:text="@string/confirm_cardnumber" />
 
         <EditText
@@ -112,7 +112,7 @@
 
         <TextView
             style="@style/textview_tag"
-            android:minWidth="90dp"
+            android:layout_width="100dp"
             android:text="@string/text_money_pwd" />
 
         <EditText

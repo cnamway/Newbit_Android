@@ -62,8 +62,6 @@ public class LoginActivity extends BaseActivity implements LoginContract.LoginVi
     TextView tvForgetPas;
     @BindView(R.id.ivEye)
     ImageView ivEye;
-    @BindView(R.id.tvSign)
-    TextView tvSign;
 
     private LoginPresenterImpl loginPresenter;
     private String gtc;
@@ -129,11 +127,9 @@ public class LoginActivity extends BaseActivity implements LoginContract.LoginVi
                 etPassword.requestFocus();
             }
         }
-        String htm = "<font color=#6C6E8A>" + getString(R.string.str_users_please_sigh_in_before) + "</font>" + getString(R.string.str_users_please_sigh_in_after) + ">>";
-        tvSign.setText(Html.fromHtml(htm));
     }
 
-    @OnClick({R.id.tvForgetPas, R.id.tvLogin, R.id.ivEye, R.id.tvSign})
+    @OnClick({R.id.tvForgetPas, R.id.tvLogin, R.id.ivEye, R.id.llGoSign})
     @Override
     protected void setOnClickListener(View v) {
         super.setOnClickListener(v);
@@ -147,7 +143,7 @@ public class LoginActivity extends BaseActivity implements LoginContract.LoginVi
             case R.id.ivEye:
                 isShowVisible();
                 break;
-            case R.id.tvSign:
+            case R.id.llGoSign:
                 showActivity(SignUpActivity.class, null, 0);
                 break;
         }

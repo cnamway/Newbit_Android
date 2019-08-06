@@ -55,7 +55,7 @@ public class PayWaySelectActivity extends BaseActivity implements PayWaySelectCo
         setSetTitleAndBack(false, true);
         tvTitle.setText(R.string.str_prompt_recieve_kind);
         tvGoto.setVisibility(View.VISIBLE);
-        tvGoto.setText("确定");
+        tvGoto.setText(getString(R.string.dialog_sure));
     }
 
     @Override
@@ -144,7 +144,7 @@ public class PayWaySelectActivity extends BaseActivity implements PayWaySelectCo
                 if (hashMap.containsKey(payType)) {
                     PayWaySetting temp = hashMap.get(payType);
                     if (temp.getId().longValue() != payWaySetting.getId().longValue()) {
-                        ToastUtils.showToast("同一种收款方式只能选择一个账户");
+                        ToastUtils.showToast(getString(R.string.str_payway_only_one));
                     } else {
                         hashMap.remove(payType);
                         ((PayWaySetting) adapter.getItem(position)).setIsSelected(0);

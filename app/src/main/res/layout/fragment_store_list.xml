@@ -17,7 +17,7 @@
         android:layout_marginLeft="@dimen/dp_20"
         android:layout_marginRight="@dimen/dp_20"
         android:gravity="center"
-        android:text="为VIP承兑商安全高价群集交易"
+        android:text="@string/str_store_vip"
         android:textColor="@color/black"
         android:textSize="@dimen/font_lager"
         android:textStyle="bold" />
@@ -29,7 +29,7 @@
         android:layout_marginRight="@dimen/dp_20"
         android:layout_marginTop="@dimen/dp_20"
         android:gravity="center|right"
-        android:text="VIP商家群集回收价"
+        android:text="@string/str_store_vip_tag"
         android:textColor="@color/black"
         android:textSize="@dimen/font_mini" />
 

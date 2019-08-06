@@ -118,7 +118,7 @@ public class ExtractActivity extends BaseActivity implements ExtractContract.Ext
         if (bundle != null) {
             wallet = (Wallet) bundle.getSerializable("coin");
             if (wallet != null) {
-                tvTitle.setText("发送" + wallet.getCoinId());
+                tvTitle.setText(getString(R.string.str_send) + " " + wallet.getCoinId());
                 tvCanUseUnit.setText(wallet.getCoinId());
                 tvGetUnit.setText(wallet.getCoinId());
                 tvCollectUnit.setText(wallet.getCoinId());

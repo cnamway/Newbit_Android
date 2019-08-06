@@ -125,7 +125,7 @@
 
             <TextView
                 style="@style/textview_tag"
-                android:minWidth="90dp"
+                android:layout_width="100dp"
                 android:text="@string/phone_code"
                 android:textColor="@color/main_font_content"
                 android:textSize="@dimen/font_normal" />

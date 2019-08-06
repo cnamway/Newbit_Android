@@ -72,8 +72,8 @@ public class RechargeActivity extends BaseActivity implements RechargeContract.W
         if (bundle != null) {
             coin = (Wallet) bundle.getSerializable("coin");
             if (coin != null) {
-                tvTitle.setText(coin.getCoinId() + getString(R.string.charge_money));
-                tvNotice.setText(getString(R.string.risk_warning) + coin.getCoinId() + getString(R.string.assets));
+                tvTitle.setText(getString(R.string.charge_money) + " " + coin.getCoinId());
+                tvNotice.setText(getString(R.string.risk_warning) + coin.getCoinId() + " " + getString(R.string.assets));
             } else {
                 tvAddress.setText(getString(R.string.no_address));
             }
@@ -224,7 +224,7 @@ public class RechargeActivity extends BaseActivity implements RechargeContract.W
             if (map != null) {
                 ExtractInfo extractInfo = map.get(coin.getCoinId());
                 if (extractInfo != null && extractInfo.getMinDepositAmount() != null) {
-                    tvNotice.setText(getString(R.string.risk_warning) + coin.getCoinId() + getString(R.string.assets) + "，最小充值金额" + MathUtils.subZeroAndDot(extractInfo.getMinDepositAmount().toString()) + " " + coin.getCoinId());
+                    tvNotice.setText(getString(R.string.risk_warning) + coin.getCoinId() + getString(R.string.assets) + "\n" + getString(R.string.str_mini_charge) + MathUtils.subZeroAndDot(extractInfo.getMinDepositAmount().toPlainString()) + " " + coin.getCoinId());
                 }
             }
         }

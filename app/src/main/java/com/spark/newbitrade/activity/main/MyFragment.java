@@ -184,6 +184,7 @@ public class MyFragment extends BaseTransFragment {
     private void notLoginViewText() {
         tvNickName.setText(getString(R.string.not_login));
         Glide.with(getActivity().getApplicationContext()).load(R.mipmap.icon_avatar).into(ivHeader);
+        etAccount.setText(getString(R.string.welcome_to));
     }
 
     /**
@@ -194,6 +195,7 @@ public class MyFragment extends BaseTransFragment {
             tvNickName.setText(user.getMobilePhone());
             if (!StringUtils.isEmpty(user.getAvatar()))
                 Glide.with(getActivity().getApplicationContext()).load(user.getAvatar()).into(ivHeader);
+            etAccount.setText(getString(R.string.welcome_to));
         }
     }
 

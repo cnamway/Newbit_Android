@@ -1,22 +1,16 @@
 package com.spark.newbitrade.activity.aboutus;
 
 import android.app.ProgressDialog;
-import android.graphics.Color;
-import android.os.Bundle;
-import android.view.Gravity;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.flyco.dialog.listener.OnBtnClickL;
-import com.flyco.dialog.widget.NormalDialog;
 import com.google.gson.Gson;
 import com.spark.library.cms.model.MessageResultWebConfigVo;
 import com.spark.newbitrade.R;
 import com.spark.newbitrade.activity.feed.FeedbackActivity;
 import com.spark.newbitrade.base.BaseActivity;
 import com.spark.newbitrade.entity.HttpErrorEntity;
-import com.spark.newbitrade.entity.Vision;
 import com.spark.newbitrade.entity.VisionEntity;
 import com.spark.newbitrade.ui.AppVersionDialog;
 import com.spark.newbitrade.utils.CommonUtils;
@@ -37,9 +31,7 @@ import java.io.File;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
-import config.Injection;
 import okhttp3.Request;
 
 public class AboutUsActivity extends BaseActivity implements com.spark.newbitrade.activity.aboutus.AboutUsContract.View {
@@ -71,14 +63,14 @@ public class AboutUsActivity extends BaseActivity implements com.spark.newbitrad
         setSetTitleAndBack(false, true);
         setTitle(getString(R.string.about_us));
         tvName.setText(getString(R.string.app_name) + "  " + "V" + CommonUtils.getVersionName(this));
-        tvVersionNum.setText("V" + CommonUtils.getVersionName(this));
+        //tvVersionNum.setText("V" + CommonUtils.getVersionName(this));
         initProgressDialog();
     }
 
     @Override
     protected void initData() {
         super.initData();
-        presenter = new com.spark.newbitrade.activity.aboutus.AboutUsPresenter(this);
+        presenter = new AboutUsPresenter(this);
     }
 
     @Override

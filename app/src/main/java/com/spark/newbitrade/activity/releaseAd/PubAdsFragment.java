@@ -479,7 +479,7 @@ public class PubAdsFragment extends BaseLazyFragment implements ReleaseAdContrac
     private void doClickCoinClick(int position) {
         coinInfo = coinInfos.get(position);
         if (coinInfo != null) {
-            etCount.setHint("大于等于" + MathUtils.subZeroAndDot(coinInfo.getAdvMinLimit().toString()) + " 且 " + "小于等于" + MathUtils.subZeroAndDot(coinInfo.getAdvMaxLimit().toString()));
+            etCount.setHint("大于等于" + MathUtils.subZeroAndDot(coinInfo.getAdvMinLimit().toString()) + getString(R.string.str_and) + getString(R.string.str_ad_sell_must_max) + MathUtils.subZeroAndDot(coinInfo.getAdvMaxLimit().toString()));
         }
         tvCoin.setText(coinInfo.getCoinName());
         presenter.priceFind(coinInfo.getCoinName(), "CNY");
@@ -496,6 +496,7 @@ public class PubAdsFragment extends BaseLazyFragment implements ReleaseAdContrac
                 .contentTextColor(Color.parseColor("#ff6a6e8a"))
                 .btnTextColor(Color.parseColor("#ff6a6e8a"), Color.parseColor("#ff6a6e8a"))
                 //.btnPressColor(Color.parseColor("#2B2B2B"))
+                .btnText(getString(R.string.str_cancel), getString(R.string.dialog_sure))
                 .show();
         dialog.setOnBtnClickL(new OnBtnClickL() {
             @Override
@@ -617,9 +618,9 @@ public class PubAdsFragment extends BaseLazyFragment implements ReleaseAdContrac
             if (!StringUtils.isEmpty(count, max, min) && Double.valueOf(max) != 0 && Double.valueOf(min) != 0) {
                 if (Double.valueOf(count) > Double.valueOf(max)) {
                     if (advertiseType == 0) {
-                        ToastUtils.showToast(getString(R.string.text_buy_num) + "必须" + "大于等于" + MathUtils.subZeroAndDot(coinInfo.getAdvMinLimit().toString()) + " 且 " + "小于等于" + MathUtils.subZeroAndDot(coinInfo.getAdvMaxLimit().toString()));
+                        ToastUtils.showToast(getString(R.string.str_ad_buy_must_min) + MathUtils.subZeroAndDot(coinInfo.getAdvMinLimit().toString()) + getString(R.string.str_and) + getString(R.string.str_ad_sell_must_max) + MathUtils.subZeroAndDot(coinInfo.getAdvMaxLimit().toString()));
                     } else if (advertiseType == 1) {
-                        ToastUtils.showToast(getString(R.string.text_sell_num) + "必须" + "大于等于" + MathUtils.subZeroAndDot(coinInfo.getAdvMinLimit().toString()) + " 且 " + "小于等于" + MathUtils.subZeroAndDot(coinInfo.getAdvMaxLimit().toString()));
+                        ToastUtils.showToast(getString(R.string.str_ad_sell_must_min) + MathUtils.subZeroAndDot(coinInfo.getAdvMinLimit().toString()) + getString(R.string.str_and) + getString(R.string.str_ad_sell_must_max) + MathUtils.subZeroAndDot(coinInfo.getAdvMaxLimit().toString()));
                     }
                     if (Double.valueOf(count) > Double.valueOf(max)) {
                         etCount.setText(max);
@@ -680,9 +681,9 @@ public class PubAdsFragment extends BaseLazyFragment implements ReleaseAdContrac
             etCount.requestFocus();
         } else if (Double.valueOf(number) < Double.valueOf(min)) {
             if (advertiseType == 0) {
-                ToastUtils.showToast(getString(R.string.text_buy_num) + "必须" + "大于等于" + MathUtils.subZeroAndDot(coinInfo.getAdvMinLimit().toString()) + " 且 " + "小于等于" + MathUtils.subZeroAndDot(coinInfo.getAdvMaxLimit().toString()));
+                ToastUtils.showToast(getString(R.string.str_ad_buy_must_min) + MathUtils.subZeroAndDot(coinInfo.getAdvMinLimit().toString()) + getString(R.string.str_and) + getString(R.string.str_ad_sell_must_max) + MathUtils.subZeroAndDot(coinInfo.getAdvMaxLimit().toString()));
             } else if (advertiseType == 1) {
-                ToastUtils.showToast(getString(R.string.text_sell_num) + "必须" + "大于等于" + MathUtils.subZeroAndDot(coinInfo.getAdvMinLimit().toString()) + " 且 " + "小于等于" + MathUtils.subZeroAndDot(coinInfo.getAdvMaxLimit().toString()));
+                ToastUtils.showToast(getString(R.string.str_ad_sell_must_min) + MathUtils.subZeroAndDot(coinInfo.getAdvMinLimit().toString()) + getString(R.string.str_and) + getString(R.string.str_ad_sell_must_max) + MathUtils.subZeroAndDot(coinInfo.getAdvMaxLimit().toString()));
             }
         }
 //        else if (Double.valueOf(number) > MathUtils.getDoudleByBigDecimal(coinInfo.getAdvMaxLimit())) {

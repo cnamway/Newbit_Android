@@ -100,13 +100,13 @@ public class MyAdsFragment extends BaseNestingTransFragment {
     protected void loadData() {
         super.loadData();
         coinInfos.clear();
-        coinInfos.add("已下架");
-        coinInfos.add("上架中");
+        coinInfos.add(getString(R.string.shelved));
+        coinInfos.add(getString(R.string.grounding));
         tabs.clear();
         fragments.clear();
         for (String coinInfo : coinInfos) {
             tabs.add(coinInfo);
-            if ("已下架".equals(coinInfo)) {
+            if (getString(R.string.shelved).equals(coinInfo)) {
                 fragments.add(MyAdsListFragment.getInstance(1));
             } else {
                 fragments.add(MyAdsListFragment.getInstance(2));

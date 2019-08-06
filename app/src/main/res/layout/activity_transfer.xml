@@ -141,7 +141,7 @@
 
             <TextView
                 style="@style/textview_tag"
-                android:minWidth="90dp"
+                android:layout_width="100dp"
                 android:text="@string/text_money_pwd" />
 
             <EditText

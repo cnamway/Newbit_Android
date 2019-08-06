@@ -30,7 +30,7 @@
 
             <TextView
                 style="@style/textview_tag"
-                android:minWidth="100dp"
+                android:layout_width="100dp"
                 android:text="@string/old_money_pwd" />
 
             <EditText
@@ -49,7 +49,7 @@
         <TextView
             android:id="@+id/tvPwdTag"
             style="@style/textview_tag"
-            android:minWidth="100dp"
+            android:layout_width="100dp"
             android:text="@string/text_money_pwd" />
 
         <EditText
@@ -67,7 +67,7 @@
         <TextView
             android:id="@+id/tvRePwdTag"
             style="@style/textview_tag"
-            android:minWidth="100dp"
+            android:layout_width="100dp"
             android:text="@string/confirm_pwd" />
 
         <EditText

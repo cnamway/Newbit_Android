@@ -142,7 +142,7 @@ public class EditLoginPwdActivity extends BaseActivity implements EditLoginPwdCo
             gt3GeetestUtils.gt3TestFinish();
             gt3GeetestUtils = null;
         }
-        ToastUtils.showToast("请注意查收手机验证码");
+        ToastUtils.showToast(getString(R.string.str_code_success));
         timeCount.start();
         tvGetCode.setEnabled(false);
     }
@@ -213,7 +213,7 @@ public class EditLoginPwdActivity extends BaseActivity implements EditLoginPwdCo
             gt3GeetestUtils.gt3TestFinish();
             gt3GeetestUtils = null;
         }
-        ToastUtils.showToast("请注意查收手机验证码");
+        ToastUtils.showToast(getString(R.string.str_code_success));
         timeCount.start();
         tvGetCode.setEnabled(false);
     }

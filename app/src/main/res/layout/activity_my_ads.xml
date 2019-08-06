@@ -17,7 +17,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="已下架"
+            android:text="@string/shelved"
             android:textColor="@color/main_font_content" />
 
         <View
@@ -45,7 +45,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="上架中"
+            android:text="@string/grounding"
             android:textColor="@color/main_font_content" />
 
         <View

@@ -23,7 +23,7 @@
 
                 <TextView
                     style="@style/textview_tag"
-                    android:minWidth="80dp"
+                    android:layout_width="80dp"
                     android:text="@string/text_coin_type" />
 
                 <TextView
@@ -55,7 +55,7 @@
 
                 <TextView
                     style="@style/textview_tag"
-                    android:minWidth="80dp"
+                    android:layout_width="80dp"
                     android:text="@string/text_place" />
 
                 <TextView
@@ -87,7 +87,7 @@
 
                 <TextView
                     style="@style/textview_tag"
-                    android:minWidth="80dp"
+                    android:layout_width="80dp"
                     android:text="@string/text_currency_type" />
 
                 <TextView
@@ -119,7 +119,7 @@
 
                 <TextView
                     style="@style/textview_tag"
-                    android:minWidth="80dp"
+                    android:layout_width="80dp"
                     android:text="@string/text_price_market" />
 
                 <TextView
@@ -145,7 +145,7 @@
 
                 <TextView
                     style="@style/textview_tag"
-                    android:minWidth="80dp"
+                    android:layout_width="80dp"
                     android:text="@string/text_price_type" />
 
                 <View
@@ -220,7 +220,7 @@
 
                     <TextView
                         style="@style/textview_tag"
-                        android:minWidth="80dp"
+                        android:layout_width="80dp"
                         android:text="@string/text_price_overflow" />
 
                     <TextView
@@ -237,7 +237,6 @@
                         android:gravity="left|center"
                         android:hint="@string/text_over_price"
                         android:inputType="numberDecimal"
-                        android:minWidth="100dp"
                         android:paddingLeft="16dp"
                         android:paddingRight="1dp"
                         android:text="" />
@@ -325,7 +324,7 @@
 
                     <TextView
                         style="@style/textview_tag"
-                        android:minWidth="80dp"
+                        android:layout_width="80dp"
                         android:text="@string/text_price_fixed" />
 
                     <TextView
@@ -343,7 +342,7 @@
                         android:gravity="left|center"
                         android:hint="@string/text_price_fixed_input"
                         android:inputType="numberDecimal"
-                        android:minWidth="100dp"
+
                         android:paddingLeft="16dp"
                         android:paddingRight="1dp"
                         android:textSize="14sp" />
@@ -374,7 +373,7 @@
                     <TextView
                         android:id="@+id/tvjyPriceTag"
                         style="@style/textview_tag"
-                        android:minWidth="80dp"
+                        android:layout_width="80dp"
                         android:text="@string/text_trade_price" />
 
                     <TextView
@@ -393,7 +392,7 @@
                         android:gravity="left|center"
                         android:hint="@string/text_enter_trade_price"
                         android:inputType="numberDecimal"
-                        android:minWidth="100dp"
+
                         android:paddingLeft="16dp"
                         android:paddingRight="1dp"
                         android:textSize="@dimen/font_small" />
@@ -415,7 +414,7 @@
                 <TextView
                     android:id="@+id/tvCountText"
                     style="@style/textview_tag"
-                    android:minWidth="80dp"
+                    android:layout_width="80dp"
                     android:text="@string/text_buy_num" />
 
                 <TextView
@@ -433,7 +432,7 @@
                     android:gravity="left|center"
                     android:hint="@string/text_trade_num"
                     android:inputType="numberDecimal"
-                    android:minWidth="100dp"
+
                     android:paddingLeft="16dp"
                     android:paddingRight="1dp"
                     android:textSize="14sp" />
@@ -447,7 +446,7 @@
                 <TextView
                     android:id="@+id/tvPayWayText"
                     style="@style/textview_tag"
-                    android:minWidth="80dp"
+                    android:layout_width="80dp"
                     android:text="@string/text_receive_methods" />
 
                 <TextView
@@ -482,7 +481,7 @@
 
                 <TextView
                     style="@style/textview_tag"
-                    android:minWidth="80dp"
+                    android:layout_width="80dp"
                     android:text="@string/text_pay_time" />
 
                 <TextView
@@ -499,7 +498,7 @@
                     android:layout_weight="1"
                     android:gravity="left|center"
                     android:hint="@string/text_select_pay_time"
-                    android:minWidth="100dp"
+
                     android:numeric="integer"
                     android:paddingRight="1dp"
                     android:visibility="gone" />
@@ -510,7 +509,7 @@
                     android:layout_weight="1"
                     android:gravity="left|center"
                     android:hint="@string/str_prompt_pay_time"
-                    android:minWidth="100dp"
+
                     android:numeric="integer"
                     android:paddingLeft="16dp"
                     android:paddingRight="1dp"
@@ -536,7 +535,7 @@
 
                 <TextView
                     style="@style/textview_tag"
-                    android:minWidth="80dp"
+                    android:layout_width="80dp"
                     android:text="@string/text_min" />
 
                 <TextView
@@ -554,7 +553,7 @@
                     android:gravity="left|center"
                     android:hint="@string/text_min_msg"
                     android:inputType="numberDecimal"
-                    android:minWidth="100dp"
+
                     android:paddingLeft="16dp"
                     android:paddingRight="1dp"
                     android:textSize="14sp" />
@@ -573,7 +572,7 @@
 
                 <TextView
                     style="@style/textview_tag"
-                    android:minWidth="80dp"
+                    android:layout_width="80dp"
                     android:text="@string/text_max" />
 
                 <TextView
@@ -591,7 +590,7 @@
                     android:gravity="left|center"
                     android:hint="@string/text_max_msg"
                     android:inputType="numberDecimal"
-                    android:minWidth="100dp"
+
                     android:paddingLeft="16dp"
                     android:paddingRight="1dp"
                     android:textSize="14sp" />
@@ -615,7 +614,7 @@
 
                 <TextView
                     style="@style/textview_tag"
-                    android:minWidth="80dp"
+                    android:layout_width="80dp"
                     android:text="@string/text_money_pwd" />
 
                 <TextView
@@ -634,7 +633,7 @@
                     android:hint="@string/text_enter_money_pwd"
                     android:inputType="numberPassword"
                     android:maxLength="6"
-                    android:minWidth="100dp"
+
                     android:paddingLeft="16dp"
                     android:paddingRight="1dp"
                     android:textSize="14sp" />
@@ -658,7 +657,7 @@
 
                 <TextView
                     style="@style/textview_tag"
-                    android:minWidth="90dp"
+                    android:layout_width="100dp"
                     android:text="@string/text_ad_message" />
 
                 <EditText
@@ -669,7 +668,7 @@
                     android:gravity="top"
                     android:hint="@string/text_enter_ad_message"
                     android:lines="5"
-                    android:minWidth="100dp"
+
                     android:paddingRight="1dp" />
             </LinearLayout>
 
@@ -683,7 +682,6 @@
 
                 <TextView
                     style="@style/textview_tag"
-                    android:minWidth="90dp"
                     android:text="@string/text_auto_reply" />
 
                 <View
@@ -751,7 +749,6 @@
 
                 <TextView
                     style="@style/textview_tag"
-                    android:minWidth="90dp"
                     android:text="@string/text_auto_reply_content" />
 
                 <EditText

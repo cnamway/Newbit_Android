@@ -390,22 +390,22 @@ public class C2CListFragment extends BaseLazyFragment implements C2CListContract
         tvCoinName = headerView.findViewById(R.id.tvCoinName);
         tvBuy = headerView.findViewById(R.id.tvBuy);
 
-        tvBuyType.setText("按金额购买");
+        tvBuyType.setText(getString(R.string.str_money_buy));
         tvCoinName.setText(coinName);
-        etCount.setHint("请输入购买数量");
+        etCount.setHint(getString(R.string.str_input_number));
         buyType = 1;
         tvBuyType.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (tvBuyType.getText().toString().equals("按金额购买")) {
-                    tvBuyType.setText("按数量购买");
+                if (tvBuyType.getText().toString().equals(getString(R.string.str_money_buy))) {
+                    tvBuyType.setText(getString(R.string.str_amount_buy));
                     tvCoinName.setText("CNY");
-                    etCount.setHint("请输入购买金额");
+                    etCount.setHint(getString(R.string.str_input_money));
                     buyType = 2;
                 } else {
-                    tvBuyType.setText("按金额购买");
+                    tvBuyType.setText(getString(R.string.str_money_buy));
                     tvCoinName.setText(coinName);
-                    etCount.setHint("请输入购买数量");
+                    etCount.setHint(getString(R.string.str_input_number));
                     buyType = 1;
                 }
             }
@@ -455,7 +455,7 @@ public class C2CListFragment extends BaseLazyFragment implements C2CListContract
     protected void checkInput() {
         String count = StringUtils.getText(etCount);
         if (StringUtils.isEmpty(count)) {
-            ToastUtils.showToast("请输入购买数量或金额");
+            ToastUtils.showToast(getString(R.string.str_enter_amount));
         } else if (StringUtils.isEmpty(actualPayment)) {
             showOrderDialog();
         } else {
@@ -496,10 +496,7 @@ public class C2CListFragment extends BaseLazyFragment implements C2CListContract
                 bundle.putSerializable("status", OrderFragment.Status.UNPAID);
                 showActivity(OrderDetailActivity.class, bundle, 1);
             } catch (Exception e) {
-                ToastUtils.showToast("订单解析错误");
             }
-        } else {
-            ToastUtils.showToast("创建订单失败，请重试");
         }
     }
 

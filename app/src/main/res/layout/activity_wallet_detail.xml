@@ -55,7 +55,7 @@
                 android:id="@+id/tvToalAmount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/str_base_account_all"
+                android:text=""
                 android:textColor="@color/white"
                 android:textSize="@dimen/font_normal" />
 
@@ -120,7 +120,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/dp_10"
-                    android:text="接收"
+                    android:text="@string/str_receive"
                     android:textColor="@color/white"
                     android:textSize="@dimen/font_small" />
 
@@ -147,7 +147,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/dp_10"
-                    android:text="发送"
+                    android:text="@string/str_send"
                     android:textColor="@color/white"
                     android:textSize="@dimen/font_small" />
 
@@ -174,7 +174,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:text="账单明细"
+            android:text="@string/str_account_record"
             android:textColor="@color/black"
             android:textSize="@dimen/font_normal" />
 

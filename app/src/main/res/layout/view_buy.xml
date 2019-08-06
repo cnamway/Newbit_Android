@@ -26,7 +26,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="一键购买"
+                android:text="@string/str_quick_buy"
                 android:textColor="@color/black"
                 android:textSize="@dimen/font_normal" />
 
@@ -41,7 +41,7 @@
                 android:drawableLeft="@mipmap/icon_buy_change"
                 android:drawablePadding="@dimen/dp_6"
                 android:gravity="center"
-                android:text="按数量购买"
+                android:text="@string/str_amount_buy"
                 android:textColor="@color/btn_normal"
                 android:textSize="@dimen/font_small" />
 
@@ -61,7 +61,6 @@
                 android:gravity="center"
                 android:hint=""
                 android:inputType="numberDecimal"
-                android:minWidth="100dp"
                 android:paddingLeft="16dp"
                 android:paddingRight="1dp"
                 android:textSize="14sp" />
@@ -87,7 +86,7 @@
                 android:paddingLeft="@dimen/dp_10"
                 android:paddingRight="@dimen/dp_10"
                 android:paddingTop="@dimen/dp_6"
-                android:text="购买"
+                android:text="@string/text_buy"
                 android:textColor="@color/white"
                 android:textSize="@dimen/font_small" />
 

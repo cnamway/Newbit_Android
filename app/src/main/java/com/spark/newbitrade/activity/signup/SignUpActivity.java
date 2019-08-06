@@ -55,7 +55,6 @@ public class SignUpActivity extends BaseActivity implements SignUpContract.SignV
     private TextView tvGetCode;
     private TextView tvSignUp;
     private EditText etComfirmPassword;
-    private TextView tvLoginTag;
     private CountryEntity country;
     private TimeCount timeCount;
     private SignUpPresenterImpl presenter;
@@ -120,9 +119,6 @@ public class SignUpActivity extends BaseActivity implements SignUpContract.SignV
         tvGetCode = findViewById(R.id.tvGetCode);
         tvSignUp = findViewById(R.id.tvSignUp);
         etComfirmPassword = findViewById(R.id.etComfirmPassword);
-        tvLoginTag = findViewById(R.id.tvLoginTag);
-        String htm = "<font color=#6C6E8A>" + getString(R.string.str_please_login_have_account) + "</font>" + getString(R.string.str_please_login) + ">>";
-        tvLoginTag.setText(Html.fromHtml(htm));
     }
 
     @Override
@@ -154,7 +150,7 @@ public class SignUpActivity extends BaseActivity implements SignUpContract.SignV
         }
     }
 
-    @OnClick({R.id.tvGetCode, R.id.tvSignUp, R.id.tvLoginTag, R.id.tvCountry})
+    @OnClick({R.id.tvGetCode, R.id.tvSignUp, R.id.llGoSign, R.id.tvCountry})
     @Override
     protected void setOnClickListener(View v) {
         super.setOnClickListener(v);
@@ -165,7 +161,7 @@ public class SignUpActivity extends BaseActivity implements SignUpContract.SignV
             case R.id.tvSignUp:
                 checkInput();
                 break;
-            case R.id.tvLoginTag:
+            case R.id.llGoSign:
                 finish();
                 break;
             case R.id.tvCountry:

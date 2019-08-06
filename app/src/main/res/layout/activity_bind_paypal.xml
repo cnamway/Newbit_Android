@@ -14,7 +14,7 @@
 
         <TextView
             style="@style/textview_tag"
-            android:minWidth="100dp"
+            android:layout_width="100dp"
             android:text="@string/name" />
 
         <EditText
@@ -35,7 +35,7 @@
             <TextView
                 android:id="@+id/tvAccount"
                 style="@style/textview_tag"
-                android:minWidth="100dp"
+                android:layout_width="100dp"
                 android:text="@string/str_account" />
 
             <EditText
@@ -52,7 +52,7 @@
 
         <TextView
             style="@style/textview_tag"
-            android:minWidth="100dp"
+            android:layout_width="100dp"
             android:text="@string/text_money_pwd" />
 
         <EditText

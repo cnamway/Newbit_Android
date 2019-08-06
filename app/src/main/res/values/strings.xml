@@ -208,7 +208,7 @@
 
     <!--我的-->
     <string name="not_login">未登录</string>
-    <string name="welcome_to">欢迎进入</string>
+    <string name="welcome_to">欢迎进入新比特</string>
     <string name="my_assast">我的资产</string>
     <string name="my_order">我的订单</string>
     <string name="my_ads">我的广告</string>
@@ -515,7 +515,7 @@
     <string name="not_raise_money_tag">不可充币提币</string>
     <string name="freeze_coin">冻结</string>
     <string name="mention_money">提币</string>
-    <string name="charge_money">充币</string>
+    <string name="charge_money">接收</string>
     <string name="match_money">配对</string>
     <string name="no_address_tag">暂无充币地址，请到平台添加</string>
     <string name="no_extract_address_tag">暂无提币地址，请添加</string>
@@ -808,4 +808,40 @@
     <string name="str_success">SUCCESS</string>
     <string name="str_success_tag">操作成功</string>
     <string name="str_heyue">智能合约</string>
+    <string name="str_receive">接收</string>
+    <string name="str_send">发送</string>
+    <string name="str_account_record">账单明细</string>
+    <string name="str_quick_buy">一键购买</string>
+    <string name="str_amount_buy">按数量购买</string>
+    <string name="str_money_buy">按金额购买</string>
+    <string name="str_input_number">请输入购买数量</string>
+    <string name="str_input_money">请输入购买金额</string>
+    <string name="str_store_vip">为VIP承兑商安全高价群集交易</string>
+    <string name="str_store_vip_tag">VIP商家群集回收价</string>
+    <string name="str_store_sell">出</string>
+    <string name="str_and"> 且 </string>
+    <string name="str_message">消息</string>
+    <string name="str_poundage">网络费</string>
+    <string name="str_mini_charge">最小充值金额：</string>
+    <string name="str_warn">提示</string>
+    <string name="str_forget_password">忘记手势密码，需要您重新登录!</string>
+    <string name="str_store_pc_auth">请前往pc端进行商家认证后才能发布广告</string>
+    <string name="str_go_login">去登录</string>
+    <string name="str_limit_4">至少连接4个点，请重新输入</string>
+    <string name="str_pass_corret">密码正确！</string>
+    <string name="str_pass_error">密码错误！</string>
+    <string name="str_select_payway">请先开启对方选择的收款方式</string>
+    <string name="str_open_payway">请先开启收款方式</string>
+    <string name="str_code_success">请注意查收手机验证码</string>
+    <string name="str_enter_amount">请输入购买数量或金额</string>
+    <string name="str_please_select_payway">请选择支付方式</string>
+    <string name="str_send_error">到账数量不能为负值！</string>
+    <string name="str_pay_success">支付成功</string>
+    <string name="str_payway_only_one">同一种收款方式只能选择一个账户</string>
+    <string name="str_pay_pass_6">请输入6位数字密码</string>
+    <string name="str_ad_sell_must_min">出售必须大于等于</string>
+    <string name="str_ad_sell_must_max">小于等于</string>
+    <string name="str_ad_buy_must_min">购买必须大于等于</string>
+    <string name="str_money_use">余额：</string>
+
 </resources>

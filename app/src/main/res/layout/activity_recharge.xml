@@ -59,78 +59,22 @@
             android:gravity="center"
             android:text="@string/copy_address"
             android:textColor="@color/main_font_content"
-            android:textSize="@dimen/font_small" />
+            android:textSize="@dimen/font_mini" />
+
+        <View
+            android:layout_width="@dimen/dp_10"
+            android:layout_height="@dimen/dp_10"/>
 
         <TextView
             android:id="@+id/tvAlbum"
             android:layout_width="0dp"
             android:layout_height="40dp"
-            android:layout_marginLeft="15dp"
             android:layout_weight="1"
             android:background="@drawable/ripple_btn_global_option_selector"
             android:gravity="center"
             android:text="@string/save_to_album"
             android:textColor="@color/white"
-            android:textSize="@dimen/font_small" />
+            android:textSize="@dimen/font_mini" />
     </LinearLayout>
-
-    <!--<LinearLayout-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:layout_marginBottom="30dp"-->
-    <!--android:layout_marginLeft="40dp"-->
-    <!--android:layout_marginRight="40dp"-->
-    <!--android:layout_marginTop="20dp"-->
-    <!--android:orientation="horizontal">-->
-
-    <!--<LinearLayout-->
-    <!--android:id="@+id/llAlbum"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="match_parent"-->
-    <!--android:layout_weight="1"-->
-    <!--android:background="@drawable/ripple_global_item"-->
-    <!--android:gravity="center"-->
-    <!--android:orientation="vertical">-->
-
-    <!--<ImageView-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:layout_weight="1"-->
-    <!--android:src="@mipmap/icon_album" />-->
-
-    <!--<TextView-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:layout_marginTop="8dp"-->
-    <!--android:text="@string/save_to_album"-->
-    <!--android:textColor="@color/main_font_content"-->
-    <!--android:textSize="@dimen/font_small" />-->
-    <!--</LinearLayout>-->
-
-    <!--<LinearLayout-->
-    <!--android:id="@+id/llCopy"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="match_parent"-->
-    <!--android:layout_weight="1"-->
-    <!--android:background="@drawable/ripple_global_item"-->
-    <!--android:gravity="center"-->
-    <!--android:orientation="vertical">-->
-
-    <!--<ImageView-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:layout_weight="1"-->
-    <!--android:src="@mipmap/icon_copy" />-->
-
-    <!--<TextView-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:layout_marginTop="8dp"-->
-    <!--android:text="@string/copy_address"-->
-    <!--android:textColor="@color/main_font_content"-->
-    <!--android:textSize="@dimen/font_small" />-->
-
-    <!--</LinearLayout>-->
-    <!--</LinearLayout>-->
 
 </LinearLayout>

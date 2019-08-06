@@ -136,7 +136,7 @@ public class SkipPayActivity extends BaseActivity implements SkipPayContract.Vie
 
             if (StringUtils.isNotEmpty(amount) && StringUtils.isNotEmpty(coinName)) {
                 tvAmount.setText(amount + " " + coinName);
-                tvCoinName.setText(coinName + "余额：");
+                tvCoinName.setText(coinName + getString(R.string.str_money_use));
             }
 
         }
@@ -170,7 +170,7 @@ public class SkipPayActivity extends BaseActivity implements SkipPayContract.Vie
             return;
         }
         if (!isCan) {
-            ToastUtils.showToast("到账数量不能为负值!");
+            ToastUtils.showToast(getString(R.string.str_send_error));
             return;
         }
         switch (v.getId()) {
@@ -262,7 +262,7 @@ public class SkipPayActivity extends BaseActivity implements SkipPayContract.Vie
     @Override
     public void walletWithdrawSuccess(String obj) {
         if (StringUtils.isNotEmpty(obj)) {
-            ToastUtils.showToast("支付成功");
+            ToastUtils.showToast(getString(R.string.str_pay_success));
             Intent intent = new Intent();
             Bundle bundle = new Bundle();
             bundle.putString("result", "success");

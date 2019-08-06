@@ -166,7 +166,7 @@ public class C2CBuyOrSellActivity extends BaseActivity implements C2CBuyOrSellCo
                     if (payWaySettings != null && payWaySettings.size() > 0) {
                         checkPayway();
                     } else {
-                        ToastUtils.showToast("请先开启收款方式");
+                        ToastUtils.showToast(getString(R.string.str_open_payway));
                     }
                 } else {
                     if (MyApplication.getApp().isLogin()) {
@@ -183,9 +183,9 @@ public class C2CBuyOrSellActivity extends BaseActivity implements C2CBuyOrSellCo
                             etLocalCoin.requestFocus();
                         } else if (Double.valueOf(totalStr) > Double.valueOf(max) || Double.valueOf(totalStr) < Double.valueOf(min)) {
                             if (myAdvertiseShowVo.getAdvertiseType() == 0) {
-                                ToastUtils.showToast(getString(R.string.text_sell) + "必须" + "大于等于" + min + " 且 " + "小于等于" + max);
+                                ToastUtils.showToast(getString(R.string.str_ad_sell_must_min) + " " + min + getString(R.string.str_and) + getString(R.string.str_ad_sell_must_max) + " " + max);
                             } else if (myAdvertiseShowVo.getAdvertiseType() == 1) {
-                                ToastUtils.showToast(getString(R.string.text_buy) + "必须" + "大于等于" + min + " 且 " + "小于等于" + max);
+                                ToastUtils.showToast(getString(R.string.str_ad_buy_must_min) + " " + min + getString(R.string.str_and) + getString(R.string.str_ad_sell_must_max) + " " + max);
                             }
                         } else {
                             showConfirmDialog();
@@ -216,7 +216,7 @@ public class C2CBuyOrSellActivity extends BaseActivity implements C2CBuyOrSellCo
             }
         }
         if (!canSell) {
-            ToastUtils.showToast("请先开启对方选择的收款方式");
+            ToastUtils.showToast(getString(R.string.str_select_payway));
         } else {
             if (MyApplication.getApp().isLogin()) {
                 String countStr = etOtherCoin.getText().toString();
@@ -232,9 +232,9 @@ public class C2CBuyOrSellActivity extends BaseActivity implements C2CBuyOrSellCo
                     etLocalCoin.requestFocus();
                 } else if (Double.valueOf(totalStr) > Double.valueOf(max) || Double.valueOf(totalStr) < Double.valueOf(min)) {
                     if (myAdvertiseShowVo.getAdvertiseType() == 0) {
-                        ToastUtils.showToast(getString(R.string.text_sell) + "必须" + "大于等于" + min + " 且 " + "小于等于" + max);
+                        ToastUtils.showToast(getString(R.string.str_ad_sell_must_min) + min + getString(R.string.str_and) + getString(R.string.str_ad_sell_must_max) + max);
                     } else if (myAdvertiseShowVo.getAdvertiseType() == 1) {
-                        ToastUtils.showToast(getString(R.string.text_buy) + "必须" + "大于等于" + min + " 且 " + "小于等于" + max);
+                        ToastUtils.showToast(getString(R.string.str_ad_buy_must_min) + min + getString(R.string.str_and) + getString(R.string.str_ad_sell_must_max) + max);
                     }
                 } else {
                     showConfirmDialog();

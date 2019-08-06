@@ -21,7 +21,7 @@
 
         <TextView
             style="@style/textview_tag"
-            android:minWidth="100dp"
+            android:layout_width="100dp"
             android:text="@string/phone_code" />
 
         <EditText
@@ -52,7 +52,7 @@
 
         <TextView
             style="@style/textview_tag"
-            android:minWidth="100dp"
+            android:layout_width="100dp"
             android:text="@string/new_money_pwd" />
 
         <EditText
@@ -70,7 +70,7 @@
 
         <TextView
             style="@style/textview_tag"
-            android:minWidth="100dp"
+            android:layout_width="100dp"
             android:text="@string/repeat_password" />
 
         <EditText

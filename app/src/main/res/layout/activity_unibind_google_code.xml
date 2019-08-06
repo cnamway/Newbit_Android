@@ -14,7 +14,7 @@
 
         <TextView
             style="@style/textview_tag"
-            android:minWidth="100dp"
+            android:layout_width="100dp"
             android:text="@string/google_code_tag" />
 
         <EditText
@@ -22,7 +22,7 @@
             style="@style/edittext_normal"
             android:hint="@string/google_code_tag"
             android:inputType="numberDecimal"
-            android:minWidth="100dp"
+            android:layout_width="100dp"
             android:textColorHint="@color/third_font_content" />
     </LinearLayout>
 
@@ -32,7 +32,7 @@
 
         <TextView
             style="@style/textview_tag"
-            android:minWidth="100dp"
+            android:layout_width="100dp"
             android:text="@string/login_password" />
 
         <EditText

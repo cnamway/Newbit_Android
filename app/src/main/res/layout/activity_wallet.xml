@@ -25,7 +25,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/dp_20"
                 android:layout_marginTop="30dp"
-                android:text="钱包"
+                android:text="@string/assets"
                 android:textColor="@color/white"
                 android:textSize="@dimen/font_small" />
 
@@ -75,7 +75,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/dp_10"
-                        android:text="接收"
+                        android:text="@string/str_receive"
                         android:textColor="@color/white"
                         android:textSize="@dimen/font_small" />
 
@@ -102,7 +102,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/dp_10"
-                        android:text="发送"
+                        android:text="@string/str_send"
                         android:textColor="@color/white"
                         android:textSize="@dimen/font_small" />
 

@@ -77,7 +77,7 @@ public class StoreListFragment extends BaseLazyFragment implements StoreListCont
         if (bundle != null) {
             coinName = bundle.getString("coinName");
             tvCoin.setText(coinName);
-            tvCoinName.setText("出" + coinName);
+            tvCoinName.setText(getString(R.string.str_store_sell) + " " + coinName);
         }
     }
 
@@ -129,12 +129,10 @@ public class StoreListFragment extends BaseLazyFragment implements StoreListCont
                 bundle.putString("priceStr", priceStr);
                 showActivity(StorePublishActivity.class, bundle, 1);
             } else {
-                ToastUtils.showToast("请前往pc端进行商家认证后才能发布广告");
+                ToastUtils.showToast(getString(R.string.str_store_pc_auth));
             }
         } else if (obj.getCode() == 30548) {
-            ToastUtils.showToast("请前往pc端进行商家认证后才能发布广告");
-        } else {
-            ToastUtils.showToast("认证信息获取失败");
+            ToastUtils.showToast(getString(R.string.str_store_pc_auth));
         }
     }
 }

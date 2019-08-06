@@ -3,6 +3,7 @@ package com.spark.newbitrade.activity.main;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -99,6 +100,11 @@ public class HomeFragment extends BaseTransFragment implements MainContract.Home
     RelativeLayout rlEmpty;
     @BindView(R.id.tvMessage)
     TextView tvMessage;
+    @BindView(R.id.tvHomeImg1)
+    ImageView tvHomeImg1;
+    @BindView(R.id.ivDownload)
+    ImageView ivDownload;
+
     private List<String> imageUrls = new ArrayList<>();
     private List<Currency> currencies = new ArrayList<>();
     private List<Currency> currenciesOne = new ArrayList<>();
@@ -172,7 +178,16 @@ public class HomeFragment extends BaseTransFragment implements MainContract.Home
         //rvMessageTag.setVisibility(View.VISIBLE);
         scrollView.requestDisallowInterceptTouchEvent(false);
         //tvGoto.setVisibility(View.GONE);
-
+        int languageType = SharedPreferenceInstance.getInstance().getLanguageCode();
+        if (languageType == 1) {//中文
+            tvHomeImg1.setImageResource(R.mipmap.bg_home_one);
+            ivMining.setImageResource(R.mipmap.bg_home_two);
+            ivDownload.setImageResource(R.mipmap.bg_home_three);
+        } else {//英文
+            tvHomeImg1.setImageResource(R.mipmap.bg_home_one_en);
+            ivMining.setImageResource(R.mipmap.bg_home_two_en);
+            ivDownload.setImageResource(R.mipmap.bg_home_three_en);
+        }
     }
 
     @Override
@@ -320,16 +335,25 @@ public class HomeFragment extends BaseTransFragment implements MainContract.Home
                 mainActivity.getPresenter().allCurrency();
                 break;
             case R.id.ivMining:
-                //showActivity(MiningActivity.class, null);
+                String heyue = "";
+                int languageType = SharedPreferenceInstance.getInstance().getLanguageCode();
+                if (languageType == 1) {//中文
+                    heyue = GlobalConstant.He_Yue;
+                } else {//英文
+                    heyue = GlobalConstant.He_Yue_EN;
+                }
                 Bundle bundle = new Bundle();
                 bundle.putString("title", getString(R.string.str_heyue));
-                bundle.putString("url", GlobalConstant.He_Yue);
+                bundle.putString("url", heyue);
                 bundle.putBoolean("isImage", true);
                 showActivity(WebViewActivity.class, bundle);
                 break;
             case R.id.ivDownload:
-                showPop();
+                //showPop();
                 //showActivity(MiningActivity.class, null);
+                Uri uri = Uri.parse(GlobalConstant.Wallet_Download);
+                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                startActivity(intent);
                 break;
         }
     }
@@ -441,7 +465,6 @@ public class HomeFragment extends BaseTransFragment implements MainContract.Home
     private void doCollect(int position) {
         this.position = position;
         if (!MyApplication.getApp().isLogin()) {
-            ToastUtils.showToast("请先登录再添加收藏！");
             return;
         }
         String symbol = currencies.get(position).getSymbol();

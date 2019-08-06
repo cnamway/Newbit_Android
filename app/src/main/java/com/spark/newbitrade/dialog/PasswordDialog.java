@@ -30,7 +30,7 @@ public class PasswordDialog extends Dialog {
     private TextView[] tvList;
     private int currentIndex = -1;
 
-    private String strPassword;
+    private String strPass;
 
     public interface ClickListenerInterface {
 
@@ -124,15 +124,15 @@ public class PasswordDialog extends Dialog {
             int id = v.getId();
             switch (id) {
                 case R.id.tvConfirm:
-                    strPassword = "";
+                    strPass = "";
                     for (int i = 0; i < 6; i++) {
-                        strPassword += tvList[i].getText().toString().trim();
+                        strPass += tvList[i].getText().toString().trim();
                     }
 
-                    if (strPassword.length() == 6) {
-                        clickListenerInterface.doConfirm(strPassword);
+                    if (strPass.length() == 6) {
+                        clickListenerInterface.doConfirm(strPass);
                     } else {
-                        ToastUtils.showToast("请输入6位数字密码");
+                        ToastUtils.showToast(context.getString(R.string.str_pay_pass_6));
                     }
                     break;
                 case R.id.tvCancel:

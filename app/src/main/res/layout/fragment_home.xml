@@ -133,27 +133,25 @@
                     android:orientation="vertical">
 
                     <ImageView
+                        android:id="@+id/tvHomeImg1"
                         android:layout_width="match_parent"
                         android:layout_height="100dp"
                         android:layout_marginBottom="10dp"
-                        android:scaleType="fitXY"
-                        android:src="@mipmap/bg_home_one" />
+                        android:scaleType="fitXY" />
 
                     <ImageView
                         android:id="@+id/ivMining"
                         android:layout_width="match_parent"
                         android:layout_height="100dp"
                         android:layout_marginBottom="10dp"
-                        android:scaleType="fitXY"
-                        android:src="@mipmap/bg_home_two" />
+                        android:scaleType="fitXY" />
 
                     <ImageView
                         android:id="@+id/ivDownload"
                         android:layout_width="match_parent"
                         android:layout_height="100dp"
                         android:layout_marginBottom="10dp"
-                        android:scaleType="fitXY"
-                        android:src="@mipmap/bg_home_three" />
+                        android:scaleType="fitXY"/>
 
                 </LinearLayout>
 

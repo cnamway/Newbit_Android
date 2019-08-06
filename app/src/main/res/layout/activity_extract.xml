@@ -12,7 +12,7 @@
 
         <TextView
             style="@style/textview_tag"
-            android:minWidth="90dp"
+            android:layout_width="90dp"
             android:text="@string/text_can_used"
             android:textColor="@color/main_font_content" />
 
@@ -38,7 +38,7 @@
 
         <TextView
             style="@style/textview_tag"
-            android:minWidth="90dp"
+            android:layout_width="90dp"
             android:text="@string/mention_money_address"
             android:textColor="@color/main_font_content" />
 
@@ -67,7 +67,7 @@
 
         <TextView
             style="@style/textview_tag"
-            android:minWidth="90dp"
+            android:layout_width="90dp"
             android:text="@string/amount"
             android:textColor="@color/main_font_content" />
 
@@ -108,8 +108,8 @@
 
         <TextView
             style="@style/textview_tag"
-            android:minWidth="90dp"
-            android:text="网络费"
+            android:layout_width="90dp"
+            android:text="@string/str_poundage"
             android:textColor="@color/main_font_content" />
 
         <TextView
@@ -128,7 +128,7 @@
 
         <TextView
             style="@style/textview_tag"
-            android:minWidth="90dp"
+            android:layout_width="90dp"
             android:text="@string/mention_account"
             android:textColor="@color/main_font_content" />
 
@@ -151,7 +151,7 @@
 
         <TextView
             style="@style/textview_tag"
-            android:minWidth="90dp"
+            android:layout_width="90dp"
             android:text="@string/text_money_pwd" />
 
         <EditText
@@ -172,7 +172,7 @@
 
         <TextView
             style="@style/textview_tag"
-            android:minWidth="90dp"
+            android:layout_width="90dp"
             android:text="@string/phone_code" />
 
         <EditText

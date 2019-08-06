@@ -34,7 +34,6 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="10dp"
-                android:minWidth="100dp"
                 android:text="@string/max_match_amount"
                 android:textColor="@color/white"
                 android:textSize="@dimen/font_normal" />
@@ -72,7 +71,6 @@
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="10dp"
                 android:gravity="center_vertical"
-                android:minWidth="100dp"
                 android:text="@string/match_amount"
                 android:textColor="@color/white"
                 android:textSize="@dimen/font_normal" />

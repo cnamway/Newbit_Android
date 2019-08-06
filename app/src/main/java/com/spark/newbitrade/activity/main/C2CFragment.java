@@ -23,6 +23,7 @@ import com.spark.newbitrade.event.CheckLoginEvent;
 import com.spark.newbitrade.event.CheckLoginSuccessEvent;
 import com.spark.newbitrade.ui.FilterPopView;
 import com.spark.newbitrade.utils.GlobalConstant;
+import com.spark.newbitrade.utils.SharedPreferenceInstance;
 import com.spark.newbitrade.utils.ToastUtils;
 
 import org.greenrobot.eventbus.EventBus;
@@ -287,9 +288,14 @@ public class C2CFragment extends BaseNestingTransFragment implements C2CContract
         if (obj == null) return;
         firList = new ArrayList<>();
         firList.add(new FilterBean(getString(R.string.all), "", true));
+        int languageType = SharedPreferenceInstance.getInstance().getLanguageCode();
         for (Country country : obj) {
             FilterBean filterBean = new FilterBean();
-            filterBean.setName(country.getZhName());
+            if (languageType == 1) {//中文
+                filterBean.setName(country.getZhName());
+            } else {//英文
+                filterBean.setName(country.getEnName());
+            }
             filterBean.setStrUpload(country.getEnName());
             firList.add(filterBean);
         }
@@ -323,12 +329,10 @@ public class C2CFragment extends BaseNestingTransFragment implements C2CContract
             if (certifiedBusinessStatus == 2) {
                 showActivity(PubAdsActivity.class, null);
             } else {
-                ToastUtils.showToast("请前往pc端进行商家认证后才能发布广告");
+                ToastUtils.showToast(getString(R.string.str_store_pc_auth));
             }
         } else if (obj.getCode() == 30548) {
-            ToastUtils.showToast("请前往pc端进行商家认证后才能发布广告");
-        } else {
-            ToastUtils.showToast("认证信息获取失败");
+            ToastUtils.showToast(getString(R.string.str_store_pc_auth));
         }
     }
 }

@@ -73,7 +73,7 @@ public class LockActivity extends BaseActivity {
         tvForgot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DialogUtils.showDefaultDialog(LockActivity.this, "提示", "忘记手势密码，需要您重新登录！", "取消", "去登录", null, new DialogInterface.OnClickListener() {
+                DialogUtils.showDefaultDialog(LockActivity.this, getString(R.string.str_warn), getString(R.string.str_forget_password),  getString(R.string.cancle), getString(R.string.str_go_login), null, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         SharedPreferenceInstance.getInstance().saveIsNeedShowLock(false);
@@ -99,18 +99,18 @@ public class LockActivity extends BaseActivity {
     private void patternComplete(List<LockPatternView.Cell> cells) {
         if (cells.size() < 4) {
             lockView.setPattern(LockPatternView.DisplayMode.DEFAULT);
-            tvMessage.setText("至少连接4个点，请重新输入");
+            tvMessage.setText(getString(R.string.str_limit_4));
         }
         if (LockActivity.this.cells != null) {
             if (isSame(LockActivity.this.cells, cells)) {
-                tvMessage.setText("密码正确！");
+                tvMessage.setText(getString(R.string.str_pass_corret));
                 tvMessage.setTextColor(Color.parseColor("#FFFFFF"));
                 SharedPreferenceInstance.getInstance().saveIsNeedShowLock(false);
                 finish();
             } else {
                 lockView.setPattern(LockPatternView.DisplayMode.ERROR);
                 lockView.postClearPatternRunnable(500);
-                tvMessage.setText("密码错误！");
+                tvMessage.setText(getString(R.string.str_pass_error));
                 tvMessage.setTextColor(Color.parseColor("#FC3F3C"));
                 Animation animation = AnimationUtils.loadAnimation(this, R.anim.shake);
                 tvMessage.startAnimation(animation);
@@ -156,7 +156,7 @@ public class LockActivity extends BaseActivity {
     public void onBackPressed() {
         long now = System.currentTimeMillis();
         if (lastPressTime == 0 || now - lastPressTime > 2 * 1000) {
-            ToastUtils.showToast("再按一次退出");
+            ToastUtils.showToast(getString(R.string.exit_again));
             lastPressTime = now;
         } else if (now - lastPressTime < 2 * 1000) {
             ActivityManage.finishAll();

@@ -28,7 +28,7 @@
                     android:id="@+id/tvMessage"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="消息"
+                    android:text="@string/str_message"
                     android:textColor="@color/bg_line"
                     android:textSize="@dimen/font_small" />
 

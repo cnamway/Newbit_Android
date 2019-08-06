@@ -70,6 +70,7 @@ public class SettingActivity extends BaseActivity implements SettingContact.View
                 .contentTextColor(Color.parseColor("#6a6e8a"))
                 .btnTextColor(Color.parseColor("#6a6e8a"), Color.parseColor("#6a6e8a"))
                 //.btnPressColor(Color.parseColor("#2B2B2B"))
+                .btnText(getString(R.string.str_cancel), getString(R.string.dialog_sure))
                 .show();
         dialog.setOnBtnClickL(new OnBtnClickL() {
             @Override

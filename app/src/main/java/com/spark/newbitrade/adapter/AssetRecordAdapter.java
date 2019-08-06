@@ -38,47 +38,31 @@ public class AssetRecordAdapter extends BaseQuickAdapter<AssetRecord, BaseViewHo
         int type = 6;//5资金交易-扣除 6资金交易-增加
         switch (item.getType()) {
             case 1:
-                helper.setText(R.id.tvType, "充币");
+                helper.setText(R.id.tvType, MyApplication.getApp().getString(R.string.charge_money));
                 type = 6;
                 break;
             case 2:
-                helper.setText(R.id.tvType, "提币");
+                helper.setText(R.id.tvType, MyApplication.getApp().getString(R.string.mention_money));
                 type = 5;
-                break;
-            case 3:
-                helper.setText(R.id.tvType, "资金划转转入");
-                type = 6;
-                break;
-            case 4:
-                helper.setText(R.id.tvType, "资金划转转出");
-                type = 5;
-                break;
-            case 5:
-                helper.setText(R.id.tvType, "资金交易扣除");
-                type = 5;
-                break;
-            case 6:
-                helper.setText(R.id.tvType, "资金交易增加");
-                type = 6;
                 break;
             case 7:
-                helper.setText(R.id.tvType, "法币卖出");
+                helper.setText(R.id.tvType, MyApplication.getApp().getString(R.string.fiat_money_sell));
                 type = 5;
                 break;
             case 8:
-                helper.setText(R.id.tvType, "法币买入");
+                helper.setText(R.id.tvType, MyApplication.getApp().getString(R.string.fiat_money_buy));
                 type = 6;
                 break;
             case 9:
-                helper.setText(R.id.tvType, "缴纳商家认证保证金");
+                helper.setText(R.id.tvType, MyApplication.getApp().getString(R.string.pay_merchant_certification));
                 type = 5;
                 break;
             case 10:
-                helper.setText(R.id.tvType, "退回商家认证保证金");
+                helper.setText(R.id.tvType, MyApplication.getApp().getString(R.string.repay_merchant_certification));
                 type = 6;
                 break;
             default:
-                helper.setText(R.id.tvType, "未知类型");
+                helper.setText(R.id.tvType, "");
                 type = 6;
                 break;
         }

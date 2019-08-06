@@ -61,9 +61,9 @@ public class CoinListActivity extends BaseActivity {
             }
         }
         if (recharge) {
-            tvTitle.setText("接收");
+            tvTitle.setText(getString(R.string.str_receive));
         } else {
-            tvTitle.setText("发送");
+            tvTitle.setText(getString(R.string.str_send));
         }
     }
 
