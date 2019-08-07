@@ -2,7 +2,6 @@ package com.spark.newbitrade.data;
 
 import java.util.Locale;
 
-
 public enum Language {
     CH(1, java.util.Locale.SIMPLIFIED_CHINESE),
     EN(2, java.util.Locale.US),

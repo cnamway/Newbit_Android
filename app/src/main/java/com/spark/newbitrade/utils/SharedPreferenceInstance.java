@@ -69,7 +69,7 @@ public class SharedPreferenceInstance {
      * @return
      */
     public int getLanguageCode() {
-        //if (mPreferences == null) return 1;
+        if (mPreferences == null) return 1;
         return mPreferences.getInt(SP_KEY_LANGUAGE, 1);
     }
 
