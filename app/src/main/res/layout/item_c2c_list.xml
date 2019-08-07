@@ -45,7 +45,6 @@
                         android:layout_weight="1"
                         android:ellipsize="end"
                         android:maxLines="1"
-                        android:text="Sukey"
                         android:textColor="@color/main_font_content"
                         android:textSize="@dimen/font_normal" />
 
@@ -65,7 +64,6 @@
                         android:ellipsize="end"
                         android:gravity="center_vertical"
                         android:maxLines="1"
-                        android:text="75000.00CNY"
                         android:textColor="@color/main_font_content"
                         android:textSize="@dimen/font_normal" />
                 </LinearLayout>
@@ -87,7 +85,6 @@
                         android:paddingBottom="2dp"
                         android:paddingTop="2dp"
                         android:singleLine="true"
-                        android:text="0 | 0%"
                         android:textColor="@color/main_font_content"
                         android:textSize="@dimen/font_mini" />
 
@@ -102,7 +99,6 @@
                         android:maxLines="1"
                         android:paddingBottom="2dp"
                         android:paddingTop="2dp"
-                        android:text="限额2k~90k CNY"
                         android:textColor="@color/main_font_content"
                         android:textSize="@dimen/sp_10" />
                 </LinearLayout>
@@ -124,7 +120,6 @@
                         android:maxLines="1"
                         android:paddingBottom="4dp"
                         android:paddingTop="4dp"
-                        android:text="数量20"
                         android:textColor="@color/main_font_content"
                         android:textSize="@dimen/sp_10" />
 
@@ -189,7 +184,6 @@
                         android:minWidth="70dp"
                         android:paddingBottom="1dp"
                         android:paddingTop="1dp"
-                        android:text="交易 578"
                         android:textColor="#666"
                         android:textSize="12sp" />
 
@@ -203,7 +197,6 @@
                         android:minWidth="70dp"
                         android:paddingBottom="1dp"
                         android:paddingTop="1dp"
-                        android:text="好评 578"
                         android:textColor="#666"
                         android:textSize="12sp" />
 

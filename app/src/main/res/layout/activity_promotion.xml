@@ -43,7 +43,6 @@
 
                         <TextView
                             android:id="@+id/tvProNum"
-                            android:text="0"
                             style="@style/textview_tag" />
 
                         <TextView
@@ -72,8 +71,7 @@
 
                         <TextView
                             android:id="@+id/tvProRew"
-                            style="@style/textview_tag"
-                            android:text="--USDT" />
+                            style="@style/textview_tag" />
 
                         <TextView
                             style="@style/textview_tag"

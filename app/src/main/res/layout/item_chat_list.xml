@@ -34,7 +34,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:layout_toRightOf="@id/ivHeader"
-            android:text=""
+
             android:textColor="@color/main_font_content"
             android:textSize="@dimen/font_normal" />
 
@@ -45,7 +45,7 @@
             android:layout_alignStart="@id/tvName"
             android:layout_below="@id/tvName"
             android:layout_marginTop="5dp"
-            android:text=""
+
             android:textColor="@color/main_font_content"
             android:textSize="@dimen/font_small" />
 
@@ -55,7 +55,7 @@
             android:layout_height="wrap_content"
             android:layout_alignBottom="@id/tvName"
             android:layout_alignParentRight="true"
-            android:text=""
+
             android:textColor="@color/sec_font_content"
             android:textSize="@dimen/font_small" />
     </RelativeLayout>

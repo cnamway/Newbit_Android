@@ -28,15 +28,17 @@
     <string name="setting">设置</string>
     <string name="phone">400000000</string>
     <string name="web">http://www.newbtc.online</string>
+    <string name="no_input_emoji">不支持输入表情</string>
     <string name="str_payway_ali">支付宝</string>
     <string name="str_payway_wechat">微信</string>
     <string name="str_payway_union">银联</string>
-    <string name="edit_decimals_tag">您输入的小数已超过限定位数</string>
-    <string name="pub_ads_confirm">广告创建成功，需要手动上架，是否上架？</string>
-    <string name="no_input_emoji">不支持输入表情</string>
-    <string name="str_no_order">暂无订单&#8230;</string>
     <string name="please_enter_the">请输入</string>
     <string name="gains">涨幅</string>
+    <string name="edit_decimals_tag">您输入的小数已超过限定位数</string>
+    <string name="pub_ads_confirm">广告创建成功，需要手动上架，是否上架？</string>
+
+    <string name="str_no_order">暂无订单&#8230;</string>
+
     <string name="buy_coins">买币</string>
     <string name="sell_coins">卖币</string>
     <string name="bind_account">请先绑定收款账户</string>
@@ -199,6 +201,7 @@
     <string name="passportNum">护照号</string>
     <string name="passportImage">护照照片</string>
     <string name="takePassportImage">手持护照</string>
+
     <!--主页-->
     <string name="home">首页</string>
     <string name="market">C2C</string>
@@ -476,10 +479,10 @@
     <string name="google_authentication_tag">绑定谷歌认证器</string>
     <string name="google_authentication_content">请妥善备份密钥以防遗失</string>
     <string name="google_code">谷歌验证码</string>
-    <string name="unbind">解绑谷歌验证器</string>
-    <string name="copy">复制</string>
     <string name="google_bottom_tag">保存二维码到手机或复制密钥到剪贴板可能会有安全风险，请妥善保存</string>
     <string name="google_code_tag">谷歌验证器</string>
+    <string name="unbind">解绑谷歌验证器</string>
+    <string name="copy">复制</string>
     <string name="next_step">下一步</string>
     <string name="google_code_apply">谷歌验证器丢失\n请联系客服support@BitMira.pro申诉</string>
 
@@ -490,6 +493,7 @@
     <string name="about_us">关于我们</string>
     <string name="str_help">帮助中心</string>
     <string name="simplified_chinese">简体中文</string>
+    <string name="str_english">英文</string>
     <string name="japanese">日语</string>
     <string name="webSite">网址</string>
     <string name="service_tel">客服邮箱</string>
@@ -624,7 +628,6 @@
     <string name="binding">绑定</string>
     <string name="id_credit_tag">开始认证</string>
 
-
     <!--登录-->
     <string name="login">立即登录</string>
     <string name="regist">注册</string>
@@ -642,6 +645,7 @@
     <string name="email_sign_up">邮箱注册</string>
     <string name="phone_sign_up">手机号注册</string>
     <string name="phone_number">手机号码</string>
+    <string name="chg_phone_number">新的手机号码</string>
     <string name="send_code">发送验证码</string>
     <string name="resend_code">秒后可重新发送</string>
     <string name="re_send">重新获取</string>
@@ -652,7 +656,6 @@
     <string name="email_not_correct">邮箱不正确</string>
     <string name="pwd_diff">两次密码不一致！</string>
     <string name="code">验证码</string>
-    <string name="chg_phone_number">新的手机号码</string>
     <string name="new_code">新的验证码</string>
     <string name="promotion_code">邀请码（选填）</string>
     <string name="str_code_error">验证码错误或已失效，请重新获取验证码</string>
@@ -738,6 +741,7 @@
         <item>45 分钟</item>
         <item>60 分钟</item>
     </string-array>
+
     <string name="bid">买盘</string>
     <string name="number">数量</string>
     <string name="price">价格</string>
@@ -781,8 +785,9 @@
     <string name="str_text_change">修改</string>
     <string name="str_date">日期</string>
     <string name="str_extract_count">数量</string>
-    <string name="str_my_version_no">升级到新版本： </string>
+    <string name="str_my_version_no">升级到新版本：</string>
     <string name="str_version_new">当前已是最新版本</string>
+
     <!--请求提示语-->
     <string name="str_loading">加载中...</string>
     <string name="str_rec_code">收款二维码</string>
@@ -800,6 +805,7 @@
         <item>微信</item>
         <item>银行卡</item>
     </string-array>
+
     <string name="str_rec">收款人</string>
     <string name="str_open_bank">开户银行</string>
     <string name="str_branch">开户支行</string>
@@ -842,6 +848,17 @@
     <string name="str_ad_sell_must_min">出售必须大于等于</string>
     <string name="str_ad_sell_must_max">小于等于</string>
     <string name="str_ad_buy_must_min">购买必须大于等于</string>
-    <string name="str_money_use">余额：</string>
-
+    <string name="str_money_use">余额</string>
+    <string name="str_gusture_password">请输入手势密码</string>
+    <string name="str_gusture_password_forget">忘记手势密码？</string>
+    <string name="str_google_auth">谷歌身份验证器</string>
+    <string name="str_face_recognition">人脸识别</string>
+    <string name="str_coin_num_tag">提币数量</string>
+    <string name="str_serial_number">流水号</string>
+    <string name="str_pay_amount">支付数量</string>
+    <string name="str_pay_now">立即支付</string>
+    <string name="str_transfer">划转</string>
+    <string name="str_agree_pay">是否同意提币到钱包？</string>
+    <string name="str_release">放行</string>
+    <string name="str_footer_limit">我是有底线的</string>
 </resources>

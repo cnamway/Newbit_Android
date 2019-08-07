@@ -43,7 +43,7 @@
                 android:background="@drawable/shape_eidt_bg_chat"
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp"
-                android:text="中国"
+                android:text="@string/china"
                 android:visibility="gone" />
 
             <!--手机号码-->
@@ -125,7 +125,8 @@
 
                 <TextView
                     android:id="@+id/tvGetCode"
-                    style="@style/textveiw_msg_code" />
+                    style="@style/textveiw_msg_code"
+                    android:minWidth="100dp" />
 
             </LinearLayout>
 

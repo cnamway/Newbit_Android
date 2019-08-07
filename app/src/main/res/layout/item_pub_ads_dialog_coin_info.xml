@@ -12,7 +12,6 @@
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:gravity="left|center"
-        android:text="USDT"
         android:textColor="@color/main_font_content"
         android:textSize="@dimen/font_normal" />
 

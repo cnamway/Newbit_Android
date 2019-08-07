@@ -29,7 +29,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="5dp"
-            android:text=""
+
             android:textColor="@color/main_font_content" />
 
         <ImageView style="@style/icon_more" />
@@ -57,7 +57,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="5dp"
-            android:text=""
+
             android:textColor="@color/main_font_content" />
 
         <ImageView style="@style/icon_more" />

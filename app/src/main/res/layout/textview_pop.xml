@@ -13,7 +13,7 @@
         android:gravity="center"
         android:paddingLeft="6dp"
         android:paddingRight="6dp"
-        android:text=""
+
         android:textColor="@color/font_index_pop_selector"
         android:textSize="@dimen/font_small" />
 

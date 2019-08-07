@@ -13,7 +13,6 @@
         android:background="@mipmap/bg_sort_first"
         android:gravity="center"
         android:layout_gravity="center_vertical"
-        android:text="1"
         android:textColor="@color/white"
         android:textSize="@dimen/font_mini" />
 
@@ -33,7 +32,6 @@
                 android:id="@+id/tvBuyCoinSymbol"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="LTC"
                 android:textColor="@color/main_font_content"
                 android:textSize="@dimen/font_normal"
                 android:textStyle="bold" />
@@ -44,7 +42,6 @@
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
                 android:lines="1"
-                android:text="/USDT"
                 android:textColor="@color/main_font_content"
                 android:textSize="@dimen/font_normal"
                 android:textStyle="bold" />
@@ -59,7 +56,6 @@
             android:layout_marginTop="6dp"
             android:ellipsize="end"
             android:maxLines="1"
-            android:text="12"
             android:textColor="@color/main_font_content"
             android:textSize="@dimen/font_mini" />
     </LinearLayout>
@@ -75,7 +71,6 @@
             android:id="@+id/tvClose"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="124"
             android:textColor="@color/main_font_title"
             android:textSize="@dimen/font_small"
             android:textStyle="bold" />
@@ -88,7 +83,6 @@
             android:ellipsize="end"
             android:maxLength="16"
             android:maxLines="1"
-            android:text="759.14"
             android:textColor="@color/main_font_content"
             android:textSize="@dimen/font_mini" />
     </LinearLayout>
@@ -108,7 +102,6 @@
         android:paddingLeft="8dp"
         android:paddingRight="8dp"
         android:paddingTop="5dp"
-        android:text="+125.00%"
         android:textColor="@color/white"
         android:textSize="@dimen/font_normal" />
 </LinearLayout>

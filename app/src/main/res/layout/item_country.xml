@@ -16,7 +16,6 @@
         <TextView
             android:id="@+id/tvname"
             style="@style/textview_tag"
-            android:text="China"
             android:textSize="@dimen/font_small" />
     </LinearLayout>
 

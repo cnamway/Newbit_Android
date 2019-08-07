@@ -36,7 +36,6 @@
                 android:id="@+id/tvPrice"
                 style="@style/edittext_normal"
                 android:gravity="right"
-                android:text="0.00CNY"
                 android:textColor="@color/main_font_content"
                 android:textSize="@dimen/font_small" />
 
@@ -60,7 +59,6 @@
                 android:id="@+id/tvCount"
                 style="@style/edittext_normal"
                 android:gravity="right"
-                android:text="0.00BTC"
                 android:textColor="@color/main_font_content"
                 android:textSize="@dimen/font_small" />
         </LinearLayout>
@@ -83,7 +81,6 @@
                 android:id="@+id/tvTotal"
                 style="@style/edittext_normal"
                 android:gravity="right"
-                android:text="0.00CNY"
                 android:textColor="@color/main_font_content"
                 android:textSize="@dimen/font_small" />
 

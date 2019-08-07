@@ -28,15 +28,13 @@
                 android:id="@+id/tvVersionNo"
                 style="@style/style_font_normal_weight"
                 android:gravity="center_vertical"
-                android:padding="@dimen/dp_10"
-                android:text="升级到新版本： V0.2.2" />
+                android:padding="@dimen/dp_10" />
 
             <TextView
                 android:id="@+id/tvVersionInfo"
                 style="@style/style_font_normal_grey"
                 android:lineSpacingExtra="@dimen/dp_2"
                 android:padding="@dimen/dp_10"
-                android:text="1.优化已知问题\n2.测试部分"
                 android:textColor="@color/font_sec_title"
                 android:textSize="@dimen/font_small" />
 

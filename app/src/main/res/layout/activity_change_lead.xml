@@ -12,7 +12,10 @@
 
     <TextView
         style="@style/layout_my_info"
+        android:layout_height="wrap_content"
         android:background="@color/main_bg"
+        android:paddingBottom="@dimen/dp_10"
+        android:paddingTop="@dimen/dp_10"
         android:text="@string/change_bind_phone_num_tag"
         android:textColor="@color/sec_font_content"
         android:textSize="@dimen/font_small" />

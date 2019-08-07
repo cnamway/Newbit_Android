@@ -36,7 +36,6 @@
                 android:background="@drawable/icon_chat_bg_left"
                 android:gravity="left|center"
                 android:minHeight="48dp"
-                android:text="123"
                 android:textColor="@color/main_font_content"
                 android:textSize="@dimen/font_normal" />
 
@@ -77,7 +76,6 @@
                 android:layout_toLeftOf="@id/ivHeaderRight"
                 android:background="@drawable/icon_chat_bg_right"
                 android:minHeight="48dp"
-                android:text="123"
                 android:textColor="@color/main_font_content"
                 android:textSize="@dimen/font_normal" />
 

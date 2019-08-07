@@ -110,7 +110,7 @@
             <TextView
                 android:id="@+id/tvGetUnit"
                 style="@style/textview_tag"
-                android:text="---"
+
                 android:textColor="@color/main_font_content" />
         </LinearLayout>
 

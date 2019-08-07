@@ -46,6 +46,7 @@
         <EditText
             android:id="@+id/etCode"
             style="@style/edittext_normal"
+            android:layout_marginLeft="15dp"
             android:layout_weight="1"
             android:hint="@string/code"
             android:inputType="number" />
@@ -61,6 +62,7 @@
             android:id="@+id/tvGetCode"
             style="@style/textveiw_msg_code"
             android:background="@color/main_head_bg"
+            android:minWidth="100dp"
             android:text="@string/send_code" />
 
     </LinearLayout>

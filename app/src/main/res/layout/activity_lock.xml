@@ -34,7 +34,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:gravity="center_horizontal"
-            android:text=""
+
             android:textColor="#8C806F"
             android:textSize="16sp" />
 
@@ -44,7 +44,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:gravity="center_horizontal"
-            android:text="请输入手势密码"
+            android:text="@string/str_gusture_password"
             android:textColor="#FFFFFF"
             android:textSize="14sp" />
 
@@ -72,7 +72,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="16dp"
-            android:text="忘记手势密码？"
+            android:text="@string/str_gusture_password_forget"
             android:textColor="@color/grey_a5a5a5"
             android:textSize="16sp" />
 

@@ -97,6 +97,7 @@
             android:id="@+id/tvGetCode"
             style="@style/textveiw_msg_code"
             android:background="@color/main_head_bg"
+            android:minWidth="100dp"
             android:text="@string/send_code" />
 
     </LinearLayout>

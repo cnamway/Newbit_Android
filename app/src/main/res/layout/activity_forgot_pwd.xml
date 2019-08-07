@@ -97,7 +97,8 @@
 
             <TextView
                 android:id="@+id/tvGetCode"
-                style="@style/textveiw_msg_code" />
+                style="@style/textveiw_msg_code"
+                android:minWidth="100dp" />
 
         </LinearLayout>
 

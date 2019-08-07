@@ -79,7 +79,7 @@
 
         <TextView
             style="@style/textview_tag_my_info"
-            android:text="PayPal" />
+            android:text="@string/str_paypal" />
 
         <TextView
             android:id="@+id/tvPayPal"

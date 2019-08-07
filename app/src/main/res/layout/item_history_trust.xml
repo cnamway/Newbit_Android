@@ -19,7 +19,6 @@
                 android:id="@+id/tvType"
                 android:layout_width="40dp"
                 android:layout_height="wrap_content"
-                android:text="买入"
                 android:textColor="@color/main_font_green"
                 android:textSize="@dimen/font_normal" />
 
@@ -83,7 +82,6 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="end"
-                android:text="成交量(BTC)"
                 android:textColor="@color/main_font_content"
                 android:textSize="@dimen/font_mini" />
         </LinearLayout>
@@ -144,7 +142,6 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="委托量(BTC)"
                 android:textColor="@color/main_font_content"
                 android:textSize="@dimen/font_mini" />
 

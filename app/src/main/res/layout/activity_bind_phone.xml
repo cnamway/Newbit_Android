@@ -16,7 +16,6 @@
         style="@style/layout_my_info"
         android:layout_height="40dp"
         android:background="@color/main_bg"
-        android:text="124"
         android:textColor="@color/sec_font_content"
         android:textSize="@dimen/font_normal"
         android:visibility="gone" />
@@ -93,6 +92,7 @@
             android:id="@+id/tvGetCode"
             style="@style/textveiw_msg_code"
             android:background="@color/main_head_bg"
+            android:minWidth="100dp"
             android:text="@string/send_code" />
     </LinearLayout>
 
@@ -152,6 +152,7 @@
             android:id="@+id/tvNewGetCode"
             style="@style/textveiw_msg_code"
             android:background="@color/main_head_bg"
+            android:minWidth="100dp"
             android:text="@string/send_code" />
     </LinearLayout>
 

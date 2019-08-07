@@ -28,7 +28,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="---"
+
             android:textColor="@color/main_font_content"
             android:textSize="@dimen/font_small" />
 
@@ -39,7 +39,6 @@
             android:drawableLeft="@mipmap/icon_warn"
             android:drawablePadding="4dp"
             android:gravity="center"
-            android:text="风险提示：请勿向该地址充值任何非xxx资产"
             android:textColor="@color/main_font_content"
             android:textSize="@dimen/font_mini" />
     </LinearLayout>

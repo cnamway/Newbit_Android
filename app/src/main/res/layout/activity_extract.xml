@@ -25,7 +25,6 @@
         <TextView
             android:id="@+id/tvCanUseUnit"
             style="@style/textview_tag"
-            android:text="USDT"
             android:textColor="@color/main_font_content" />
 
     </LinearLayout>
@@ -81,7 +80,6 @@
             android:id="@+id/tvGetUnit"
             style="@style/textview_tag"
             android:layout_marginLeft="5dp"
-            android:text="USDT"
             android:textColor="@color/main_font_content" />
 
         <View
@@ -141,7 +139,6 @@
         <TextView
             android:id="@+id/tvCollectUnit"
             style="@style/textview_tag"
-            android:text="USDT"
             android:textColor="@color/main_font_content" />
     </LinearLayout>
 
@@ -193,6 +190,7 @@
             android:id="@+id/tvGetCode"
             style="@style/textveiw_msg_code"
             android:background="@color/main_head_bg"
+            android:minWidth="100dp"
             android:text="@string/send_code" />
 
     </LinearLayout>

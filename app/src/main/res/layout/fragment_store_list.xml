@@ -48,7 +48,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center|left"
-            android:text=""
+
             android:textColor="@color/white"
             android:textSize="@dimen/font_small" />
 
@@ -58,7 +58,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_gravity="right"
-            android:text=""
+
             android:textColor="@color/white"
             android:textSize="@dimen/font_small" />
 
@@ -80,7 +80,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center|left"
-            android:text=""
+
             android:textColor="@color/color_blue"
             android:textSize="@dimen/font_small" />
 

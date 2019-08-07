@@ -30,7 +30,7 @@
 
             <TextView
                 style="@style/textview_tag"
-                android:text="谷歌身份验证器" />
+                android:text="@string/str_google_auth" />
 
 
             <TextView
@@ -94,7 +94,7 @@
 
         <TextView
             style="@style/textview_tag"
-            android:text="人脸识别" />
+            android:text="@string/str_face_recognition" />
 
 
         <TextView

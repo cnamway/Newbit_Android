@@ -59,7 +59,7 @@
                 android:ellipsize="middle"
                 android:gravity="center"
                 android:lines="1"
-                android:text=""
+
                 android:textColor="@color/black"
                 android:textSize="@dimen/font_normal"
                 android:visibility="gone" />
@@ -70,7 +70,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:gravity="center"
-                android:text=""
+
                 android:textColor="@color/black"
                 android:textSize="@dimen/font_normal"
                 android:visibility="invisible" />

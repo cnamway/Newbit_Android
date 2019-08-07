@@ -13,7 +13,6 @@
             android:id="@+id/tvUnit"
             style="@style/textview_tag"
             android:layout_width="wrap_content"
-            android:text="USDT"
             android:textSize="@dimen/font_normal" />
 
         <TextView
@@ -24,7 +23,6 @@
             android:layout_weight="1"
             android:ellipsize="end"
             android:maxLines="1"
-            android:text="2017-12-12 13:30"
             android:textColor="@color/main_font_content"
             android:textSize="@dimen/font_mini" />
 
@@ -85,7 +83,6 @@
             android:layout_weight="1"
             android:ellipsize="end"
             android:maxLines="1"
-            android:text="币币交易"
             android:textColor="@color/main_font_content"
             android:textSize="@dimen/font_small" />
 
@@ -96,7 +93,6 @@
             android:layout_weight="1"
             android:ellipsize="end"
             android:maxLines="1"
-            android:text="20"
             android:textColor="@color/main_font_content"
             android:textSize="@dimen/font_small" />
 
@@ -107,7 +103,6 @@
             android:layout_weight="1"
             android:ellipsize="end"
             android:maxLines="1"
-            android:text="0.0001"
             android:textColor="@color/main_font_content"
             android:textSize="@dimen/font_small" />
     </LinearLayout>

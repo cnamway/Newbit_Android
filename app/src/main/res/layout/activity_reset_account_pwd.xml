@@ -32,16 +32,17 @@
             android:inputType="number" />
 
         <TextView
-            android:layout_marginTop="15dp"
-            android:layout_marginBottom="15dp"
-            android:background="@color/btn_normal"
             android:layout_width="1dp"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:layout_marginBottom="15dp"
+            android:layout_marginTop="15dp"
+            android:background="@color/btn_normal" />
 
         <TextView
             android:id="@+id/tvGetCode"
-            android:background="@color/main_head_bg"
             style="@style/textveiw_msg_code"
+            android:background="@color/main_head_bg"
+            android:minWidth="100dp"
             android:text="@string/send_code" />
 
     </LinearLayout>
@@ -60,7 +61,7 @@
             style="@style/edittext_normal"
             android:hint="@string/new_money_pwd"
             android:inputType="numberPassword"
-            android:maxLength="6"  />
+            android:maxLength="6" />
 
     </LinearLayout>
 
@@ -78,7 +79,7 @@
             style="@style/edittext_normal"
             android:hint="@string/repeat_password"
             android:inputType="numberPassword"
-            android:maxLength="6"  />
+            android:maxLength="6" />
 
     </LinearLayout>
 

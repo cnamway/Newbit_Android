@@ -28,7 +28,6 @@
                     android:id="@+id/tvBuySymbol"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="LTC"
                     android:textColor="@color/white"
                     android:textSize="@dimen/font_normal"
                     android:textStyle="bold" />
@@ -38,7 +37,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="2dp"
-                    android:text="/USDT"
                     android:textColor="@color/main_font_content"
                     android:textSize="@dimen/font_normal" />
             </LinearLayout>
@@ -50,7 +48,6 @@
                 android:layout_marginTop="5dp"
                 android:ellipsize="end"
                 android:maxLines="1"
-                android:text="24h量2234234234.234"
                 android:textColor="@color/main_font_content"
                 android:textSize="@dimen/font_small" />
         </LinearLayout>
@@ -69,7 +66,6 @@
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
                 android:maxLines="1"
-                android:text="120.48"
                 android:textColor="@color/white"
                 android:textSize="@dimen/font_normal" />
 
@@ -80,7 +76,6 @@
                 android:layout_marginTop="6dp"
                 android:ellipsize="end"
                 android:maxLines="1"
-                android:text="759.1463"
                 android:textColor="@color/main_font_content"
                 android:textSize="@dimen/font_small" />
         </LinearLayout>
@@ -97,7 +92,6 @@
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
             android:paddingTop="5dp"
-            android:text="+155.00%"
             android:textColor="@color/white"
             android:textSize="@dimen/font_normal" />
 

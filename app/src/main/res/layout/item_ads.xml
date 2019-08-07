@@ -12,7 +12,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="出售"
             android:textColor="@color/main_font_content"
             android:textSize="@dimen/font_normal" />
 
@@ -75,7 +74,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="NBTC"
             android:textColor="@color/main_font_content"
             android:textSize="@dimen/font_normal" />
 
@@ -89,7 +87,6 @@
             style="@style/textview_tag"
             android:layout_gravity="center"
             android:layout_marginTop="2dp"
-            android:text="已上架"
             android:textColor="@color/main_font_content"
             android:textSize="@dimen/font_small" />
 
@@ -105,7 +102,6 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:gravity="center"
-            android:text="限额20000 ~ 900000CNY"
             android:textColor="@color/main_font_content"
             android:textSize="@dimen/font_mini" />
 
@@ -117,8 +113,7 @@
         <TextView
             android:id="@+id/tvPrice"
             style="@style/textview_tag"
-            android:gravity="center"
-            android:text="75000.0CNY" />
+            android:gravity="center" />
 
     </LinearLayout>
 

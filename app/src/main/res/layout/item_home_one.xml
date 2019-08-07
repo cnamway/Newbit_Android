@@ -19,7 +19,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="BTC/USDT"
             android:textColor="@color/main_font_content"
             android:textSize="@dimen/font_normal"
             android:textStyle="bold" />
@@ -38,7 +37,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
-        android:text="12536.2"
         android:textStyle="bold"
         android:textColor="@color/main_font_red"
         android:textSize="@dimen/font_lager" />
@@ -49,7 +47,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="2dp"
         android:gravity="center_horizontal"
-        android:text="1.2%"
         android:textColor="@color/main_font_red"
         android:textSize="@dimen/font_mini" />
 
@@ -60,7 +57,6 @@
         android:gravity="center_horizontal"
         android:padding="2dp"
         android:singleLine="true"
-        android:text="256321"
         android:textColor="@color/main_font_content"
         android:textSize="@dimen/font_mini"
         android:visibility="visible" />

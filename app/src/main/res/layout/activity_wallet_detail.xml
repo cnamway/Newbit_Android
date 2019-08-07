@@ -35,7 +35,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:text="BTC"
                 android:textColor="@color/white"
                 android:textSize="@dimen/font_normal" />
 
@@ -55,7 +54,7 @@
                 android:id="@+id/tvToalAmount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text=""
+
                 android:textColor="@color/white"
                 android:textSize="@dimen/font_normal" />
 
@@ -64,7 +63,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dp_10"
-                android:text="≈0.00 CNY"
                 android:textColor="@color/font_wallet_str"
                 android:textSize="@dimen/font_small" />
 
@@ -80,7 +78,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text=""
+
                     android:textColor="@color/font_wallet_str"
                     android:textSize="@dimen/font_small" />
 
@@ -90,7 +88,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text=""
+
                     android:textColor="@color/font_wallet_str"
                     android:textSize="@dimen/font_small" />
 
@@ -224,7 +222,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:gravity="center"
-                android:text="充值"
+                android:text="@string/top_up"
                 android:textColor="@color/baseBlue"
                 android:textSize="@dimen/font_small" />
         </LinearLayout>
@@ -247,7 +245,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:gravity="center"
-                android:text="提现"
+                android:text="@string/withdrawal"
                 android:textColor="@color/baseBlue"
                 android:textSize="@dimen/font_small" />
         </LinearLayout>
@@ -271,7 +269,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:gravity="center"
-                android:text="划转"
+                android:text="@string/str_transfer"
                 android:textColor="@color/baseBlue"
                 android:textSize="@dimen/font_small" />
         </LinearLayout>

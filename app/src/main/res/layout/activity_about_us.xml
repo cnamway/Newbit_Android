@@ -44,7 +44,6 @@
         android:paddingBottom="16dp"
         android:paddingLeft="16dp"
         android:paddingRight="16dp"
-        android:text="关于我们的一些描述。关于我们的一些描述关于我们的一些描述关于我们的一些描述关于我们的一些描述关于我们的一些描述关于我们的一些描述"
         android:textColor="@color/colorPrimary"
         android:visibility="gone" />
 
@@ -67,7 +66,7 @@
             android:id="@+id/tvPhone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text=""
+
             android:textColor="@color/main_font_content" />
 
     </LinearLayout>
@@ -91,7 +90,7 @@
             android:id="@+id/tvWeb"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text=""
+
             android:textColor="@color/main_font_content" />
 
     </LinearLayout>
@@ -118,7 +117,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="5dp"
-            android:text=""
+
             android:textColor="@color/main_font_content" />
 
         <ImageView style="@style/icon_more" />

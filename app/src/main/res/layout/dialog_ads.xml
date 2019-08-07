@@ -63,7 +63,6 @@
                     android:textSize="@dimen/font_small"
                     style="@style/edittext_normal"
                     android:gravity="right|center_vertical"
-                    android:text="20000~900000CNY"
                     android:textColor="@color/main_font_content" />
 
             </LinearLayout>
@@ -90,7 +89,6 @@
                     android:textSize="@dimen/font_small"
                     style="@style/edittext_normal"
                     android:gravity="right|center_vertical"
-                    android:text="20000~900000CNY"
                     android:textColor="@color/main_font_content" />
 
             </LinearLayout>
@@ -117,7 +115,6 @@
                     android:textSize="@dimen/font_small"
                     style="@style/edittext_normal"
                     android:gravity="right|center_vertical"
-                    android:text="75000.0CNY"
                     android:textColor="@color/main_font_content" />
 
             </LinearLayout>

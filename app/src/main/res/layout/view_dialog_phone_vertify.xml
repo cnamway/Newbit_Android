@@ -29,7 +29,7 @@
             android:layout_weight="1"
             android:background="@drawable/shape_eidt_bg_chat"
             android:gravity="center_vertical"
-            android:hint="短信验证码"
+            android:hint="@string/phone_code"
             android:inputType="number"
             android:paddingLeft="10dp"
             android:textColor="@color/main_font_content"
@@ -38,7 +38,8 @@
 
         <TextView
             android:id="@+id/tvGetCode"
-            style="@style/textveiw_msg_code" />
+            style="@style/textveiw_msg_code"
+            android:minWidth="100dp" />
     </LinearLayout>
 
     <TextView
@@ -50,6 +51,6 @@
         android:layout_marginTop="@dimen/dp_40"
         android:background="@drawable/ripple_btn_global_option_selector"
         android:gravity="center"
-        android:text="确定"
+        android:text="@string/confirm"
         android:textColor="@color/white" />
 </LinearLayout>

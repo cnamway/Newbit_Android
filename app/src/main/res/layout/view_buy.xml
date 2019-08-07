@@ -59,7 +59,6 @@
                 android:layout_weight="1"
                 android:background="@drawable/shape_grey_sk"
                 android:gravity="center"
-                android:hint=""
                 android:inputType="numberDecimal"
                 android:paddingLeft="16dp"
                 android:paddingRight="1dp"

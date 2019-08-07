@@ -24,7 +24,6 @@
             android:layout_weight="1"
             android:gravity="center_vertical"
             android:maxLines="1"
-            android:text="USDT"
             android:textColor="@color/main_font_content"
             android:textSize="@dimen/font_normal" />
 
@@ -42,7 +41,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="left"
-                android:text="0.000000000"
                 android:textColor="@color/main_font_content"
                 android:textSize="@dimen/font_small" />
 
@@ -51,7 +49,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
-                android:text="BTC"
                 android:textColor="@color/main_font_content"
                 android:textSize="@dimen/font_small" />
         </LinearLayout>
@@ -70,7 +67,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="left"
-                android:text="0.00000"
                 android:textColor="@color/main_font_content"
                 android:textSize="@dimen/font_small" />
 

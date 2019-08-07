@@ -35,7 +35,7 @@
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
                 android:maxLines="1"
-                android:text=""
+
                 android:textColor="@color/sec_font_title"
                 android:textSize="@dimen/font_normal" />
 
@@ -47,7 +47,7 @@
                 android:layout_marginTop="2dp"
                 android:ellipsize="end"
                 android:maxLines="2"
-                android:text=""
+
                 android:textColor="@color/main_font_content"
                 android:textSize="@dimen/font_small" />
 
@@ -55,7 +55,7 @@
                 android:id="@+id/tvTime"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text=""
+
                 android:textColor="@color/sec_font_content"
                 android:textSize="@dimen/font_small" />
 

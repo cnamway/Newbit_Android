@@ -288,7 +288,7 @@
                     style="@style/edittext_normal"
                     android:layout_marginRight="15dp"
                     android:gravity="right|center_vertical"
-                    android:text=""
+
                     android:textColor="@color/main_font_content" />
 
             </LinearLayout>
@@ -337,13 +337,13 @@
                             android:id="@+id/tvAliName"
                             style="@style/textview_tag"
                             android:gravity="center_vertical"
-                            android:text="---" />
+                            />
 
                         <TextView
                             android:id="@+id/tvAli"
                             style="@style/textview_tag"
                             android:gravity="center_vertical"
-                            android:text="---" />
+                             />
                     </LinearLayout>
 
                     <ImageView
@@ -385,13 +385,13 @@
                             android:id="@+id/tvWechatName"
                             style="@style/textview_tag"
                             android:gravity="center_vertical"
-                            android:text="---" />
+                             />
 
                         <TextView
                             android:id="@+id/tvWechat"
                             style="@style/textview_tag"
                             android:gravity="center_vertical"
-                            android:text="---" />
+                             />
                     </LinearLayout>
 
 
@@ -536,7 +536,7 @@
                         android:id="@+id/tvPaypal"
                         style="@style/textview_tag"
                         android:gravity="center_vertical"
-                        android:text="---" />
+                         />
 
                 </LinearLayout>
 
@@ -564,7 +564,7 @@
                         android:id="@+id/tvOther"
                         style="@style/textview_tag"
                         android:gravity="center_vertical"
-                        android:text="---" />
+                         />
 
                 </LinearLayout>
 

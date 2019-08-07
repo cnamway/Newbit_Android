@@ -21,8 +21,7 @@
             android:textStyle="bold"
             android:visibility="visible" />
 
-        <View
-            style="@style/line_bg_grey"/>
+        <View style="@style/line_bg_grey" />
 
         <LinearLayout
             android:id="@+id/llBank"
@@ -36,11 +35,9 @@
 
         </LinearLayout>
 
-        <View
-            style="@style/line_bg_grey"/>
+        <View style="@style/line_bg_grey" />
 
-        <LinearLayout
-            style="@style/layout_my_info">
+        <LinearLayout style="@style/layout_my_info">
 
             <EditText
                 android:id="@+id/etCode"
@@ -49,8 +46,7 @@
                 android:layout_weight="1"
                 android:background="@color/transparent"
                 android:hint="@string/phone_code"
-                android:inputType="number"
-                />
+                android:inputType="number" />
 
             <TextView
                 android:layout_width="1dp"
@@ -61,19 +57,19 @@
 
             <TextView
                 android:id="@+id/tvGetCode"
-                style="@style/textveiw_msg_code" />
+                style="@style/textveiw_msg_code"
+                android:minWidth="100dp" />
 
         </LinearLayout>
 
-        <View
-            style="@style/line_bg_grey"/>
+        <View style="@style/line_bg_grey" />
 
         <TextView
             style="@style/textview_tag"
-            android:textColor="@color/main_font_content"
-            android:textSize="@dimen/font_small"
             android:layout_margin="15dp"
-            android:text="@string/str_security_tag" />
+            android:text="@string/str_security_tag"
+            android:textColor="@color/main_font_content"
+            android:textSize="@dimen/font_small" />
 
         <TextView
             android:id="@+id/tvOption"

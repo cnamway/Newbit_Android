@@ -43,7 +43,7 @@
             android:gravity="center"
             android:hint=""
             android:inputType="numberDecimal"
-            android:text=""
+
             android:textColor="@color/sec_font_title"
             android:textSize="@dimen/font_normal" />
 
@@ -55,7 +55,7 @@
             android:gravity="center"
             android:hint=""
             android:inputType="numberDecimal"
-            android:text=""
+
             android:textColor="@color/sec_font_title"
             android:textSize="@dimen/font_normal" />
 
@@ -67,7 +67,7 @@
             android:gravity="center"
             android:hint=""
             android:inputType="numberDecimal"
-            android:text=""
+
             android:textColor="@color/sec_font_title"
             android:textSize="@dimen/font_normal" />
 
@@ -79,7 +79,7 @@
             android:gravity="center"
             android:hint=""
             android:inputType="numberDecimal"
-            android:text=""
+
             android:textColor="@color/sec_font_title"
             android:textSize="@dimen/font_normal" />
 
@@ -91,7 +91,7 @@
             android:gravity="center"
             android:hint=""
             android:inputType="numberDecimal"
-            android:text=""
+
             android:textColor="@color/sec_font_title"
             android:textSize="@dimen/font_normal" />
 
@@ -102,7 +102,7 @@
             android:gravity="center"
             android:hint=""
             android:inputType="numberDecimal"
-            android:text=""
+
             android:textColor="@color/sec_font_title"
             android:textSize="@dimen/font_normal" />
     </LinearLayout>
@@ -115,7 +115,7 @@
         android:layout_marginRight="20dp"
         android:layout_marginTop="20dp"
         android:inputType="number"
-        android:text=""
+
         android:textColor="@color/sec_font_title"
         android:textSize="40sp"
         app:bottomLineHeight="2dp"

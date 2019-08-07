@@ -239,7 +239,7 @@
                         android:inputType="numberDecimal"
                         android:paddingLeft="16dp"
                         android:paddingRight="1dp"
-                        android:text="" />
+                         />
 
                     <TextView
                         style="@style/textview_tag"
@@ -282,7 +282,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text=""
+
                             android:textColor="@color/bg_btn_normal"
                             android:textSize="@dimen/sp_12" />
 

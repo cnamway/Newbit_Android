@@ -21,7 +21,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="流水号："
+                android:text="@string/str_serial_number"
                 android:textColor="@color/main_font_content"
                 android:textSize="@dimen/font_small" />
 
@@ -31,7 +31,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="right"
-                android:text="---"
+
                 android:textColor="@color/black"
                 android:textSize="@dimen/font_normal" />
         </LinearLayout>
@@ -41,7 +41,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="订单信息："
+                android:text="@string/order_info"
                 android:textColor="@color/main_font_content"
                 android:textSize="@dimen/font_small" />
 
@@ -51,7 +51,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="right"
-                android:text="充值"
+                android:text="@string/top_up"
                 android:textColor="@color/black"
                 android:textSize="@dimen/font_normal" />
         </LinearLayout>
@@ -61,7 +61,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="支付数量："
+                android:text="@string/str_pay_amount"
                 android:textColor="@color/main_font_content"
                 android:textSize="@dimen/font_small" />
 
@@ -71,7 +71,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="right"
-                android:text="---"
+
                 android:textColor="@color/black"
                 android:textSize="@dimen/font_normal" />
         </LinearLayout>
@@ -83,7 +83,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="到账数量："
+                android:text="@string/mention_account"
                 android:textColor="@color/main_font_content"
                 android:textSize="@dimen/font_small" />
 
@@ -93,7 +93,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="right"
-                android:text="---"
+
                 android:textColor="@color/black"
                 android:textSize="@dimen/font_normal" />
         </LinearLayout>
@@ -104,7 +104,6 @@
                 android:id="@+id/tvCoinName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="充值币余额："
                 android:textColor="@color/main_font_content"
                 android:textSize="@dimen/font_small" />
 
@@ -114,7 +113,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="right"
-                android:text="---"
+
                 android:textColor="@color/black"
                 android:textSize="@dimen/font_normal" />
         </LinearLayout>
@@ -149,6 +148,7 @@
                 android:id="@+id/tvGetCode"
                 style="@style/textveiw_msg_code"
                 android:background="@color/main_head_bg"
+                android:minWidth="100dp"
                 android:text="@string/send_code" />
 
         </LinearLayout>
@@ -157,7 +157,7 @@
             android:id="@+id/tvPay"
             style="@style/btn_option_normal"
             android:layout_margin="20dp"
-            android:text="立即支付" />
+            android:text="@string/str_pay_now" />
     </LinearLayout>
 
 

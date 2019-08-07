@@ -13,7 +13,6 @@
         android:layout_marginRight="16dp"
         android:background="@color/main_bg"
         android:gravity="center"
-        android:text="124"
         android:textColor="@color/sec_font_content"
         android:textSize="@dimen/font_small" />
 

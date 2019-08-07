@@ -52,7 +52,7 @@
                     android:inputType="number"
                     android:maxLength="11"
                     android:paddingLeft="15dp"
-                    android:text=""
+
                     android:textColor="@color/main_font_content"
                     android:textColorHint="@color/third_font_content"
                     android:textSize="@dimen/font_normal" />
@@ -76,7 +76,7 @@
                     android:hint="@string/password"
                     android:inputType="textPassword"
                     android:paddingLeft="15dp"
-                    android:text=""
+
                     android:textColor="@color/main_font_content"
                     android:textColorHint="@color/third_font_content"
                     android:textSize="@dimen/font_normal" />
@@ -101,7 +101,8 @@
 
                     <TextView
                         android:id="@+id/tvGetCode"
-                        style="@style/textveiw_msg_code" />
+                        style="@style/textveiw_msg_code"
+                        android:minWidth="100dp" />
 
                 </LinearLayout>
 

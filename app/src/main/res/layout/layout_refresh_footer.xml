@@ -16,7 +16,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="15dp"
-        android:text="正在加载..."
+        android:text="@string/str_loading"
         android:textColor="@color/sec_font_content"
         android:textSize="@dimen/font_normal" />
 
@@ -43,7 +43,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:padding="15dp"
-            android:text="我是有底线的"
+            android:text="@string/str_footer_limit"
             android:textColor="@color/sec_font_content"
             android:textSize="@dimen/font_normal" />
 

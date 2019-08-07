@@ -43,7 +43,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="right"
-                android:text="买入"
+                android:text="@string/text_buy_in"
                 android:textColor="@drawable/font_red_and_green_selector"
                 android:textSize="@dimen/font_small" />
         </LinearLayout>
@@ -67,7 +67,6 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="right"
-                android:text="123USDT"
                 android:textColor="@color/main_font_content"
                 android:textSize="@dimen/font_small" />
         </LinearLayout>
@@ -90,7 +89,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="right"
-                android:text="123BTC"
                 android:textColor="@color/main_font_content"
                 android:textSize="@dimen/font_small" />
         </LinearLayout>
@@ -114,7 +112,6 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="right"
-                android:text="13USDT"
                 android:textColor="@color/main_font_content"
                 android:textSize="@dimen/font_small" />
         </LinearLayout>
