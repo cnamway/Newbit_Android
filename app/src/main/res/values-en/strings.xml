@@ -435,7 +435,7 @@
     <string name="text_receive_methods">Payment Method</string>
     <string name="text_pay_time">Payment Term</string>
     <string name="text_select_pay_time">Please choose payment term</string>
-    <string name="text_minute">Min(s)</string>
+    <string name="text_minute">Minutes</string>
     <string name="text_money_pwd">Money password</string>
     <string name="text_enter_money_pwd">Please enter Money password</string>
     <string name="text_auto_reply">Whether to auto reply</string>
@@ -819,9 +819,9 @@
     <string name="str_pay_success">Pay for success</string>
     <string name="str_payway_only_one">Only one account can be selected for the same</string>
     <string name="str_pay_pass_6">Please enter a 6-digit password</string>
-    <string name="str_ad_sell_must_min">The sale must be greater than or equal to</string>
-    <string name="str_ad_sell_must_max">Less than or equal to</string>
-    <string name="str_ad_buy_must_min">Buy must be greater than or equal to</string>
+    <string name="str_ad_sell_must_min">The sale must be <![CDATA[  >=  ]]></string>
+    <string name="str_ad_sell_must_max"><![CDATA[   <=  ]]></string>
+    <string name="str_ad_buy_must_min">Buy must be <![CDATA[  >=  ]]></string>
     <string name="str_money_use">Balance</string>
     <string name="str_gusture_password">Please enter the gesture password</string>
     <string name="str_gusture_password_forget">Forget the password ?</string>

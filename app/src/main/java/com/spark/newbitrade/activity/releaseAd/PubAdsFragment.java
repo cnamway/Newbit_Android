@@ -479,7 +479,7 @@ public class PubAdsFragment extends BaseLazyFragment implements ReleaseAdContrac
     private void doClickCoinClick(int position) {
         coinInfo = coinInfos.get(position);
         if (coinInfo != null) {
-            etCount.setHint("大于等于" + MathUtils.subZeroAndDot(coinInfo.getAdvMinLimit().toString()) + getString(R.string.str_and) + getString(R.string.str_ad_sell_must_max) + MathUtils.subZeroAndDot(coinInfo.getAdvMaxLimit().toString()));
+            etCount.setHint(">= " + MathUtils.subZeroAndDot(coinInfo.getAdvMinLimit().toString()) + getString(R.string.str_and) + getString(R.string.str_ad_sell_must_max) + MathUtils.subZeroAndDot(coinInfo.getAdvMaxLimit().toString()));
         }
         tvCoin.setText(coinInfo.getCoinName());
         presenter.priceFind(coinInfo.getCoinName(), "CNY");

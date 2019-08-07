@@ -845,9 +845,9 @@
     <string name="str_pay_success">支付成功</string>
     <string name="str_payway_only_one">同一种收款方式只能选择一个账户</string>
     <string name="str_pay_pass_6">请输入6位数字密码</string>
-    <string name="str_ad_sell_must_min">出售必须大于等于</string>
-    <string name="str_ad_sell_must_max">小于等于</string>
-    <string name="str_ad_buy_must_min">购买必须大于等于</string>
+    <string name="str_ad_sell_must_min">出售必须<![CDATA[  >=  ]]></string>
+    <string name="str_ad_sell_must_max"><![CDATA[   <=  ]]></string>
+    <string name="str_ad_buy_must_min">购买必须<![CDATA[  >=  ]]></string>
     <string name="str_money_use">余额</string>
     <string name="str_gusture_password">请输入手势密码</string>
     <string name="str_gusture_password_forget">忘记手势密码？</string>
