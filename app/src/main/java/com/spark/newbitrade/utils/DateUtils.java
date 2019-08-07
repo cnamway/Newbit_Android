@@ -141,7 +141,7 @@ public class DateUtils {
 
     public static SimpleDateFormat getDateFormat() {
         if (null == DateLocal.get()) {
-            DateLocal.set(new SimpleDateFormat("yyyy-MM-dd", Locale.CHINA));
+            DateLocal.set(new SimpleDateFormat("yyyy-MM-dd", Locale.SIMPLIFIED_CHINESE));
         }
         return DateLocal.get();
     }

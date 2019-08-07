@@ -21,9 +21,9 @@ public class FormatDataUtils {
         int code = SharedPreferenceInstance.getInstance().getLanguageCode();
         Language language = Language.values()[code];
         Locale locale = new Locale(language.name());
-        if (locale == Locale.CHINESE) {
+        if (locale == Locale.SIMPLIFIED_CHINESE) {
             return countryEntity.getZhName();
-        } else if (locale == Locale.ENGLISH) {
+        } else if (locale == Locale.US) {
             return countryEntity.getEnName();
         } else if (locale == Locale.JAPAN) {
             return countryEntity.getJpLanguage();

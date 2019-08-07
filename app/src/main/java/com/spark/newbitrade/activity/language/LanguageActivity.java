@@ -41,6 +41,15 @@ public class LanguageActivity extends BaseActivity {
         setSetTitleAndBack(false, true);
     }
 
+    @Override
+    protected void initData() {
+        super.initData();
+        setTitle(getString(R.string.language));
+        languageCode = SharedPreferenceInstance.getInstance().getLanguageCode();
+        if (languageCode == 1) ivChinese.setVisibility(View.VISIBLE);
+        else if (languageCode == 2) ivEnglish.setVisibility(View.VISIBLE);
+        else if (languageCode == 3) ivJapanese.setVisibility(View.VISIBLE);
+    }
 
     @OnClick({R.id.llChinese, R.id.llEnglish, R.id.llJapanese})
     @Override
@@ -64,24 +73,10 @@ public class LanguageActivity extends BaseActivity {
     private void language(int languageCode) {
         SharedPreferenceInstance.getInstance().saveLanguageCode(languageCode);
         Intent i = getBaseContext().getPackageManager().getLaunchIntentForPackage(getBaseContext().getPackageName());
-        //i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(i);
-        /*ActivityManage.finishAll();
-        Intent intent = new Intent(activity, MainActivity.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        startActivity(intent);*/
     }
 
 
-    @Override
-    protected void initData() {
-        super.initData();
-        setTitle(getString(R.string.language));
-        languageCode = SharedPreferenceInstance.getInstance().getLanguageCode();
-        if (languageCode == 1) ivChinese.setVisibility(View.VISIBLE);
-        else if (languageCode == 2) ivEnglish.setVisibility(View.VISIBLE);
-        else if (languageCode == 3) ivJapanese.setVisibility(View.VISIBLE);
-    }
 
 }

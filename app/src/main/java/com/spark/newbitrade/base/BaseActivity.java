@@ -215,11 +215,11 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseCont
         Locale l = null;
         int code = SharedPreferenceInstance.getInstance().getLanguageCode();
         if (code == 1) {
-            l = Locale.CHINESE;
+            l = Locale.SIMPLIFIED_CHINESE;
         } else if (code == 2) {
-            l = Locale.ENGLISH;
+            l = Locale.US;
         } else if (code == 3) {
-            l = Locale.JAPANESE;
+            l = Locale.JAPAN;
         }
         Resources resources = getApplicationContext().getResources();
         DisplayMetrics dm = resources.getDisplayMetrics();
@@ -377,8 +377,13 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseCont
 
     @Override
     protected void attachBaseContext(Context newBase) {
-        SharedPreferences preferences = newBase.getSharedPreferences("language", Context.MODE_PRIVATE);
-        String selectedLanguage = preferences.getString("language", "");
+        String selectedLanguage = "";
+        int languageType = SharedPreferenceInstance.getInstance().getLanguageCode();
+        if (languageType == 1) {//中文
+            selectedLanguage = LanguageUtil.SIMPLIFIED_CHINESE;
+        } else {//英文
+            selectedLanguage = LanguageUtil.ENGLISH;
+        }
         super.attachBaseContext(LanguageUtil.attachBaseContext(newBase, selectedLanguage));
     }
 

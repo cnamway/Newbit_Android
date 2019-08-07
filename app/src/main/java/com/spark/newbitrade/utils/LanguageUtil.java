@@ -24,8 +24,8 @@ public class LanguageUtil {
     public static final String ENGLISH = "en";
 
     private static Map<String, Locale> mSupportLanguages = new HashMap<String, Locale>(2) {{
-        put(ENGLISH, Locale.ENGLISH);
         put(SIMPLIFIED_CHINESE, Locale.SIMPLIFIED_CHINESE);
+        put(ENGLISH, Locale.US);
     }};
 
     public static void applyLanguage(Context context, String newLanguage) {
