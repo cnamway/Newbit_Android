@@ -356,7 +356,7 @@ public class C2CBuyOrSellActivity extends BaseActivity implements C2CBuyOrSellCo
 
     private void fillViews() {
         if (myAdvertiseShowVo != null) {
-            tvLimit.setText(myAdvertiseShowVo.getMinLimit() + "~" + myAdvertiseShowVo.getMaxLimit() + myAdvertiseShowVo.getLocalCurrency());
+            tvLimit.setText(getString(R.string.limit) + " " + myAdvertiseShowVo.getMinLimit() + "~" + myAdvertiseShowVo.getMaxLimit() + myAdvertiseShowVo.getLocalCurrency());
             tvLocalCoinText.setText(myAdvertiseShowVo.getLocalCurrency());
             tvOtherCoinText.setText(myAdvertiseShowVo.getCoinName());
 //        if (!StringUtils.isEmpty(avatar)) {
@@ -417,10 +417,10 @@ public class C2CBuyOrSellActivity extends BaseActivity implements C2CBuyOrSellCo
             }
 
             if (myAdvertiseShowVo.getAdvertiseType() == 0) {
-                tvTitle.setText(getString(R.string.text_sell) + myAdvertiseShowVo.getCoinName());
+                tvTitle.setText(getString(R.string.text_sell) + " " + myAdvertiseShowVo.getCoinName());
                 tvInfo.setText(getString(R.string.text_much_sale));
             } else {
-                tvTitle.setText(getString(R.string.text_buy) + myAdvertiseShowVo.getCoinName());
+                tvTitle.setText(getString(R.string.text_buy) + " " + myAdvertiseShowVo.getCoinName());
                 tvInfo.setText(getString(R.string.text_much_buy));
             }
         }

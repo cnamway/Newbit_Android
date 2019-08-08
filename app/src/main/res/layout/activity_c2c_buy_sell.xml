@@ -155,12 +155,13 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
+                android:layout_height="wrap_content"
+                android:minHeight="70dp"
                 android:orientation="horizontal">
 
                 <LinearLayout
                     android:layout_width="0dp"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:orientation="vertical">
 
@@ -169,6 +170,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
+                        android:text="0"
                         android:paddingTop="10dp"
                         android:textColor="@color/btn_normal" />
 
@@ -192,7 +194,7 @@
 
                 <LinearLayout
                     android:layout_width="0dp"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:orientation="vertical">
 
@@ -201,6 +203,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
+                        android:text="0"
                         android:paddingTop="10dp"
                         android:textColor="@color/btn_normal" />
 
@@ -211,7 +214,6 @@
                         android:text="@string/text_deal_num"
                         android:textColor="@color/main_font_content"
                         android:textSize="@dimen/font_mini" />
-
 
                 </LinearLayout>
 
@@ -224,7 +226,7 @@
 
                 <LinearLayout
                     android:layout_width="0dp"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:orientation="vertical">
 
@@ -233,6 +235,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
+                        android:text="0"
                         android:paddingTop="10dp"
                         android:textColor="@color/btn_normal" />
 
@@ -256,7 +259,7 @@
 
                 <LinearLayout
                     android:layout_width="0dp"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1.5"
                     android:orientation="vertical">
 
@@ -265,6 +268,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
+                        android:text="0"
                         android:paddingTop="10dp"
                         android:textColor="@color/btn_normal" />
 
@@ -366,8 +370,7 @@
                                 android:id="@+id/etOtherCoin"
                                 style="@style/edittext_normal"
                                 android:layout_weight="1"
-                                android:inputType="numberDecimal"
-                                 />
+                                android:inputType="numberDecimal" />
 
                             <TextView
                                 android:id="@+id/tvOtherCoinText"

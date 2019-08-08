@@ -1065,7 +1065,7 @@ public class PubAdsFragment extends BaseLazyFragment implements ReleaseAdContrac
         });
         dialog.setCancelable(false);
         dialog.setCanceledOnTouchOutside(false);
-        dialog.setData("温馨提示", "操作成功，是否去上架？", "取消", "确定");
+        dialog.setData(getString(R.string.warm_prompt), getString(R.string.str_pulish_ad_to_up), getString(R.string.str_cancel), getString(R.string.dialog_sure));
         dialog.show();
     }
 

@@ -136,7 +136,7 @@ public class SkipPayActivity extends BaseActivity implements SkipPayContract.Vie
 
             if (StringUtils.isNotEmpty(amount) && StringUtils.isNotEmpty(coinName)) {
                 tvAmount.setText(amount + " " + coinName);
-                tvCoinName.setText(coinName + getString(R.string.str_money_use));
+                tvCoinName.setText(coinName + " " + getString(R.string.str_money_use));
             }
 
         }

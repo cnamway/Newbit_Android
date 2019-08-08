@@ -146,7 +146,7 @@ public class BindBankActivity extends BaseActivity implements BindBankContract.V
      */
     private void showDialog() {
         dialog = new NormalListDialog(activity, bankNames);
-        dialog.title("请选择银行");
+        dialog.title(getString(R.string.str_select_bank));
         dialog.titleBgColor(getResources().getColor(R.color.main_font_content));
         dialog.setOnOperItemClickL(new OnOperItemClickL() {
             @Override

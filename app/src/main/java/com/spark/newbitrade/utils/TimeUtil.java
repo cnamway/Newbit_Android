@@ -1,5 +1,8 @@
 package com.spark.newbitrade.utils;
 
+import com.spark.newbitrade.MyApplication;
+import com.spark.newbitrade.R;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -24,29 +27,29 @@ public class TimeUtil {
                 return simpleDateFormat.format(date);
             } else {
                 if (isYestYesterday(date)) {//昨天，显示昨天
-                    return "昨天";
+                    return MyApplication.getApp().getString(R.string.str_time_format_yesterday);
                 } else if (isThisWeek(date)) {//本周,显示周几
                     String weekday = null;
                     if (date.getDay() == 1) {
-                        weekday = "周一";
+                        weekday = MyApplication.getApp().getString(R.string.str_time_format_monday);
                     }
                     if (date.getDay() == 2) {
-                        weekday = "周二";
+                        weekday = MyApplication.getApp().getString(R.string.str_time_format_tuesday);
                     }
                     if (date.getDay() == 3) {
-                        weekday = "周三";
+                        weekday = MyApplication.getApp().getString(R.string.str_time_format_wednesday);
                     }
                     if (date.getDay() == 4) {
-                        weekday = "周四";
+                        weekday = MyApplication.getApp().getString(R.string.str_time_format_thursday);
                     }
                     if (date.getDay() == 5) {
-                        weekday = "周五";
+                        weekday = MyApplication.getApp().getString(R.string.str_time_format_friday);
                     }
                     if (date.getDay() == 6) {
-                        weekday = "周六";
+                        weekday = MyApplication.getApp().getString(R.string.str_time_format_saturday);
                     }
                     if (date.getDay() == 0) {
-                        weekday = "周日";
+                        weekday = MyApplication.getApp().getString(R.string.str_time_format_sunday);
                     }
                     return weekday;
                 } else {
@@ -75,38 +78,38 @@ public class TimeUtil {
                 int minute = minutesAgo(time);
                 if (minute < 10) {//1小时之内
                     if (minute <= 1) {//一分钟之内，显示刚刚
-                        return "刚刚";
+                        return MyApplication.getApp().getString(R.string.str_time_format_just);
                     } else {
-                        return minute + "分钟前";
+                        return minute + " " + MyApplication.getApp().getString(R.string.str_time_format_minutes_ago);
                     }
                 } else {
                     return simpleDateFormat.format(date);
                 }
             } else {
                 if (isYestYesterday(date)) {//昨天，显示昨天
-                    return "昨天 " + simpleDateFormat.format(date);
+                    return MyApplication.getApp().getString(R.string.str_time_format_yesterday) + " " + simpleDateFormat.format(date);
                 } else if (isThisWeek(date)) {//本周,显示周几
                     String weekday = null;
                     if (date.getDay() == 1) {
-                        weekday = "周一";
+                        weekday = MyApplication.getApp().getString(R.string.str_time_format_monday);
                     }
                     if (date.getDay() == 2) {
-                        weekday = "周二";
+                        weekday = MyApplication.getApp().getString(R.string.str_time_format_tuesday);
                     }
                     if (date.getDay() == 3) {
-                        weekday = "周三";
+                        weekday = MyApplication.getApp().getString(R.string.str_time_format_wednesday);
                     }
                     if (date.getDay() == 4) {
-                        weekday = "周四";
+                        weekday = MyApplication.getApp().getString(R.string.str_time_format_thursday);
                     }
                     if (date.getDay() == 5) {
-                        weekday = "周五";
+                        weekday = MyApplication.getApp().getString(R.string.str_time_format_friday);
                     }
                     if (date.getDay() == 6) {
-                        weekday = "周六";
+                        weekday = MyApplication.getApp().getString(R.string.str_time_format_saturday);
                     }
                     if (date.getDay() == 0) {
-                        weekday = "周日";
+                        weekday = MyApplication.getApp().getString(R.string.str_time_format_sunday);
                     }
                     return weekday + " " + simpleDateFormat.format(date);
                 } else {
@@ -136,38 +139,38 @@ public class TimeUtil {
                 int minute = minutesAgo(Long.parseLong(time));
                 if (minute < 60) {//1小时之内
                     if (minute <= 1) {//一分钟之内，显示刚刚
-                        return "刚刚";
+                        return MyApplication.getApp().getString(R.string.str_time_format_just);
                     } else {
-                        return minute + "分钟前";
+                        return minute + " " + MyApplication.getApp().getString(R.string.str_time_format_minutes_ago);
                     }
                 } else {
                     return simpleDateFormat.format(date);
                 }
             } else {
                 if (isYestYesterday(date)) {//昨天，显示昨天
-                    return "昨天 " + simpleDateFormat.format(date);
+                    return MyApplication.getApp().getString(R.string.str_time_format_yesterday) + " " + simpleDateFormat.format(date);
                 } else if (isThisWeek(date)) {//本周,显示周几
                     String weekday = null;
                     if (date.getDay() == 1) {
-                        weekday = "周一";
+                        weekday = MyApplication.getApp().getString(R.string.str_time_format_monday);
                     }
                     if (date.getDay() == 2) {
-                        weekday = "周二";
+                        weekday = MyApplication.getApp().getString(R.string.str_time_format_tuesday);
                     }
                     if (date.getDay() == 3) {
-                        weekday = "周三";
+                        weekday = MyApplication.getApp().getString(R.string.str_time_format_wednesday);
                     }
                     if (date.getDay() == 4) {
-                        weekday = "周四";
+                        weekday = MyApplication.getApp().getString(R.string.str_time_format_thursday);
                     }
                     if (date.getDay() == 5) {
-                        weekday = "周五";
+                        weekday = MyApplication.getApp().getString(R.string.str_time_format_friday);
                     }
                     if (date.getDay() == 6) {
-                        weekday = "周六";
+                        weekday = MyApplication.getApp().getString(R.string.str_time_format_saturday);
                     }
                     if (date.getDay() == 0) {
-                        weekday = "周日";
+                        weekday = MyApplication.getApp().getString(R.string.str_time_format_sunday);
                     }
                     return weekday + " " + simpleDateFormat.format(date);
                 } else {

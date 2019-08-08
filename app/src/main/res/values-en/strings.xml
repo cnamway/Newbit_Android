@@ -860,5 +860,20 @@
     <string name="str_bank_num">Bank card number</string>
     <string name="phone_empty">Mobile phone number not found</string>
     <string name="str_success">SUCCESS</string>
+    <string name="str_push_otc_ad">Push OTC</string>
+    <string name="str_update_otc_ad">Update OTC</string>
+    <string name="str_select_bank">Please select bank</string>
 
+    <!--时间格式化-->
+    <string name="str_time_format_yesterday">Yesterday</string>
+    <string name="str_time_format_monday">Monday</string>
+    <string name="str_time_format_tuesday">Tuesday</string>
+    <string name="str_time_format_wednesday">Wednesday</string>
+    <string name="str_time_format_thursday">Thursday</string>
+    <string name="str_time_format_friday">Friday</string>
+    <string name="str_time_format_saturday">Saturday</string>
+    <string name="str_time_format_sunday">Sunday</string>
+    <string name="str_time_format_just">Just</string>
+    <string name="str_time_format_minutes_ago">Minutes ago</string>
+    <string name="str_pulish_ad_to_up">Successful, whether to shelves ?</string>
 </resources>

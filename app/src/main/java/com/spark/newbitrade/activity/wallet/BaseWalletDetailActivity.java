@@ -90,7 +90,6 @@ public class BaseWalletDetailActivity extends BaseActivity implements BaseWallet
     @Override
     protected void initView() {
         super.initView();
-        //setSetTitleAndBack(false, true);
         llHead.setVisibility(View.GONE);
         ivFilter.setVisibility(View.GONE);
         tvGoto.setVisibility(View.GONE);
@@ -99,8 +98,6 @@ public class BaseWalletDetailActivity extends BaseActivity implements BaseWallet
     @Override
     protected void initData() {
         super.initData();
-        setTitle("我的账单");
-
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
             wallet = (Wallet) bundle.getSerializable("Wallet");
