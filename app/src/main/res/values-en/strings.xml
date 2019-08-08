@@ -95,7 +95,7 @@
     <string name="activity_skip_extract_title">Confirmation of withdrawal</string>
     <string name="str_transfer_number">Transfer Quantity</string>
     <string name="str_transfer_banlance">Convertible amount:</string>
-    <string name="str_assets_transfer">Transfer of funds</string>
+    <string name="str_assets_transfer">Transfer of Assets</string>
     <string name="str_min_coin_amount">The number of transfers must be greater than 0</string>
     <string name="str_pay_confirm_delete">Confirm the deletion</string>
 
@@ -212,7 +212,7 @@
     <!--Account-->
     <string name="not_login">Not Logged In</string>
     <string name="welcome_to">Welcome to NBTC</string>
-    <string name="my_assast">My assets</string>
+    <string name="my_assast">My Assets</string>
     <string name="my_order">My Bill</string>
     <string name="my_ads">My Advertising</string>
     <string name="my_message">Platform Message</string>
@@ -334,7 +334,7 @@
     <string name="dialog_three_ones">Sell Price</string>
     <string name="dialog_three_twos">Sell Amount</string>
     <string name="dialog_three_threes">Total Sale</string>
-    <string name="dialog_three_msg">Reminder: Please confirm the price before ordering, and the transaction fund will be managed and locked after ordering. Please feel free to buy.</string>
+    <string name="dialog_three_msg">Reminder: Please confirm the price before ordering, and the transaction Assets will be managed and locked after ordering. Please feel free to buy.</string>
     <!--K line chart Favorite -->
     <string name="self">Optional</string>
     <string name="text_add_favorite">Add Favorites</string>
@@ -876,4 +876,6 @@
     <string name="str_time_format_just">Just</string>
     <string name="str_time_format_minutes_ago">Minutes ago</string>
     <string name="str_pulish_ad_to_up">Successful, whether to shelves ?</string>
+    <string name="str_assets_tran_in">Transfer Assets in</string>
+    <string name="str_assets_tran_out">FuTransfer Assets out</string>
 </resources>

@@ -877,7 +877,8 @@
     <string name="str_time_format_just">刚刚</string>
     <string name="str_time_format_minutes_ago">分钟前</string>
     <string name="str_pulish_ad_to_up">操作成功，是否去上架？</string>
-
+    <string name="str_assets_tran_in">资金划转转入</string>
+    <string name="str_assets_tran_out">资金划转转出</string>
 
 
 </resources>

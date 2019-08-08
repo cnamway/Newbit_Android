@@ -45,6 +45,14 @@ public class AssetRecordAdapter extends BaseQuickAdapter<AssetRecord, BaseViewHo
                 helper.setText(R.id.tvType, MyApplication.getApp().getString(R.string.mention_money));
                 type = 5;
                 break;
+            case 3:
+                helper.setText(R.id.tvType, MyApplication.getApp().getString(R.string.str_assets_tran_in));
+                type = 6;
+                break;
+            case 4:
+                helper.setText(R.id.tvType, MyApplication.getApp().getString(R.string.str_assets_tran_out));
+                type = 5;
+                break;
             case 7:
                 helper.setText(R.id.tvType, MyApplication.getApp().getString(R.string.fiat_money_sell));
                 type = 5;
