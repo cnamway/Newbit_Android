@@ -93,6 +93,7 @@ public class ChatActivity extends BaseActivity implements ChatContact.View {
     private ServiceConnection mConnection;
     private String NOTIFY_ID = "10000";
     private Context mContext;
+    private LinearLayoutManager manager;
 
     @Override
     protected void onResume() {
@@ -204,7 +205,7 @@ public class ChatActivity extends BaseActivity implements ChatContact.View {
 
 
     private void initRvChat() {
-        LinearLayoutManager manager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+        manager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         manager.setStackFromEnd(false);
         rvMessage.setLayoutManager(manager);
         adapter = new ChatAdapter(ChatActivity.this, chatEntities, String.valueOf(MyApplication.app.getCurrentUser().getId()));
@@ -278,9 +279,8 @@ public class ChatActivity extends BaseActivity implements ChatContact.View {
         chatEntities.addAll(entityList);
         Collections.reverse(chatEntities);
         adapter.notifyDataSetChanged();
-        if (chatEntities.size() > 1)
-            rvMessage.smoothScrollToPosition(chatEntities.size() - 1);
-        refreshLayout.setRefreshing(false);
+        if (pageNo == 1) rvMessage.smoothScrollToPosition(chatEntities.size() - 1);
+        else manager.scrollToPosition(entityList.size() + 3);
     }
 
     @Override

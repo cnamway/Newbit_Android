@@ -32,9 +32,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:overScrollMode="never"
-                    android:paddingBottom="8dp"
-                    android:paddingTop="8dp" />
+                    android:overScrollMode="never" />
 
             </android.support.v4.widget.SwipeRefreshLayout>
 
