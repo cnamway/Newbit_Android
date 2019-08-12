@@ -6,9 +6,9 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -20,7 +20,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.flyco.dialog.listener.OnBtnClickL;
@@ -44,6 +43,7 @@ import com.spark.newbitrade.ui.PayCodeDialog;
 import com.spark.newbitrade.utils.CommonUtils;
 import com.spark.newbitrade.utils.DateUtils;
 import com.spark.newbitrade.utils.GlobalConstant;
+import com.spark.newbitrade.utils.LogUtils;
 import com.spark.newbitrade.utils.MathUtils;
 import com.spark.newbitrade.utils.StringUtils;
 import com.spark.newbitrade.utils.ToastUtils;
@@ -53,6 +53,7 @@ import java.util.List;
 import java.util.TimeZone;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class OrderDetailActivity extends BaseActivity implements OrderDetailContract.View, ISocket.TCPCallback {
@@ -132,6 +133,8 @@ public class OrderDetailActivity extends BaseActivity implements OrderDetailCont
     TextView tvAliName;
     @BindView(R.id.tvWechatName)
     TextView tvWechatName;
+    @BindView(R.id.refreshLayout)
+    SwipeRefreshLayout refreshLayout;
 
     private String orderSn;
     private OrderFragment.Status status;//订单状态 0-已取消 1-未付款 2-已付款 3-已完成 4-申诉中
@@ -152,24 +155,35 @@ public class OrderDetailActivity extends BaseActivity implements OrderDetailCont
     private PayWaySelectDialog selectDialog;
     private PayCodeDialog payCodeDialog;
     private String bankNum;//银行卡号
+    private int tick_flush = 5;//每隔tick_flush秒钟加载一次数据
 
-    private String dir = Environment.getExternalStorageDirectory().getAbsolutePath() + "/digiccy/";//图片/
-    private Handler handler = new Handler(new Handler.Callback() {
+    private Handler handler_timeCurrent = new Handler() {
         @Override
-        public boolean handleMessage(Message msg) {
+        public void handleMessage(Message msg) {
             switch (msg.what) {
-                case 1:
-                    Toast.makeText(OrderDetailActivity.this, getString(R.string.download_failed), Toast.LENGTH_SHORT).show();
-                    break;
-                case 2:
-                    popWnd.dismiss();
-                    Toast.makeText(OrderDetailActivity.this, getString(R.string.success), Toast.LENGTH_SHORT).show();
+                case 1:                    //每隔tick_flush秒钟加载一次数据
+                    startFlush();
+                    handler_timeCurrent.sendEmptyMessageDelayed(1, tick_flush * 1000);//tick_flush秒钟刷新一次
                     break;
             }
-            return true;
         }
-    });
+    };
 
+    /**
+     * 开始刷新
+     */
+    private void startFlush() {
+        stopFlush();
+        LogUtils.e("开始刷新=============未付款");
+        getOrdetDetail(false);
+    }
+
+    /**
+     * 停止刷新
+     */
+    private void stopFlush() {
+        handler_timeCurrent.removeCallbacksAndMessages(null);
+    }
 
     @Override
     protected int getActivityLayoutId() {
@@ -221,7 +235,7 @@ public class OrderDetailActivity extends BaseActivity implements OrderDetailCont
 
     @Override
     protected void loadData() {
-        getOrdetDetail();
+        getOrdetDetail(true);
     }
 
     @Override
@@ -231,11 +245,6 @@ public class OrderDetailActivity extends BaseActivity implements OrderDetailCont
             @Override
             public void onClick(View v) {
                 if (!StringUtils.isEmpty(select)) {
-//                    HashMap<String, String> map = new HashMap<>();
-//                    map.put("orderSn", orderSn);
-//                    map.put("actualPayment", select);
-//                    presenter.payDone(map);
-
                     OrderPaymentDto orderPaymentDto = new OrderPaymentDto();
                     orderPaymentDto.setActualPayment(select);
                     orderPaymentDto.setOrderSn(orderSn);
@@ -246,6 +255,12 @@ public class OrderDetailActivity extends BaseActivity implements OrderDetailCont
                 }
             }
         });
+        refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                getOrdetDetail(false);
+            }
+        });
     }
 
     @OnClick({R.id.tvPayDone, R.id.tvCancle, R.id.tvRelease, R.id.tvAppeal, R.id.ivGoChat, R.id.tvOrderSn, R.id.tvOrderId, R.id.ivAliCode, R.id.ivWeChatCode, R.id.tvBank})
@@ -254,7 +269,7 @@ public class OrderDetailActivity extends BaseActivity implements OrderDetailCont
         super.setOnClickListener(v);
         if (orderDetailVo == null) {
             ToastUtils.showToast(getString(R.string.order_details_failed));
-            getOrdetDetail();
+            getOrdetDetail(true);
             return;
         }
         Bundle bundle = new Bundle();
@@ -293,9 +308,6 @@ public class OrderDetailActivity extends BaseActivity implements OrderDetailCont
             case R.id.tvOrderSn:
                 CommonUtils.copyText(OrderDetailActivity.this, tvOrderSn.getText().toString());
                 break;
-//            case R.id.tvBankNo:
-//                CommonUtils.copyText(OrderDetailActivity.this, tvBankNo.getText().toString());
-//                break;
             case R.id.tvOrderId:
                 CommonUtils.copyText(OrderDetailActivity.this, tvOrderId.getText().toString());
                 break;
@@ -383,10 +395,6 @@ public class OrderDetailActivity extends BaseActivity implements OrderDetailCont
             }, new OnBtnClickL() {
                 @Override
                 public void onBtnClick() {
-//                    HashMap<String, String> map = new HashMap<>();
-//                    map.put("orderSn", orderSn);
-//                    presenter.cancle(map);
-
                     presenter.cancelOrderUsingGET(orderSn);
                     dialog.superDismiss();
                 }
@@ -395,39 +403,18 @@ public class OrderDetailActivity extends BaseActivity implements OrderDetailCont
 
     }
 
-
-//    private JSONObject buildBodyJson() {
-//        JSONObject obj = new JSONObject();
-//        try {
-//            obj.put("orderId", orderDetailVo.getOrderSn());
-//            //obj.put("uid", orderDetailVo.getMyId());
-//            obj.put("uidFrom", MyApplication.getApp().getCurrentUser().getId());
-//            obj.put("uidTo", orderDetailVo.getHisId());
-//            obj.put("nameTo", orderDetailVo.getOtherSide());
-//            obj.put("nameFrom", MyApplication.getApp().getCurrentUser().getUsername());
-//            obj.put("messageType", "0");
-//            obj.put("content", "");
-//            obj.put("avatar", MyApplication.getApp().getCurrentUser().getAvatar());
-//            return obj;
-//        } catch (Exception ex) {
-//            return null;
-//        }
-//    }
-
     /**
      * 获取订单详情
      */
-    private void getOrdetDetail() {
-//        HashMap<String, String> map = new HashMap<>();
-//        map.put("orderSn", orderSn);
-//        presenter.orderDetail(map);
-
+    private void getOrdetDetail(boolean isShow) {
         if (status.getStatus() == 0 || status.getStatus() == 3) {
             //查询我的归档订单（已完成，已取消）
-            presenter.findOrderAchiveDetailUsingGET(orderSn);
+            presenter.findOrderAchiveDetailUsingGET(orderSn, isShow);
+            stopFlush();
         } else {
             //查询我的在途订单(未付款，已付款，申诉中)
-            presenter.findOrderInTransitDetailUsingGET(orderSn);
+            presenter.findOrderInTransitDetailUsingGET(orderSn, isShow);
+            handler_timeCurrent.sendEmptyMessageDelayed(1, tick_flush * 1000);//tick_flush秒钟刷新一次
         }
     }
 
@@ -437,22 +424,8 @@ public class OrderDetailActivity extends BaseActivity implements OrderDetailCont
      * @param jyPassword
      */
     private void release(String jyPassword) {
-//        HashMap<String, String> map = new HashMap<>();
-//        map.put("orderSn", orderSn);
-//        map.put("jyPassword", jyPassword);
-//        presenter.release(map);
-
         presenter.releaseOrderUsingGET(orderSn, jyPassword);
     }
-
-
-//    @Override
-//    public void orderDetailSuccess(OrderDetial obj) {
-//        if (obj != null) {
-//            orderDetailVo = obj;
-//            setViews();
-//        }
-//    }
 
     private void setViews() {
         tvOtherSide.setText(orderDetailVo.getTrateToRealname());
@@ -463,81 +436,6 @@ public class OrderDetailActivity extends BaseActivity implements OrderDetailCont
         tvTotal.setText(MathUtils.subZeroAndDot(orderDetailVo.getMoney() + "") + " CNY");
         tvTime.setText(simpleDateFormat.format(orderDetailVo.getCreateTime()));
         tvRemarks.setText(orderDetailVo.getRemark());
-//        if (!StringUtils.isEmpty(orderDetailVo.getAvatar())) {
-//            Glide.with(OrderDetailActivity.this).load(orderDetailVo.getAvatar()).into(ivHeader);
-//        }
-
-//        if (StringUtils.isNotEmpty(orderDetailVo.getPayData())) {
-//        }
-
-
-//        final OrderDetial.PayInfoBean payInfoBean = orderDetailVo.getPayInfo();
-//        if (payInfoBean != null) {
-//            if (payInfoBean.getAliAddress() == null) {
-//                tvZhifubao.setText("");
-//                ivZhifubaoQR.setVisibility(View.GONE);
-//                llAli.setVisibility(View.GONE);
-//            } else {
-//                isAli = true;
-//                llAli.setVisibility(View.VISIBLE);
-//                tvZhifubao.setText(payInfoBean.getAliAddress());
-//                ivZhifubaoQR.setVisibility(View.VISIBLE);
-//                ivZhifubaoQR.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View v) {
-//                        if (payInfoBean.getAliCodeUrl() != null) {
-//                            showPopWindow(payInfoBean.getAliCodeUrl());
-//                        } else
-//                            ToastUtils.showToast(getString(R.string.no_qrcode));
-//                    }
-//                });
-//            }
-//            if (payInfoBean.getWeAddress() == null) {
-//                tvWeChat.setText("");
-//                ivWeChatQR.setVisibility(View.GONE);
-//                llWeChat.setVisibility(View.GONE);
-//            } else {
-//                isWechat = true;
-//                llWeChat.setVisibility(View.VISIBLE);
-//                tvWeChat.setText(payInfoBean.getWeAddress());
-//                ivWeChatQR.setVisibility(View.VISIBLE);
-//                ivWeChatQR.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View v) {
-//                        if (payInfoBean.getWeCodeUrl() != null) {
-//                            showPopWindow(payInfoBean.getWeCodeUrl());
-//                        } else
-//                            ToastUtils.showToast(getString(R.string.no_qrcode));
-//                    }
-//                });
-//            }
-//            if (payInfoBean.getCardAddress() != null) {
-//                isBank = true;
-//                rlBank.setVisibility(View.VISIBLE);
-//                tvBankNo.setVisibility(View.VISIBLE);
-//                tvBranch.setVisibility(View.VISIBLE);
-//                tvBankNo.setText(payInfoBean.getCardAddress());
-//                tvBranch.setText(payInfoBean.getBank() + " " + payInfoBean.getBranch());
-//                tvName.setText(orderDetailVo.getRealName());
-//            } else {
-//                rlBank.setVisibility(View.GONE);
-//                tvBranch.setVisibility(View.GONE);
-//                tvBankNo.setVisibility(View.GONE);
-//                tvName.setText("");
-//            }
-//            if (!StringUtils.isEmpty(orderDetailVo.getActualPayment())) {
-//                if (orderDetailVo.getActualPayment().contains("支")) {
-//                    llWeChat.setVisibility(View.GONE);
-//                    rlBank.setVisibility(View.GONE);
-//                } else if (orderDetailVo.getActualPayment().contains("微")) {
-//                    llAli.setVisibility(View.GONE);
-//                    rlBank.setVisibility(View.GONE);
-//                } else if (orderDetailVo.getActualPayment().contains("银")) {
-//                    llWeChat.setVisibility(View.GONE);
-//                    llAli.setVisibility(View.GONE);
-//                }
-//            }
-//        }
 
         OrderFragment.Status status = OrderFragment.Status.values()[orderDetailVo.getStatus()];
         switch (status.getStatus()) {
@@ -824,6 +722,7 @@ public class OrderDetailActivity extends BaseActivity implements OrderDetailCont
             timer.cancel();
             timer = null;
         }
+        stopFlush();
     }
 
 
@@ -868,11 +767,12 @@ public class OrderDetailActivity extends BaseActivity implements OrderDetailCont
 //        setResult(RESULT_OK);
 //        finish();
         //付完款之后 详情页不关闭
-        getOrdetDetail();
+        getOrdetDetail(true);
     }
 
     @Override
     public void findOrderInTransitDetailUsingGETSuccess(OrderDetailVo obj) {
+        hideAll();
         if (obj != null) {
             orderDetailVo = obj;
             setViews();
@@ -881,6 +781,7 @@ public class OrderDetailActivity extends BaseActivity implements OrderDetailCont
 
     @Override
     public void findOrderAchiveDetailUsingGETSuccess(OrderDetailVo obj) {
+        hideAll();
         if (obj != null) {
             orderDetailVo = obj;
             setViews();
@@ -894,14 +795,22 @@ public class OrderDetailActivity extends BaseActivity implements OrderDetailCont
 
     @Override
     public void findOrderAchiveDetailUsingGETFail(HttpErrorEntity httpErrorEntity) {
+        hideAll();
         //查询我的在途订单(未付款，已付款，申诉中)
-        presenter.findOrderInTransitDetailUsingGET(orderSn);
+        presenter.findOrderInTransitDetailUsingGET(orderSn, false);
     }
 
     @Override
     public void findOrderInTransitDetailUsingGETFail(HttpErrorEntity httpErrorEntity) {
+        hideAll();
         //查询我的归档订单（已完成，已取消）
-        presenter.findOrderAchiveDetailUsingGET(orderSn);
+        presenter.findOrderAchiveDetailUsingGET(orderSn, false);
     }
 
+    private void hideAll() {
+        if (refreshLayout != null) {
+            refreshLayout.setEnabled(true);
+            refreshLayout.setRefreshing(false);
+        }
+    }
 }

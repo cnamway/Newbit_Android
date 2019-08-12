@@ -609,9 +609,9 @@
     <string name="creditfail_notice">Sorry, your Identity Authentication failed. Please re-submit! </string>
     <string name="creditfail_notice_reason">Cause of failure:</string>
     <string name="certifySuccessful">Congratulations, you have passed the audit and may trade now</string>
-    <string name="ali_account">Alipay Account</string>
-    <string name="weichat_account">WeChat Account</string>
-    <string name="unionpay_account">Bank Account</string>
+    <string name="ali_account">Alipay</string>
+    <string name="weichat_account">WeChat</string>
+    <string name="unionpay_account">Card</string>
     <string name="unionpay_accountTip">Please enter bank card number</string>
     <string name="unionpay_accountTip2">Please re-enter bank card number</string>
     <string name="qr_code_for_receivables">Receipt qr code</string>

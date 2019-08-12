@@ -22,7 +22,6 @@ import com.spark.newbitrade.MyApplication;
 import com.spark.newbitrade.R;
 import com.spark.newbitrade.base.BaseActivity;
 import com.spark.newbitrade.entity.PayWaySetting;
-import com.spark.newbitrade.factory.UrlFactory;
 import com.spark.newbitrade.utils.BitmapUtils;
 import com.spark.newbitrade.utils.FileUtils;
 import com.spark.newbitrade.utils.GlobalConstant;

@@ -125,8 +125,8 @@ public class OrderDetailPresenterImpl implements OrderDetailContract.Presenter {
     }
 
     @Override
-    public void findOrderInTransitDetailUsingGET(String orderId) {
-        showLoading();
+    public void findOrderInTransitDetailUsingGET(String orderId, boolean isShow) {
+        if (isShow) showLoading();
         tradeControllerModel.findOrderInTransitDetailUsingGET(orderId,
                 new ResponseCallBack.SuccessListener<OrderDetailVo>() {
                     @Override
@@ -153,8 +153,8 @@ public class OrderDetailPresenterImpl implements OrderDetailContract.Presenter {
     }
 
     @Override
-    public void findOrderAchiveDetailUsingGET(String orderId) {
-        showLoading();
+    public void findOrderAchiveDetailUsingGET(String orderId, boolean isShow) {
+        if (isShow) showLoading();
         tradeControllerModel.findOrderAchiveDetailUsingGET(orderId,
                 new ResponseCallBack.SuccessListener<OrderDetailVo>() {
                     @Override

@@ -10,616 +10,617 @@
     <!--标题-->
     <include layout="@layout/view_head" />
 
-    <com.spark.newbitrade.ui.intercept.MyScrollView
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/refreshLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <LinearLayout
+        <com.spark.newbitrade.ui.intercept.MyScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="match_parent">
 
-            <!-- 订单状态-->
             <LinearLayout
-                style="@style/layout_my_info"
-                android:layout_height="45dp">
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/tvStatus"
-                    style="@style/edittext_normal"
-                    android:layout_width="wrap_content"
-                    android:gravity="left"
-                    android:textColor="@color/btn_normal"
-                    android:textSize="24sp" />
+                <!-- 订单状态-->
+                <LinearLayout
+                    style="@style/layout_my_info"
+                    android:layout_height="45dp">
+
+                    <TextView
+                        android:id="@+id/tvStatus"
+                        style="@style/edittext_normal"
+                        android:layout_width="wrap_content"
+                        android:gravity="left"
+                        android:textColor="@color/btn_normal"
+                        android:textSize="24sp" />
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" />
+
+                    <TextView
+                        android:id="@+id/tvLastTime"
+                        style="@style/edittext_normal"
+                        android:layout_width="wrap_content"
+                        android:drawableLeft="@mipmap/icon_lasttime"
+                        android:drawablePadding="8dp"
+                        android:gravity="right|center_vertical"
+                        android:textColor="@color/main_font_content"
+                        android:visibility="invisible" />
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:background="@mipmap/bg_orderdetail_lin"
+                    android:orientation="vertical"
+                    android:visibility="visible">
+
+                    <LinearLayout
+                        style="@style/layout_my_info"
+                        android:layout_height="55dp"
+                        android:background="@color/transparent"
+                        android:paddingTop="5dp">
+
+                        <com.spark.newbitrade.ui.CircleImageView
+                            android:id="@+id/ivHeader"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:src="@mipmap/icon_avatar" />
+
+                        <TextView
+                            android:id="@+id/tvOtherSide"
+                            style="@style/edittext_normal"
+                            android:layout_width="wrap_content"
+                            android:layout_marginLeft="15dp"
+                            android:background="@color/transparent"
+                            android:textColor="@color/main_font_content" />
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1" />
+
+                        <ImageView
+                            android:id="@+id/ivGoChat"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:scaleType="center"
+                            android:src="@mipmap/icon_chat" />
+
+                    </LinearLayout>
+
+                    <!--交易价格-->
+                    <LinearLayout
+                        style="@style/layout_my_info"
+                        android:layout_height="45dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@color/transparent">
+
+                        <TextView
+                            style="@style/textview_tag"
+                            android:layout_width="wrap_content"
+                            android:text="@string/transaction_price"
+                            android:textColor="@color/main_font_content" />
+
+                        <TextView
+                            android:id="@+id/tvPrice"
+                            style="@style/edittext_normal"
+                            android:background="@color/transparent"
+                            android:gravity="right|center_vertical"
+                            android:textColor="@color/main_font_content" />
+
+                    </LinearLayout>
+
+
+                    <!--交易数量-->
+                    <LinearLayout
+                        style="@style/layout_my_info"
+                        android:layout_height="45dp"
+                        android:background="@color/transparent">
+
+                        <TextView
+                            style="@style/textview_tag"
+                            android:text="@string/transactions_num"
+                            android:textColor="@color/main_font_content" />
+
+                        <TextView
+                            android:id="@+id/tvCount"
+                            style="@style/edittext_normal"
+                            android:background="@color/transparent"
+                            android:gravity="right|center_vertical"
+                            android:textColor="@color/main_font_content" />
+
+                    </LinearLayout>
+
+                    <!--交易金额-->
+                    <LinearLayout
+                        style="@style/layout_my_info"
+                        android:layout_height="45dp"
+                        android:background="@color/transparent">
+
+                        <TextView
+                            style="@style/textview_tag"
+                            android:text="@string/transaction_amount"
+                            android:textColor="@color/main_font_content" />
+
+                        <TextView
+                            android:id="@+id/tvTotal"
+                            style="@style/edittext_normal"
+                            android:background="@color/transparent"
+                            android:gravity="right|center_vertical"
+                            android:textColor="@color/main_font_content" />
+                    </LinearLayout>
+
+                </LinearLayout>
+                <!--订单编号-->
+
+                <!--创建时间-->
+                <LinearLayout
+                    style="@style/layout_my_info"
+                    android:layout_height="45dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp">
+
+                    <TextView
+                        style="@style/textview_tag"
+                        android:text="@string/trading_time"
+                        android:textColor="@color/main_font_content" />
+
+                    <TextView
+                        android:id="@+id/tvTime"
+                        style="@style/edittext_normal"
+                        android:layout_marginRight="15dp"
+                        android:gravity="right|center_vertical"
+                        android:textColor="@color/main_font_content" />
+
+                </LinearLayout>
+
+                <!--付款时间-->
+                <LinearLayout
+                    android:id="@+id/llPaymentTime"
+                    style="@style/layout_my_info"
+                    android:layout_height="45dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:visibility="gone">
+
+                    <TextView
+                        style="@style/textview_tag"
+                        android:text="@string/str_pay_done_time"
+                        android:textColor="@color/main_font_content" />
+
+                    <TextView
+                        android:id="@+id/tvPayTime"
+                        style="@style/edittext_normal"
+                        android:layout_marginRight="15dp"
+                        android:gravity="right|center_vertical"
+                        android:textColor="@color/main_font_content" />
+
+                </LinearLayout>
+
+                <!--放行时间-->
+                <LinearLayout
+                    android:id="@+id/llReleseTime"
+                    style="@style/layout_my_info"
+                    android:layout_height="45dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:visibility="gone">
+
+                    <TextView
+                        style="@style/textview_tag"
+                        android:text="@string/str_relese_time"
+                        android:textColor="@color/main_font_content" />
+
+                    <TextView
+                        android:id="@+id/tvReleseTime"
+                        style="@style/edittext_normal"
+                        android:layout_marginRight="15dp"
+                        android:gravity="right|center_vertical"
+                        android:textColor="@color/main_font_content" />
+
+                </LinearLayout>
+
+                <!--订单编号-->
+                <LinearLayout
+                    style="@style/layout_my_info"
+                    android:layout_height="45dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp">
+
+                    <TextView
+                        style="@style/textview_tag"
+                        android:text="@string/order_num"
+                        android:textColor="@color/main_font_content" />
+
+                    <TextView
+                        android:id="@+id/tvOrderSn"
+                        style="@style/edittext_normal"
+                        android:layout_marginRight="15dp"
+                        android:drawablePadding="8dp"
+                        android:drawableRight="@mipmap/icon_copy_white"
+                        android:gravity="right|center_vertical"
+                        android:textColor="@color/main_font_content" />
+
+                </LinearLayout>
+
+                <!--参考号-->
+                <LinearLayout
+                    style="@style/layout_my_info"
+                    android:layout_height="45dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp">
+
+                    <TextView
+                        style="@style/textview_tag"
+                        android:text="@string/order_id"
+                        android:textColor="@color/main_font_content" />
+
+                    <TextView
+                        android:id="@+id/tvOrderId"
+                        style="@style/edittext_normal"
+                        android:layout_marginRight="15dp"
+                        android:drawablePadding="8dp"
+                        android:drawableRight="@mipmap/icon_copy_white"
+                        android:gravity="right|center_vertical"
+                        android:textColor="@color/main_font_content" />
+
+                </LinearLayout>
+
+                <!--备注-->
+                <LinearLayout
+                    style="@style/layout_my_info"
+                    android:layout_height="45dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp">
+
+                    <TextView
+                        style="@style/textview_tag"
+                        android:text="@string/remarks"
+                        android:textColor="@color/main_font_content" />
+
+                    <TextView
+                        android:id="@+id/tvRemarks"
+                        style="@style/edittext_normal"
+                        android:layout_marginRight="15dp"
+                        android:gravity="right|center_vertical"
+
+                        android:textColor="@color/main_font_content" />
+
+                </LinearLayout>
 
                 <View
-                    android:layout_width="0dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="8dp"
+                    android:background="@color/main_bg" />
+
+                <LinearLayout
+                    android:id="@+id/llPayLayout"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1" />
-
-                <TextView
-                    android:id="@+id/tvLastTime"
-                    style="@style/edittext_normal"
-                    android:layout_width="wrap_content"
-                    android:drawableLeft="@mipmap/icon_lasttime"
-                    android:drawablePadding="8dp"
-                    android:gravity="right|center_vertical"
-                    android:textColor="@color/main_font_content"
-                    android:visibility="invisible" />
-
-            </LinearLayout>
-
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"
-                android:background="@mipmap/bg_orderdetail_lin"
-                android:orientation="vertical"
-                android:visibility="visible">
-
-                <LinearLayout
-                    style="@style/layout_my_info"
-                    android:layout_height="55dp"
-                    android:background="@color/transparent"
-                    android:paddingTop="5dp">
-
-                    <com.spark.newbitrade.ui.CircleImageView
-                        android:id="@+id/ivHeader"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:src="@mipmap/icon_avatar" />
-
-                    <TextView
-                        android:id="@+id/tvOtherSide"
-                        style="@style/edittext_normal"
-                        android:layout_width="wrap_content"
-                        android:layout_marginLeft="15dp"
-                        android:background="@color/transparent"
-                        android:textColor="@color/main_font_content" />
-
-                    <View
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1" />
-
-                    <ImageView
-                        android:id="@+id/ivGoChat"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:scaleType="center"
-                        android:src="@mipmap/icon_chat" />
-
-                </LinearLayout>
-
-                <!--交易价格-->
-                <LinearLayout
-                    style="@style/layout_my_info"
-                    android:layout_height="45dp"
-                    android:layout_marginTop="10dp"
-                    android:background="@color/transparent">
-
-                    <TextView
-                        style="@style/textview_tag"
-                        android:layout_width="wrap_content"
-                        android:text="@string/transaction_price"
-                        android:textColor="@color/main_font_content" />
-
-                    <TextView
-                        android:id="@+id/tvPrice"
-                        style="@style/edittext_normal"
-                        android:background="@color/transparent"
-                        android:gravity="right|center_vertical"
-                        android:textColor="@color/main_font_content" />
-
-                </LinearLayout>
-
-
-                <!--交易数量-->
-                <LinearLayout
-                    style="@style/layout_my_info"
-                    android:layout_height="45dp"
-                    android:background="@color/transparent">
-
-                    <TextView
-                        style="@style/textview_tag"
-                        android:text="@string/transactions_num"
-                        android:textColor="@color/main_font_content" />
-
-                    <TextView
-                        android:id="@+id/tvCount"
-                        style="@style/edittext_normal"
-                        android:background="@color/transparent"
-                        android:gravity="right|center_vertical"
-                        android:textColor="@color/main_font_content" />
-
-                </LinearLayout>
-
-                <!--交易金额-->
-                <LinearLayout
-                    style="@style/layout_my_info"
-                    android:layout_height="45dp"
-                    android:background="@color/transparent">
-
-                    <TextView
-                        style="@style/textview_tag"
-                        android:text="@string/transaction_amount"
-                        android:textColor="@color/main_font_content" />
-
-                    <TextView
-                        android:id="@+id/tvTotal"
-                        style="@style/edittext_normal"
-                        android:background="@color/transparent"
-                        android:gravity="right|center_vertical"
-                        android:textColor="@color/main_font_content" />
-                </LinearLayout>
-
-            </LinearLayout>
-            <!--订单编号-->
-
-            <!--创建时间-->
-            <LinearLayout
-                style="@style/layout_my_info"
-                android:layout_height="45dp"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp">
-
-                <TextView
-                    style="@style/textview_tag"
-                    android:text="@string/trading_time"
-                    android:textColor="@color/main_font_content" />
-
-                <TextView
-                    android:id="@+id/tvTime"
-                    style="@style/edittext_normal"
+                    android:layout_marginLeft="15dp"
                     android:layout_marginRight="15dp"
-                    android:gravity="right|center_vertical"
-                    android:textColor="@color/main_font_content" />
-
-            </LinearLayout>
-
-            <!--付款时间-->
-            <LinearLayout
-                android:id="@+id/llPaymentTime"
-                style="@style/layout_my_info"
-                android:layout_height="45dp"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"
-                android:visibility="gone">
-
-                <TextView
-                    style="@style/textview_tag"
-                    android:text="@string/str_pay_done_time"
-                    android:textColor="@color/main_font_content" />
-
-                <TextView
-                    android:id="@+id/tvPayTime"
-                    style="@style/edittext_normal"
-                    android:layout_marginRight="15dp"
-                    android:gravity="right|center_vertical"
-                    android:textColor="@color/main_font_content" />
-
-            </LinearLayout>
-
-            <!--放行时间-->
-            <LinearLayout
-                android:id="@+id/llReleseTime"
-                style="@style/layout_my_info"
-                android:layout_height="45dp"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"
-                android:visibility="gone">
-
-                <TextView
-                    style="@style/textview_tag"
-                    android:text="@string/str_relese_time"
-                    android:textColor="@color/main_font_content" />
-
-                <TextView
-                    android:id="@+id/tvReleseTime"
-                    style="@style/edittext_normal"
-                    android:layout_marginRight="15dp"
-                    android:gravity="right|center_vertical"
-                    android:textColor="@color/main_font_content" />
-
-            </LinearLayout>
-
-            <!--订单编号-->
-            <LinearLayout
-                style="@style/layout_my_info"
-                android:layout_height="45dp"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp">
-
-                <TextView
-                    style="@style/textview_tag"
-                    android:text="@string/order_num"
-                    android:textColor="@color/main_font_content" />
-
-                <TextView
-                    android:id="@+id/tvOrderSn"
-                    style="@style/edittext_normal"
-                    android:layout_marginRight="15dp"
-                    android:drawablePadding="8dp"
-                    android:drawableRight="@mipmap/icon_copy_white"
-                    android:gravity="right|center_vertical"
-                    android:textColor="@color/main_font_content" />
-
-            </LinearLayout>
-
-            <!--参考号-->
-            <LinearLayout
-                style="@style/layout_my_info"
-                android:layout_height="45dp"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp">
-
-                <TextView
-                    style="@style/textview_tag"
-                    android:text="@string/order_id"
-                    android:textColor="@color/main_font_content" />
-
-                <TextView
-                    android:id="@+id/tvOrderId"
-                    style="@style/edittext_normal"
-                    android:layout_marginRight="15dp"
-                    android:drawablePadding="8dp"
-                    android:drawableRight="@mipmap/icon_copy_white"
-                    android:gravity="right|center_vertical"
-                    android:textColor="@color/main_font_content" />
-
-            </LinearLayout>
-
-            <!--备注-->
-            <LinearLayout
-                style="@style/layout_my_info"
-                android:layout_height="45dp"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp">
-
-                <TextView
-                    style="@style/textview_tag"
-                    android:text="@string/remarks"
-                    android:textColor="@color/main_font_content" />
-
-                <TextView
-                    android:id="@+id/tvRemarks"
-                    style="@style/edittext_normal"
-                    android:layout_marginRight="15dp"
-                    android:gravity="right|center_vertical"
-
-                    android:textColor="@color/main_font_content" />
-
-            </LinearLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="8dp"
-                android:background="@color/main_bg" />
-
-            <LinearLayout
-                android:id="@+id/llPayLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"
-                android:orientation="vertical"
-                android:visibility="visible">
-
-                <LinearLayout
-                    android:id="@+id/llAli"
-                    style="@style/layout_my_info"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/dp_1"
-                    android:paddingBottom="@dimen/dp_4"
-                    android:paddingTop="@dimen/dp_4"
-                    android:visibility="gone">
-
-                    <TextView
-                        style="@style/textview_tag"
-                        android:drawableLeft="@mipmap/icon_pay"
-                        android:drawablePadding="8dp"
-                        android:gravity="center_vertical"
-                        android:text="@string/ali_account" />
-
-                    <View
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1" />
-
-                    <LinearLayout
-                        style="@style/style_layout"
-                        android:layout_width="wrap_content"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:id="@+id/tvAliName"
-                            style="@style/textview_tag"
-                            android:gravity="center_vertical"
-                            />
-
-                        <TextView
-                            android:id="@+id/tvAli"
-                            style="@style/textview_tag"
-                            android:gravity="center_vertical"
-                             />
-                    </LinearLayout>
-
-                    <ImageView
-                        android:id="@+id/ivAliCode"
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:layout_marginLeft="@dimen/dp_10"
-                        android:src="@mipmap/icon_qr_code"
-                        android:textSize="@dimen/font_small" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/llWeChat"
-                    style="@style/layout_my_info"
-                    android:layout_marginTop="@dimen/dp_1"
-                    android:paddingBottom="@dimen/dp_4"
-                    android:paddingTop="@dimen/dp_4"
-                    android:visibility="gone">
-
-                    <TextView
-                        style="@style/textview_tag"
-                        android:drawableLeft="@mipmap/icon_wechat"
-                        android:drawablePadding="8dp"
-                        android:gravity="center_vertical"
-                        android:text="@string/weichat_account" />
-
-                    <View
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1" />
-
-                    <LinearLayout
-                        style="@style/style_layout"
-                        android:layout_width="wrap_content"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:id="@+id/tvWechatName"
-                            style="@style/textview_tag"
-                            android:gravity="center_vertical"
-                             />
-
-                        <TextView
-                            android:id="@+id/tvWechat"
-                            style="@style/textview_tag"
-                            android:gravity="center_vertical"
-                             />
-                    </LinearLayout>
-
-
-                    <ImageView
-                        android:id="@+id/ivWeChatCode"
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:layout_marginLeft="@dimen/dp_10"
-                        android:src="@mipmap/icon_qr_code"
-                        android:textSize="@dimen/font_small" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/llBank"
-                    style="@style/layout_my_info"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/dp_1"
                     android:orientation="vertical"
-                    android:paddingBottom="@dimen/dp_4"
-                    android:paddingTop="@dimen/dp_4"
-                    android:visibility="gone">
-
-                    <TextView
-                        style="@style/textview_tag"
-                        android:drawableLeft="@mipmap/icon_unionpay"
-                        android:drawablePadding="8dp"
-                        android:gravity="center_vertical"
-                        android:text="@string/unionpay_account" />
+                    android:visibility="visible">
 
                     <LinearLayout
-                        android:layout_width="match_parent"
+                        android:id="@+id/llAli"
+                        style="@style/layout_my_info"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp_1"
+                        android:paddingBottom="@dimen/dp_4"
+                        android:paddingTop="@dimen/dp_4"
+                        android:visibility="gone">
+
+                        <TextView
+                            style="@style/textview_tag"
+                            android:drawableLeft="@mipmap/icon_pay"
+                            android:drawablePadding="8dp"
+                            android:gravity="center_vertical"
+                            android:text="@string/ali_account" />
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1" />
+
+                        <LinearLayout
+                            style="@style/style_layout"
+                            android:layout_width="wrap_content"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/tvAliName"
+                                style="@style/textview_tag"
+                                android:gravity="center_vertical" />
+
+                            <TextView
+                                android:id="@+id/tvAli"
+                                style="@style/textview_tag"
+                                android:gravity="center_vertical" />
+                        </LinearLayout>
+
+                        <ImageView
+                            android:id="@+id/ivAliCode"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_marginLeft="@dimen/dp_10"
+                            android:src="@mipmap/icon_qr_code"
+                            android:textSize="@dimen/font_small" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/llWeChat"
+                        style="@style/layout_my_info"
+                        android:layout_marginTop="@dimen/dp_1"
+                        android:paddingBottom="@dimen/dp_4"
+                        android:paddingTop="@dimen/dp_4"
+                        android:visibility="gone">
+
+                        <TextView
+                            style="@style/textview_tag"
+                            android:drawableLeft="@mipmap/icon_wechat"
+                            android:drawablePadding="8dp"
+                            android:gravity="center_vertical"
+                            android:text="@string/weichat_account" />
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1" />
+
+                        <LinearLayout
+                            style="@style/style_layout"
+                            android:layout_width="wrap_content"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/tvWechatName"
+                                style="@style/textview_tag"
+                                android:gravity="center_vertical" />
+
+                            <TextView
+                                android:id="@+id/tvWechat"
+                                style="@style/textview_tag"
+                                android:gravity="center_vertical" />
+                        </LinearLayout>
+
+
+                        <ImageView
+                            android:id="@+id/ivWeChatCode"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_marginLeft="@dimen/dp_10"
+                            android:src="@mipmap/icon_qr_code"
+                            android:textSize="@dimen/font_small" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/llBank"
+                        style="@style/layout_my_info"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp_1"
                         android:orientation="vertical"
-                        android:padding="@dimen/dp_4">
+                        android:paddingBottom="@dimen/dp_4"
+                        android:paddingTop="@dimen/dp_4"
+                        android:visibility="gone">
+
+                        <TextView
+                            style="@style/textview_tag"
+                            android:drawableLeft="@mipmap/icon_unionpay"
+                            android:drawablePadding="8dp"
+                            android:gravity="center_vertical"
+                            android:text="@string/unionpay_account" />
 
                         <LinearLayout
-                            style="@style/style_layout"
-                            android:layout_marginBottom="4dp"
-                            android:orientation="horizontal">
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:padding="@dimen/dp_4">
 
-                            <TextView
-                                style="@style/style_font_normal"
-                                android:text="@string/str_rec"
-                                android:textColor="@color/font_main_content"
-                                android:textSize="@dimen/font_small" />
+                            <LinearLayout
+                                style="@style/style_layout"
+                                android:layout_marginBottom="4dp"
+                                android:orientation="horizontal">
 
-                            <TextView
-                                android:id="@+id/tvBankRealName"
-                                style="@style/style_font_normal_weight"
-                                android:layout_marginLeft="10dp"
-                                android:textSize="@dimen/font_small" />
+                                <TextView
+                                    style="@style/style_font_normal"
+                                    android:text="@string/str_rec"
+                                    android:textColor="@color/font_main_content"
+                                    android:textSize="@dimen/font_small" />
 
-                        </LinearLayout>
+                                <TextView
+                                    android:id="@+id/tvBankRealName"
+                                    style="@style/style_font_normal_weight"
+                                    android:layout_marginLeft="10dp"
+                                    android:textSize="@dimen/font_small" />
 
-                        <LinearLayout
-                            style="@style/style_layout"
-                            android:layout_marginBottom="4dp"
-                            android:orientation="horizontal">
+                            </LinearLayout>
 
-                            <TextView
-                                style="@style/style_font_normal"
-                                android:text="@string/str_open_bank"
-                                android:textColor="@color/font_main_content"
-                                android:textSize="@dimen/font_small" />
+                            <LinearLayout
+                                style="@style/style_layout"
+                                android:layout_marginBottom="4dp"
+                                android:orientation="horizontal">
 
-                            <TextView
-                                android:id="@+id/tvOpenBank"
-                                style="@style/style_font_normal_weight"
-                                android:layout_marginLeft="10dp"
-                                android:textSize="@dimen/font_small" />
+                                <TextView
+                                    style="@style/style_font_normal"
+                                    android:text="@string/str_open_bank"
+                                    android:textColor="@color/font_main_content"
+                                    android:textSize="@dimen/font_small" />
 
-                        </LinearLayout>
+                                <TextView
+                                    android:id="@+id/tvOpenBank"
+                                    style="@style/style_font_normal_weight"
+                                    android:layout_marginLeft="10dp"
+                                    android:textSize="@dimen/font_small" />
 
-                        <LinearLayout
-                            style="@style/style_layout"
-                            android:layout_marginBottom="4dp"
-                            android:orientation="horizontal">
+                            </LinearLayout>
 
-                            <TextView
-                                style="@style/style_font_normal"
-                                android:text="@string/str_branch"
-                                android:textColor="@color/font_main_content"
-                                android:textSize="@dimen/font_small" />
+                            <LinearLayout
+                                style="@style/style_layout"
+                                android:layout_marginBottom="4dp"
+                                android:orientation="horizontal">
 
-                            <TextView
-                                android:id="@+id/tvBranch"
-                                style="@style/style_font_normal_weight"
-                                android:layout_marginLeft="10dp"
-                                android:textSize="@dimen/font_small" />
+                                <TextView
+                                    style="@style/style_font_normal"
+                                    android:text="@string/str_branch"
+                                    android:textColor="@color/font_main_content"
+                                    android:textSize="@dimen/font_small" />
 
-                        </LinearLayout>
+                                <TextView
+                                    android:id="@+id/tvBranch"
+                                    style="@style/style_font_normal_weight"
+                                    android:layout_marginLeft="10dp"
+                                    android:textSize="@dimen/font_small" />
 
-                        <LinearLayout
-                            style="@style/style_layout"
-                            android:layout_marginBottom="4dp"
-                            android:orientation="horizontal">
+                            </LinearLayout>
 
-                            <TextView
-                                style="@style/style_font_normal"
-                                android:text="@string/str_bank_num"
-                                android:textColor="@color/font_main_content"
-                                android:textSize="@dimen/font_small" />
+                            <LinearLayout
+                                style="@style/style_layout"
+                                android:layout_marginBottom="4dp"
+                                android:orientation="horizontal">
 
-                            <TextView
-                                android:id="@+id/tvBank"
-                                style="@style/style_font_normal_weight"
-                                android:layout_marginLeft="10dp"
-                                android:drawablePadding="8dp"
-                                android:drawableRight="@mipmap/icon_copy_white"
-                                android:textSize="@dimen/font_small" />
+                                <TextView
+                                    style="@style/style_font_normal"
+                                    android:text="@string/str_bank_num"
+                                    android:textColor="@color/font_main_content"
+                                    android:textSize="@dimen/font_small" />
+
+                                <TextView
+                                    android:id="@+id/tvBank"
+                                    style="@style/style_font_normal_weight"
+                                    android:layout_marginLeft="10dp"
+                                    android:drawablePadding="8dp"
+                                    android:drawableRight="@mipmap/icon_copy_white"
+                                    android:textSize="@dimen/font_small" />
+                            </LinearLayout>
+
+
                         </LinearLayout>
 
 
                     </LinearLayout>
 
 
+                    <LinearLayout
+                        android:id="@+id/llPalpay"
+                        style="@style/layout_my_info"
+                        android:layout_marginTop="@dimen/dp_1"
+                        android:paddingBottom="@dimen/dp_4"
+                        android:paddingTop="@dimen/dp_4"
+                        android:visibility="gone">
+
+                        <TextView
+                            style="@style/textview_tag"
+                            android:drawableLeft="@mipmap/icon_paypal"
+                            android:drawablePadding="8dp"
+                            android:gravity="center_vertical"
+                            android:text="@string/str_paypal" />
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1" />
+
+                        <TextView
+                            android:id="@+id/tvPaypal"
+                            style="@style/textview_tag"
+                            android:gravity="center_vertical" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/llOther"
+                        style="@style/layout_my_info"
+                        android:layout_marginTop="@dimen/dp_1"
+                        android:paddingBottom="@dimen/dp_4"
+                        android:paddingTop="@dimen/dp_4"
+                        android:visibility="gone">
+
+                        <TextView
+                            style="@style/textview_tag"
+                            android:drawableLeft="@mipmap/other"
+                            android:drawablePadding="8dp"
+                            android:gravity="center_vertical"
+                            android:text="@string/str_other" />
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1" />
+
+                        <TextView
+                            android:id="@+id/tvOther"
+                            style="@style/textview_tag"
+                            android:gravity="center_vertical" />
+
+                    </LinearLayout>
+
                 </LinearLayout>
 
-
                 <LinearLayout
-                    android:id="@+id/llPalpay"
-                    style="@style/layout_my_info"
-                    android:layout_marginTop="@dimen/dp_1"
-                    android:paddingBottom="@dimen/dp_4"
-                    android:paddingTop="@dimen/dp_4"
+                    android:id="@+id/llOperate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/main_bg"
+                    android:orientation="vertical"
+                    android:padding="15dp"
                     android:visibility="gone">
 
                     <TextView
-                        style="@style/textview_tag"
-                        android:drawableLeft="@mipmap/icon_paypal"
-                        android:drawablePadding="8dp"
-                        android:gravity="center_vertical"
-                        android:text="@string/str_paypal" />
-
-                    <View
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1" />
+                        android:id="@+id/tvRelease"
+                        style="@style/btn_option_normal"
+                        android:layout_height="50dp"
+                        android:background="@drawable/ripple_btn_global_option_no_corner_selector"
+                        android:text="@string/order_release"
+                        android:textSize="@dimen/font_small"
+                        android:visibility="gone" />
 
                     <TextView
-                        android:id="@+id/tvPaypal"
-                        style="@style/textview_tag"
-                        android:gravity="center_vertical"
-                         />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/llOther"
-                    style="@style/layout_my_info"
-                    android:layout_marginTop="@dimen/dp_1"
-                    android:paddingBottom="@dimen/dp_4"
-                    android:paddingTop="@dimen/dp_4"
-                    android:visibility="gone">
+                        android:id="@+id/tvPayDone"
+                        style="@style/btn_option_normal"
+                        android:layout_height="50dp"
+                        android:background="@drawable/ripple_btn_global_option_no_corner_selector"
+                        android:text="@string/payment_done"
+                        android:textSize="@dimen/font_small"
+                        android:visibility="gone" />
 
                     <TextView
-                        style="@style/textview_tag"
-                        android:drawableLeft="@mipmap/other"
-                        android:drawablePadding="8dp"
-                        android:gravity="center_vertical"
-                        android:text="@string/str_other" />
-
-                    <View
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1" />
+                        android:id="@+id/tvAppeal"
+                        style="@style/btn_option_normal"
+                        android:layout_height="50dp"
+                        android:background="@drawable/ripple_btn_global_option_no_corner_selector"
+                        android:text="@string/click_appeal_tag"
+                        android:textSize="@dimen/font_small"
+                        android:visibility="gone" />
 
                     <TextView
-                        android:id="@+id/tvOther"
-                        style="@style/textview_tag"
-                        android:gravity="center_vertical"
-                         />
+                        android:id="@+id/tvCancle"
+                        style="@style/btn_option_normal"
+                        android:layout_height="50dp"
+                        android:background="@drawable/ripple_grey_no_corner"
+                        android:text="@string/cancel_order"
+                        android:textColor="@color/main_font_content"
+                        android:textSize="@dimen/font_small"
+                        android:visibility="gone" />
 
                 </LinearLayout>
 
             </LinearLayout>
 
-            <LinearLayout
-                android:id="@+id/llOperate"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/main_bg"
-                android:orientation="vertical"
-                android:padding="15dp"
-                android:visibility="gone">
+        </com.spark.newbitrade.ui.intercept.MyScrollView>
 
-                <TextView
-                    android:id="@+id/tvRelease"
-                    style="@style/btn_option_normal"
-                    android:layout_height="50dp"
-                    android:background="@drawable/ripple_btn_global_option_no_corner_selector"
-                    android:text="@string/order_release"
-                    android:textSize="@dimen/font_small"
-                    android:visibility="gone" />
-
-                <TextView
-                    android:id="@+id/tvPayDone"
-                    style="@style/btn_option_normal"
-                    android:layout_height="50dp"
-                    android:background="@drawable/ripple_btn_global_option_no_corner_selector"
-                    android:text="@string/payment_done"
-                    android:textSize="@dimen/font_small"
-                    android:visibility="gone" />
-
-                <TextView
-                    android:id="@+id/tvAppeal"
-                    style="@style/btn_option_normal"
-                    android:layout_height="50dp"
-                    android:background="@drawable/ripple_btn_global_option_no_corner_selector"
-                    android:text="@string/click_appeal_tag"
-                    android:textSize="@dimen/font_small"
-                    android:visibility="gone" />
-
-                <TextView
-                    android:id="@+id/tvCancle"
-                    style="@style/btn_option_normal"
-                    android:layout_height="50dp"
-                    android:background="@drawable/ripple_grey_no_corner"
-                    android:text="@string/cancel_order"
-                    android:textColor="@color/main_font_content"
-                    android:textSize="@dimen/font_small"
-                    android:visibility="gone" />
-
-            </LinearLayout>
-
-        </LinearLayout>
-
-    </com.spark.newbitrade.ui.intercept.MyScrollView>
+    </android.support.v4.widget.SwipeRefreshLayout>
 
 </LinearLayout>

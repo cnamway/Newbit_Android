@@ -69,9 +69,9 @@ public interface OrderDetailContract {
 
         void paymentOrderUsingPOST(OrderPaymentDto orderPaymentDto);
 
-        void findOrderInTransitDetailUsingGET(String orderId);
+        void findOrderInTransitDetailUsingGET(String orderId, boolean isShow);
 
-        void findOrderAchiveDetailUsingGET(String orderId);
+        void findOrderAchiveDetailUsingGET(String orderId, boolean isShow);
 
         void queryOrderPayTypeUsingGET(String orderId);
     }
