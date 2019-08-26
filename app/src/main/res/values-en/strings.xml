@@ -878,4 +878,5 @@
     <string name="str_pulish_ad_to_up">Successful, whether to shelves ?</string>
     <string name="str_assets_tran_in">Transfer Assets in</string>
     <string name="str_assets_tran_out">FuTransfer Assets out</string>
+    <string name="str_assets_select_addrss">Please select the withdrawal address first</string>
 </resources>

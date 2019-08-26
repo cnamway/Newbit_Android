@@ -1,11 +1,13 @@
 package com.spark.newbitrade.activity.wallet_coin;
 
 import com.android.volley.VolleyError;
+import com.spark.library.ac.model.MessageResult;
 import com.spark.newbitrade.callback.ResponseCallBack;
 import com.spark.newbitrade.entity.ExtractInfo;
 import com.spark.newbitrade.entity.HttpErrorEntity;
 import com.spark.newbitrade.model.ac.AssetControllerModel;
 import com.spark.newbitrade.model.ac.CaptchaGetControllerModel;
+import com.spark.newbitrade.model.ac.ChcekControllerModel;
 import com.spark.newbitrade.model.login.CasLoginModel;
 
 import org.json.JSONObject;
@@ -22,12 +24,14 @@ public class ExtractPresnetImpl implements ExtractContract.ExtractPresenter {
     private AssetControllerModel assetControllerModel;
     private CaptchaGetControllerModel captchaGetControllerModel;
     private CasLoginModel casLoginModel;
+    private ChcekControllerModel chcekControllerModel;
 
     public ExtractPresnetImpl(ExtractContract.ExtractView extractView) {
         this.extractView = extractView;
         assetControllerModel = new AssetControllerModel();
         captchaGetControllerModel = new CaptchaGetControllerModel();
         casLoginModel = new CasLoginModel();
+        chcekControllerModel = new ChcekControllerModel();
     }
 
     @Override
@@ -158,6 +162,33 @@ public class ExtractPresnetImpl implements ExtractContract.ExtractPresenter {
                 hideLoading();
                 if (extractView != null)
                     extractView.dealError(httpErrorEntity);
+            }
+
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+                hideLoading();
+                if (extractView != null)
+                    extractView.dealError(volleyError);
+            }
+        });
+    }
+
+    @Override
+    public void checkAddress(String address) {
+        showLoading();
+        chcekControllerModel.checkAddress(address, new ResponseCallBack.SuccessListener<MessageResult>() {
+            @Override
+            public void onResponse(MessageResult response) {
+                hideLoading();
+                if (extractView != null)
+                    extractView.checkAddressSuccess(response);
+            }
+        }, new ResponseCallBack.ErrorListener() {
+            @Override
+            public void onErrorResponse(HttpErrorEntity httpErrorEntity) {
+                hideLoading();
+                if (extractView != null)
+                    extractView.checkAddressFail(httpErrorEntity);
             }
 
             @Override

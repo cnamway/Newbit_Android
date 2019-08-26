@@ -879,6 +879,6 @@
     <string name="str_pulish_ad_to_up">操作成功，是否去上架？</string>
     <string name="str_assets_tran_in">资金划转转入</string>
     <string name="str_assets_tran_out">资金划转转出</string>
-
+    <string name="str_assets_select_addrss">请先选择提币地址</string>
 
 </resources>

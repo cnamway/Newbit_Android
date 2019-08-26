@@ -1,8 +1,10 @@
 package com.spark.newbitrade.activity.wallet_coin;
 
 
+import com.spark.library.ac.model.MessageResult;
 import com.spark.newbitrade.base.BaseContract;
 import com.spark.newbitrade.entity.ExtractInfo;
+import com.spark.newbitrade.entity.HttpErrorEntity;
 
 import org.json.JSONObject;
 
@@ -24,6 +26,10 @@ public interface ExtractContract {
         void captchSuccess(JSONObject obj);
 
         void codeSuccess(String obj);
+
+        void checkAddressSuccess(MessageResult response);
+
+        void checkAddressFail(HttpErrorEntity response);
     }
 
     interface ExtractPresenter extends BaseContract.BasePresenter {
@@ -36,6 +42,8 @@ public interface ExtractContract {
         void captch();
 
         void getPhoneCode(String phone, String check, String cid);
+
+        void checkAddress(String address);
     }
 
 

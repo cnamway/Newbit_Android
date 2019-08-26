@@ -2,15 +2,19 @@ package com.spark.newbitrade.activity.wallet_coin;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.geetest.sdk.Bind.GT3GeetestBindListener;
 import com.geetest.sdk.Bind.GT3GeetestUtilsBind;
 import com.google.gson.Gson;
+import com.spark.library.ac.model.MessageResult;
 import com.spark.newbitrade.MyApplication;
 import com.spark.newbitrade.R;
 import com.spark.newbitrade.base.BaseActivity;
@@ -20,6 +24,7 @@ import com.spark.newbitrade.entity.ExtractInfo;
 import com.spark.newbitrade.entity.HttpErrorEntity;
 import com.spark.newbitrade.entity.User;
 import com.spark.newbitrade.entity.Wallet;
+import com.spark.newbitrade.event.CheckLoginSuccessEvent;
 import com.spark.newbitrade.factory.HttpUrls;
 import com.spark.newbitrade.utils.GlobalConstant;
 import com.spark.newbitrade.utils.KeyboardUtils;
@@ -35,7 +40,6 @@ import java.util.HashMap;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 import static com.spark.newbitrade.utils.GlobalConstant.CAPTCH;
@@ -65,8 +69,8 @@ public class ExtractActivity extends BaseActivity implements ExtractContract.Ext
 //    TextView tvBalance;
     @BindView(R.id.tvCanUseUnit)
     TextView tvCanUseUnit;
-    @BindView(R.id.etAddress)
-    EditText etAddress;
+    @BindView(R.id.tvAddress)
+    TextView tvAddress;
     @BindView(R.id.tvGetUnit)
     TextView tvGetUnit;
     @BindView(R.id.tvExtract)
@@ -75,6 +79,8 @@ public class ExtractActivity extends BaseActivity implements ExtractContract.Ext
     EditText etCode;
     @BindView(R.id.tvGetCode)
     TextView tvGetCode;
+    @BindView(R.id.llCount22)
+    LinearLayout llCount22;
 
     private ExtractPresnetImpl presnet;
     private Wallet wallet;
@@ -86,6 +92,7 @@ public class ExtractActivity extends BaseActivity implements ExtractContract.Ext
     private GT3GeetestUtilsBind gt3GeetestUtils;
     private String cid;
     private String phone;
+    private boolean isFeeZero = false;//false 外部提币  true内部提币
 
     @Override
     protected void onDestroy() {
@@ -140,7 +147,7 @@ public class ExtractActivity extends BaseActivity implements ExtractContract.Ext
             presnet.getExtractInfo(wallet.getCoinId());
     }
 
-    @OnClick({R.id.tvSelectAdress, R.id.tvAll, R.id.tvExtract, R.id.tvGetCode})
+    @OnClick({R.id.tvSelectAdress, R.id.tvAll, R.id.tvExtract, R.id.tvGetCode, R.id.llCount22, R.id.tvAddress})
     @Override
     protected void setOnClickListener(View v) {
         super.setOnClickListener(v);
@@ -155,8 +162,13 @@ public class ExtractActivity extends BaseActivity implements ExtractContract.Ext
                 showActivity(AddressActivity.class, bundle, 1);
                 break;
             case R.id.tvAll://全部
-                if (extractInfo != null && wallet != null) {
-                    etCount.setText(MathUtils.subZeroAndDot(wallet.getBalance() + ""));
+                String address = tvAddress.getText().toString().trim();
+                if (StringUtils.isEmpty(address)) {
+                    handler.sendEmptyMessage(0);
+                } else {
+                    if (extractInfo != null && wallet != null) {
+                        etCount.setText(MathUtils.subZeroAndDot(wallet.getBalance().toPlainString()));
+                    }
                 }
                 break;
             case R.id.tvExtract://确定
@@ -165,9 +177,30 @@ public class ExtractActivity extends BaseActivity implements ExtractContract.Ext
             case R.id.tvGetCode:
                 getCode();
                 break;
+            case R.id.llCount22:
+                address = tvAddress.getText().toString().trim();
+                if (StringUtils.isEmpty(address)) {
+                    handler.sendEmptyMessage(0);
+                } else {
+                    llCount22.setVisibility(View.GONE);
+                }
+                break;
+            case R.id.tvAddress:
+                bundle = new Bundle();
+                bundle.putSerializable("unit", wallet.getCoinId());
+                showActivity(AddressActivity.class, bundle, 1);
+                break;
         }
 
     }
+
+    Handler handler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            ToastUtils.showToast(getResources().getString(R.string.str_assets_select_addrss));
+        }
+    };
 
     /**
      * 获取验证码
@@ -205,42 +238,47 @@ public class ExtractActivity extends BaseActivity implements ExtractContract.Ext
                 etCount.setSelection(etCount.length());
             } else {
                 if (StringUtils.isNotEmpty(amount)) {
-                    //withdrawFeeType //提币手续费类型：1-固定金额 2-按比例
-                    if (withdrawFeeType == 2) {
-                        double money = Double.parseDouble(amount);
-
+                    if (isFeeZero) {//false 外部提币  true内部提币
                         double fee = 0;
-                        if (extractInfo != null && extractInfo.getWithdrawFee() != null) {
-                            fee = extractInfo.getWithdrawFee().doubleValue();
-                        }
-
-                        double minFee = 0;
-                        if (extractInfo != null && extractInfo.getMinWithdrawFee() != null) {
-                            minFee = extractInfo.getMinWithdrawFee().doubleValue();
-                        }
-
-                        if (money * fee < minFee) {
-                            tvFinalCount.setText(MathUtils.subZeroAndDot(MathUtils.getBigDecimalSubtractWithScale(money + "", minFee + "", 8)));
-                            tvServiceFee.setText(MathUtils.subZeroAndDot(MathUtils.getRundNumber(minFee, 8, null)));
-                        } else {
-                            tvFinalCount.setText(MathUtils.subZeroAndDot(MathUtils.getBigDecimalSubtractWithScale(money + "", MathUtils.getBigDecimalMultiplyWithScale(money + "", fee + "", 8), 8)));
-                            tvServiceFee.setText(MathUtils.subZeroAndDot(MathUtils.getRundNumber(money * fee, 8, null)));
-                        }
+                        tvFinalCount.setText(MathUtils.subZeroAndDot(MathUtils.getBigDecimalSubtractWithScale(amount + "", fee + "", 8)));
+                        tvServiceFee.setText(0 + "");
                     } else {
                         double fee = 0;
-                        if (extractInfo != null && extractInfo.getWithdrawFee() != null) {
-                            fee = extractInfo.getWithdrawFee().doubleValue();
+                        //withdrawFeeType //提币手续费类型：1-固定金额 2-按比例
+                        if (withdrawFeeType == 2) {
+                            double money = Double.parseDouble(amount);
+
+                            if (extractInfo != null && extractInfo.getWithdrawFee() != null) {
+                                fee = extractInfo.getWithdrawFee().doubleValue();
+                            }
+
+                            double minFee = 0;
+                            if (extractInfo != null && extractInfo.getMinWithdrawFee() != null) {
+                                minFee = extractInfo.getMinWithdrawFee().doubleValue();
+                            }
+
+                            if (money * fee < minFee) {
+                                tvFinalCount.setText(MathUtils.subZeroAndDot(MathUtils.getBigDecimalSubtractWithScale(money + "", minFee + "", 8)));
+                                tvServiceFee.setText(MathUtils.subZeroAndDot(MathUtils.getRundNumber(minFee, 8, null)));
+                            } else {
+                                tvFinalCount.setText(MathUtils.subZeroAndDot(MathUtils.getBigDecimalSubtractWithScale(money + "", MathUtils.getBigDecimalMultiplyWithScale(money + "", fee + "", 8), 8)));
+                                tvServiceFee.setText(MathUtils.subZeroAndDot(MathUtils.getRundNumber(money * fee, 8, null)));
+                            }
+                        } else {
+                            if (extractInfo != null && extractInfo.getWithdrawFee() != null) {
+                                fee = extractInfo.getWithdrawFee().doubleValue();
+                            }
+                            tvFinalCount.setText(MathUtils.subZeroAndDot(MathUtils.getBigDecimalSubtractWithScale(amount + "", fee + "", 8)));
                         }
-                        tvFinalCount.setText(MathUtils.subZeroAndDot(MathUtils.getBigDecimalSubtractWithScale(amount + "", fee + "", 8)));
                     }
                 } else {
                     tvFinalCount.setText(0 + "");
-//                    double fee = 0;
-//                    if (extractInfo != null && extractInfo.getWithdrawFee() != null) {
-//                        fee = extractInfo.getWithdrawFee().doubleValue();
-//                    }
-                    //tvServiceFee.setText(MathUtils.subZeroAndDot(fee + ""));
-                    tvServiceFee.setText(MathUtils.subZeroAndDot(String.valueOf(extractInfo.getWithdrawFee().toPlainString())));
+                    if (isFeeZero) {//false 外部提币  true内部提币
+                        double fee = 0;
+                        tvServiceFee.setText(MathUtils.subZeroAndDot(fee + ""));
+                    } else {
+                        tvServiceFee.setText(MathUtils.subZeroAndDot(String.valueOf(extractInfo.getWithdrawFee().toPlainString())));
+                    }
                 }
             }
 
@@ -249,7 +287,7 @@ public class ExtractActivity extends BaseActivity implements ExtractContract.Ext
 
     protected void checkInput() {
         if (wallet != null) {
-            String address = etAddress.getText().toString();
+            String address = tvAddress.getText().toString();
             String amount = StringUtils.getText(etCount);
             String tradePassword = StringUtils.getText(etPassword);
             String code = StringUtils.getText(etCode);
@@ -268,7 +306,7 @@ public class ExtractActivity extends BaseActivity implements ExtractContract.Ext
 //                ToastUtils.showToast(getString(R.string.str_please_input) + getString(R.string.code));
 //            }
             else if (Double.parseDouble(amount) > wallet.getBalance().doubleValue()) {
-                ToastUtils.showToast(getString(R.string.str_coin_can_banlance) + wallet.getBalance());
+                ToastUtils.showToast(getString(R.string.str_coin_can_banlance) + wallet.getBalance().toPlainString());
             } else if (Double.parseDouble(amount) < minWithdrawAmount) {
                 ToastUtils.showToast(getString(R.string.str_min_coin_num_tag) + minWithdrawAmount);
             } else {
@@ -321,7 +359,64 @@ public class ExtractActivity extends BaseActivity implements ExtractContract.Ext
         if (requestCode == 1 && resultCode == RESULT_OK && data != null) {
             Bundle bundle = data.getExtras();
             Address address = (Address) bundle.getSerializable("address");
-            etAddress.setText(address.getAddress());
+            tvAddress.setText(address.getAddress());
+            checkAddress(address.getAddress());
+        }
+    }
+
+    /**
+     * 用户选择地址后校验提币地址是否内部地址
+     */
+    private void checkAddress(String address) {
+        if (StringUtils.isNotEmpty(address)) {
+            etCount.setEnabled(true);
+            llCount22.setVisibility(View.GONE);
+            presnet.checkAddress(address);
+        } else {
+            etCount.setEnabled(false);
+            llCount22.setVisibility(View.VISIBLE);
+        }
+    }
+
+    @Override
+    public void checkAddressSuccess(MessageResult response) {
+        if (response != null) {
+            isFeeZero = true;//false 外部提币  true内部提币
+            String amount = StringUtils.getText(etCount);
+            tvServiceFee.setText(0 + "");
+            if (StringUtils.isNotEmpty(amount)) {
+                double fee = 0;
+                //withdrawFeeType //提币手续费类型：1-固定金额 2-按比例
+                if (withdrawFeeType == 2) {
+                    double money = Double.parseDouble(amount);
+                    tvFinalCount.setText(MathUtils.subZeroAndDot(MathUtils.getRundNumber(money - money * fee, 8, null)));
+                } else {
+                    tvFinalCount.setText(MathUtils.subZeroAndDot(MathUtils.getRundNumber((Double.parseDouble(amount) - fee), 8, null)));
+                }
+            }
+        }
+    }
+
+    @Override
+    public void checkAddressFail(HttpErrorEntity response) {
+        if (response != null) {
+            isFeeZero = false;//false 外部提币  true内部提币
+            String amount = StringUtils.getText(etCount);
+            if (StringUtils.isNotEmpty(amount)) {
+                double fee = 0;
+                if (extractInfo != null) {
+                    fee = extractInfo.getWithdrawFee().doubleValue();
+                }
+                //withdrawFeeType //提币手续费类型：1-固定金额 2-按比例
+                if (withdrawFeeType == 2) {
+                    double money = Double.parseDouble(amount);
+                    tvFinalCount.setText(MathUtils.subZeroAndDot(MathUtils.getRundNumber(money - money * fee, 8, null)));
+                    tvServiceFee.setText(MathUtils.subZeroAndDot(MathUtils.getRundNumber(money * fee, 8, null)));
+                } else {
+                    tvFinalCount.setText(MathUtils.subZeroAndDot("" + (Double.parseDouble(amount) - fee)));
+                    tvServiceFee.setText(MathUtils.subZeroAndDot(fee + ""));
+                }
+            }
         }
     }
 
@@ -387,5 +482,12 @@ public class ExtractActivity extends BaseActivity implements ExtractContract.Ext
         ToastUtils.showToast(activity, obj);
         timeCount.start();
         tvGetCode.setEnabled(false);
+    }
+
+    /**
+     * check uc、ac、acp成功后，通知刷新界面
+     */
+    public void onEvent(CheckLoginSuccessEvent event) {
+        loadData();
     }
 }

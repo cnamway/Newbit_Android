@@ -41,11 +41,15 @@
             android:text="@string/mention_money_address"
             android:textColor="@color/main_font_content" />
 
-        <EditText
-            android:id="@+id/etAddress"
-            style="@style/edittext_normal"
+        <TextView
+            android:id="@+id/tvAddress"
+            style="@style/style_font_normal_weight"
             android:layout_weight="1"
-            android:singleLine="true" />
+            android:ellipsize="middle"
+            android:gravity="left"
+            android:hint="@string/str_assets_select_addrss"
+            android:lines="1"
+            android:textSize="@dimen/font_small" />
 
         <TextView
             android:id="@+id/tvSelectAdress"
@@ -60,45 +64,59 @@
 
     <View style="@style/line_bg_grey" />
 
-    <LinearLayout
-        style="@style/layout_my_info"
-        android:paddingRight="0dp">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-        <TextView
-            style="@style/textview_tag"
-            android:layout_width="90dp"
-            android:text="@string/amount"
-            android:textColor="@color/main_font_content" />
+        <LinearLayout
+            style="@style/layout_my_info"
+            android:paddingRight="0dp">
 
-        <EditText
-            android:id="@+id/etCount"
-            style="@style/edittext_normal"
-            android:layout_weight="1"
-            android:inputType="numberDecimal" />
+            <TextView
+                style="@style/textview_tag"
+                android:layout_width="90dp"
+                android:text="@string/amount"
+                android:textColor="@color/main_font_content" />
 
-        <TextView
-            android:id="@+id/tvGetUnit"
-            style="@style/textview_tag"
-            android:layout_marginLeft="5dp"
-            android:textColor="@color/main_font_content" />
+            <EditText
+                android:id="@+id/etCount"
+                style="@style/edittext_normal"
+                android:layout_weight="1"
+                android:inputType="numberDecimal" />
 
-        <View
-            android:layout_width="1dp"
-            android:layout_height="20dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:background="@color/main_font_content" />
+            <TextView
+                android:id="@+id/tvGetUnit"
+                style="@style/textview_tag"
+                android:layout_marginLeft="5dp"
+                android:textColor="@color/main_font_content" />
 
-        <TextView
-            android:id="@+id/tvAll"
-            style="@style/textview_tag"
-            android:layout_height="match_parent"
-            android:background="@drawable/ripple_global_item"
-            android:gravity="center_vertical"
-            android:padding="10dp"
-            android:text="@string/all"
-            android:textColor="@color/btn_normal" />
-    </LinearLayout>
+            <View
+                android:layout_width="1dp"
+                android:layout_height="20dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@color/main_font_content" />
+
+            <TextView
+                android:id="@+id/tvAll"
+                style="@style/textview_tag"
+                android:layout_height="match_parent"
+                android:background="@drawable/ripple_global_item"
+                android:gravity="center_vertical"
+                android:padding="10dp"
+                android:text="@string/all"
+                android:textColor="@color/btn_normal" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llCount22"
+            style="@style/layout_my_info"
+            android:background="@color/transparent"
+            android:paddingRight="0dp">
+
+        </LinearLayout>
+
+    </RelativeLayout>
 
     <View style="@style/line_bg_grey" />
 
@@ -195,7 +213,9 @@
 
     </LinearLayout>
 
-    <View style="@style/line_bg_grey" />
+    <View
+        style="@style/line_bg_grey"
+        android:visibility="gone" />
 
     <View
         android:layout_width="match_parent"
