@@ -7,7 +7,7 @@ import com.spark.newbitrade.entity.ExtractInfo;
 import com.spark.newbitrade.entity.HttpErrorEntity;
 import com.spark.newbitrade.model.ac.AssetControllerModel;
 import com.spark.newbitrade.model.ac.CaptchaGetControllerModel;
-import com.spark.newbitrade.model.ac.ChcekControllerModel;
+import com.spark.newbitrade.model.ac.CheckControllerModel;
 import com.spark.newbitrade.model.login.CasLoginModel;
 
 import org.json.JSONObject;
@@ -24,14 +24,14 @@ public class ExtractPresnetImpl implements ExtractContract.ExtractPresenter {
     private AssetControllerModel assetControllerModel;
     private CaptchaGetControllerModel captchaGetControllerModel;
     private CasLoginModel casLoginModel;
-    private ChcekControllerModel chcekControllerModel;
+    private CheckControllerModel chcekControllerModel;
 
     public ExtractPresnetImpl(ExtractContract.ExtractView extractView) {
         this.extractView = extractView;
         assetControllerModel = new AssetControllerModel();
         captchaGetControllerModel = new CaptchaGetControllerModel();
         casLoginModel = new CasLoginModel();
-        chcekControllerModel = new ChcekControllerModel();
+        chcekControllerModel = new CheckControllerModel();
     }
 
     @Override

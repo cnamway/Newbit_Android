@@ -70,7 +70,7 @@ public class ExtractActivity extends BaseActivity implements ExtractContract.Ext
     @BindView(R.id.tvCanUseUnit)
     TextView tvCanUseUnit;
     @BindView(R.id.tvAddress)
-    TextView tvAddress;
+    EditText tvAddress;
     @BindView(R.id.tvGetUnit)
     TextView tvGetUnit;
     @BindView(R.id.tvExtract)
@@ -81,6 +81,8 @@ public class ExtractActivity extends BaseActivity implements ExtractContract.Ext
     TextView tvGetCode;
     @BindView(R.id.llCount22)
     LinearLayout llCount22;
+    @BindView(R.id.llView)
+    View llView;
 
     private ExtractPresnetImpl presnet;
     private Wallet wallet;
@@ -114,6 +116,20 @@ public class ExtractActivity extends BaseActivity implements ExtractContract.Ext
         super.initView();
         setSetTitleAndBack(false, true);
         tvTitle.setText(getString(R.string.mention_money));
+        tvAddress.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus) {
+                    // 此处为得到焦点时的处理内容
+                } else {
+                    // 此处为失去焦点时的处理内容
+                    String address = tvAddress.getText().toString().trim();
+                    if (StringUtils.isNotEmpty(address)) {
+                        checkAddress(address);
+                    }
+                }
+            }
+        });
     }
 
     @Override
@@ -147,7 +163,7 @@ public class ExtractActivity extends BaseActivity implements ExtractContract.Ext
             presnet.getExtractInfo(wallet.getCoinId());
     }
 
-    @OnClick({R.id.tvSelectAdress, R.id.tvAll, R.id.tvExtract, R.id.tvGetCode, R.id.llCount22, R.id.tvAddress})
+    @OnClick({R.id.tvSelectAdress, R.id.tvAll, R.id.tvExtract, R.id.tvGetCode, R.id.llCount22, R.id.llView})
     @Override
     protected void setOnClickListener(View v) {
         super.setOnClickListener(v);
@@ -169,9 +185,11 @@ public class ExtractActivity extends BaseActivity implements ExtractContract.Ext
                     if (extractInfo != null && wallet != null) {
                         etCount.setText(MathUtils.subZeroAndDot(wallet.getBalance().toPlainString()));
                     }
+                    clearFocus();
                 }
                 break;
             case R.id.tvExtract://确定
+                clearFocus();
                 checkInput();
                 break;
             case R.id.tvGetCode:
@@ -185,13 +203,15 @@ public class ExtractActivity extends BaseActivity implements ExtractContract.Ext
                     llCount22.setVisibility(View.GONE);
                 }
                 break;
-            case R.id.tvAddress:
-                bundle = new Bundle();
-                bundle.putSerializable("unit", wallet.getCoinId());
-                showActivity(AddressActivity.class, bundle, 1);
+            case R.id.llView:
+                clearFocus();
                 break;
         }
 
+    }
+
+    private void clearFocus() {
+        tvAddress.clearFocus();
     }
 
     Handler handler = new Handler() {
@@ -404,6 +424,21 @@ public class ExtractActivity extends BaseActivity implements ExtractContract.Ext
             String amount = StringUtils.getText(etCount);
             if (StringUtils.isNotEmpty(amount)) {
                 double fee = 0;
+                if (extractInfo != null) {
+                    fee = extractInfo.getWithdrawFee().doubleValue();
+                }
+                //withdrawFeeType //提币手续费类型：1-固定金额 2-按比例
+                if (withdrawFeeType == 2) {
+                    double money = Double.parseDouble(amount);
+                    tvFinalCount.setText(MathUtils.subZeroAndDot(MathUtils.getRundNumber(money - money * fee, 8, null)));
+                    tvServiceFee.setText(MathUtils.subZeroAndDot(MathUtils.getRundNumber(money * fee, 8, null)));
+                } else {
+                    tvFinalCount.setText(MathUtils.subZeroAndDot("" + (Double.parseDouble(amount) - fee)));
+                    tvServiceFee.setText(MathUtils.subZeroAndDot(fee + ""));
+                }
+            } else {
+                double fee = 0;
+                amount = 0 + "";
                 if (extractInfo != null) {
                     fee = extractInfo.getWithdrawFee().doubleValue();
                 }
