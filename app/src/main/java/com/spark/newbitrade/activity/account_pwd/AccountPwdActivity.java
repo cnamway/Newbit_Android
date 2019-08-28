@@ -9,8 +9,9 @@ import android.widget.TextView;
 
 import com.spark.newbitrade.MyApplication;
 import com.spark.newbitrade.R;
+import com.spark.newbitrade.activity.account_pwd_reset.AccountPwdResetActivity;
 import com.spark.newbitrade.base.BaseActivity;
-import com.spark.newbitrade.utils.SharedPreferenceInstance;
+import com.spark.newbitrade.entity.User;
 import com.spark.newbitrade.utils.StringUtils;
 import com.spark.newbitrade.utils.ToastUtils;
 
@@ -81,6 +82,8 @@ public class AccountPwdActivity extends BaseActivity implements AccountPwdContra
                 tvRePwdTag.setText(getString(R.string.confirm_money_pwd));
                 etRepeatPwd.setHint(getString(R.string.confirm_money_pwd));
                 tvSet.setText(getString(R.string.text_change));
+                tvForgetPas.setVisibility(View.VISIBLE);
+            } else {
                 tvForgetPas.setVisibility(View.GONE);
             }
         }
@@ -108,24 +111,31 @@ public class AccountPwdActivity extends BaseActivity implements AccountPwdContra
 
     @OnClick(R.id.tvForgetPas)
     void skipResetActivity() {
-        //显示手机号码
-        String phone = SharedPreferenceInstance.getInstance().getStringParam(SharedPreferenceInstance.SP_KEY_LOGIN_ACCOUNT);
-        if (StringUtils.isNotEmpty(phone)) {
+        String phone = MyApplication.getApp().getCurrentUser().getMobilePhone();
+        if (StringUtils.isEmpty(phone)) {
+            ToastUtils.showToast(activity, getString(R.string.binding_phone_first));
+        } else {
+            if (phone.startsWith("86")) {
+                phone = phone.substring(2, phone.length());
+            }
             Bundle bundle = new Bundle();
             bundle.putString("phone", phone);
-            //showActivity(AccountPwdResetActivity.class, bundle, 1);
+            showActivity(AccountPwdResetActivity.class, bundle, 1);
         }
     }
 
 
     @Override
     public void accountPwdSuccess(String obj) {
+        User user = MyApplication.getApp().getCurrentUser();
+        user.setFundsVerified(1);
+        MyApplication.getApp().setCurrentUser(user);
+
         if (StringUtils.isNotEmpty(obj)) {
             if (obj.equals(getString(R.string.str_success)))
                 ToastUtils.showToast(getString(R.string.str_success_tag));
             else ToastUtils.showToast(obj);
         }
-        MyApplication.getApp().getCurrentUser().setFundsVerified(1);
         setResult(RESULT_OK);
         finish();
     }

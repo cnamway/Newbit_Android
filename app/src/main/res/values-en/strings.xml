@@ -879,4 +879,6 @@
     <string name="str_assets_tran_in">Transfer Assets in</string>
     <string name="str_assets_tran_out">FuTransfer Assets out</string>
     <string name="str_assets_select_addrss">Please select the withdrawal address first</string>
+    <string name="reset_money_pwd">Reset money password</string>
+    <string name="text_money_pwd_tag">Please enter 6 digit fund password</string>
 </resources>

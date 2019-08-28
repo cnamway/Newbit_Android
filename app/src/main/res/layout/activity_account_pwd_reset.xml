@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_main"
+    android:orientation="vertical">
+
+    <include layout="@layout/view_head" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:gravity="center_vertical"
+        android:paddingLeft="16dp"
+        android:text="@string/reset_money_pwd_tag"
+        android:textColor="@color/font_main_title" />
+
+    <!--手机号-->
+    <LinearLayout style="@style/layout_my_info">
+
+        <TextView
+            style="@style/textview_tag"
+            android:minWidth="100dp"
+            android:text="@string/str_phone_number"
+            android:textColor="@color/font_main_title" />
+
+        <EditText
+            android:id="@+id/etPhone"
+            style="@style/edittext_normal"
+            android:enabled="false"
+            android:hint="@string/str_phone_number"
+            android:inputType="number"
+            android:maxLength="11" />
+    </LinearLayout>
+
+    <View style="@style/style_horizon_line" />
+
+    <LinearLayout style="@style/layout_my_info">
+
+        <TextView
+            style="@style/textview_tag"
+            android:minWidth="100dp"
+            android:text="@string/str_code"
+            android:textColor="@color/font_main_title" />
+
+        <EditText
+            android:id="@+id/etCode"
+            style="@style/edittext_normal"
+            android:layout_marginRight="5dp"
+            android:layout_weight="1"
+            android:hint="@string/str_code"
+            android:inputType="number" />
+
+        <TextView
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="15dp"
+            android:layout_marginTop="15dp"
+            android:background="@color/bg_btn_normal" />
+
+        <TextView
+            android:id="@+id/tvGetCode"
+            style="@style/textveiw_msg_code"
+            android:minWidth="100dp" />
+
+    </LinearLayout>
+
+    <View style="@style/style_horizon_line" />
+
+    <LinearLayout style="@style/layout_my_info">
+
+        <TextView
+            style="@style/textview_tag"
+            android:minWidth="100dp"
+            android:text="@string/text_money_pwd"
+            android:textColor="@color/font_main_title" />
+
+        <EditText
+            android:id="@+id/etAccountPwd"
+            style="@style/edittext_normal"
+            android:hint="@string/text_money_pwd_tag"
+            android:inputType="numberPassword"
+            android:maxLength="6" />
+    </LinearLayout>
+
+    <View style="@style/style_horizon_line" />
+
+    <LinearLayout style="@style/layout_my_info">
+
+        <TextView
+            style="@style/textview_tag"
+            android:minWidth="100dp"
+            android:text="@string/confirm_money_pwd"
+            android:textColor="@color/font_main_title" />
+
+        <EditText
+            android:id="@+id/etRepeatPwd"
+            style="@style/edittext_normal"
+            android:hint="@string/confirm_money_pwd"
+            android:inputType="numberPassword"
+            android:maxLength="6" />
+    </LinearLayout>
+
+    <View style="@style/style_horizon_line" />
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1" />
+
+    <TextView
+        android:id="@+id/tvSet"
+        style="@style/btn_option_normal"
+        android:layout_margin="20dp"
+        android:text="@string/confirm" />
+
+</LinearLayout>
+

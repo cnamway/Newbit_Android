@@ -236,7 +236,7 @@
             android:configChanges="orientation|screenSize"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.spark.newbitrade.activity.account_pwd.ResetAccountActivity"
+            android:name="com.spark.newbitrade.activity.account_pwd_reset.AccountPwdResetActivity"
             android:configChanges="orientation|screenSize"
             android:screenOrientation="portrait" />
         <!--<activity-->
