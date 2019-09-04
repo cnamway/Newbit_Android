@@ -157,7 +157,6 @@ public class RechargeActivity extends BaseActivity implements RechargeContract.W
      */
     private void copy() {
         CommonUtils.copyText(this, tvAddress.getText().toString());
-        ToastUtils.showToast(R.string.copy_success);
     }
 
 

@@ -79,7 +79,6 @@ public class GoogleAuthorActivity extends BaseActivity implements GoogleContract
                 break;
             case R.id.tvCopy:
                 CommonUtils.copyText(this, tvAddress.getText().toString());
-                ToastUtils.showToast(getString(R.string.copy_success));
                 break;
         }
     }

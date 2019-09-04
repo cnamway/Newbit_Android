@@ -253,7 +253,6 @@ public class PromotionActivity extends BaseActivity implements PromotionContract
             @Override
             public void onClick(View v) {
                 CommonUtils.copyText(activity, promotionPrefix + user.getPromotionCode());
-                ToastUtils.showToast(R.string.copy_success);
             }
         });
         popWnd.showAtLocation(rootview, Gravity.CENTER, 0, 0);
