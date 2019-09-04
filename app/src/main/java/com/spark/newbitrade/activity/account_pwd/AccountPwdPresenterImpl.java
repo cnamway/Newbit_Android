@@ -38,13 +38,13 @@ public class AccountPwdPresenterImpl implements AccountPwdContract.Presenter {
 
 
     @Override
-    public void accountPwd(String tradePassword){
+    public void accountPwd(String tradePassword) {
         showLoading();
         memberControllerModel.setTradePassword(tradePassword, new ResponseCallBack.SuccessListener<String>() {
             @Override
             public void onResponse(String response) {
                 hideLoading();
-                if(accountPwdView!=null){
+                if (accountPwdView != null) {
                     accountPwdView.accountPwdSuccess(response);
                 }
             }
@@ -66,7 +66,7 @@ public class AccountPwdPresenterImpl implements AccountPwdContract.Presenter {
     }
 
     @Override
-    public void editAccountPwd(String oldPassword,String newPassword) {
+    public void editAccountPwd(String newPassword, String oldPassword) {
         showLoading();
         memberControllerModel.updateTradePassword(oldPassword, newPassword, new ResponseCallBack.SuccessListener<String>() {
             @Override
