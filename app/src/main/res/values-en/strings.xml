@@ -810,7 +810,7 @@
     <string name="str_limit_4">Connect at least 4 points. Please reenter</string>
     <string name="str_pass_corret">Password is correct.</string>
     <string name="str_pass_error">Password mistake.</string>
-    <string name="str_select_payway">Please open the other party's choice of payment method</string>
+    <string name="str_select_payway">Please open the other party\'s choice of payment method</string>
     <string name="str_open_payway">Please open the payment method first</string>
     <string name="str_code_success">Verification code send success</string>
     <string name="str_enter_amount">Please enter purchase quantity or amount</string>
