@@ -69,7 +69,7 @@ public class LoginActivity extends BaseActivity implements LoginContract.LoginVi
     private PhoneVertifyDialog mPhoneVertifyDialog;
     private GT3GeetestUtilsBind gt3GeetestUtils;
     private String cid;
-    private String strAreaCode = "86";
+//    private String strAreaCode = "86";
     private boolean isJumpApp = false;//SkipPayActivity或者SkipExtractActivity跳转过来，登陆成功后 返回到对应界面
 
     @Override
@@ -183,7 +183,8 @@ public class LoginActivity extends BaseActivity implements LoginContract.LoginVi
             ToastUtils.showToast(getString(R.string.str_please_input) + getString(R.string.str_pwd));
         } else {
             KeyboardUtils.hideSoftInput(activity);
-            loginPresenter.casLogn(strAreaCode + username, password, "true");
+//            loginPresenter.casLogn(strAreaCode + username, password, "true");
+            loginPresenter.casLogn(username, password, "true");
         }
     }
 
@@ -374,7 +375,8 @@ public class LoginActivity extends BaseActivity implements LoginContract.LoginVi
 
                 @Override
                 public void onSendVertifyCode() {
-                    loginPresenter.getPhoneCode(strAreaCode + username);
+                    //loginPresenter.getPhoneCode(strAreaCode + username);
+                    loginPresenter.getPhoneCode(username);
                 }
 
                 @Override

@@ -228,4 +228,85 @@ public class CaptchaGetControllerModel {
 
     }
 
+    /**
+     * 获取手机验证码
+     *
+     * @param phone
+     * @param successListener
+     * @param errorListener
+     */
+    public void getCodeByPhone(final ResponseCallBack.SuccessListener<String> successListener, final ResponseCallBack.ErrorListener errorListener) {
+        //captchaGetControllerApi.addHeader("Cookie", SharedPreferencesUtil.getInstance(BaseApplication.getAppContext()).getUcSid());
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                captchaGetControllerApi.getValidateCaptchaUsingGET("phone", new Response.Listener<MessageResult>() {
+                    @Override
+                    public void onResponse(MessageResult response) {
+                        LogUtils.i("response==" + response.toString());
+                        int code = response.getCode();
+                        if (code == SUCCESS_CODE) {
+                            if (successListener != null)
+                                successListener.onResponse(response.getMessage());
+                        } else {
+                            if (errorListener != null)
+                                errorListener.onErrorResponse(new HttpErrorEntity(response.getCode(), response.getMessage(), response.getUrl(), response.getCid(), (String) response.getData()));
+                        }
+                    }
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        if (errorListener != null)
+                            errorListener.onErrorResponse(error);
+
+                    }
+                });
+            }
+        }).start();
+    }
+
+    /**
+     * 获取手机验证码,带有header
+     *
+     * @param phone
+     * @param check
+     * @param cid
+     * @param successListener
+     * @param errorListener
+     */
+    public void getCodeByPhoneWithHead(String check, String cid, final String type,
+                                       final ResponseCallBack.SuccessListener<String> successListener, final ResponseCallBack.ErrorListener errorListener) {
+        captchaGetControllerApi.addHeader("check", check);
+        captchaGetControllerApi.addHeader("cid", cid);
+        //captchaGetControllerApi.addHeader("Cookie", SharedPreferencesUtil.getInstance(BaseApplication.getAppContext()).getUcSid());
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                captchaGetControllerApi.getValidateCaptchaUsingGET(type, new Response.Listener<MessageResult>() {
+                    @Override
+                    public void onResponse(MessageResult response) {
+                        LogUtils.i("response==" + response.toString());
+                        int code = response.getCode();
+                        if (code == SUCCESS_CODE) {
+                            if (successListener != null)
+                                successListener.onResponse(response.getMessage());
+                        } else {
+                            if (errorListener != null)
+                                errorListener.onErrorResponse(new HttpErrorEntity(response.getCode(), response.getMessage(), response.getUrl(), response.getCid(), (String) response.getData()));
+                        }
+                    }
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        if (errorListener != null)
+                            errorListener.onErrorResponse(error);
+
+                    }
+                });
+            }
+        }).start();
+
+    }
+
+
 }

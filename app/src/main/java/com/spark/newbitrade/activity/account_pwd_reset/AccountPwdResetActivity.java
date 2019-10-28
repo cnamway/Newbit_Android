@@ -52,7 +52,7 @@ public class AccountPwdResetActivity extends BaseActivity implements AccountPwdR
     private TimeCount timeCount;
     private AccountPwdResetPresenterImpl presenter;
     private GT3GeetestUtilsBind gt3GeetestUtils;
-    private String strAreaCode = "86";
+//    private String strAreaCode = "86";
     private boolean isCaptch;
     private String cid;
 
@@ -67,7 +67,7 @@ public class AccountPwdResetActivity extends BaseActivity implements AccountPwdR
             if (data != null) {
                 CountryEntity country = (CountryEntity) data.getSerializableExtra("getCountry");
                 if (country != null) {
-                    strAreaCode = country.getAreaCode();
+//                    strAreaCode = country.getAreaCode();
                 }
             }
         }
@@ -141,7 +141,8 @@ public class AccountPwdResetActivity extends BaseActivity implements AccountPwdR
         } else if (!password.equals(passwordRe)) {
             ToastUtils.showToast(activity, getString(R.string.str_pwd_diff));
         } else {
-            presenter.updateForget(strAreaCode + phone, password, code);
+//            presenter.updateForget(strAreaCode + phone, password, code);
+            presenter.updateForget(phone, password, code);
         }
     }
 
@@ -159,7 +160,8 @@ public class AccountPwdResetActivity extends BaseActivity implements AccountPwdR
         } else if (!StringFormatUtils.isMobile(phone)) {
             ToastUtils.showToast(activity, getString(R.string.str_please_input_correct) + getString(R.string.str_phone_number));
         } else {
-            presenter.getPhoneCode(strAreaCode + phone);
+//            presenter.getPhoneCode(strAreaCode + phone);
+            presenter.getPhoneCode();
         }
 
     }
@@ -189,7 +191,8 @@ public class AccountPwdResetActivity extends BaseActivity implements AccountPwdR
                 if (status) {
                     Captcha captcha = new Gson().fromJson(result, Captcha.class);
                     String checkData = "gee::" + captcha.getGeetest_challenge() + "$" + captcha.getGeetest_validate() + "$" + captcha.getGeetest_seccode();
-                    presenter.getPhoneCode(strAreaCode + StringUtils.getText(etPhone), checkData, cid);
+//                    presenter.getPhoneCode(strAreaCode + StringUtils.getText(etPhone), checkData, cid);
+                    presenter.getPhoneCode(StringUtils.getText(etPhone), checkData, cid);
                 }
             }
         });

@@ -184,8 +184,8 @@ public class MyInfoActivity extends BaseActivity implements MyInfoContract.MyInf
                 break;
             case R.id.llLoginPwd:
                 //登录密码
-                //showActivity(ForgotPwdActivity.class, null);
-                showActivity(EditLoginPwdActivity.class, null);
+                showActivity(ForgotPwdActivity.class, null);
+//                showActivity(EditLoginPwdActivity.class, null);
                 break;
             case R.id.llIdCard:
                 //身份验证

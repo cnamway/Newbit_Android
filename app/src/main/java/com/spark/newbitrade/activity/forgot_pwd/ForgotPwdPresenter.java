@@ -36,30 +36,31 @@ public class ForgotPwdPresenter implements ForgotPwdContract.Presenter {
     }
 
     @Override
-    public void updateForget(String phone, String password, String code) {
+    public void updateForget(String phone, String password, String code, String countryCode) {
         showLoading();
-        memberControllerModel.doForget(phone, password, code, new ResponseCallBack.SuccessListener<String>() {
-            @Override
-            public void onResponse(String response) {
-                hideLoading();
-                if (view != null)
-                    view.updateForgetSuccess(response);
-            }
-        }, new ResponseCallBack.ErrorListener() {
-            @Override
-            public void onErrorResponse(HttpErrorEntity httpErrorEntity) {
-                hideLoading();
-                if (view != null)
-                    view.dealError(httpErrorEntity);
-            }
+        memberControllerModel.doForget(phone, password, code, countryCode,
+                new ResponseCallBack.SuccessListener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        hideLoading();
+                        if (view != null)
+                            view.updateForgetSuccess(response);
+                    }
+                }, new ResponseCallBack.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(HttpErrorEntity httpErrorEntity) {
+                        hideLoading();
+                        if (view != null)
+                            view.dealError(httpErrorEntity);
+                    }
 
-            @Override
-            public void onErrorResponse(VolleyError volleyError) {
-                hideLoading();
-                if (view != null)
-                    view.dealError(volleyError);
-            }
-        });
+                    @Override
+                    public void onErrorResponse(VolleyError volleyError) {
+                        hideLoading();
+                        if (view != null)
+                            view.dealError(volleyError);
+                    }
+                });
     }
 
     @Override

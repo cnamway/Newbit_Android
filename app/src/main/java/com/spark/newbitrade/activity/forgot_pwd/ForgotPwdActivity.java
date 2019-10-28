@@ -169,7 +169,7 @@ public class ForgotPwdActivity extends BaseActivity implements ForgotPwdContract
         } else if (!password.equals(passwordRe)) {
             ToastUtils.showToast(R.string.pwd_diff);
         } else {
-            presenter.updateForget(strAreaCode + phone, password, code);
+            presenter.updateForget(phone, password, code, strAreaCode);
         }
     }
 

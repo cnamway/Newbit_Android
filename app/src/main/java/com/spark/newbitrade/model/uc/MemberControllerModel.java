@@ -133,10 +133,10 @@ public class MemberControllerModel {
     }
 
     /**
-     * 忘记密码
+     * 重置登录密码
      */
-    public void doForget(String phone, String password, String code, final ResponseCallBack.SuccessListener<String> successListener, final ResponseCallBack.ErrorListener errorListener) {
-        memberControllerApi.addHeader("check", "phone:" + phone + ":" + code);
+    public void doForget(String phone, String password, String code, String countryCode, final ResponseCallBack.SuccessListener<String> successListener, final ResponseCallBack.ErrorListener errorListener) {
+        memberControllerApi.addHeader("check", "phone:" + countryCode + phone + ":" + code);
         final ResetLoginPasswordDto resetLoginPasswordDto = new ResetLoginPasswordDto();
         resetLoginPasswordDto.setMobilePhone(phone);
         resetLoginPasswordDto.setNewPassword(password);
@@ -206,7 +206,7 @@ public class MemberControllerModel {
      * 重置资金密码
      */
     public void doForgetTrade(String phone, String password, String code, final ResponseCallBack.SuccessListener<String> successListener, final ResponseCallBack.ErrorListener errorListener) {
-        memberControllerApi.addHeader("check", "phone:" + phone + ":" + code);
+        memberControllerApi.addHeader("check", "phone::" + code);
         final ResetTradePasswordDto dto = new ResetTradePasswordDto();
         dto.setMobilePhone(phone);
         dto.setNewPassword(password);

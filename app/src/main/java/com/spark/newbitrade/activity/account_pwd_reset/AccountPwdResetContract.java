@@ -23,7 +23,7 @@ public interface AccountPwdResetContract {
 
     interface ForgotPwdPresenter extends BaseContract.BasePresenter {
 
-        void getPhoneCode(String phone);
+        void getPhoneCode();
 
         void captch();
 
