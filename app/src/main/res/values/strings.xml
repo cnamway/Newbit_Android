@@ -882,4 +882,6 @@
     <string name="str_assets_select_addrss">请先选择提币地址</string>
     <string name="reset_money_pwd">重置资金密码</string>
     <string name="text_money_pwd_tag">请输入6位资金密码</string>
+    <string name="str_trade_money_remove">资金交易扣除</string>
+    <string name="str_trade_money_add">资金交易增加</string>
 </resources>

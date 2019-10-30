@@ -769,10 +769,10 @@
         <item>All</item>
         <item>Charged</item>
         <item>Mention Coin</item>
-        <!--<item>资金划转转入</item>-->
-        <!--<item>资金划转转出</item>-->
-        <!--<item>资金交易扣除</item>-->
-        <!--<item>资金交易增加</item>-->
+        <!--<item>Transfer of funds</item>-->
+        <!--<item>Transfer of funds</item>-->
+        <!--<item>Capital transaction deduction</item>-->
+        <!--<item>Increase in capital transactions</item>-->
         <item>Sell out</item>
         <item>Buy in</item>
         <item>Pay merchant authentication deposit</item>
@@ -881,4 +881,6 @@
     <string name="str_assets_select_addrss">Please select the withdrawal address first</string>
     <string name="reset_money_pwd">Reset money password</string>
     <string name="text_money_pwd_tag">Please enter 6 digit fund password</string>
+    <string name="str_trade_money_remove">Capital transaction deduction</string>
+    <string name="str_trade_money_add">Increase in capital transactions</string>
 </resources>
