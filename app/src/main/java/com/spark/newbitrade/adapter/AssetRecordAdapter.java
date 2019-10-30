@@ -59,7 +59,7 @@ public class AssetRecordAdapter extends BaseQuickAdapter<AssetRecord, BaseViewHo
                 break;
             case 6:
                 helper.setText(R.id.tvType, MyApplication.getApp().getString(R.string.str_trade_money_add));
-                type = 5;
+                type = 6;
                 break;
             case 7:
                 helper.setText(R.id.tvType, MyApplication.getApp().getString(R.string.fiat_money_sell));
