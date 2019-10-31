@@ -56,7 +56,8 @@ public class AssetControllerModel {
     public void addWalletWithdrawAddressUsingPOST(String address, String coinId, String remark, String code, String phone,
                                                   final ResponseCallBack.SuccessListener<String> successListener,
                                                   final ResponseCallBack.ErrorListener errorListener) {
-        assetControllerApi.addHeader("check", "phone:" + phone + ":" + code);
+        //assetControllerApi.addHeader("check", "phone:" + phone + ":" + code);
+        assetControllerApi.addHeader("check", "phone::" + code);
         final MemberWithdrawAddressDto memberWithdrawAddressDto = new MemberWithdrawAddressDto();
         memberWithdrawAddressDto.setAddress(address);
         memberWithdrawAddressDto.setCoinId(coinId);
@@ -344,7 +345,8 @@ public class AssetControllerModel {
      */
     public void walletWithdraw(String address, BigDecimal amount, String coinName, String tradePassword, String code, String phone, String orderNo,
                                final ResponseCallBack.SuccessListener<String> successListener, final ResponseCallBack.ErrorListener errorListener) {
-        assetControllerApi.addHeader("check", "phone:" + phone + ":" + code);
+        //assetControllerApi.addHeader("check", "phone:" + phone + ":" + code);
+        assetControllerApi.addHeader("check", "phone::" + code);
         final AssetWithdrawDto assetWithdrawDto = new AssetWithdrawDto();
         assetWithdrawDto.setAddress(address);
         assetWithdrawDto.setAmount(amount);

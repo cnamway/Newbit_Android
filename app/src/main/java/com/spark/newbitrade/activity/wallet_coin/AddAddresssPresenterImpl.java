@@ -70,7 +70,7 @@ public class AddAddresssPresenterImpl implements AddAddressContract.Presenter {
 
     @Override
     public void getPhoneCode(String phone) {
-        captchaGetControllerModel.getCodeByPhone(phone, new ResponseCallBack.SuccessListener<String>() {
+        captchaGetControllerModel.getCodeByPhone( new ResponseCallBack.SuccessListener<String>() {
             @Override
             public void onResponse(String response) {
                 hideLoading();
@@ -126,7 +126,7 @@ public class AddAddresssPresenterImpl implements AddAddressContract.Presenter {
     @Override
     public void getPhoneCode(String phone, String check, String cid) {
         showLoading();
-        captchaGetControllerModel.getCodeByPhone(phone, check, cid, new ResponseCallBack.SuccessListener<String>() {
+        captchaGetControllerModel.getCodeByPhoneWithHead(check, cid, "phone", new ResponseCallBack.SuccessListener<String>() {
             @Override
             public void onResponse(String response) {
                 hideLoading();
