@@ -157,9 +157,11 @@ public class AccountPwdResetActivity extends BaseActivity implements AccountPwdR
         String phone = StringUtils.getText(etPhone);
         if (StringUtils.isEmpty(phone)) {
             ToastUtils.showToast(activity, getString(R.string.str_please_input) + getString(R.string.str_phone_number));
-        } else if (!StringFormatUtils.isMobile(phone)) {
-            ToastUtils.showToast(activity, getString(R.string.str_please_input_correct) + getString(R.string.str_phone_number));
-        } else {
+        }
+//        else if (!StringFormatUtils.isMobile(phone)) {
+//            ToastUtils.showToast(activity, getString(R.string.str_please_input_correct) + getString(R.string.str_phone_number));
+//        }
+        else {
 //            presenter.getPhoneCode(strAreaCode + phone);
             presenter.getPhoneCode();
         }

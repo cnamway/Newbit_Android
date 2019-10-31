@@ -224,9 +224,11 @@ public class SignUpActivity extends BaseActivity implements SignUpContract.SignV
             String phone = StringUtils.getText(etPhone);
             if (StringUtils.isEmpty(phone)) {
                 ToastUtils.showToast(getString(R.string.str_please_input) + getString(R.string.str_phone_number));
-            } else if (!StringFormatUtils.isMobile(phone)) {
-                ToastUtils.showToast(getString(R.string.str_please_input_correct) + getString(R.string.str_phone_number));
-            } else {
+            }
+//            else if (!StringFormatUtils.isMobile(phone)) {
+//                ToastUtils.showToast(getString(R.string.str_please_input_correct) + getString(R.string.str_phone_number));
+//            }
+            else {
 //                presenter.getPhoneCode(strAreaCode + phone);
                 gt3GeetestUtils = new GT3GeetestUtilsBind(activity);
                 presenter.captch();
