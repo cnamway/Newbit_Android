@@ -36,6 +36,7 @@ import com.spark.newbitrade.base.BaseLazyFragment;
 import com.spark.newbitrade.dialog.ConfirmDialog;
 import com.spark.newbitrade.entity.Ads;
 import com.spark.newbitrade.entity.Country;
+import com.spark.newbitrade.entity.CountryEntity;
 import com.spark.newbitrade.entity.PayWay;
 import com.spark.newbitrade.entity.PayWaySetting;
 import com.spark.newbitrade.utils.GlobalConstant;
@@ -167,7 +168,7 @@ public class PubAdsFragment extends BaseLazyFragment implements ReleaseAdContrac
         }
         if (requestCode == CountryActivity.RETURN_COUNTRY && resultCode == Activity.RESULT_OK) {
             if (data != null) {
-                Country country = (Country) data.getSerializableExtra("country");
+                CountryEntity country = (CountryEntity) data.getSerializableExtra("getCountry");
 
                 currency = country.getLocalCurrency();
                 tvSelectCountry.setText(country.getZhName());

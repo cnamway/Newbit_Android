@@ -1,8 +1,7 @@
 package com.spark.newbitrade.activity.country;
 
-
 import com.spark.newbitrade.base.BaseContract;
-import com.spark.newbitrade.entity.Country;
+import com.spark.newbitrade.entity.CountryEntity;
 
 import java.util.List;
 
@@ -14,7 +13,7 @@ public interface CountryContract {
 
     interface View extends BaseContract.BaseView {
 
-        void countrySuccess(List<Country> obj);
+        void countrySuccess(List<CountryEntity> obj);
     }
 
     interface Presenter extends BaseContract.BasePresenter {

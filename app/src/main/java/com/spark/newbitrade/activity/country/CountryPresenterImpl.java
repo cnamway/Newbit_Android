@@ -1,14 +1,12 @@
 package com.spark.newbitrade.activity.country;
 
-
 import com.android.volley.VolleyError;
 import com.spark.newbitrade.callback.ResponseCallBack;
-import com.spark.newbitrade.entity.Country;
+import com.spark.newbitrade.entity.CountryEntity;
 import com.spark.newbitrade.entity.HttpErrorEntity;
-import com.spark.newbitrade.model.otc.AdvertiseScanControllerModel;
+import com.spark.newbitrade.model.uc.RegisterControllerModel;
 
 import java.util.List;
-
 
 /**
  * Created by Administrator on 2017/9/25.
@@ -16,19 +14,19 @@ import java.util.List;
 
 public class CountryPresenterImpl implements CountryContract.Presenter {
     private CountryContract.View view;
-    private AdvertiseScanControllerModel advertiseScanControllerModel;
+    private RegisterControllerModel registerControllerModel;
 
     public CountryPresenterImpl(CountryContract.View view) {
         this.view = view;
-        advertiseScanControllerModel = new AdvertiseScanControllerModel();
+        registerControllerModel = new RegisterControllerModel();
     }
 
     @Override
     public void country() {
         showLoading();
-        advertiseScanControllerModel.listOtcTradeAreaUsingGET(new ResponseCallBack.SuccessListener<List<Country>>() {
+        registerControllerModel.getCountry(new ResponseCallBack.SuccessListener<List<CountryEntity>>() {
             @Override
-            public void onResponse(List<Country> response) {
+            public void onResponse(List<CountryEntity> response) {
                 hideLoading();
                 if (view != null)
                     view.countrySuccess(response);

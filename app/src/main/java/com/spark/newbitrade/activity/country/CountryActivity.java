@@ -10,7 +10,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.spark.newbitrade.R;
 import com.spark.newbitrade.adapter.CountryAdapter;
 import com.spark.newbitrade.base.BaseActivity;
-import com.spark.newbitrade.entity.Country;
+import com.spark.newbitrade.entity.CountryEntity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +24,7 @@ public class CountryActivity extends BaseActivity implements CountryContract.Vie
     public static final int RETURN_COUNTRY = 0;
     @BindView(R.id.rvCountry)
     RecyclerView rvCountry;
-    private List<Country> countries = new ArrayList<>();
+    private List<CountryEntity> countries = new ArrayList<>();
     private CountryAdapter adapter;
     private CountryPresenterImpl presenter;
 
@@ -60,8 +60,9 @@ public class CountryActivity extends BaseActivity implements CountryContract.Vie
         adapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                CountryEntity countryEntity = (CountryEntity) adapter.getItem(position);
                 Intent intent = new Intent();
-                intent.putExtra("country", countries.get(position));
+                intent.putExtra("getCountry", countries.get(position));
                 CountryActivity.this.setResult(RESULT_OK, intent);
                 finish();
             }
@@ -75,7 +76,7 @@ public class CountryActivity extends BaseActivity implements CountryContract.Vie
     }
 
     @Override
-    public void countrySuccess(List<Country> obj) {
+    public void countrySuccess(List<CountryEntity> obj) {
         if (obj == null) return;
         this.countries.clear();
         this.countries.addAll(obj);

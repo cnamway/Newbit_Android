@@ -65,7 +65,7 @@ public class AccountPwdResetActivity extends BaseActivity implements AccountPwdR
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == 1 && resultCode == Activity.RESULT_OK) {
             if (data != null) {
-                CountryEntity country = (CountryEntity) data.getSerializableExtra("getCountry");
+                CountryEntity country = (CountryEntity) data.getSerializableExtra("country");
                 if (country != null) {
 //                    strAreaCode = country.getAreaCode();
                 }

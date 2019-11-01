@@ -11,6 +11,7 @@ import com.spark.newbitrade.R;
 import com.spark.newbitrade.activity.country.CountryActivity;
 import com.spark.newbitrade.base.BaseActivity;
 import com.spark.newbitrade.entity.Country;
+import com.spark.newbitrade.entity.CountryEntity;
 import com.spark.newbitrade.utils.NetCodeUtils;
 import com.spark.newbitrade.utils.SharedPreferenceInstance;
 import com.spark.newbitrade.utils.StringUtils;
@@ -58,7 +59,7 @@ public class BindPhoneActivity extends BaseActivity implements BindPhoneContract
     TextView tvNewGetCode;
     @BindView(R.id.llNewCode)
     LinearLayout llNewCode;
-    private Country country;
+    private CountryEntity country;
     private BindPhoneContract.Presenter presenter;
     private TimeCount timeCount;
     private TimeCount newTimeCount;
@@ -71,7 +72,7 @@ public class BindPhoneActivity extends BaseActivity implements BindPhoneContract
         switch (requestCode) {
             case CountryActivity.RETURN_COUNTRY:
                 if (data == null) return;
-                country = (Country) data.getSerializableExtra("country");
+                country = (CountryEntity) data.getSerializableExtra("getCountry");
                 if (SharedPreferenceInstance.getInstance().getLanguageCode() == 1) {
                     tvCountry.setText(country.getZhName());
                 } else if (SharedPreferenceInstance.getInstance().getLanguageCode() == 2) {

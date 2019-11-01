@@ -19,9 +19,11 @@ import com.spark.newbitrade.activity.login.LoginActivity;
 import com.spark.newbitrade.base.BaseActivity;
 import com.spark.newbitrade.entity.Captcha;
 import com.spark.newbitrade.entity.Country;
+import com.spark.newbitrade.entity.CountryEntity;
 import com.spark.newbitrade.entity.HttpErrorEntity;
 import com.spark.newbitrade.factory.HttpUrls;
 import com.spark.newbitrade.utils.CommonUtils;
+import com.spark.newbitrade.utils.FormatDataUtils;
 import com.spark.newbitrade.utils.GlobalConstant;
 import com.spark.newbitrade.utils.StringUtils;
 import com.spark.newbitrade.utils.ToastUtils;
@@ -74,9 +76,9 @@ public class ForgotPwdActivity extends BaseActivity implements ForgotPwdContract
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == CountryActivity.RETURN_COUNTRY && resultCode == Activity.RESULT_OK) {
             if (data != null) {
-                Country country = (Country) data.getSerializableExtra("country");
+                CountryEntity country = (CountryEntity) data.getSerializableExtra("getCountry");
                 if (country != null) {
-                    tvCountry.setText(CommonUtils.getCountryNameByLanguageCode(country));
+                    tvCountry.setText(FormatDataUtils.getViewNameByCode(country, activity));
                     strAreaCode = country.getAreaCode();
                 }
             }

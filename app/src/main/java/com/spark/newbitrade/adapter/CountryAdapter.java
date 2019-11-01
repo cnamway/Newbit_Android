@@ -6,6 +6,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.spark.newbitrade.R;
 import com.spark.newbitrade.entity.Country;
+import com.spark.newbitrade.entity.CountryEntity;
 import com.spark.newbitrade.utils.SharedPreferenceInstance;
 
 import java.util.List;
@@ -15,14 +16,14 @@ import java.util.List;
  * Created by Administrator on 2018/3/1.
  */
 
-public class CountryAdapter extends BaseQuickAdapter<Country, BaseViewHolder> {
+public class CountryAdapter extends BaseQuickAdapter<CountryEntity, BaseViewHolder> {
 
-    public CountryAdapter(int layoutResId, @Nullable List<Country> data) {
+    public CountryAdapter(int layoutResId, @Nullable List<CountryEntity> data) {
         super(layoutResId, data);
     }
 
     @Override
-    protected void convert(BaseViewHolder helper, Country item) {
+    protected void convert(BaseViewHolder helper, CountryEntity item) {
         switch (SharedPreferenceInstance.getInstance().getLanguageCode()) {
             case 1:
                 helper.setText(R.id.tvname, item.getZhName());
