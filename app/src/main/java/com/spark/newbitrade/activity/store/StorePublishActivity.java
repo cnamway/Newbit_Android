@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.spark.newbitrade.MyApplication;
 import com.spark.newbitrade.R;
 import com.spark.newbitrade.activity.my.ads.MyAdsActivity;
 import com.spark.newbitrade.adapter.SelectPayWayAdapter;
@@ -58,6 +59,8 @@ public class StorePublishActivity extends BaseActivity implements StorePublishCo
     TextView tvPayWay;
     @BindView(R.id.tvRelease)
     TextView tvRelease;
+    @BindView(R.id.adType)
+    TextView adType;
 
     private String coinName;
     private String priceStr;
@@ -116,6 +119,11 @@ public class StorePublishActivity extends BaseActivity implements StorePublishCo
                 String payType = getSetPayByCode(ads.getPayMode());
                 tvPayWay.setText(payType);
                 payIds = ads.getPayIds();
+                if (ads.getAdvertiseType() == 0) {
+                    adType.setText(MyApplication.getApp().getString(R.string.dialog_three_two));
+                } else {
+                    adType.setText(MyApplication.getApp().getString(R.string.text_sell_num));
+                }
             } else {
                 setTitle(getString(R.string.str_push_otc_ad));
                 coinName = bundle.getString("coinName");
@@ -281,6 +289,9 @@ public class StorePublishActivity extends BaseActivity implements StorePublishCo
             AdvertiseDto advertiseDto = new AdvertiseDto();
             advertiseDto.setPrice(new BigDecimal(priceStr));
             advertiseDto.setAdvertiseType(1);
+            if (ads != null) {
+                advertiseDto.setAdvertiseType(ads.getAdvertiseType());
+            }
             advertiseDto.setCoinName(coinName);
 //            advertiseDto.setMinLimit(new BigDecimal(minLimit));
 //            advertiseDto.setMaxLimit(new BigDecimal(maxLimit));
