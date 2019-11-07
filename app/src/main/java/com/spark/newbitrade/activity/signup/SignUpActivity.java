@@ -61,7 +61,7 @@ public class SignUpActivity extends BaseActivity implements SignUpContract.SignV
     private String strAreaCode = "86";
     private GT3GeetestUtilsBind gt3GeetestUtils;
     private String cid;
-
+    private String getCodePhone = "";
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -178,6 +178,8 @@ public class SignUpActivity extends BaseActivity implements SignUpContract.SignV
         String email = StringUtils.getText(etEmail);
         if (StringUtils.isEmpty(phone) && !isEmail) {
             ToastUtils.showToast(getString(R.string.str_please_input) + getString(R.string.str_phone_number));
+        } else if (!phone.equals(getCodePhone)) {
+            ToastUtils.showToast(getString(R.string.str_sign_up_change_phone));
         } else if (isEmail && StringUtils.isEmpty(email)) {
             ToastUtils.showToast(getString(R.string.str_please_input) + getString(R.string.str_email));
         } else if (isEmail && !StringFormatUtils.isEmail(email)) {
@@ -227,6 +229,7 @@ public class SignUpActivity extends BaseActivity implements SignUpContract.SignV
 //                ToastUtils.showToast(getString(R.string.str_please_input_correct) + getString(R.string.str_phone_number));
 //            }
             else {
+                getCodePhone = phone;
 //                presenter.getPhoneCode(strAreaCode + phone);
                 gt3GeetestUtils = new GT3GeetestUtilsBind(activity);
                 presenter.captch();

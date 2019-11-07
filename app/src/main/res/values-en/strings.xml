@@ -883,4 +883,5 @@
     <string name="text_money_pwd_tag">Please enter 6 digit fund password</string>
     <string name="str_trade_money_remove">Capital transaction deduction</string>
     <string name="str_trade_money_add">Increase in capital transactions</string>
+    <string name="str_sign_up_change_phone">Please re-acquire the verification code</string>
 </resources>

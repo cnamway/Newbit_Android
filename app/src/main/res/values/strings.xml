@@ -884,4 +884,5 @@
     <string name="text_money_pwd_tag">请输入6位资金密码</string>
     <string name="str_trade_money_remove">资金交易扣除</string>
     <string name="str_trade_money_add">资金交易增加</string>
+    <string name="str_sign_up_change_phone">请重新获取验证码</string>
 </resources>
