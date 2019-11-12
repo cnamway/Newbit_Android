@@ -263,12 +263,12 @@ public class MyInfoActivity extends BaseActivity implements MyInfoContract.MyInf
             ToastUtils.showToast(getString(R.string.library_file_exception));
             return;
         }
-        Bitmap bm = BitmapUtils.zoomBitmap(BitmapFactory.decodeFile(imageFile.getAbsolutePath()), ivHeader.getWidth(), ivHeader.getHeight());
-//        if (GlobalConstant.isUpLoadFile) {
-//            upLoadImageFile(bm);
-//        } else {
-        upLoadBase64("data:image/jpeg;base64," + BitmapUtils.imgToBase64(bm));
-//        }
+        //BitmapUtils.compress(imageFile.getAbsolutePath(), BitmapUtils.p_1000);
+        int w = BitmapUtils.p_300;
+        int h = BitmapUtils.zoomBitmapSize(BitmapFactory.decodeFile(imageFile.getAbsolutePath()), w);
+        Bitmap bitmap = BitmapUtils.zoomBitmap(BitmapFactory.decodeFile(imageFile.getAbsolutePath()), w, h);
+        //Bitmap bitmap = BitmapFactory.decodeFile(imageFile.getAbsolutePath());
+        upLoadBase64("data:image/jpeg;base64," + BitmapUtils.imgToBase64(bitmap));
     }
 
     /**
@@ -279,7 +279,11 @@ public class MyInfoActivity extends BaseActivity implements MyInfoContract.MyInf
      */
     private void takePhotoReturn(int resultCode, Intent data) {
         if (resultCode != RESULT_OK) return;
-        Bitmap bitmap = BitmapUtils.zoomBitmap(BitmapFactory.decodeFile(imageFile.getAbsolutePath()), ivHeader.getWidth(), ivHeader.getHeight());
+        //BitmapUtils.compress(imageFile.getAbsolutePath(), BitmapUtils.p_1000);
+        int w = BitmapUtils.p_300;
+        int h = BitmapUtils.zoomBitmapSize(BitmapFactory.decodeFile(imageFile.getAbsolutePath()), w);
+        Bitmap bitmap = BitmapUtils.zoomBitmap(BitmapFactory.decodeFile(imageFile.getAbsolutePath()), w, h);
+        //Bitmap bitmap = BitmapFactory.decodeFile(imageFile.getAbsolutePath());
         upLoadBase64("data:image/jpeg;base64," + BitmapUtils.imgToBase64(bitmap));
     }
 

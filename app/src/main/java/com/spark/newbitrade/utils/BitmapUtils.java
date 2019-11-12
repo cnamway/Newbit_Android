@@ -28,6 +28,11 @@ import java.util.Locale;
 
 public class BitmapUtils {
 
+    //压缩到1000k以下
+    public static final int p_1000 = 1000;
+    //压缩到300k以下
+    public static final int p_300 = 300;
+
     /**
      * 采样率压缩：
      * 按照指定 宽高压缩图片
@@ -93,6 +98,31 @@ public class BitmapUtils {
         return bitmap;
     }
 
+    /**
+     * 获取压缩高度
+     *
+     * @param bitmap
+     * @param w
+     * @return
+     */
+    public static int zoomBitmapSize(Bitmap bitmap, int w) {
+        int h = p_300;
+        if (bitmap == null) {
+            return h;
+        }
+        int width = bitmap.getWidth();//1000
+        int height = bitmap.getHeight();//1000
+        if (width <= 0) {
+            width = p_300;
+        }
+        if (height <= 0) {
+            height = p_300;
+        }
+        float scaleWidth = ((float) w / width);//0.1
+        h = (int) (height * scaleWidth);
+        LogUtils.e("图片压缩w=" + w + ",h=" + h);
+        return h;
+    }
 
     /**
      * 转换为base64格式

@@ -80,7 +80,11 @@ public class BindAliActivity extends BaseActivity implements BindAliContract.Vie
         if (resultCode == RESULT_OK) {
             switch (requestCode) {
                 case GlobalConstant.TAKE_PHOTO:
-                    Bitmap bitmap = BitmapUtils.zoomBitmap(BitmapFactory.decodeFile(imageFile.getAbsolutePath()), ivIdFace.getWidth(), ivIdFace.getHeight());
+                    //BitmapUtils.compress(imageFile.getAbsolutePath(), BitmapUtils.p_1000);
+                    int w = BitmapUtils.p_300;
+                    int h = BitmapUtils.zoomBitmapSize(BitmapFactory.decodeFile(imageFile.getAbsolutePath()), w);
+                    Bitmap bitmap = BitmapUtils.zoomBitmap(BitmapFactory.decodeFile(imageFile.getAbsolutePath()), w, h);
+                    //Bitmap bitmap = BitmapFactory.decodeFile(imageFile.getAbsolutePath());
                     upLoadBase64("data:image/jpeg;base64," + BitmapUtils.imgToBase64(bitmap));
                     break;
                 case GlobalConstant.CHOOSE_ALBUM:
@@ -93,8 +97,12 @@ public class BindAliActivity extends BaseActivity implements BindAliContract.Vie
                         ToastUtils.showToast(getString(R.string.library_file_exception));
                         return;
                     }
-                    Bitmap bm = BitmapUtils.zoomBitmap(BitmapFactory.decodeFile(imageFile.getAbsolutePath()), ivIdFace.getWidth(), ivIdFace.getHeight());
-                    upLoadBase64("data:image/jpeg;base64," + BitmapUtils.imgToBase64(bm));
+                    //BitmapUtils.compress(imageFile.getAbsolutePath(), BitmapUtils.p_1000);
+                    w = BitmapUtils.p_300;
+                    h = BitmapUtils.zoomBitmapSize(BitmapFactory.decodeFile(imageFile.getAbsolutePath()), w);
+                    bitmap = BitmapUtils.zoomBitmap(BitmapFactory.decodeFile(imageFile.getAbsolutePath()), w, h);
+                    //Bitmap bitmap = BitmapFactory.decodeFile(imageFile.getAbsolutePath());
+                    upLoadBase64("data:image/jpeg;base64," + BitmapUtils.imgToBase64(bitmap));
                     break;
             }
         }

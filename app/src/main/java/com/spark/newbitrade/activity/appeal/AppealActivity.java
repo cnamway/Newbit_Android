@@ -284,18 +284,16 @@ public class AppealActivity extends BaseActivity implements AppealContract.View 
     }
 
 
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == RESULT_OK) {
             switch (requestCode) {
                 case GlobalConstant.TAKE_PHOTO:
-                    //  Bitmap bitmap = BitmapUtils.loadBitmap(new FileInputStream(imageFile), currentImg.getWidth(), currentImg.getHeight());
-                    Bitmap bitmap = BitmapUtils.zoomBitmap(BitmapFactory.decodeFile(imageFile.getAbsolutePath()), currentImg.getWidth(), currentImg.getHeight());
-                    //    BitmapUtils.saveBitmapToFile(bitmap, imageFile, 100);
-//                    if (GlobalConstant.isUpLoadFile) {
-//                        upLoadImageFile(bitmap);
-//                    } else {
+                    //BitmapUtils.compress(imageFile.getAbsolutePath(), BitmapUtils.p_1000);
+                    int w = BitmapUtils.p_1000;
+                    int h = BitmapUtils.zoomBitmapSize(BitmapFactory.decodeFile(imageFile.getAbsolutePath()), w);
+                    Bitmap bitmap = BitmapUtils.zoomBitmap(BitmapFactory.decodeFile(imageFile.getAbsolutePath()), w, h);
+                    //Bitmap bitmap = BitmapFactory.decodeFile(imageFile.getAbsolutePath());
                     String base64Data = BitmapUtils.imgToBase64(bitmap);
                     bitmap.recycle();
                     upLoadBase64("data:image/jpeg;base64," + base64Data);
@@ -315,13 +313,13 @@ public class AppealActivity extends BaseActivity implements AppealContract.View 
                         ToastUtils.showToast(getString(R.string.library_file_exception));
                         return;
                     }
-                    Bitmap bm = BitmapUtils.zoomBitmap(BitmapFactory.decodeFile(imageFile.getAbsolutePath()), currentImg.getWidth(), currentImg.getHeight());
-                    //   BitmapUtils.saveBitmapToFile(bm, imageFile, 100);
-//                    if (GlobalConstant.isUpLoadFile) {
-//                        upLoadImageFile(bm);
-//                    } else {
-                    String base64Data2 = BitmapUtils.imgToBase64(bm);
-                    bm.recycle();
+                    //BitmapUtils.compress(imageFile.getAbsolutePath(), BitmapUtils.p_1000);
+                    w = BitmapUtils.p_300;
+                    h = BitmapUtils.zoomBitmapSize(BitmapFactory.decodeFile(imageFile.getAbsolutePath()), w);
+                    bitmap = BitmapUtils.zoomBitmap(BitmapFactory.decodeFile(imageFile.getAbsolutePath()), w, h);
+                    //Bitmap bitmap = BitmapFactory.decodeFile(imageFile.getAbsolutePath());
+                    String base64Data2 = BitmapUtils.imgToBase64(bitmap);
+                    bitmap.recycle();
                     upLoadBase64("data:image/jpeg;base64," + base64Data2);
 //                    }
                     break;
