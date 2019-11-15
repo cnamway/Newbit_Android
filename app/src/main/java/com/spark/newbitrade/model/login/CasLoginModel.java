@@ -35,7 +35,7 @@ public class CasLoginModel {
         params.put("username", username);
         params.put("password", password);
         params.put("rememberMe", rememberMe);
-        SendRemoteDataUtil.getInstance().doStringPost(HttpUrls.getCasLogin(), params, new SendRemoteDataUtil.DataCallback() {
+        SendRemoteDataUtil.getInstance().doStringPost(HttpUrls.getInstance().getCasLogin(), params, new SendRemoteDataUtil.DataCallback() {
             @Override
             public void onDataLoaded(Object obj) {
                 try {
@@ -73,7 +73,7 @@ public class CasLoginModel {
     public void sendVertifyCode(String phone, final ResponseCallBack.SuccessListener<String> successListener, final ResponseCallBack.ErrorListener errorListener) {
         HashMap<String, String> params = new HashMap<>();
         params.put("type", "phone");
-        SendRemoteDataUtil.getInstance().doStringGetWithHead(HttpUrls.getSendVertifyCodeUrl(), params, new SendRemoteDataUtil.DataCallback() {
+        SendRemoteDataUtil.getInstance().doStringGetWithHead(HttpUrls.getInstance().getSendVertifyCodeUrl(), params, new SendRemoteDataUtil.DataCallback() {
             @Override
             public void onDataLoaded(Object obj) {
                 LogUtils.i(obj.toString());
@@ -94,7 +94,7 @@ public class CasLoginModel {
      */
     public void phoneCodeCheck(String code, final ResponseCallBack.SuccessListener<String> successListener, final ResponseCallBack.ErrorListener errorListener) {
         HashMap<String, String> params = new HashMap<>();
-        SendRemoteDataUtil.getInstance().doStringGetWithHeadAndCheck(HttpUrls.getVertifyCodeUrl(), code, params, new SendRemoteDataUtil.DataCallback() {
+        SendRemoteDataUtil.getInstance().doStringGetWithHeadAndCheck(HttpUrls.getInstance().getVertifyCodeUrl(), code, params, new SendRemoteDataUtil.DataCallback() {
             @Override
             public void onDataLoaded(Object obj) {
                 LogUtils.i(obj.toString());
@@ -118,8 +118,8 @@ public class CasLoginModel {
      */
     public void getBussinessTicket(String gtc, final String type, final ResponseCallBack.SuccessListener<String> successListener, final ResponseCallBack.ErrorListener errorListener) {
         HashMap<String, String> params = new HashMap<>();
-        params.put("service", HttpUrls.getService(type));
-        SendRemoteDataUtil.getInstance().doStringPost(HttpUrls.getCasLogin() + "/" + gtc, params, new SendRemoteDataUtil.DataCallback() {
+        params.put("service", HttpUrls.getInstance().getService(type));
+        SendRemoteDataUtil.getInstance().doStringPost(HttpUrls.getInstance().getCasLogin() + "/" + gtc, params, new SendRemoteDataUtil.DataCallback() {
             @Override
             public void onDataLoaded(Object obj) {
                 String response = (String) obj;
@@ -150,7 +150,7 @@ public class CasLoginModel {
     public void doBussionLogin(String ticket, final String type, final ResponseCallBack.SuccessListener<String> successListener, final ResponseCallBack.ErrorListener errorListener) {
         HashMap<String, String> params = new HashMap<>();
         params.put("ticket", ticket);
-        SendRemoteDataUtil.getInstance().doStringGet(HttpUrls.getCasTickets(type), params, new SendRemoteDataUtil.DataCallback() {
+        SendRemoteDataUtil.getInstance().doStringGet(HttpUrls.getInstance().getCasTickets(type), params, new SendRemoteDataUtil.DataCallback() {
             @Override
             public void onDataLoaded(Object obj) {
                 String response = (String) obj;
@@ -184,7 +184,7 @@ public class CasLoginModel {
      * 2.4 业务系统登录状态查询接口
      */
     public void checkBusinessLogin(final String type, final ResponseCallBack.SuccessListener<CasLoginEntity> successListener, final ResponseCallBack.ErrorListener errorListener) {
-        SendRemoteDataUtil.getInstance().doStringPost(HttpUrls.getCheckTicket(type), new HashMap<String, String>(), new SendRemoteDataUtil.DataCallback() {
+        SendRemoteDataUtil.getInstance().doStringPost(HttpUrls.getInstance().getCheckTicket(type), new HashMap<String, String>(), new SendRemoteDataUtil.DataCallback() {
             @Override
             public void onDataLoaded(Object obj) {
                 if (StringUtils.isNotEmpty((String) obj)) {
@@ -212,7 +212,7 @@ public class CasLoginModel {
      */
     public void loginOut(String tgt, final ResponseCallBack.SuccessListener<String> successListener, final ResponseCallBack.ErrorListener errorListener) {
         HashMap<String, String> params = new HashMap<>();
-        SendRemoteDataUtil.getInstance().doStringDelete(HttpUrls.getCasLogin() + "/" + tgt, params, new SendRemoteDataUtil.DataCallback() {
+        SendRemoteDataUtil.getInstance().doStringDelete(HttpUrls.getInstance().getCasLogin() + "/" + tgt, params, new SendRemoteDataUtil.DataCallback() {
             @Override
             public void onDataLoaded(Object obj) {
                 if (successListener != null)

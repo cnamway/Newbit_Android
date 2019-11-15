@@ -51,7 +51,6 @@
         <activity
             android:name="com.spark.newbitrade.activity.login.LoginActivity"
             android:configChanges="orientation|screenSize"
-            android:launchMode="singleTask"
             android:screenOrientation="portrait" />
 
         <activity

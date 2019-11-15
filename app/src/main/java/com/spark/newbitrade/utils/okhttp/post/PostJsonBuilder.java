@@ -1,6 +1,8 @@
 package com.spark.newbitrade.utils.okhttp.post;
 
 
+import com.spark.newbitrade.MyApplication;
+import com.spark.newbitrade.utils.SharedPreferenceInstance;
 import com.spark.newbitrade.utils.okhttp.OkhttpUtils;
 import com.spark.newbitrade.utils.okhttp.RequestBuilder;
 import com.spark.newbitrade.utils.okhttp.RequestCall;
@@ -43,6 +45,7 @@ public class PostJsonBuilder extends RequestBuilder {
     @Override
     public PostJsonBuilder addParams(String key, String val) {
         if (this.params == null) params = new HashMap<>();
+        headers.put("Accept-Language", SharedPreferenceInstance.getInstance().getAddHeaderLanguage(MyApplication.getApp()));
         headers.put("User-Agent", OkhttpUtils.getUserAgent());
         params.put(key, val);
         return this;

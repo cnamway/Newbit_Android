@@ -3,6 +3,16 @@ package com.spark.newbitrade.factory;
 
 public class HttpUrls {
 
+    private static HttpUrls loginUrls;
+
+    public static HttpUrls getInstance() {
+        if (loginUrls == null) {
+            loginUrls = new HttpUrls();
+        }
+        return loginUrls;
+    }
+
+
     /**
      * 主网络请求地址和cas登录地址
      */

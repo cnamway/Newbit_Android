@@ -27,6 +27,7 @@ import com.spark.newbitrade.entity.User;
 import com.spark.newbitrade.factory.HttpUrls;
 import com.spark.newbitrade.utils.GlobalConstant;
 import com.spark.newbitrade.utils.KeyboardUtils;
+import com.spark.newbitrade.utils.LogUtils;
 import com.spark.newbitrade.utils.SharedPreferenceInstance;
 import com.spark.newbitrade.utils.StringUtils;
 import com.spark.newbitrade.utils.ToastUtils;
@@ -69,8 +70,12 @@ public class LoginActivity extends BaseActivity implements LoginContract.LoginVi
     private PhoneVertifyDialog mPhoneVertifyDialog;
     private GT3GeetestUtilsBind gt3GeetestUtils;
     private String cid;
-//    private String strAreaCode = "86";
+    //    private String strAreaCode = "86";
     private boolean isJumpApp = false;//SkipPayActivity或者SkipExtractActivity跳转过来，登陆成功后 返回到对应界面
+    private boolean acLoginSuccess = false;
+    private boolean ucLoginSuccess = false;
+    private boolean otcLoginSuccess = false;
+    private boolean otcSystemLoginSuccess = false;
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -217,7 +222,7 @@ public class LoginActivity extends BaseActivity implements LoginContract.LoginVi
     @Override
     public void casLoginSuccess(Object o) {
         gtc = (String) o;
-        loginPresenter.doUcLogin(gtc, HttpUrls.TYPE_UC);
+        doUcLogin();
         isCasLogin = true;
         //保存手机号码
         String username = StringUtils.getText(etUsername);
@@ -243,14 +248,22 @@ public class LoginActivity extends BaseActivity implements LoginContract.LoginVi
     @Override
     public void ucLoginSuccess(String response) {
         if (HttpUrls.TYPE_UC.equals(response)) {
-            loginPresenter.doUcLogin(gtc, HttpUrls.TYPE_AC);
+            ucLoginSuccess = true;
+            LogUtils.e("------UC登录成功------");
         } else if (HttpUrls.TYPE_AC.equals(response)) {
-            loginPresenter.doUcLogin(gtc, HttpUrls.TYPE_OTC);
+            acLoginSuccess = true;
+            LogUtils.e("------AC登录成功------");
         } else if (HttpUrls.TYPE_OTC.equals(response)) {
-            loginPresenter.doUcLogin(gtc, HttpUrls.TYPE_OTC_SYSTEM);
+            otcLoginSuccess = true;
+            LogUtils.e("------OTC登录成功------");
         } else if (HttpUrls.TYPE_OTC_SYSTEM.equals(response)) {
-            saveOtcSid();
+            otcSystemLoginSuccess = true;
+            LogUtils.e("------OTC_SYSTEM登录成功------");
+        }
+        if (ucLoginSuccess && acLoginSuccess && otcLoginSuccess && otcSystemLoginSuccess) {
             isCasLogin = false;
+            saveOtcSid();
+            //获取用户信息
             loginPresenter.getUserInfo();
         }
     }
@@ -291,7 +304,7 @@ public class LoginActivity extends BaseActivity implements LoginContract.LoginVi
     @Override
     public void checkPhoneCodeSuccess(String response) {
         if (isCasLogin) {
-            loginPresenter.doUcLogin(gtc, HttpUrls.TYPE_UC);
+            doUcLogin();
         } else {
             checkInput();
         }
@@ -300,7 +313,7 @@ public class LoginActivity extends BaseActivity implements LoginContract.LoginVi
     @Override
     public void checkCaptchaSuccess(String response) {
         if (isCasLogin) {
-            loginPresenter.doUcLogin(gtc, HttpUrls.TYPE_UC);
+            doUcLogin();
         } else {
             checkInput();
         }
@@ -387,6 +400,17 @@ public class LoginActivity extends BaseActivity implements LoginContract.LoginVi
             });
         }
         mPhoneVertifyDialog.show();
+    }
+
+    private void doUcLogin() {
+        acLoginSuccess = false;
+        ucLoginSuccess = false;
+        otcLoginSuccess = false;
+        otcSystemLoginSuccess = false;
+        loginPresenter.doUcLogin(gtc, HttpUrls.TYPE_UC);
+        loginPresenter.doUcLogin(gtc, HttpUrls.TYPE_AC);
+        loginPresenter.doUcLogin(gtc, HttpUrls.TYPE_OTC);
+        loginPresenter.doUcLogin(gtc, HttpUrls.TYPE_OTC_SYSTEM);
     }
 
 }

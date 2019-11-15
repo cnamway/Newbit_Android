@@ -2,6 +2,7 @@ package com.spark.newbitrade.utils.okhttp.get;
 
 import android.net.Uri;
 
+import com.spark.newbitrade.MyApplication;
 import com.spark.newbitrade.utils.SharedPreferenceInstance;
 import com.spark.newbitrade.utils.okhttp.OkhttpUtils;
 import com.spark.newbitrade.utils.okhttp.RequestBuilder;
@@ -68,6 +69,7 @@ public class GetBuilder extends RequestBuilder {
     @Override
     public GetBuilder addHeader(String key, String value) {
         if (this.headers == null) headers = new HashMap<>();
+        headers.put("Accept-Language", SharedPreferenceInstance.getInstance().getAddHeaderLanguage(MyApplication.getApp()));
         headers.put("User-Agent", OkhttpUtils.getUserAgent());
         headers.put(key, value);
         return this;

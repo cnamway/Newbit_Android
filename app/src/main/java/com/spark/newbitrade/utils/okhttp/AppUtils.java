@@ -17,6 +17,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
+import android.os.Build;
 import android.support.annotation.ColorRes;
 import android.support.annotation.DimenRes;
 import android.support.v4.content.ContextCompat;
@@ -37,6 +38,7 @@ import java.io.File;
 import java.lang.reflect.Method;
 import java.util.Hashtable;
 import java.util.List;
+import java.util.UUID;
 
 import static android.content.Context.ACTIVITY_SERVICE;
 
@@ -360,5 +362,28 @@ public class AppUtils {
                 return true;
             }
         });
+    }
+
+    /**
+     * 获取设备唯一标识
+     *
+     * @return
+     */
+    public static String getTid() {
+        String m_szDevIDShort = "35" + (Build.BOARD.length() % 10)
+                + (Build.BRAND.length() % 10)
+                + (Build.CPU_ABI.length() % 10)
+                + (Build.DEVICE.length() % 10)
+                + (Build.MANUFACTURER.length() % 10)
+                + (Build.MODEL.length() % 10)
+                + (Build.PRODUCT.length() % 10);
+        String serial;
+        try {
+            serial = Build.class.getField("SERIAL").get(null).toString();
+            return new UUID(m_szDevIDShort.hashCode(), serial.hashCode()).toString();
+        } catch (Exception exception) {
+            serial = "serial";
+        }
+        return new UUID(m_szDevIDShort.hashCode(), serial.hashCode()).toString();
     }
 }

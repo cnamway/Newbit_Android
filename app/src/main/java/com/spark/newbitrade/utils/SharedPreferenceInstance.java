@@ -5,6 +5,9 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
 import com.spark.newbitrade.MyApplication;
+import com.spark.newbitrade.data.Language;
+
+import java.util.Locale;
 
 
 /**
@@ -37,6 +40,26 @@ public class SharedPreferenceInstance {
     public synchronized static SharedPreferenceInstance getInstance() {
         return mInstance == null ? new SharedPreferenceInstance() : mInstance;
     }
+
+    /**
+     * 获取添加在头部的header
+     *
+     * @return
+     */
+    public String getAddHeaderLanguage(Context context) {
+        int code = SharedPreferenceInstance.getInstance().getLanguageCode();
+        Language language = Language.values()[code];
+        Locale locale = new Locale(language.name());
+        if (locale.getLanguage().equals(Locale.CHINESE.getLanguage())) {
+            return "zh-CN,zh";
+        } else if (locale.getLanguage().equals(Locale.ENGLISH.getLanguage())) {
+            return "en-us,en";
+        } else if (locale.getLanguage().equals(Locale.JAPAN.getLanguage())) {
+            return "ja-JP";
+        }
+        return "zh-CN,zh";
+    }
+
 
     /**
      * 获取是否是第一次使用APP

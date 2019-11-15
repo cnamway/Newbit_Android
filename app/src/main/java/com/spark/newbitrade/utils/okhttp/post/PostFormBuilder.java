@@ -1,6 +1,7 @@
 package com.spark.newbitrade.utils.okhttp.post;
 
 
+import com.spark.newbitrade.MyApplication;
 import com.spark.newbitrade.utils.SharedPreferenceInstance;
 import com.spark.newbitrade.utils.okhttp.OkhttpUtils;
 import com.spark.newbitrade.utils.okhttp.RequestBuilder;
@@ -63,6 +64,7 @@ public class PostFormBuilder extends RequestBuilder {
     @Override
     public PostFormBuilder addHeader(String key, String value) {
         if (this.headers == null) headers = new HashMap<>();
+        headers.put("Accept-Language", SharedPreferenceInstance.getInstance().getAddHeaderLanguage(MyApplication.getApp()));
         headers.put("User-Agent", OkhttpUtils.getUserAgent());
         headers.put(key, value);
         return this;
