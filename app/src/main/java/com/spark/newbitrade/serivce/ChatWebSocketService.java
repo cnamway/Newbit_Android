@@ -233,11 +233,12 @@ public class ChatWebSocketService extends Service {
                     isClosed = true;
                     Log.e(TAG, "WebSocketService- 服务器关闭！！" + "isNeedReconnect==" + isNeedReconnect + ",WEBSOCKET_HOST_AND_PORT==" + WEBSOCKET_HOST_AND_PORT);
                     mHandler.removeCallbacks(heartBeatRunnable);
+                    mTimeHandler.removeMessages(1);
                     if (isNeedReconnect) {
                         //EventBus.getDefault().post(new ConnectCloseEvent(1));
                         mTimeHandler.sendEmptyMessageDelayed(1, CONNECT_AGAIN * 1000);
                     } else {
-                        mTimeHandler.removeMessages(1);
+
                     }
                     Log.e(TAG, "WebSocketService- 1111111111111111111111111");
                     closeWebsocket(true);
@@ -374,7 +375,8 @@ public class ChatWebSocketService extends Service {
                 Log.e(TAG, "WebSocketService- 创建一个新的连接WEBSOCKET_HOST_AND_PORT==" + WEBSOCKET_HOST_AND_PORT);
                 new InitSocketThread().start();//创建一个新的连接
             } else {
-                Log.e(TAG, "WebSocketService- 无网络连接   不在重新连接");
+                Log.e(TAG, "WebSocketService- 当前无网络连接，10秒后重新检测网络，并尝试重新连接websocket");
+                mTimeHandler.sendEmptyMessageDelayed(1, CONNECT_AGAIN * 1000);
             }
         }
     }
