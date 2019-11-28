@@ -277,9 +277,17 @@ public class ExtractActivity extends BaseActivity implements ExtractContract.Ext
                                 minFee = extractInfo.getMinWithdrawFee().doubleValue();
                             }
 
+                            double maxFee = 0;
+                            if (extractInfo != null && extractInfo.getMaxWithdrawFee() != null) {
+                                maxFee = extractInfo.getMaxWithdrawFee().doubleValue();
+                            }
+
                             if (money * fee < minFee) {
                                 tvFinalCount.setText(MathUtils.subZeroAndDot(MathUtils.getBigDecimalSubtractWithScale(money + "", minFee + "", 8)));
                                 tvServiceFee.setText(MathUtils.subZeroAndDot(MathUtils.getRundNumber(minFee, 8, null)));
+                            } else if (money * fee > maxFee) {
+                                tvFinalCount.setText(MathUtils.subZeroAndDot(MathUtils.getBigDecimalSubtractWithScale(money + "", maxFee + "", 8)));
+                                tvServiceFee.setText(MathUtils.subZeroAndDot(MathUtils.getRundNumber(maxFee, 8, null)));
                             } else {
                                 tvFinalCount.setText(MathUtils.subZeroAndDot(MathUtils.getBigDecimalSubtractWithScale(money + "", MathUtils.getBigDecimalMultiplyWithScale(money + "", fee + "", 8), 8)));
                                 tvServiceFee.setText(MathUtils.subZeroAndDot(MathUtils.getRundNumber(money * fee, 8, null)));
